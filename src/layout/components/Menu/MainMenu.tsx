@@ -4,17 +4,19 @@ import { RouterLink } from 'vue-router'
 
 import { propTypes } from '@/utils'
 
+import type { MenuInfo } from './types'
+
 export default defineComponent({
   name: 'MainMenu',
   props: {
-    title: propTypes.vnode().def(null),
-    icon: propTypes.vnode().def(null),
-    path: propTypes.string().def('')
+    menuInfo: propTypes.object<MenuInfo>().isRequired
   },
   render() {
     return (
-      <Menu.Item icon={this.icon}>
-        <RouterLink to={this.path}>{this.title}</RouterLink>
+      <Menu.Item icon={this.menuInfo.meta.icon} key={this.menuInfo.key}>
+        <RouterLink to={this.menuInfo.path}>
+          {this.menuInfo.meta.title}
+        </RouterLink>
       </Menu.Item>
     )
   }

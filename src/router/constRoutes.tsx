@@ -73,5 +73,11 @@ export default [
         meta: { title: 'Menu2' }
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index'),
+    meta: { title: '登录', hidden: true }
   }
 ] as RouteRecordRaw[]

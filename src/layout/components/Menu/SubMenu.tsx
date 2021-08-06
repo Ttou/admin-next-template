@@ -3,28 +3,26 @@ import { defineComponent } from 'vue'
 
 import { propTypes } from '@/utils'
 
-import { MainMenu } from '../'
+import MainMenu from './MainMenu'
+import type { MenuInfo } from './types'
 
 export default defineComponent({
   name: 'SubMenu',
   props: {
-    menuInfo: propTypes.object().def({})
-  },
-  setup() {
-    return {}
+    menuInfo: propTypes.object<MenuInfo>().isRequired
   },
   render() {
     return (
       <Menu.SubMenu
         key={this.menuInfo.key}
-        icon={this.menuInfo.icon}
-        title={this.menuInfo.title}
+        icon={this.menuInfo.meta.icon}
+        title={this.menuInfo.meta.title}
       >
         {this.menuInfo.children.map(item =>
           item.children ? (
             <sub-menu menuInfo={item} key={item.key}></sub-menu>
           ) : (
-            <MainMenu {...item} key={item.key} />
+            <MainMenu menuInfo={item} />
           )
         )}
       </Menu.SubMenu>

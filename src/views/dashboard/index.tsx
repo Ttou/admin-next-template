@@ -14,9 +14,15 @@ export default defineComponent({
   },
   render() {
     return (
-      <Button type="primary" onClick={this.handleClick}>
-        点击
-      </Button>
+      <div
+        style={{
+          padding: '30px'
+        }}
+      >
+        <Button type="primary" onClick={this.handleClick}>
+          点击
+        </Button>
+      </div>
     )
   }
 })
