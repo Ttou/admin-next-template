@@ -1,8 +1,9 @@
 import { Menu } from 'ant-design-vue'
 import { defineComponent } from 'vue'
-import { RouterLink } from 'vue-router'
 
 import { propTypes } from '@/utils'
+
+import { MainMenu } from '../'
 
 export default defineComponent({
   name: 'SubMenu',
@@ -23,9 +24,7 @@ export default defineComponent({
           item.children ? (
             <sub-menu menuInfo={item} key={item.key}></sub-menu>
           ) : (
-            <Menu.Item icon={item.icon} key={item.key}>
-              <RouterLink to={item.path}>{item.title}</RouterLink>
-            </Menu.Item>
+            <MainMenu {...item} key={item.key} />
           )
         )}
       </Menu.SubMenu>

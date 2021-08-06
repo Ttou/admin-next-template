@@ -1,5 +1,5 @@
 {
-  "name": "admin-next-template",
+  "name": "admin-next",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vite build",

@@ -1,18 +1,13 @@
 import './index.less'
 
-import {
-  AlignLeftOutlined,
-  DashboardOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined
-} from '@ant-design/icons-vue'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { Layout, Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { resolve } from 'path'
 import { defineComponent, nextTick, onMounted, reactive } from 'vue'
 import { RouteRecordRaw, RouterLink, RouterView, useRouter } from 'vue-router'
 
-import { SubMenu } from './components'
+import { MainMenu, SubMenu } from './components'
 
 export default defineComponent({
   name: 'Layout',
@@ -104,9 +99,7 @@ export default defineComponent({
               item.children ? (
                 <SubMenu menuInfo={item} key={item.key} />
               ) : (
-                <Menu.Item icon={item.icon} key={item.key}>
-                  <RouterLink to={item.path}>{item.title}</RouterLink>
-                </Menu.Item>
+                <MainMenu {...item} key={item.key} />
               )
             )}
           </Menu>
