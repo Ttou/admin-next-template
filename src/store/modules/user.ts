@@ -46,10 +46,11 @@ export default {
       commit(UserModule.mutations.SET_PERMISSION, permissions)
       return data
     },
-    [UserModule.actions.clear]: ({ commit }) => {
+    [UserModule.actions.clear]: ({ commit, dispatch }) => {
       commit(UserModule.mutations.SET_NAME, '')
       commit(UserModule.mutations.SET_TOKEN, '')
       commit(UserModule.mutations.SET_PERMISSION, [])
+      dispatch(Actions.tabs.delAllTabs, null, { root: true })
     }
   }
 } as Module<State['user'], any>

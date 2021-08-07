@@ -25,7 +25,7 @@ export default [
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
-    meta: { title: 'Nested', icon: <AlignLeftOutlined /> },
+    meta: { title: '嵌套路由', icon: <AlignLeftOutlined /> },
     children: [
       {
         path: 'menu1',

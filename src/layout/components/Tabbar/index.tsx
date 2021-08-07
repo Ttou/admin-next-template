@@ -56,8 +56,8 @@ export default defineComponent({
     function addTabs() {
       const { name, path } = route
 
-      // 只添加配置过名称且不是异常页面
-      if (name && name !== 'Error') {
+      // 只添加配置过名称且不是异常和登录页面
+      if (name && ['Login', 'Error'].indexOf(name as string) === -1) {
         store.dispatch(Actions.tabs.addTab, route)
         state.activeKey = path
       }

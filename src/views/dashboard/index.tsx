@@ -1,27 +1,15 @@
-import { Button, message } from 'ant-design-vue'
+import './index.less'
+
 import { defineComponent } from 'vue'
+
+import { SvgIcon } from '@/components'
 
 export default defineComponent({
   name: 'Dashboard',
-  setup() {
-    function handleClick() {
-      message.info('点击')
-    }
-
-    return {
-      handleClick
-    }
-  },
   render() {
     return (
-      <div
-        style={{
-          padding: '30px'
-        }}
-      >
-        <Button type="primary" onClick={this.handleClick}>
-          点击
-        </Button>
+      <div class="dashboard-view">
+        <SvgIcon name="dashboard" />
       </div>
     )
   }
