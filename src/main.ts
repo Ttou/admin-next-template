@@ -1,4 +1,5 @@
 import 'virtual:svg-icons-register'
+import './permission'
 
 import { createApp } from 'vue'
 

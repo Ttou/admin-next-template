@@ -1,4 +1,5 @@
 import { Breadcrumb } from 'ant-design-vue'
+import { cloneDeep } from 'lodash-es'
 import { resolve } from 'path'
 import { defineComponent, reactive, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
@@ -12,18 +13,32 @@ export default defineComponent({
 
     const route = useRoute()
 
+    function createBreadcrumb(routes: any[], basePath = '/') {
+      for (const route of routes) {
+        route.path = resolve(basePath, route.path)
+        route.breadcrumbName = route.meta.title
+
+        if (route.children) {
+          createBreadcrumb(route.children, route.path)
+        }
+      }
+
+      return routes
+    }
+
     watch(
       () => route.path,
       () => {
         if (route.name === 'Dashboard') {
-          state.routes = [route.matched[1]]
+          state.routes = []
         } else {
-          state.routes = route.matched
-          console.log(route.matched)
+          const routes = createBreadcrumb(cloneDeep(route.matched))
+          state.routes = routes
         }
       },
       {
-        immediate: true
+        immediate: true,
+        deep: false
       }
     )
 
@@ -36,11 +51,11 @@ export default defineComponent({
       <Breadcrumb
         class="breadcrumb"
         routes={this.state.routes}
-        itemRender={({ route, routes, paths }) =>
+        itemRender={({ route, routes }) =>
           routes.indexOf(route) === routes.length - 1 ? (
-            <span>{route.meta.title}</span>
+            <span>{route.breadcrumbName}</span>
           ) : (
-            <RouterLink to={'/'}>{route.meta.title}</RouterLink>
+            <RouterLink to={route.path}>{route.breadcrumbName}</RouterLink>
           )
         }
       ></Breadcrumb>

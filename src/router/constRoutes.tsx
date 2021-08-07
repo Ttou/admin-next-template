@@ -8,7 +8,6 @@ export default [
     path: '/',
     redirect: '/dashboard',
     component: Layout,
-    meta: { hidden: true },
     children: [
       {
         path: 'dashboard',
@@ -79,5 +78,18 @@ export default [
     name: 'Login',
     component: () => import('@/views/login/index'),
     meta: { title: '登录', hidden: true }
+  },
+  {
+    path: '/error',
+    name: 'Error',
+    component: () => import('@/views/error'),
+    meta: { title: '错误', hidden: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: {
+      path: '/error',
+      query: { status: 404 }
+    }
   }
 ] as RouteRecordRaw[]

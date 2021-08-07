@@ -48,6 +48,11 @@ export default defineComponent({
       return routes
     }
 
+    function init() {
+      const routes = createMenu(cloneDeep(router.options.routes) as any)
+      state.list = routes
+    }
+
     watch(
       () => route.path,
       val => {
@@ -60,11 +65,7 @@ export default defineComponent({
     )
 
     onMounted(() => {
-      const routes = router.options.routes
-
-      const newRoutes = createMenu(cloneDeep(routes) as any)
-
-      state.list = newRoutes
+      init()
     })
 
     return {
@@ -84,9 +85,9 @@ export default defineComponent({
       >
         {this.state.list.map(item =>
           item.children ? (
-            <SubMenu menuInfo={item} key={item.key} />
+            <SubMenu item={item} key={item.key} />
           ) : (
-            <MainMenu menuInfo={item} />
+            <MainMenu item={item} />
           )
         )}
       </Menu>

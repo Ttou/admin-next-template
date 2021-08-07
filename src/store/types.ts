@@ -6,6 +6,8 @@ export type State = {
     routes: any[]
   }
   settings: {
+    /** 标题 */
+    title: string
     /** 侧边栏主题 */
     siderTheme: 'light' | 'dark'
     /** 侧边栏打开状态 */

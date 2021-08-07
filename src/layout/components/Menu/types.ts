@@ -1,7 +1,7 @@
 import type { VNodeChild } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-export type MenuInfo = {
+export type Item = {
   path: string
   meta: {
     title: string
@@ -9,8 +9,7 @@ export type MenuInfo = {
     alwaysShow: boolean
     hidden: boolean
   }
-  children?: MenuInfo[]
+  children?: Item[]
 }
 
-export type Route = Omit<RouteRecordRaw, 'path' | 'children' | 'meta'> &
-  MenuInfo
+export type Route = Omit<RouteRecordRaw, 'path' | 'children' | 'meta'> & Item

@@ -1,22 +1,37 @@
 import { Menu } from 'ant-design-vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import { propTypes } from '@/utils'
 
-import type { MenuInfo } from './types'
+import type { Item } from './types'
 
 export default defineComponent({
   name: 'MainMenu',
   props: {
-    menuInfo: propTypes.object<MenuInfo>().isRequired
+    item: propTypes.object<Item>().isRequired
+  },
+  setup(props) {
+    const show = computed(() => {
+      if (props.item.meta) {
+        if (props.item.meta.hidden) {
+          return false
+        } else {
+          return true
+        }
+      } else {
+        return false
+      }
+    })
+
+    return {
+      show
+    }
   },
   render() {
-    return !this.menuInfo.meta.hidden ? (
-      <Menu.Item icon={this.menuInfo.meta.icon} key={this.menuInfo.path}>
-        <RouterLink to={this.menuInfo.path}>
-          {this.menuInfo.meta.title}
-        </RouterLink>
+    return this.show ? (
+      <Menu.Item icon={this.item.meta.icon} key={this.item.path}>
+        <RouterLink to={this.item.path}>{this.item.meta.title}</RouterLink>
       </Menu.Item>
     ) : null
   }

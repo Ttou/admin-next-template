@@ -1,31 +1,51 @@
 import { Menu } from 'ant-design-vue'
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 import { propTypes } from '@/utils'
 
 import MainMenu from './MainMenu'
-import type { MenuInfo } from './types'
+import type { Item } from './types'
 
 export default defineComponent({
   name: 'SubMenu',
   props: {
-    menuInfo: propTypes.object<MenuInfo>().isRequired
+    item: propTypes.object<Item>().isRequired
+  },
+  setup(props) {
+    const onlyOneChild = computed(() => {
+      if (props.item.children!.length === 1) {
+        if (props.item.meta) {
+          if (props.item.meta.alwaysShow) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      } else {
+        return false
+      }
+    })
+
+    return {
+      onlyOneChild
+    }
   },
   render() {
-    return this.menuInfo.children?.length === 1 &&
-      !this.menuInfo.meta.alwaysShow ? (
-      <MainMenu menuInfo={this.menuInfo.children?.[0]} />
+    return this.onlyOneChild ? (
+      <MainMenu item={this.item.children![0]} />
     ) : (
       <Menu.SubMenu
-        key={this.menuInfo.path}
-        icon={this.menuInfo.meta.icon}
-        title={this.menuInfo.meta.title}
+        key={this.item.path}
+        icon={this.item.meta.icon}
+        title={this.item.meta.title}
       >
-        {this.menuInfo.children?.map(item =>
+        {this.item.children?.map(item =>
           item.children ? (
-            <sub-menu menuInfo={item} key={item.path}></sub-menu>
+            <sub-menu item={item} key={item.path}></sub-menu>
           ) : (
-            <MainMenu menuInfo={item} />
+            <MainMenu item={item} />
           )
         )}
       </Menu.SubMenu>
