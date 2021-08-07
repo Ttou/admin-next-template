@@ -1,5 +1,8 @@
 {
   "name": "admin-next",
+  "author": "WangRuiJin <1361572192@qq.com>",
+  "repository": "git@gitee.com:jh_shot/admin-next.git",
+  "license": "MulanPSL2",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vite build",
@@ -19,6 +22,7 @@
     "moment": "2.29.1",
     "nprogress": "0.2.0",
     "path-browserify": "1.0.1",
+    "qrcode": "^1.4.4",
     "vue": "3.1.5",
     "vue-router": "4.0.10",
     "vue-types": "4.0.1",
@@ -31,6 +35,7 @@
     "@types/lodash-es": "^4.17.4",
     "@types/node": "^16.4.13",
     "@types/nprogress": "^0.2.0",
+    "@types/qrcode": "^1.4.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "@vitejs/plugin-legacy": "^1.5.1",

@@ -1,4 +1,8 @@
-import { AlignLeftOutlined, DashboardOutlined } from '@ant-design/icons-vue'
+import {
+  AlignLeftOutlined,
+  DashboardOutlined,
+  ProjectOutlined
+} from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import Layout from '@/layout'
@@ -70,6 +74,31 @@ export default [
         name: 'Menu2',
         component: () => import('@/views/nested/menu2/index'),
         meta: { title: 'Menu2' }
+      }
+    ]
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: Layout,
+    redirect: '/demo/form',
+    meta: {
+      title: '组件演示',
+      icon: <ProjectOutlined />,
+      permission: ['admin']
+    },
+    children: [
+      {
+        path: 'form',
+        name: 'DemoForm',
+        component: () => import('@/views/demo/form'),
+        meta: { title: '自定义表单' }
+      },
+      {
+        path: 'qrcode',
+        name: 'DemoQRCode',
+        component: () => import('@/views/demo/qrcode'),
+        meta: { title: '二维码' }
       }
     ]
   },

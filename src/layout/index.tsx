@@ -2,12 +2,11 @@ import './index.less'
 
 import { Layout } from 'ant-design-vue'
 import { computed, defineComponent } from 'vue'
-import { RouterView } from 'vue-router'
 import { useStore } from 'vuex'
 
 import { Key } from '@/store'
 
-import { Menu, Navbar, Tabbar } from './components'
+import { Logo, Main, Menu, Navbar, Tabbar } from './components'
 
 export default defineComponent({
   name: 'Layout',
@@ -24,12 +23,14 @@ export default defineComponent({
     return (
       <Layout class="layout">
         <Layout.Sider
+          class="layout-sider"
           collapsed={!this.settings.siderOpened}
           trigger={null}
           theme={this.settings.siderTheme}
           width={this.settings.siderOpenedWidth}
           collapsible
         >
+          <Logo />
           <Menu />
         </Layout.Sider>
         <Layout class="layout-main">
@@ -37,8 +38,8 @@ export default defineComponent({
             <Navbar />
           </Layout.Header>
           <Tabbar />
-          <Layout.Content>
-            <RouterView />
+          <Layout.Content class="layout-content">
+            <Main />
           </Layout.Content>
         </Layout>
       </Layout>
