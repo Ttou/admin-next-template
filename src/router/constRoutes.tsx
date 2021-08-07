@@ -86,9 +86,21 @@ export default [
     meta: { title: '错误', hidden: true }
   },
   {
+    path: '/redirect',
+    name: 'Redirect',
+    component: Layout,
+    meta: { hidden: true },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect')
+      }
+    ]
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: {
-      path: '/error',
+      name: 'Error',
       query: { status: 404 }
     }
   }

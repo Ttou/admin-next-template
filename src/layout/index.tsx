@@ -7,7 +7,7 @@ import { useStore } from 'vuex'
 
 import { Key } from '@/store'
 
-import { Menu, Navbar } from './components'
+import { Menu, Navbar, Tabbar } from './components'
 
 export default defineComponent({
   name: 'Layout',
@@ -32,10 +32,11 @@ export default defineComponent({
         >
           <Menu />
         </Layout.Sider>
-        <Layout>
+        <Layout class="layout-main">
           <Layout.Header class="layout-header">
             <Navbar />
           </Layout.Header>
+          <Tabbar />
           <Layout.Content>
             <RouterView />
           </Layout.Content>

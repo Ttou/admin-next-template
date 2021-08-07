@@ -16,7 +16,8 @@ export default defineComponent({
     function createBreadcrumb(routes: any[], basePath = '/') {
       for (const route of routes) {
         route.path = resolve(basePath, route.path)
-        route.breadcrumbName = route.meta.title
+
+        route.breadcrumbName = route.meta?.title
 
         if (route.children) {
           createBreadcrumb(route.children, route.path)

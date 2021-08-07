@@ -8,6 +8,8 @@ export type State = {
   settings: {
     /** 标题 */
     title: string
+    /** 固定头部 */
+    fixedHeader: boolean
     /** 侧边栏主题 */
     siderTheme: 'light' | 'dark'
     /** 侧边栏打开状态 */

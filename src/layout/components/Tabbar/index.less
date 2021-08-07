@@ -1,0 +1,70 @@
+@import (reference) '../../index.less';
+
+.@{mainName} {
+  .tabbar {
+    display: flex;
+    height: 42px;
+    padding: 6px 12px;
+    background: #f5f7f9;
+    transition: all 0.2s ease 0s;
+    z-index: 50;
+
+    .ant-tabs {
+      flex-grow: 1;
+      flex-shrink: 1;
+
+      .ant-tabs-bar {
+        margin: 0;
+        border: none;
+      }
+
+      .ant-tabs-tab {
+        height: 32px;
+        margin: 0 6px 0 0;
+        padding: 5px 16px 4px;
+        background: #fff;
+        border-radius: 3px;
+        border: none;
+        color: #808695;
+        cursor: default;
+
+        &::before {
+          top: 0;
+          border-top-color: inherit;
+        }
+      }
+
+      .ant-tabs-tab-active {
+        color: #2d8cf0;
+        font-weight: unset;
+      }
+
+      .ant-tabs-ink-bar {
+        display: none !important;
+      }
+
+      .tab-content {
+        .anticon {
+          margin: 0 0 0 6px;
+          color: #999;
+
+          &:hover {
+            color: #444;
+          }
+        }
+      }
+    }
+
+    .tabs-menu {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
+}

@@ -18,7 +18,7 @@ export default defineComponent({
     const subTitle = computed(() => SUB_TITLE_MAP[status.value!])
 
     function handleClick() {
-      router.replace({ name: '/' })
+      router.replace('/')
     }
 
     return {
