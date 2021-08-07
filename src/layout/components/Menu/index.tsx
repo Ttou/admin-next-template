@@ -1,8 +1,11 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { resolve } from 'path'
-import { defineComponent, onMounted, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
+import { Key } from '@/store'
 
 import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
@@ -16,27 +19,45 @@ export default defineComponent({
   setup() {
     const state = reactive({
       list: [] as any,
-      openKeys: [],
-      selectedKeys: []
+      openKeys: [] as any,
+      selectedKeys: [] as any
     })
 
+    const route = useRoute()
     const router = useRouter()
+    const store = useStore(Key)
+
+    const settings = computed(() => store.state.settings)
 
     function createMenu(routes: Route[], basePath = '/') {
       for (const route of routes) {
         route.path = resolve(basePath, route.path)
-        route.key = route.path
 
         delete route.component
         delete route.redirect
 
         if (route.children) {
-          createMenu(route.children, route.path)
+          if (route.children.length === 0) {
+            continue
+          } else {
+            createMenu(route.children, route.path)
+          }
         }
       }
 
       return routes
     }
+
+    watch(
+      () => route.path,
+      val => {
+        state.openKeys = [...route.matched.map(item => item.path)]
+        state.selectedKeys = [val]
+      },
+      {
+        immediate: true
+      }
+    )
 
     onMounted(() => {
       const routes = router.options.routes
@@ -44,19 +65,18 @@ export default defineComponent({
       const newRoutes = createMenu(cloneDeep(routes) as any)
 
       state.list = newRoutes
-
-      console.log(newRoutes)
     })
 
     return {
-      state
+      state,
+      settings
     }
   },
   render() {
     return (
       <Menu
         mode="inline"
-        theme="dark"
+        theme={this.settings.siderTheme}
         v-models={[
           [this.state.openKeys, 'openKeys'],
           [this.state.selectedKeys, 'selectedKeys']

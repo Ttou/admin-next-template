@@ -15,7 +15,7 @@ export default [
     response: () => null
   },
   {
-    url: '/api/user/getInfo',
+    url: '/api/user/info',
     method: 'get',
     response: () => ({
       name: '管理员',

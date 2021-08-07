@@ -1,49 +1,40 @@
 import './index.less'
 
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { Layout } from 'ant-design-vue'
-import { defineComponent, reactive } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { RouterView } from 'vue-router'
+import { useStore } from 'vuex'
 
-import { Menu } from './components'
+import { Key } from '@/store'
+
+import { Menu, Navbar } from './components'
 
 export default defineComponent({
   name: 'Layout',
   setup() {
-    const state = reactive({
-      collapsed: false
-    })
+    const store = useStore(Key)
 
-    function handleToggleCollapsed() {
-      state.collapsed = !state.collapsed
-    }
+    const settings = computed(() => store.state.settings)
 
     return {
-      state,
-      handleToggleCollapsed
+      settings
     }
   },
   render() {
     return (
       <Layout class="layout">
         <Layout.Sider
-          collapsed={this.state.collapsed}
+          collapsed={!this.settings.siderOpened}
           trigger={null}
-          theme="dark"
-          width={'256px'}
+          theme={this.settings.siderTheme}
+          width={this.settings.siderOpenedWidth}
           collapsible
         >
           <Menu />
         </Layout.Sider>
         <Layout>
           <Layout.Header class="layout-header">
-            <div class="collapsed-icon" onClick={this.handleToggleCollapsed}>
-              {this.state.collapsed ? (
-                <MenuUnfoldOutlined />
-              ) : (
-                <MenuFoldOutlined />
-              )}
-            </div>
+            <Navbar />
           </Layout.Header>
           <Layout.Content>
             <RouterView />

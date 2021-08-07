@@ -12,12 +12,12 @@ export default defineComponent({
     menuInfo: propTypes.object<MenuInfo>().isRequired
   },
   render() {
-    return (
-      <Menu.Item icon={this.menuInfo.meta.icon} key={this.menuInfo.key}>
+    return !this.menuInfo.meta.hidden ? (
+      <Menu.Item icon={this.menuInfo.meta.icon} key={this.menuInfo.path}>
         <RouterLink to={this.menuInfo.path}>
           {this.menuInfo.meta.title}
         </RouterLink>
       </Menu.Item>
-    )
+    ) : null
   }
 })

@@ -12,15 +12,18 @@ export default defineComponent({
     menuInfo: propTypes.object<MenuInfo>().isRequired
   },
   render() {
-    return (
+    return this.menuInfo.children?.length === 1 &&
+      !this.menuInfo.meta.alwaysShow ? (
+      <MainMenu menuInfo={this.menuInfo.children?.[0]} />
+    ) : (
       <Menu.SubMenu
-        key={this.menuInfo.key}
+        key={this.menuInfo.path}
         icon={this.menuInfo.meta.icon}
         title={this.menuInfo.meta.title}
       >
-        {this.menuInfo.children.map(item =>
+        {this.menuInfo.children?.map(item =>
           item.children ? (
-            <sub-menu menuInfo={item} key={item.key}></sub-menu>
+            <sub-menu menuInfo={item} key={item.path}></sub-menu>
           ) : (
             <MainMenu menuInfo={item} />
           )
