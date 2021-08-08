@@ -11,10 +11,8 @@ export default defineComponent({
     const { path } = params
 
     router.replace({ path: '/' + path, query })
-
-    return {}
   },
   render() {
-    return <div></div>
+    return <section></section>
   }
 })

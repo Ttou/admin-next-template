@@ -5,13 +5,13 @@ import {
 } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import Layout from '@/layout'
+import { ProLayout } from '@/components'
 
 export default [
   {
     path: '/',
     redirect: '/dashboard',
-    component: Layout,
+    component: ProLayout,
     children: [
       {
         path: 'dashboard',
@@ -23,7 +23,7 @@ export default [
   },
   {
     path: '/nested',
-    component: Layout,
+    component: ProLayout,
     redirect: '/nested/menu1',
     meta: { title: '嵌套路由', icon: <AlignLeftOutlined /> },
     children: [
@@ -80,7 +80,7 @@ export default [
   {
     path: '/demo',
     name: 'Demo',
-    component: Layout,
+    component: ProLayout,
     redirect: '/demo/form',
     meta: {
       title: '组件演示',
@@ -93,6 +93,12 @@ export default [
         name: 'DemoForm',
         component: () => import('@/views/demo/form'),
         meta: { title: '自定义表单' }
+      },
+      {
+        path: 'table',
+        name: 'DemoTable',
+        component: () => import('@/views/demo/table'),
+        meta: { title: '自定义表格' }
       },
       {
         path: 'qrcode',
@@ -117,7 +123,7 @@ export default [
   {
     path: '/redirect',
     name: 'Redirect',
-    component: Layout,
+    component: ProLayout,
     meta: { hidden: true },
     children: [
       {

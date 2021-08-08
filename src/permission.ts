@@ -40,5 +40,8 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  NProgress.done()
+  // 加上页面过渡动画时间
+  setTimeout(() => {
+    NProgress.done()
+  }, 300)
 })

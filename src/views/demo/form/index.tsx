@@ -1,8 +1,8 @@
 import { Button, Space } from 'ant-design-vue'
 import { defineComponent, reactive, ref } from 'vue'
 
-import { FormPlus } from '@/components'
-import type { FormProps, FormRef } from '@/components/FormPlus/types'
+import { ProForm } from '@/components'
+import type { FormProps, FormRef } from '@/components/ProForm/types'
 
 export default defineComponent({
   name: 'DemoForm',
@@ -144,7 +144,7 @@ export default defineComponent({
   render() {
     return (
       <div>
-        <FormPlus ref="formRef" {...this.formConfig} />
+        <ProForm ref="formRef" {...this.formConfig} />
       </div>
     )
   }

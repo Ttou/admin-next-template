@@ -1,4 +1,6 @@
-export { default as FormPlus } from './FormPlus'
+export { default as ProForm } from './ProForm'
+export { default as ProLayout } from './ProLayout'
+export { default as ProTable } from './ProTable'
 export { default as Provider } from './Provider'
 export { default as QRCode } from './QRCode'
 export { default as SvgIcon } from './SvgIcon'

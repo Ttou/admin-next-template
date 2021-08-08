@@ -7,8 +7,8 @@ import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
-import { FormPlus, SvgIcon } from '@/components'
-import type { FormProps, FormRef } from '@/components/FormPlus/types'
+import { ProForm, SvgIcon } from '@/components'
+import type { FormProps, FormRef } from '@/components/ProForm/types'
 import { Actions, Key } from '@/store'
 
 export default defineComponent({
@@ -119,7 +119,7 @@ export default defineComponent({
           </div>
           <div class="desc">基于 Ant Design 的后台管理系统</div>
         </div>
-        <FormPlus ref="formRef" {...this.formConfig} />
+        <ProForm ref="formRef" {...this.formConfig} />
         <SvgIcon name="background" class="background" />
       </div>
     )
