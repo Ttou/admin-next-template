@@ -14,7 +14,7 @@ import { propTypes } from '@/utils'
 import type { FormItem, FormProps } from './types'
 
 export default defineComponent({
-  name: 'FormPlus',
+  name: 'ProForm',
   props: {
     model: propTypes.object().def({}),
     options: propTypes.object<FormProps['options']>().def({
@@ -23,7 +23,7 @@ export default defineComponent({
     })
   },
   setup(props) {
-    const form = ref(null)
+    const formRef = ref(null)
     const formModel = reactive({})
 
     function initModel() {
@@ -37,7 +37,7 @@ export default defineComponent({
     initModel()
 
     return {
-      form,
+      formRef,
       formModel
     }
   },
@@ -122,7 +122,7 @@ export default defineComponent({
     }
 
     return (
-      <Form ref="form" model={this.formModel} {...this.options.props}>
+      <Form ref="formRef" model={this.formModel} {...this.options.props}>
         {this.options.items.map(item => {
           return (
             <Form.Item
