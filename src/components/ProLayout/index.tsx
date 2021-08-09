@@ -6,7 +6,7 @@ import { useStore } from 'vuex'
 
 import { Key } from '@/store'
 
-import { Logo, Main, Menu, Navbar, Tabbar } from './components'
+import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 
 export default defineComponent({
   name: 'Layout',
@@ -39,7 +39,7 @@ export default defineComponent({
           </Layout.Header>
           <Tabbar />
           <Layout.Content class="layout-content">
-            <Main />
+            <Content />
           </Layout.Content>
         </Layout>
       </Layout>

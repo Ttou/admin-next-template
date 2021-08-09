@@ -1,6 +1,6 @@
 import { Breadcrumb } from 'ant-design-vue'
-import { defineComponent, reactive, watch } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+import { defineComponent, reactive, watchEffect } from 'vue'
+import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Breadcrumb',
@@ -9,29 +9,48 @@ export default defineComponent({
       routes: [] as any
     })
 
-    const route = useRoute()
+    const router = useRouter()
 
-    watch(
-      () => route.path,
-      () => {
-        if (route.name === 'Dashboard') {
-          state.routes = [
-            {
-              meta: { title: 'Dashboard' }
-            }
-          ]
-        } else {
-          state.routes = route.matched
+    function getBreadcrumbName(route) {
+      return route.meta?.title || 'undefined'
+    }
+
+    function createBreadcrumb(routes: RouteLocationMatched[]) {
+      const matched = [] as any
+
+      for (const route of routes) {
+        if (route.path === '/') {
+          continue
         }
-      },
-      {
-        immediate: true,
-        deep: false
+
+        const newRoute = {
+          path: /^\//.test(route.path) ? route.path : `/${route.path}`,
+          breadcrumbName: route.meta?.title || 'undefined',
+          children: [] as any
+        }
+
+        if (route.children) {
+          newRoute.children = route.children.map(v => ({
+            path: route.path + `/${v.path}`,
+            breadcrumbName: v.meta?.title || 'undefined'
+          }))
+        }
+
+        matched.push(newRoute)
       }
-    )
+
+      return matched
+    }
+
+    watchEffect(() => {
+      const currentRoute = router.currentRoute.value
+
+      state.routes = createBreadcrumb(currentRoute.matched)
+    })
 
     return {
-      state
+      state,
+      getBreadcrumbName
     }
   },
   render() {
@@ -41,9 +60,9 @@ export default defineComponent({
         routes={this.state.routes}
         itemRender={({ route, routes }) =>
           routes.indexOf(route) === routes.length - 1 ? (
-            <span>{(route as any).meta.title}</span>
+            <span>{route.breadcrumbName}</span>
           ) : (
-            <RouterLink to={route.path}>{(route as any).meta.title}</RouterLink>
+            <RouterLink to={route.path}>{route.breadcrumbName}</RouterLink>
           )
         }
       ></Breadcrumb>

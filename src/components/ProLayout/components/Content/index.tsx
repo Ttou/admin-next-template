@@ -5,7 +5,7 @@ import { useStore } from 'vuex'
 import { Key } from '@/store'
 
 export default defineComponent({
-  name: 'Main',
+  name: 'Content',
   setup() {
     const store = useStore(Key)
 
