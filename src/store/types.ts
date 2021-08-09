@@ -10,6 +10,8 @@ export type State = {
     title: string
     /** 固定头部 */
     fixedHeader: boolean
+    /** 头部高度 */
+    headerHeight: string
     /** 侧边栏主题 */
     siderTheme: 'light' | 'dark'
     /** 侧边栏打开状态 */

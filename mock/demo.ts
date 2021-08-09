@@ -7,7 +7,7 @@ const list = new Array(100).fill({}).map((_, index) => ({
   email: Mock.Random.email(),
   nickname: Mock.Random.name(),
   role: Mock.Random.pick(['admin', 'normal']),
-  createTs: Mock.Random.date(),
+  createTs: Mock.Random.date('yyyy-MM-dd HH:mm:ss'),
   remark: Mock.Random.word(20),
   status: Mock.Random.pick(['0', '1'])
 }))
