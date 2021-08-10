@@ -1,6 +1,5 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { resolve } from 'path'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -29,9 +28,10 @@ export default defineComponent({
 
     const settings = computed(() => store.state.settings)
 
-    function createMenu(routes: Route[], basePath = '/') {
+    function createMenu(routes: Route[], basePath = '') {
       for (const route of routes) {
-        route.path = resolve(basePath, route.path)
+        route.path =
+          basePath + (/^\//.test(route.path) ? route.path : `/${route.path}`)
 
         delete route.component
         delete route.redirect

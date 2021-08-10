@@ -24,10 +24,6 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src')
       },
       {
-        find: 'path',
-        replacement: 'path-browserify'
-      },
-      {
         find: 'vue-types',
         replacement:
           process.env.NODE_ENV === 'development'

@@ -21,7 +21,6 @@
     "lodash-es": "4.17.21",
     "moment": "2.29.1",
     "nprogress": "0.2.0",
-    "path-browserify": "1.0.1",
     "qrcode": "1.4.4",
     "vue": "3.2.1",
     "vue-router": "4.0.10",
