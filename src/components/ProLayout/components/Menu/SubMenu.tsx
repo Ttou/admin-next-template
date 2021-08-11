@@ -42,11 +42,7 @@ export default defineComponent({
         title={this.item.meta.title}
       >
         {this.item.children?.map(item =>
-          item.children ? (
-            <sub-menu item={item} key={item.path}></sub-menu>
-          ) : (
-            <MainMenu item={item} />
-          )
+          item.children ? <sub-menu item={item} /> : <MainMenu item={item} />
         )}
       </Menu.SubMenu>
     )

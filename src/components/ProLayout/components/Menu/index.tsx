@@ -28,10 +28,19 @@ export default defineComponent({
 
     const settings = computed(() => store.state.settings)
 
+    function isDashboard(route: Route) {
+      return route.name === 'Dashboard'
+    }
+
     function createMenu(routes: Route[], basePath = '') {
       for (const route of routes) {
-        route.path =
-          basePath + (/^\//.test(route.path) ? route.path : `/${route.path}`)
+        if (!isDashboard(route)) {
+          route.path =
+            basePath +
+            (route.path.startsWith('/') ? route.path : `/${route.path}`)
+        } else {
+          route.path = `/${route.path}`
+        }
 
         delete route.component
         delete route.redirect
@@ -84,11 +93,7 @@ export default defineComponent({
         ]}
       >
         {this.state.list.map(item =>
-          item.children ? (
-            <SubMenu item={item} key={item.key} />
-          ) : (
-            <MainMenu item={item} />
-          )
+          item.children ? <SubMenu item={item} /> : <MainMenu item={item} />
         )}
       </Menu>
     )

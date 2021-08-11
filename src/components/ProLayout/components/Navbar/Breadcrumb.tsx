@@ -24,15 +24,15 @@ export default defineComponent({
         }
 
         const newRoute = {
-          path: /^\//.test(route.path) ? route.path : `/${route.path}`,
+          path: route.path.startsWith('/') ? route.path : `/${route.path}`,
           breadcrumbName: route.meta?.title || 'undefined',
           children: [] as any
         }
 
         if (route.children) {
-          newRoute.children = route.children.map(v => ({
-            path: route.path + `/${v.path}`,
-            breadcrumbName: v.meta?.title || 'undefined'
+          newRoute.children = route.children.map(child => ({
+            path: route.path + `/${child.path}`,
+            breadcrumbName: child.meta?.title || 'undefined'
           }))
         }
 
