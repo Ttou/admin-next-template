@@ -9,7 +9,7 @@ import styleImport from 'vite-plugin-style-import'
 import svgIcons from 'vite-plugin-svg-icons'
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'development' ? '/' : '/admin-next/',
+  base: process.env.NODE_ENV === 'development' ? '/' : '/admin-next-template/',
   css: {
     preprocessorOptions: {
       less: {
