@@ -22,7 +22,10 @@ export default defineComponent({
       tableColumns: [
         {
           title: '账号',
-          dataIndex: 'account'
+          dataIndex: 'account',
+          sorter: (a, b) => {
+            return a.account.length - b.account.length
+          }
         },
         {
           title: '邮箱',
@@ -34,7 +37,20 @@ export default defineComponent({
         },
         {
           title: '角色',
-          dataIndex: 'role'
+          dataIndex: 'role',
+          filters: [
+            {
+              text: 'admin',
+              value: 'admin'
+            },
+            {
+              text: 'normal',
+              value: 'normal'
+            }
+          ],
+          onFilter: (value: string, record: any) => {
+            return record.role.indexOf(value) === 0
+          }
         },
         {
           title: '状态',
@@ -45,6 +61,19 @@ export default defineComponent({
                 {text === '0' ? '禁用' : '启用'}
               </Tag>
             )
+          },
+          filters: [
+            {
+              text: '禁用',
+              value: '0'
+            },
+            {
+              text: '启用',
+              value: '1'
+            }
+          ],
+          onFilter: (value: string, record: any) => {
+            return record.status.indexOf(value) === 0
           }
         },
         {

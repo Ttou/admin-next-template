@@ -19,7 +19,7 @@ export default [
     method: 'get',
     response: () => ({
       name: '管理员',
-      permissions: ['admin']
+      roles: ['admin']
     })
   }
 ] as MockMethod[]

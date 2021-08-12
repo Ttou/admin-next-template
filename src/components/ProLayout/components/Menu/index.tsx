@@ -1,7 +1,7 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, defineComponent, reactive, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import { Key } from '@/store'
@@ -23,9 +23,9 @@ export default defineComponent({
     })
 
     const route = useRoute()
-    const router = useRouter()
     const store = useStore(Key)
 
+    const routes = computed(() => store.state.permission.routes)
     const settings = computed(() => store.state.settings)
 
     function isDashboard(route: Route) {
@@ -58,13 +58,14 @@ export default defineComponent({
     }
 
     function init() {
-      const routes = createMenu(cloneDeep(router.options.routes) as any)
-      state.list = routes
+      const _routes = createMenu(cloneDeep(routes.value))
+      state.list = _routes
     }
 
     watch(
       () => route.path,
       val => {
+        init()
         state.openKeys = [...route.matched.map(item => item.path)]
         state.selectedKeys = [val]
       },
@@ -72,10 +73,6 @@ export default defineComponent({
         immediate: true
       }
     )
-
-    onMounted(() => {
-      init()
-    })
 
     return {
       state,

@@ -75,7 +75,7 @@ export const UserModule = {
   mutations: {
     SET_TOKEN: 'SET_TOKEN',
     SET_NAME: 'SET_NAME',
-    SET_PERMISSION: 'SET_PERMISSION'
+    SET_ROLES: 'SET_ROLES'
   }
 }
 

@@ -23,7 +23,7 @@ export default defineComponent({
     })
   },
   setup(props) {
-    const formRef = ref(null)
+    const form = ref(null)
     const formModel = reactive({})
 
     function initModel() {
@@ -37,7 +37,7 @@ export default defineComponent({
     initModel()
 
     return {
-      formRef,
+      form,
       formModel
     }
   },
@@ -122,7 +122,7 @@ export default defineComponent({
     }
 
     return (
-      <Form ref="formRef" model={this.formModel} {...this.options.props}>
+      <Form ref="form" model={this.formModel} {...this.options.props}>
         {this.options.items.map(item => {
           return (
             <Form.Item

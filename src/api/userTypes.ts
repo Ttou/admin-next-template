@@ -4,5 +4,5 @@ export type LoginRes = {
 
 export type GetUserInfoRes = {
   name: string
-  permissions: string[]
+  roles: string[]
 }

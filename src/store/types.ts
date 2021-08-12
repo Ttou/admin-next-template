@@ -1,9 +1,9 @@
-import type { Ref } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
 
 export type State = {
   permission: {
     /** 全部路由 */
-    routes: any[]
+    routes: RouteRecordRaw[]
   }
   settings: {
     /** 标题 */
@@ -33,6 +33,6 @@ export type State = {
     /** 用户名 */
     name: string
     /** 权限列表 */
-    permissions: string[]
+    roles: string[]
   }
 }

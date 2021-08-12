@@ -13,7 +13,7 @@ export default {
   state: {
     token: useStorage('token', '') as unknown as string,
     name: '',
-    permissions: []
+    roles: []
   },
   mutations: {
     [UserModule.mutations.SET_TOKEN]: (state, token) => {
@@ -22,8 +22,8 @@ export default {
     [UserModule.mutations.SET_NAME]: (state, name) => {
       state.name = name
     },
-    [UserModule.mutations.SET_PERMISSION]: (state, permission) => {
-      state.permissions = permission
+    [UserModule.mutations.SET_ROLES]: (state, roles) => {
+      state.roles = roles
     }
   },
   actions: {
@@ -37,19 +37,20 @@ export default {
 
       dispatch(UserModule.actions.clear)
     },
-    [UserModule.actions.getInfo]: async ({ commit }) => {
-      const data = await getUserInfo()
+    [UserModule.actions.getInfo]: ({ commit }) => {
+      return new Promise(resolve => {
+        getUserInfo().then(({ name, roles }) => {
+          commit(UserModule.mutations.SET_NAME, name)
+          commit(UserModule.mutations.SET_ROLES, roles)
 
-      const { name, permissions } = data
-
-      commit(UserModule.mutations.SET_NAME, name)
-      commit(UserModule.mutations.SET_PERMISSION, permissions)
-      return data
+          resolve(roles)
+        })
+      })
     },
     [UserModule.actions.clear]: ({ commit, dispatch }) => {
       commit(UserModule.mutations.SET_NAME, '')
       commit(UserModule.mutations.SET_TOKEN, '')
-      commit(UserModule.mutations.SET_PERMISSION, [])
+      commit(UserModule.mutations.SET_ROLES, [])
       dispatch(Actions.tabs.delAllTabs, null, { root: true })
     }
   }

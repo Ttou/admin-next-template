@@ -2,7 +2,7 @@ import 'nprogress/nprogress.css'
 
 import NProgress from 'nprogress'
 
-import router from '@/router'
+import router, { addRoutes } from '@/router'
 import store, { Actions } from '@/store'
 
 const whiteList = ['/login']
@@ -26,7 +26,12 @@ router.beforeEach(async (to, from, next) => {
       if (hasUser) {
         next()
       } else {
-        await store.dispatch(Actions.user.getInfo)
+        const roles = await store.dispatch(Actions.user.getInfo)
+        const routes = await store.dispatch(
+          Actions.permission.generateRoutes,
+          roles
+        )
+        addRoutes(routes)
         next({ ...to, replace: true })
       }
     }
