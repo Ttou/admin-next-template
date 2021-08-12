@@ -11,20 +11,26 @@ NProgress.configure({
   showSpinner: false
 })
 
-router.beforeEach(async (to, from, next) => {
+router.beforeResolve((to, from) => {
+  console.log('router beforeResolve')
+})
+
+router.beforeEach(async (to, from) => {
+  console.log('router beforeEach')
+
   NProgress.start()
 
   const hasToken = store.state.user.token
 
   if (hasToken) {
     if (to.path === '/login') {
-      next({ path: '/' })
       NProgress.done()
+      return '/'
     } else {
       const hasUser = store.state.user.name
 
       if (hasUser) {
-        next()
+        return true
       } else {
         const roles = await store.dispatch(Actions.user.getInfo)
         const routes = await store.dispatch(
@@ -32,14 +38,14 @@ router.beforeEach(async (to, from, next) => {
           roles
         )
         addRoutes(routes)
-        next({ ...to, replace: true })
+        return to.fullPath
       }
     }
   } else {
     if (whiteList.includes(to.path)) {
-      next()
+      return true
     } else {
-      next({ path: '/login', query: { redirect: to.path } })
+      return `/login?redirect=${to.path}`
     }
   }
 })

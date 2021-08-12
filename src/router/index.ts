@@ -11,7 +11,7 @@ const router = createRouter({
 
 export function addRoutes(routes: RouteRecordRaw[]) {
   routes.forEach(route => {
-    router.addRoute('', route)
+    router.addRoute(route)
   })
 }
 
