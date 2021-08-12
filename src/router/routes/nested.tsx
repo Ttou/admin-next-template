@@ -1,11 +1,9 @@
 import { AlignLeftOutlined } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ProLayout } from '@/components'
-
 export default {
   path: '/nested',
-  component: ProLayout,
+  component: () => import('@/components/ProLayout'),
   redirect: '/nested/menu1',
   meta: { title: '嵌套路由', icon: <AlignLeftOutlined /> },
   children: [

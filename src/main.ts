@@ -1,16 +1,22 @@
 import 'virtual:svg-icons-register'
-import './permission'
 import './styles/index.less'
 
 import { createApp } from 'vue'
 
 import App from './App'
-import router from './router'
+import router, { setupGuards } from './router'
 import store, { Key } from './store'
 
-const app = createApp(App)
+async function bootstrap() {
+  const app = createApp(App)
 
-app.use(router)
-app.use(store, Key)
+  app.use(router)
+  app.use(store, Key)
 
-app.mount('#app')
+  setupGuards(router)
+
+  await router.isReady()
+
+  app.mount('#app')
+}
+bootstrap()

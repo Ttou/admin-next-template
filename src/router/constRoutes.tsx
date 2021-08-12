@@ -1,13 +1,11 @@
 import { DashboardOutlined } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ProLayout } from '@/components'
-
 export default [
   {
     path: '/',
     redirect: '/dashboard',
-    component: ProLayout,
+    component: () => import('@/components/ProLayout'),
     children: [
       {
         path: 'dashboard',
@@ -32,7 +30,7 @@ export default [
   {
     path: '/redirect',
     name: 'Redirect',
-    component: ProLayout,
+    component: () => import('@/components/ProLayout'),
     meta: { hidden: true },
     children: [
       {

@@ -1,12 +1,10 @@
 import { ProjectOutlined } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ProLayout } from '@/components'
-
 export default {
   path: '/demo',
   name: 'Demo',
-  component: ProLayout,
+  component: () => import('@/components/ProLayout'),
   redirect: '/demo/form',
   meta: {
     title: '组件演示',

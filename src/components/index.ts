@@ -1,5 +1,4 @@
 export { default as ProForm } from './ProForm'
-export { default as ProLayout } from './ProLayout'
 export { default as ProTable } from './ProTable'
 export { default as Provider } from './Provider'
 export { default as QRCode } from './QRCode'
