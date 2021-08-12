@@ -5,7 +5,7 @@ export default [
   {
     path: '/',
     redirect: '/dashboard',
-    component: () => import('@/components/ProLayout'),
+    component: () => import('@/layout'),
     children: [
       {
         path: 'dashboard',
@@ -30,7 +30,7 @@ export default [
   {
     path: '/redirect',
     name: 'Redirect',
-    component: () => import('@/components/ProLayout'),
+    component: () => import('@/layout'),
     meta: { hidden: true },
     children: [
       {

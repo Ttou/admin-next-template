@@ -8,9 +8,12 @@ export default defineComponent({
     const router = useRouter()
 
     const { params, query } = route
-    const { path } = params
+    const path = params.path as string
 
-    router.replace({ path: '/' + path, query })
+    router.replace({
+      path: path.startsWith('/') ? path : `/${path}`,
+      query
+    })
   },
   render() {
     return <section></section>

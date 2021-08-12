@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 export default {
   path: '/demo',
   name: 'Demo',
-  component: () => import('@/components/ProLayout'),
+  component: () => import('@/layout'),
   redirect: '/demo/form',
   meta: {
     title: '组件演示',

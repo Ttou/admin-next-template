@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export default {
   path: '/nested',
-  component: () => import('@/components/ProLayout'),
+  component: () => import('@/layout'),
   redirect: '/nested/menu1',
   meta: { title: '嵌套路由', icon: <AlignLeftOutlined /> },
   children: [
