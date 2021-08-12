@@ -7,7 +7,7 @@ import {
   Select,
   Switch
 } from 'ant-design-vue'
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive, ref, watch } from 'vue'
 
 import { propTypes } from '@/utils'
 
@@ -34,7 +34,15 @@ export default defineComponent({
       })
     }
 
-    initModel()
+    watch(
+      () => props.options,
+      () => {
+        initModel()
+      },
+      {
+        immediate: true
+      }
+    )
 
     return {
       form,
@@ -131,7 +139,7 @@ export default defineComponent({
               rules={item.rules}
               {...item.props}
             >
-              {() => renderComponent(item)}
+              {renderComponent(item)}
             </Form.Item>
           )
         })}

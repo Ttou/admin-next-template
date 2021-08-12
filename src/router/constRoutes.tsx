@@ -20,13 +20,13 @@ export default [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/login/index'),
+    component: () => import('@/views/sys/login/index'),
     meta: { title: '登录', hidden: true }
   },
   {
     path: '/error',
     name: 'Error',
-    component: () => import('@/views/error'),
+    component: () => import('@/views/sys/error'),
     meta: { title: '错误', hidden: true }
   },
   {
@@ -37,7 +37,7 @@ export default [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
+        component: () => import('@/views/sys/redirect')
       }
     ]
   }
