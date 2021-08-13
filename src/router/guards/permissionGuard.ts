@@ -1,16 +1,17 @@
 import type { Router } from 'vue-router'
 
+import { ROUTE_ENUM } from '@/enums'
 import store, { Actions } from '@/store'
 
 export default function (router: Router) {
-  const whiteList = ['/login']
+  const whiteList = [ROUTE_ENUM.LOGIN] as string[]
 
   router.beforeEach(async (to, from) => {
     const hasToken = store.state.user.token
 
     if (hasToken) {
-      if (to.path === '/login') {
-        return '/'
+      if (to.path === ROUTE_ENUM.LOGIN) {
+        return ROUTE_ENUM.INDEX
       } else {
         const hasUser = store.state.user.name
 
@@ -34,7 +35,7 @@ export default function (router: Router) {
       if (whiteList.includes(to.path)) {
         return true
       } else {
-        return `/login?redirect=${to.path}`
+        return `${ROUTE_ENUM.LOGIN}?redirect=${to.path}`
       }
     }
   })

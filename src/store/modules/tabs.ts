@@ -142,7 +142,7 @@ export default {
       const v = { ...tab }
 
       if (!v.meta!.title) {
-        v.meta!.title = '未命名'
+        v.meta!.title = 'undefined'
       }
 
       state.visitedTabs.push(v)

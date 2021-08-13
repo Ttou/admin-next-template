@@ -1,28 +1,30 @@
 import { DashboardOutlined } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
+import { ROUTE_ENUM } from '@/enums'
+
 export default [
   {
-    path: '/',
+    path: ROUTE_ENUM.INDEX,
     redirect: '/dashboard',
     component: () => import('@/layout'),
     children: [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/dashboard'),
         meta: { title: 'Dashboard', icon: <DashboardOutlined /> }
       }
     ]
   },
   {
-    path: '/login',
+    path: ROUTE_ENUM.LOGIN,
     name: 'Login',
-    component: () => import('@/views/sys/login/index'),
+    component: () => import('@/views/sys/login'),
     meta: { title: '登录', hidden: true }
   },
   {
-    path: '/error',
+    path: ROUTE_ENUM.ERROR,
     name: 'Error',
     component: () => import('@/views/sys/error'),
     meta: { title: '错误', hidden: true }

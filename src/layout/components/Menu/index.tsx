@@ -1,6 +1,7 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
 import { computed, defineComponent, reactive, watch } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -8,7 +9,7 @@ import { Key } from '@/store'
 
 import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
-import { Route } from './types'
+import type { Item } from './types'
 
 export default defineComponent({
   name: 'Menu',
@@ -25,16 +26,12 @@ export default defineComponent({
     const route = useRoute()
     const store = useStore(Key)
 
-    const routes = computed(() => store.state.permission.routes)
+    const routes = computed(() => cloneDeep(store.state.permission.routes))
     const settings = computed(() => store.state.settings)
 
-    function isDashboard(route: Route) {
-      return route.name === 'Dashboard'
-    }
-
-    function createMenu(routes: Route[], basePath = '') {
+    function createMenu(routes: RouteRecordRaw[], basePath = '') {
       for (const route of routes) {
-        if (!isDashboard(route)) {
+        if (route.name !== 'Dashboard') {
           route.path =
             basePath +
             (route.path.startsWith('/') ? route.path : `/${route.path}`)
@@ -58,7 +55,7 @@ export default defineComponent({
     }
 
     function init() {
-      const _routes = createMenu(cloneDeep(routes.value))
+      const _routes = createMenu(routes.value)
       state.list = _routes
     }
 
@@ -80,6 +77,9 @@ export default defineComponent({
     }
   },
   render() {
+    const renderItem = (item: Item) =>
+      item.children ? <SubMenu item={item} /> : <MainMenu item={item} />
+
     return (
       <Menu
         mode="inline"
@@ -89,9 +89,7 @@ export default defineComponent({
           [this.state.selectedKeys, 'selectedKeys']
         ]}
       >
-        {this.state.list.map(item =>
-          item.children ? <SubMenu item={item} /> : <MainMenu item={item} />
-        )}
+        {this.state.list.map(renderItem)}
       </Menu>
     )
   }

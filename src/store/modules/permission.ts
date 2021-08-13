@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { Module } from 'vuex'
 
+import { ROUTE_ENUM } from '@/enums'
 import { asyncRoutes, constRoutes } from '@/router'
 
 import { PermissionModule } from '../constants'
@@ -52,7 +53,7 @@ export default {
         accessedRoutes.push({
           path: '/:pathMatch(.*)*',
           redirect: {
-            name: 'Error',
+            path: ROUTE_ENUM.ERROR,
             query: { status: 404 }
           }
         })

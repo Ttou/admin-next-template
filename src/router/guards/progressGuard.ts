@@ -19,9 +19,7 @@ export default function (router: Router) {
   router.afterEach(() => {
     // 加上页面过渡动画时间
     if (NProgress.isStarted()) {
-      setTimeout(() => {
-        NProgress.done()
-      }, 300)
+      NProgress.done()
     }
   })
 }
