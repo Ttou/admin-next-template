@@ -30,37 +30,22 @@ export const TabsModule = {
   name: 'tabs',
   actions: {
     addTab: 'addTab',
-    addVisitedTab: 'addVisitedTab',
-    addCachedTab: 'addCachedTab',
     delTab: 'delTab',
-    delVisitedTab: 'delVisitedTab',
-    delCachedTab: 'delCachedTab',
     delLeftTabs: 'delLeftTabs',
-    delLeftVisitedTabs: 'delLeftVisitedTabs',
-    delLeftCachedTabs: 'delLeftCachedTabs',
     delRightTabs: 'delRightTabs',
-    delRightVisitedTabs: 'delRightVisitedTabs',
-    delRightCachedTabs: 'delRightCachedTabs',
     delOthersTabs: 'delOthersTabs',
-    delOthersVisitedTabs: 'delOthersVisitedTabs',
-    delOthersCachedTabs: 'delOthersCachedTabs',
     delAllTabs: 'delAllTabs',
-    delAllVisitedTabs: 'delAllVisitedTabs',
-    delAllCachedTabs: 'delAllCachedTabs'
+    delCachedTab: 'delCachedTab'
   },
   mutations: {
-    ADD_VISITED_TAB: 'ADD_VISITED_TAB',
-    ADD_CACHED_TAB: 'ADD_CACHED_TAB',
-    DEL_VISITED_TAB: 'DEL_VISITED_TAB',
+    ADD_TAB: 'ADD_TAB',
+    DEL_TAB: 'DEL_TAB',
+    DEL_LEFT_TABS: 'DEL_LEFT_TABS',
+    DEL_RIGHT_TABS: 'DEL_RIGHT_TABS',
+    DEL_OTHERS_TABS: 'DEL_OTHERS_TABS',
+    DEL_ALL_TABS: 'DEL_ALL_TABS',
     DEL_CACHED_TAB: 'DEL_CACHED_TAB',
-    DEL_LEFT_VISITED_TABS: 'DEL_LEFT_VISITED_TABS',
-    DEL_LEFT_CACHED_TABS: 'DEL_LEFT_CACHED_TABS',
-    DEL_RIGHT_VISITED_TABS: 'DEL_RIGHT_VISITED_TABS',
-    DEL_RIGHT_CACHED_TABS: 'DEL_RIGHT_CACHED_TABS',
-    DEL_OTHERS_VISITED_TABS: 'DEL_OTHERS_VISITED_TABS',
-    DEL_OTHERS_CACHED_TABS: 'DEL_OTHERS_CACHED_TABS',
-    DEL_ALL_VISITED_TABS: 'DEL_ALL_VISITED_TABS',
-    DEL_ALL_CACHED_TABS: 'DEL_ALL_CACHED_VIEWS'
+    UPDATE_CACHED_TAB: 'UPDATE_CACHED_TAB'
   }
 }
 

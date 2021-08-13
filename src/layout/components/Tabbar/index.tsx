@@ -49,7 +49,7 @@ export default defineComponent({
 
     const closeOtherDisabled = computed(() => visitedTabs.value.length <= 1)
 
-    function isActive(tab) {
+    function isActive(tab: any) {
       return state.activeKey === tab.path
     }
 
@@ -65,7 +65,7 @@ export default defineComponent({
     }
 
     function handleRefreshTab() {
-      store.dispatch(Actions.tabs.delCachedTab, route as any).then(() => {
+      store.dispatch(Actions.tabs.delCachedTab, route).then(() => {
         const { fullPath } = route
 
         nextTick(() => {
@@ -102,7 +102,7 @@ export default defineComponent({
       })
     }
 
-    function handleSelectTab(activeKey: string) {
+    function handleSelectTab(activeKey: any) {
       router.push(activeKey)
     }
 
