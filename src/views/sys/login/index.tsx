@@ -114,7 +114,7 @@ export default defineComponent({
       <div class="login-view">
         <div class="top">
           <div class="header">
-            <SvgIcon name="logo" class="logo" />
+            <SvgIcon class="logo" name="ant-design" />
             <span class="title">{this.title}</span>
           </div>
           <div class="desc">基于 Ant Design 的后台管理系统</div>
