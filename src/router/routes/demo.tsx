@@ -13,6 +13,12 @@ export default {
   },
   children: [
     {
+      path: 'editor',
+      name: 'DemoEditor',
+      component: () => import('@/views/demo/editor'),
+      meta: { title: '富文本编辑' }
+    },
+    {
       path: 'form',
       name: 'DemoForm',
       component: () => import('@/views/demo/form'),

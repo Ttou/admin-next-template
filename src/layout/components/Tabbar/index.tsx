@@ -21,6 +21,7 @@ import {
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
+import { ROUTE_ENUM } from '@/enums'
 import { Actions, Key } from '@/store'
 
 export default defineComponent({
@@ -57,7 +58,10 @@ export default defineComponent({
       const { name, path } = route
 
       // 只添加配置过名称且不是异常和登录页面
-      if (name && ['Login', 'Error'].indexOf(name as string) === -1) {
+      if (
+        name &&
+        [ROUTE_ENUM.LOGIN, ROUTE_ENUM.ERROR].indexOf(path as ROUTE_ENUM) === -1
+      ) {
         store.dispatch(Actions.tabs.addTab, route)
         state.activeKey = path
       }
