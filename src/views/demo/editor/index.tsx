@@ -1,7 +1,7 @@
 import './index.less'
 
 import { Button, message, Space } from 'ant-design-vue'
-import { defineComponent, ref, unref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 import { ProEditor } from '@/components'
 import type { EditorRef } from '@/components/ProEditor/types'
@@ -12,19 +12,19 @@ export default defineComponent({
     const editorRef = ref({} as EditorRef)
 
     function handleGetHTML() {
-      const value = unref(editorRef).editor.txt.html()
+      const value = editorRef.value.editor.txt.html()
 
       message.info(value!)
     }
 
     function handleGetTXT() {
-      const value = unref(editorRef).editor.txt.text()
+      const value = editorRef.value.editor.txt.text()
 
       message.info(value)
     }
 
     function handleClear() {
-      unref(editorRef).editor.txt.clear()
+      editorRef.value.editor.txt.clear()
     }
 
     return {

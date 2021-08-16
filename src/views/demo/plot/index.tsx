@@ -2,7 +2,7 @@ import './index.less'
 
 import { Area, Bar, Column, Line } from '@antv/g2plot'
 import { Col, Row } from 'ant-design-vue'
-import { defineComponent, onMounted, ref, unref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   name: 'DemoPlot',
@@ -18,7 +18,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          const linePlot = new Line(unref(lineEl)!, {
+          const linePlot = new Line(lineEl.value!, {
             data,
             xField: 'Date',
             yField: 'scales'
@@ -34,7 +34,7 @@ export default defineComponent({
       )
         .then(data => data.json())
         .then(data => {
-          const columnPlot = new Column(unref(columnEl)!, {
+          const columnPlot = new Column(columnEl.value!, {
             data,
             xField: 'type',
             yField: 'sales'
@@ -53,7 +53,7 @@ export default defineComponent({
         { year: '1958 年', value: 48 }
       ]
 
-      const barPlot = new Bar(unref(barEl)!, {
+      const barPlot = new Bar(barEl.value!, {
         data,
         xField: 'value',
         yField: 'year',
@@ -72,7 +72,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          const areaPlot = new Area(unref(areaEl)!, {
+          const areaPlot = new Area(areaEl.value!, {
             data,
             xField: 'timePeriod',
             yField: 'value',

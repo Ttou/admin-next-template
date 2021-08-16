@@ -1,6 +1,6 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { computed, defineComponent, ref, unref, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
@@ -17,11 +17,9 @@ export default defineComponent({
     SubMenu
   },
   setup() {
-    const state = ref({
-      list: [] as any,
-      openKeys: [] as any,
-      selectedKeys: [] as any
-    })
+    const list = ref([] as any[])
+    const openKeys = ref([] as any[])
+    const selectedKeys = ref([] as any[])
 
     const route = useRoute()
     const store = useStore(Key)
@@ -56,15 +54,15 @@ export default defineComponent({
 
     function init() {
       const _routes = createMenu(routes.value)
-      unref(state).list = _routes
+      list.value = _routes
     }
 
     watch(
       () => route.path,
       val => {
         init()
-        unref(state).openKeys = [...route.matched.map(item => item.path)]
-        unref(state).selectedKeys = [val]
+        openKeys.value = [...route.matched.map(item => item.path)]
+        selectedKeys.value = [val]
       },
       {
         immediate: true
@@ -72,7 +70,9 @@ export default defineComponent({
     )
 
     return {
-      state,
+      list,
+      openKeys,
+      selectedKeys,
       settings
     }
   },
@@ -85,11 +85,11 @@ export default defineComponent({
         mode="inline"
         theme={this.settings.siderTheme}
         v-models={[
-          [this.state.openKeys, 'openKeys'],
-          [this.state.selectedKeys, 'selectedKeys']
+          [this.openKeys, 'openKeys'],
+          [this.selectedKeys, 'selectedKeys']
         ]}
       >
-        {this.state.list.map(renderItem)}
+        {this.list.map(renderItem)}
       </Menu>
     )
   }

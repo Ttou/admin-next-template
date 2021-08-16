@@ -3,7 +3,7 @@ import E from 'wangeditor'
 
 import { propTypes } from '@/utils'
 
-import type { Editor, EditorConfig } from './types'
+import type { EditorConfig, EditorInstance } from './types'
 
 export default defineComponent({
   name: 'ProEditor',
@@ -13,7 +13,7 @@ export default defineComponent({
     } as EditorConfig)
   },
   setup(props) {
-    const editor = ref({} as Editor)
+    const editor = ref({} as EditorInstance)
     const editorEl = ref<ElementRef>(null)
 
     function init() {

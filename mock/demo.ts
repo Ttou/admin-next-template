@@ -26,6 +26,8 @@ export default [
           .filter(item =>
             query.nickname ? item.nickname.includes(query.nickname) : true
           )
+          .filter(item => (query.role ? item.role === query.role : true))
+          .filter(item => (query.status ? item.status === query.status : true))
           .slice(
             (query.current - 1) * query.pageSize,
             query.current * query.pageSize

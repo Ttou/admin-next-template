@@ -15,7 +15,6 @@ import {
   nextTick,
   onMounted,
   ref,
-  unref,
   watch,
   withModifiers
 } from 'vue'
@@ -28,9 +27,7 @@ import { Actions, Key } from '@/store'
 export default defineComponent({
   name: 'Tabs',
   setup() {
-    const state = ref({
-      activeKey: ''
-    })
+    const activeKey = ref('')
 
     const route = useRoute()
     const router = useRouter()
@@ -40,23 +37,19 @@ export default defineComponent({
 
     const closeLeftDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(
-          tab => tab.path === unref(state).activeKey
-        ) === 0
+        visitedTabs.value.findIndex(tab => tab.path === activeKey.value) === 0
     )
 
     const closeRightDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(
-          tab => tab.path === unref(state).activeKey
-        ) ===
+        visitedTabs.value.findIndex(tab => tab.path === activeKey.value) ===
         visitedTabs.value.length - 1
     )
 
     const closeOtherDisabled = computed(() => visitedTabs.value.length <= 1)
 
     function isActive(tab: any) {
-      return unref(state).activeKey === tab.path
+      return activeKey.value === tab.path
     }
 
     function addTabs() {
@@ -68,7 +61,7 @@ export default defineComponent({
         [ROUTE_ENUM.LOGIN, ROUTE_ENUM.ERROR].indexOf(path as ROUTE_ENUM) === -1
       ) {
         store.dispatch(Actions.tabs.addTab, route)
-        unref(state).activeKey = path
+        activeKey.value = path
       }
       return false
     }
@@ -141,7 +134,7 @@ export default defineComponent({
     })
 
     return {
-      state,
+      activeKey,
       visitedTabs,
       closeLeftDisabled,
       closeRightDisabled,
@@ -159,7 +152,7 @@ export default defineComponent({
     return (
       <div class="tabbar">
         <Tabs
-          v-model={[this.state.activeKey, 'activeKey']}
+          v-model={[this.activeKey, 'activeKey']}
           onChange={this.handleSelectTab}
         >
           {this.visitedTabs.map(view => (
