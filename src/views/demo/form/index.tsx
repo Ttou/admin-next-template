@@ -1,5 +1,5 @@
 import { Button, Space } from 'ant-design-vue'
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 import { ProForm } from '@/components'
 import type { FormProps, FormRef } from '@/components/ProForm/types'
@@ -8,7 +8,7 @@ export default defineComponent({
   name: 'DemoForm',
   setup() {
     const formRef = ref<FormRef>(null)
-    const formConfig = reactive<FormProps>({
+    const formConfig = ref<FormProps>({
       options: {
         props: {
           labelCol: { span: 4 },
@@ -122,7 +122,7 @@ export default defineComponent({
           }
         ]
       }
-    }) as unknown
+    })
 
     function handleReset() {
       formRef.value?.form.resetFields()
@@ -144,6 +144,7 @@ export default defineComponent({
   render() {
     return (
       <div>
+        {/* @ts-ignore */}
         <ProForm ref="formRef" {...this.formConfig} />
       </div>
     )

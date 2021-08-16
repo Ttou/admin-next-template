@@ -1,4 +1,4 @@
-import { State } from '@/store/types'
+import type { State } from '@/store/types'
 
 export default {
   title: '后台管理系统',

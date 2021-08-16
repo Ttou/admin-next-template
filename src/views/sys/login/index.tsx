@@ -3,7 +3,7 @@ import './index.less'
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-es'
-import { computed, defineComponent, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -22,7 +22,7 @@ export default defineComponent({
     const redirect = ref<Nullable<string>>(null)
     const otherQuery = ref({})
     const formRef = ref<FormRef>(null)
-    const formConfig = reactive<FormProps>({
+    const formConfig = ref<FormProps>({
       options: {
         props: {
           class: 'login-form'
@@ -69,7 +69,7 @@ export default defineComponent({
           }
         ]
       }
-    }) as unknown
+    })
 
     const title = computed(() => store.state.settings.title)
 
@@ -119,6 +119,7 @@ export default defineComponent({
           </div>
           <div class="desc">基于 Ant Design 的后台管理系统</div>
         </div>
+        {/* @ts-ignore */}
         <ProForm ref="formRef" {...this.formConfig} />
         <SvgIcon name="background" class="background" />
       </div>

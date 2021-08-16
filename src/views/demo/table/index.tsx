@@ -8,14 +8,14 @@ import {
 import { Button, Menu, Space, Spin, Table, Tag } from 'ant-design-vue'
 import Dropdown from 'ant-design-vue/lib/dropdown/dropdown'
 import type { TableProps } from 'ant-design-vue/lib/table/interface'
-import { defineComponent, onMounted, reactive } from 'vue'
+import { defineComponent, onMounted, ref, unref } from 'vue'
 
 import { getList } from '@/api'
 
 export default defineComponent({
   name: 'DemoTable',
   setup() {
-    const state = reactive({
+    const state = ref({
       loading: false,
       list: [] as any,
       tableSize: 'middle' as TableProps['size'],
@@ -88,16 +88,16 @@ export default defineComponent({
     })
 
     async function loadData() {
-      state.loading = true
+      unref(state).loading = true
 
       try {
         const data = await getList({
           current: 1,
           pageSize: 20
         })
-        state.list = data.content
+        unref(state).list = data.content
       } finally {
-        state.loading = false
+        unref(state).loading = false
       }
     }
 

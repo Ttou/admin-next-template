@@ -7,7 +7,7 @@ import {
   Select,
   Switch
 } from 'ant-design-vue'
-import { defineComponent, reactive, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
 import { propTypes } from '@/utils'
 
@@ -24,9 +24,9 @@ export default defineComponent({
   },
   setup(props) {
     const form = ref(null)
-    const formModel = reactive({})
+    const formModel = ref({})
 
-    function initModel() {
+    function init() {
       props.options.items.forEach(item => {
         if (item.name) {
           Reflect.set(formModel, item.name, props.model[item.name])
@@ -37,7 +37,7 @@ export default defineComponent({
     watch(
       () => props.options,
       () => {
-        initModel()
+        init()
       },
       {
         immediate: true

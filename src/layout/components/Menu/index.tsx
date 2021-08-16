@@ -1,6 +1,6 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { computed, defineComponent, reactive, watch } from 'vue'
+import { computed, defineComponent, ref, unref, watch } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
@@ -17,7 +17,7 @@ export default defineComponent({
     SubMenu
   },
   setup() {
-    const state = reactive({
+    const state = ref({
       list: [] as any,
       openKeys: [] as any,
       selectedKeys: [] as any
@@ -56,15 +56,15 @@ export default defineComponent({
 
     function init() {
       const _routes = createMenu(routes.value)
-      state.list = _routes
+      unref(state).list = _routes
     }
 
     watch(
       () => route.path,
       val => {
         init()
-        state.openKeys = [...route.matched.map(item => item.path)]
-        state.selectedKeys = [val]
+        unref(state).openKeys = [...route.matched.map(item => item.path)]
+        unref(state).selectedKeys = [val]
       },
       {
         immediate: true

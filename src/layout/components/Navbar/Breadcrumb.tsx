@@ -1,11 +1,11 @@
 import { Breadcrumb } from 'ant-design-vue'
-import { defineComponent, reactive, watchEffect } from 'vue'
+import { defineComponent, ref, unref, watchEffect } from 'vue'
 import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'Breadcrumb',
   setup() {
-    const state = reactive({
+    const state = ref({
       routes: [] as any
     })
 
@@ -45,7 +45,7 @@ export default defineComponent({
     watchEffect(() => {
       const currentRoute = router.currentRoute.value
 
-      state.routes = createBreadcrumb(currentRoute.matched)
+      unref(state).routes = createBreadcrumb(currentRoute.matched)
     })
 
     return {

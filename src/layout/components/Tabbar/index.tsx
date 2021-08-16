@@ -14,7 +14,8 @@ import {
   defineComponent,
   nextTick,
   onMounted,
-  reactive,
+  ref,
+  unref,
   watch,
   withModifiers
 } from 'vue'
@@ -27,7 +28,7 @@ import { Actions, Key } from '@/store'
 export default defineComponent({
   name: 'Tabs',
   setup() {
-    const state = reactive({
+    const state = ref({
       activeKey: ''
     })
 
@@ -39,19 +40,23 @@ export default defineComponent({
 
     const closeLeftDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.path === state.activeKey) === 0
+        visitedTabs.value.findIndex(
+          tab => tab.path === unref(state).activeKey
+        ) === 0
     )
 
     const closeRightDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.path === state.activeKey) ===
+        visitedTabs.value.findIndex(
+          tab => tab.path === unref(state).activeKey
+        ) ===
         visitedTabs.value.length - 1
     )
 
     const closeOtherDisabled = computed(() => visitedTabs.value.length <= 1)
 
     function isActive(tab: any) {
-      return state.activeKey === tab.path
+      return unref(state).activeKey === tab.path
     }
 
     function addTabs() {
@@ -63,7 +68,7 @@ export default defineComponent({
         [ROUTE_ENUM.LOGIN, ROUTE_ENUM.ERROR].indexOf(path as ROUTE_ENUM) === -1
       ) {
         store.dispatch(Actions.tabs.addTab, route)
-        state.activeKey = path
+        unref(state).activeKey = path
       }
       return false
     }

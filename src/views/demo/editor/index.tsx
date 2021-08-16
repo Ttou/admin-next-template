@@ -41,7 +41,7 @@ export default defineComponent({
           <Space>
             <Button onClick={this.handleGetHTML}>获取 HTML</Button>
             <Button onClick={this.handleGetTXT}>获取 TXT</Button>
-            <Button onClick={this.handleClear}>清楚内容</Button>
+            <Button onClick={this.handleClear}>清除内容</Button>
           </Space>
         </div>
         <ProEditor ref="editorRef" />

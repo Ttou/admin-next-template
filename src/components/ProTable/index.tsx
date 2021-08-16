@@ -1,11 +1,11 @@
 import { Form, Table } from 'ant-design-vue'
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'ProTable',
   props: {},
   setup() {
-    const state = reactive({})
+    const state = ref({})
 
     return {
       state

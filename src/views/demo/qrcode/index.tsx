@@ -1,5 +1,5 @@
 import { Card, Col, Row } from 'ant-design-vue'
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 import { QRCode } from '@/components'
 import type { QRCodeProps } from '@/components/QRCode/types'
@@ -9,18 +9,18 @@ import logo from './images/logo.svg'
 export default defineComponent({
   name: 'DemoQRCode',
   setup() {
-    const qr1Config = reactive<QRCodeProps>({
+    const qr1Config = ref<QRCodeProps>({
       text: 'http://www.baidu.com'
     })
 
-    const qr2Config = reactive<QRCodeProps>({
+    const qr2Config = ref<QRCodeProps>({
       text: 'http://www.baidu.com',
       options: {
         color: { dark: '#43d08c' }
       }
     })
 
-    const qr3Config = reactive<QRCodeProps>({
+    const qr3Config = ref<QRCodeProps>({
       text: 'http://www.baidu.com',
       logo
     })
