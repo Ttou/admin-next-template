@@ -56,12 +56,11 @@ export type FormItem = {
   rules?: Rule | Rule[]
   props?: Omit<FormItemProps, 'name' | 'label' | 'rules'>
   componentProps?: Record<string, any> & BaseProps
+  defaultValue?: any
   render?: (model: Record<string, any>) => JSX.Element
 }
 
 export type FormProps = {
-  /** 初始化数据 */
-  model?: Record<string, any>
   /** 表单配置 */
   options: {
     props?: Omit<_FormProps, 'ref' | 'model' | 'rules'> & BaseProps

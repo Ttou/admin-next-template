@@ -80,7 +80,14 @@ export default defineComponent({
     function init() {
       props.formItems.forEach(item => {
         if (item.name) {
-          Reflect.set(formModel.value, item.name, item.defaultValue || '')
+          switch (item.type) {
+            case 'select':
+              Reflect.set(formModel.value, item.name, item.defaultValue || null)
+              break
+            default:
+              Reflect.set(formModel.value, item.name, item.defaultValue || '')
+              break
+          }
         }
       })
     }
@@ -144,6 +151,7 @@ export default defineComponent({
           return (
             <Select
               v-model={[this.formModel[item.name!], 'value']}
+              placeholder="请选择"
               allowClear
               {...item.componentProps}
             >

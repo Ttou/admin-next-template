@@ -16,7 +16,6 @@ import type { FormItem, FormProps } from './types'
 export default defineComponent({
   name: 'ProForm',
   props: {
-    model: propTypes.object().def({}),
     options: propTypes.object<FormProps['options']>().def({
       props: {},
       items: []
@@ -29,7 +28,14 @@ export default defineComponent({
     function init() {
       props.options.items.forEach(item => {
         if (item.name) {
-          Reflect.set(formModel, item.name, props.model[item.name])
+          switch (item.type) {
+            case 'select':
+              Reflect.set(formModel, item.name, item.defaultValue || null)
+              break
+            default:
+              Reflect.set(formModel, item.name, item.defaultValue || '')
+              break
+          }
         }
       })
     }
@@ -72,6 +78,7 @@ export default defineComponent({
           return (
             <Select
               v-model={[this.formModel[item.name!], 'value']}
+              placeholder="请选择"
               {...item.componentProps}
             >
               {item.options?.map(option => (
