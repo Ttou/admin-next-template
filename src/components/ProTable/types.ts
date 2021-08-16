@@ -15,6 +15,19 @@ type FormItemType =
   | 'checkbox'
   | 'radio'
 
+type RequestReq = {
+  current: number
+  pageSize: number
+  [x: string]: any
+}
+
+type RequestRes = {
+  content: any[]
+  current: number
+  size: number
+  total: number
+}
+
 export type FormItem = {
   label?: string
   name?: string
@@ -42,7 +55,7 @@ export type FormRef = {
 
 export type ProTableProps = {
   autoLoad?: boolean
-  request: (...args: any[]) => Promise<any>
+  request: (params: RequestReq) => Promise<RequestRes>
   formItems?: FormItem[]
   tableColumns: TableProps['columns'][]
 }

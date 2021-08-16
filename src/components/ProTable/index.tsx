@@ -28,13 +28,13 @@ import { defineComponent, onMounted, ref } from 'vue'
 
 import { propTypes } from '@/utils'
 
-import { FormItem, FormRef } from './types'
+import type { FormItem, FormRef, ProTableProps } from './types'
 
 export default defineComponent({
   name: 'ProTable',
   props: {
     autoLoad: propTypes.bool().def(true),
-    request: propTypes.func().isRequired,
+    request: propTypes.func<ProTableProps['request']>().isRequired,
     formItems: propTypes.array<FormItem>().def([]),
     tableColumns: propTypes.array<TableProps['columns']>().isRequired
   },
@@ -43,8 +43,23 @@ export default defineComponent({
     const formRef = ref<Nullable<FormRef>>(null)
     const formModel = ref({})
     const formExpand = ref(false)
-    const tableData = ref([])
+    const tableData = ref([] as any[])
     const tableSize = ref<TableProps['size']>('middle')
+    const tablePagination = ref({
+      showQuickJumper: true,
+      showSizeChanger: true,
+      onChange: (page, pageSize) => {
+        tableCurrent.value = page
+        load()
+      },
+      onShowSizeChange(current, size) {
+        tableCurrent.value = 1
+        tablePageSize.value = size
+        load()
+      }
+    } as TableProps['pagination'])
+    const tableCurrent = ref(1)
+    const tablePageSize = ref(15)
 
     function handleSearch() {
       load()
@@ -74,7 +89,19 @@ export default defineComponent({
       try {
         loading.value = true
 
-        const res = await props.request()
+        const res = await props.request({
+          ...formModel.value,
+          current: tableCurrent.value,
+          pageSize: tablePageSize.value
+        })
+
+        tableData.value = res.content
+
+        if (typeof tablePagination.value !== 'boolean') {
+          tablePagination.value!.current = Number(res.current)
+          tablePagination.value!.pageSize = Number(res.size)
+          tablePagination.value!.total = Number(res.total)
+        }
       } finally {
         loading.value = false
       }
@@ -93,6 +120,7 @@ export default defineComponent({
       formExpand,
       tableData,
       tableSize,
+      tablePagination,
       handleSearch,
       handleReset,
       handleToggleExpand,
@@ -170,20 +198,24 @@ export default defineComponent({
 
     const renderItem = (item: FormItem) => (
       <Col md={8} sm={24}>
-        <Form.Item label={item.label}>{renderComponent(item)}</Form.Item>
+        <Form.Item label={item.label} name={item.name}>
+          {renderComponent(item)}
+        </Form.Item>
       </Col>
     )
 
     const renderHiddenItem = (item: FormItem) => (
       <Col v-show={this.formExpand} md={8} sm={24}>
-        <Form.Item label={item.label}>{renderComponent(item)}</Form.Item>
+        <Form.Item label={item.label} name={item.name}>
+          {renderComponent(item)}
+        </Form.Item>
       </Col>
     )
 
     return (
       <div class="pro-table">
         <div class="form-wrapper">
-          <Form ref="formRef" layout="inline">
+          <Form ref="formRef" layout="inline" model={this.formModel}>
             <Row class="form-row" gutter={[16, 16]}>
               {this.formItems
                 .filter(item => !item.defaultHidden)
@@ -263,6 +295,7 @@ export default defineComponent({
               columns={this.tableColumns}
               dataSource={this.tableData}
               size={this.tableSize}
+              pagination={this.tablePagination}
               bordered
             />
           </div>

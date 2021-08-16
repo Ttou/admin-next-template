@@ -121,8 +121,10 @@ export default defineComponent({
           dataIndex: 'createTs'
         }
       ],
-      request: async () => {
-        return []
+      request: async params => {
+        return await getList({
+          ...params
+        })
       }
     } as ProTableProps)
 
