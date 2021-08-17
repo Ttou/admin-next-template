@@ -23,20 +23,32 @@ import {
   Switch,
   Table
 } from 'ant-design-vue'
-import type { TableProps } from 'ant-design-vue/lib/table/interface'
-import { defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 
 import { propTypes } from '@/utils'
 
-import type { FormItem, FormRef, ProTableProps } from './types'
+import type {
+  FormItem,
+  FormRef,
+  Slots,
+  TableColumn,
+  TablePagination,
+  TableRequest,
+  TableRowKeyFunc,
+  TableSize
+} from './types'
 
 export default defineComponent({
   name: 'ProTable',
   props: {
     autoLoad: propTypes.bool().def(true),
-    request: propTypes.func<ProTableProps['request']>().isRequired,
+    request: propTypes.func<TableRequest>().isRequired,
     formItems: propTypes.array<FormItem>().def([]),
-    tableColumns: propTypes.array<TableProps['columns']>().isRequired
+    tableRowKey: propTypes
+      .oneOfType([propTypes.string(), propTypes.func<TableRowKeyFunc>()])
+      .def('id'),
+    tableColumns: propTypes.array<TableColumn>().isRequired,
+    slots: propTypes.object<Slots>().def({})
   },
   setup(props) {
     const loading = ref(false)
@@ -44,10 +56,12 @@ export default defineComponent({
     const formModel = ref({})
     const formExpand = ref(false)
     const tableData = ref([] as any[])
-    const tableSize = ref<TableProps['size']>('middle')
+    const tableSize = ref<TableSize>('small')
     const tablePagination = ref({
       showQuickJumper: true,
       showSizeChanger: true,
+      size: 'small',
+      pageSizeOptions: ['10', '15', '30', '50'],
       onChange: (page, pageSize) => {
         tableCurrent.value = page
         load()
@@ -57,9 +71,11 @@ export default defineComponent({
         tablePageSize.value = size
         load()
       }
-    } as TableProps['pagination'])
+    } as TablePagination)
     const tableCurrent = ref(1)
     const tablePageSize = ref(15)
+
+    const selectedSizes = computed(() => [tableSize.value])
 
     function handleSearch() {
       load()
@@ -128,6 +144,7 @@ export default defineComponent({
       tableData,
       tableSize,
       tablePagination,
+      selectedSizes,
       handleSearch,
       handleReset,
       handleToggleExpand,
@@ -261,8 +278,11 @@ export default defineComponent({
         <Spin spinning={this.loading}>
           <div class="table-wrapper">
             <div class="table-header">
-              <div class="btns-wrapper">{this.$slots.btns?.()}</div>
+              <div class="btns-wrapper">
+                {this.slots.btns?.(this.tableData)}
+              </div>
               <Space>
+                {this.slots.tools?.(this.tableData)}
                 <RedoOutlined
                   title="刷新"
                   spin={this.loading}
@@ -283,14 +303,23 @@ export default defineComponent({
                       />
                     ),
                     overlay: () => (
-                      <Menu>
-                        <Menu.Item onClick={() => (this.tableSize = 'default')}>
+                      <Menu v-models={[[this.selectedSizes, 'selectedKeys']]}>
+                        <Menu.Item
+                          key="default"
+                          onClick={() => (this.tableSize = 'default')}
+                        >
                           默认
                         </Menu.Item>
-                        <Menu.Item onClick={() => (this.tableSize = 'middle')}>
+                        <Menu.Item
+                          key="middle"
+                          onClick={() => (this.tableSize = 'middle')}
+                        >
                           中等
                         </Menu.Item>
-                        <Menu.Item onClick={() => (this.tableSize = 'small')}>
+                        <Menu.Item
+                          key="small"
+                          onClick={() => (this.tableSize = 'small')}
+                        >
                           紧凑
                         </Menu.Item>
                       </Menu>
@@ -300,6 +329,7 @@ export default defineComponent({
               </Space>
             </div>
             <Table
+              rowKey={this.tableRowKey}
               columns={this.tableColumns}
               dataSource={this.tableData}
               size={this.tableSize}

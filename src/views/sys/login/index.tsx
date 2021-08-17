@@ -8,7 +8,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import { ProForm, SvgIcon } from '@/components'
-import type { FormProps, FormRef } from '@/components/ProForm/types'
+import type { FormRef, ProFormProps } from '@/components/ProForm/types'
 import { Actions, Key } from '@/store'
 
 export default defineComponent({
@@ -22,53 +22,51 @@ export default defineComponent({
     const redirect = ref<Nullable<string>>(null)
     const otherQuery = ref({})
     const formRef = ref<FormRef>(null)
-    const formConfig = ref<FormProps>({
-      options: {
-        props: {
-          class: 'login-form'
-        },
-        items: [
-          {
-            name: 'username',
-            type: 'input',
-            rules: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-            props: { wrapperCol: { span: 24 } },
-            componentProps: {
-              placeholder: '账号：admin',
-              prefix: <UserOutlined />,
-              size: 'large'
-            }
-          },
-          {
-            name: 'password',
-            type: 'input-password',
-            rules: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-            props: { wrapperCol: { span: 24 } },
-            componentProps: {
-              placeholder: '密码：任意',
-              prefix: <LockOutlined />,
-              size: 'large',
-              onPressEnter: () => handleSubmit()
-            }
-          },
-          {
-            render: () => (
-              <Button
-                size="large"
-                type="primary"
-                loading={loading.value}
-                onClick={handleSubmit}
-                style={{ width: '100%' }}
-              >
-                登录
-              </Button>
-            ),
-            props: {
-              wrapperCol: { span: 24 }
-            }
+    const formConfig = ref<ProFormProps>({
+      props: {
+        class: 'login-form'
+      },
+      items: [
+        {
+          name: 'username',
+          type: 'input',
+          rules: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+          props: { wrapperCol: { span: 24 } },
+          componentProps: {
+            placeholder: '账号：admin',
+            prefix: <UserOutlined />,
+            size: 'large'
           }
-        ]
-      }
+        },
+        {
+          name: 'password',
+          type: 'input-password',
+          rules: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+          props: { wrapperCol: { span: 24 } },
+          componentProps: {
+            placeholder: '密码：任意',
+            prefix: <LockOutlined />,
+            size: 'large',
+            onPressEnter: () => handleSubmit()
+          }
+        },
+        {
+          render: () => (
+            <Button
+              size="large"
+              type="primary"
+              loading={loading.value}
+              onClick={handleSubmit}
+              style={{ width: '100%' }}
+            >
+              登录
+            </Button>
+          ),
+          props: {
+            wrapperCol: { span: 24 }
+          }
+        }
+      ]
     })
 
     const title = computed(() => store.state.settings.title)

@@ -16,24 +16,22 @@ import type { FormItem, FormProps } from './types'
 export default defineComponent({
   name: 'ProForm',
   props: {
-    options: propTypes.object<FormProps['options']>().def({
-      props: {},
-      items: []
-    })
+    props: propTypes.object<FormProps>(),
+    items: propTypes.array<FormItem>().def([])
   },
   setup(props) {
     const form = ref(null)
-    const formModel = ref({})
+    const model = ref({})
 
     function init() {
-      props.options.items.forEach(item => {
+      props.items.forEach(item => {
         if (item.name) {
           switch (item.type) {
             case 'select':
-              Reflect.set(formModel, item.name, item.defaultValue || null)
+              Reflect.set(model, item.name, item.defaultValue || null)
               break
             default:
-              Reflect.set(formModel, item.name, item.defaultValue || '')
+              Reflect.set(model, item.name, item.defaultValue || '')
               break
           }
         }
@@ -41,7 +39,7 @@ export default defineComponent({
     }
 
     watch(
-      () => props.options,
+      () => props.items,
       () => {
         init()
       },
@@ -52,32 +50,32 @@ export default defineComponent({
 
     return {
       form,
-      formModel
+      model
     }
   },
   render() {
     const renderComponent = (item: FormItem) => {
-      if (item.render) return item.render(this.formModel)
+      if (item.render) return item.render(this.model)
 
       switch (item.type) {
         case 'input':
           return (
             <Input
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
           )
         case 'input-password':
           return (
             <Input.Password
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
           )
         case 'select':
           return (
             <Select
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               placeholder="请选择"
               {...item.componentProps}
             >
@@ -91,21 +89,21 @@ export default defineComponent({
         case 'date-picker':
           return (
             <DatePicker
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
           )
         case 'switch':
           return (
             <Switch
-              v-model={[this.formModel[item.name!], 'checked']}
+              v-model={[this.model[item.name!], 'checked']}
               {...item.componentProps}
             />
           )
         case 'checkbox':
           return (
             <Checkbox.Group
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             >
               {item.options?.map(option => (
@@ -116,7 +114,7 @@ export default defineComponent({
         case 'radio':
           return (
             <Radio.Group
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             >
               {item.options?.map(option => (
@@ -127,7 +125,7 @@ export default defineComponent({
         case 'textarea':
           return (
             <Input.TextArea
-              v-model={[this.formModel[item.name!], 'value']}
+              v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
           )
@@ -137,8 +135,8 @@ export default defineComponent({
     }
 
     return (
-      <Form ref="form" model={this.formModel} {...this.options.props}>
-        {this.options.items.map(item => {
+      <Form ref="form" model={this.model} {...this.props}>
+        {this.items.map(item => {
           return (
             <Form.Item
               label={item.label}

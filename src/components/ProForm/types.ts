@@ -60,12 +60,11 @@ export type FormItem = {
   render?: (model: Record<string, any>) => JSX.Element
 }
 
-export type FormProps = {
-  /** 表单配置 */
-  options: {
-    props?: Omit<_FormProps, 'ref' | 'model' | 'rules'> & BaseProps
-    items: FormItem[]
-  }
+export type FormProps = Omit<_FormProps, 'ref' | 'model' | 'rules'> & BaseProps
+
+export type ProFormProps = {
+  props?: FormProps
+  items: FormItem[]
 }
 
 export type FormInstance = {

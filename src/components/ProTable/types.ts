@@ -1,6 +1,7 @@
 import type { FormItemProps } from 'ant-design-vue/lib/form/FormItem'
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
 import type { TableProps } from 'ant-design-vue/lib/table/interface'
+import type { Slot } from 'vue'
 
 type Option = {
   label: string
@@ -53,9 +54,36 @@ export type FormRef = {
   clearValidate: (name?: Array<string> | string) => void
 }
 
+export type TableSize = TableProps['size']
+
+export type TablePagination = TableProps['pagination']
+
+export type TableRequest = (params: RequestReq) => Promise<RequestRes>
+
+export type Slots = {
+  /** 左侧按钮 */
+  btns?: (...args: any[]) => Slot | JSX.Element
+  /** 右侧工具 */
+  tools?: (...args: any[]) => Slot | JSX.Element
+}
+
+export type TableRowKeyFunc = (record: any) => string
+
+export type TableRowKey = string | TableRowKeyFunc
+
+export type TableColumn = TableProps['columns']
+
 export type ProTableProps = {
+  /** 自动加载 */
   autoLoad?: boolean
-  request: (params: RequestReq) => Promise<RequestRes>
+  /** 请求逻辑 */
+  request: TableRequest
+  /** 内容插槽 */
+  slots?: Slots
+  /** 搜索表单项 */
   formItems?: FormItem[]
-  tableColumns: TableProps['columns'][]
+  /** 表格行键值 */
+  tableRowKey?: TableRowKey
+  /** 表格列项 */
+  tableColumns: TableColumn[]
 }
