@@ -23,20 +23,21 @@ import {
   Switch,
   Table
 } from 'ant-design-vue'
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
 import { propTypes } from '@/utils'
 
 import type {
   FormItem,
-  FormRef,
   Slots,
   TableColumn,
   TablePagination,
   TableRequest,
-  TableRowKeyFunc,
-  TableSize
+  TableRowKeyFunc
 } from './types'
+import useForm from './useForm'
+import useTable from './useTable'
+import useTools from './useTools'
 
 export default defineComponent({
   name: 'ProTable',
@@ -52,61 +53,26 @@ export default defineComponent({
   },
   setup(props) {
     const loading = ref(false)
-    const formRef = ref<Nullable<FormRef>>(null)
-    const formModel = ref({})
-    const formExpand = ref(false)
-    const tableData = ref([] as any[])
-    const tableSize = ref<TableSize>('small')
-    const tablePagination = ref({
-      showQuickJumper: true,
-      showSizeChanger: true,
-      size: 'small',
-      pageSizeOptions: ['10', '15', '30', '50'],
-      onChange: (page, pageSize) => {
-        tableCurrent.value = page
-        load()
-      },
-      onShowSizeChange(current, size) {
-        tableCurrent.value = 1
-        tablePageSize.value = size
-        load()
-      }
-    } as TablePagination)
-    const tableCurrent = ref(1)
-    const tablePageSize = ref(15)
 
-    const selectedSizes = computed(() => [tableSize.value])
+    const {
+      formRef,
+      formModel,
+      formExpand,
+      handleSearch,
+      handleReset,
+      handleToggleExpand
+    } = useForm({ props, load })
 
-    function handleSearch() {
-      load()
-    }
+    const { tableData, tableCurrent, tablePageSize, tablePagination } =
+      useTable({ load })
 
-    function handleReset() {
-      formRef.value?.resetFields()
-    }
-
-    function handleToggleExpand() {
-      formExpand.value = !formExpand.value
-    }
-
-    function handleReload() {
-      load()
-    }
-
-    function init() {
-      props.formItems.forEach(item => {
-        if (item.name) {
-          switch (item.type) {
-            case 'select':
-              Reflect.set(formModel.value, item.name, item.defaultValue || null)
-              break
-            default:
-              Reflect.set(formModel.value, item.name, item.defaultValue || '')
-              break
-          }
-        }
-      })
-    }
+    const {
+      tableSize,
+      selectedSizes,
+      tableSizeOptions,
+      handleReload,
+      handleSelectSize
+    } = useTools({ load })
 
     async function load() {
       try {
@@ -131,8 +97,6 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      init()
-
       props.autoLoad && load()
     })
 
@@ -145,6 +109,8 @@ export default defineComponent({
       tableSize,
       tablePagination,
       selectedSizes,
+      tableSizeOptions,
+      handleSelectSize,
       handleSearch,
       handleReset,
       handleToggleExpand,
@@ -314,24 +280,14 @@ export default defineComponent({
                     ),
                     overlay: () => (
                       <Menu v-models={[[this.selectedSizes, 'selectedKeys']]}>
-                        <Menu.Item
-                          key="default"
-                          onClick={() => (this.tableSize = 'default')}
-                        >
-                          默认
-                        </Menu.Item>
-                        <Menu.Item
-                          key="middle"
-                          onClick={() => (this.tableSize = 'middle')}
-                        >
-                          中等
-                        </Menu.Item>
-                        <Menu.Item
-                          key="small"
-                          onClick={() => (this.tableSize = 'small')}
-                        >
-                          紧凑
-                        </Menu.Item>
+                        {this.tableSizeOptions.map(v => (
+                          <Menu.Item
+                            key={v.value}
+                            onClick={() => this.handleSelectSize(v.value)}
+                          >
+                            {v.label}
+                          </Menu.Item>
+                        ))}
                       </Menu>
                     )
                   }}

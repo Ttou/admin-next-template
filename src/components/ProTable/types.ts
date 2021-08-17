@@ -56,6 +56,11 @@ export type FormRef = {
 
 export type TableSize = TableProps['size']
 
+export type TableSizeOption = {
+  label: string
+  value: TableSize
+}
+
 export type TablePagination = TableProps['pagination']
 
 export type TableRequest = (params: RequestReq) => Promise<RequestRes>
