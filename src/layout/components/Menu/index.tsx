@@ -1,6 +1,6 @@
 import { Menu } from 'ant-design-vue'
 import { cloneDeep } from 'lodash-es'
-import { computed, defineComponent, ref, watch } from 'vue'
+import { computed, CSSProperties, defineComponent, ref, watch } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
@@ -26,6 +26,14 @@ export default defineComponent({
 
     const routes = computed(() => cloneDeep(store.state.permission.routes))
     const settings = computed(() => store.state.settings)
+
+    const style = computed(() => {
+      const ret = {} as CSSProperties
+
+      ret.minHeight = `calc(100vh - ${settings.value.siderLogoHeight})`
+
+      return ret
+    })
 
     function createMenu(routes: RouteRecordRaw[], basePath = '') {
       for (const route of routes) {
@@ -73,7 +81,8 @@ export default defineComponent({
       list,
       openKeys,
       selectedKeys,
-      settings
+      settings,
+      style
     }
   },
   render() {
@@ -88,6 +97,7 @@ export default defineComponent({
           [this.openKeys, 'openKeys'],
           [this.selectedKeys, 'selectedKeys']
         ]}
+        style={this.style}
       >
         {this.list.map(renderItem)}
       </Menu>

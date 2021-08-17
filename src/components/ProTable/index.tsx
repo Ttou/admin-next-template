@@ -256,10 +256,20 @@ export default defineComponent({
                       : {}
                   }
                 >
-                  <Button type="primary" onClick={this.handleSearch}>
+                  <Button
+                    type="primary"
+                    loading={this.loading}
+                    onClick={this.handleSearch}
+                  >
                     查询
                   </Button>
-                  <Button onClick={this.handleReset}>重置</Button>
+                  <Button
+                    type="default"
+                    disabled={this.loading}
+                    onClick={this.handleReset}
+                  >
+                    重置
+                  </Button>
                   <a
                     onClick={this.handleToggleExpand}
                     style={{

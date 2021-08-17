@@ -7,5 +7,6 @@ export default {
   siderOpened: true,
   siderTheme: 'dark',
   siderOpenedWidth: '256px',
-  siderClosedWidth: '80px'
+  siderClosedWidth: '80px',
+  siderLogoHeight: '44px'
 } as State['settings']

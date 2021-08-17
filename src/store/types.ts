@@ -20,6 +20,8 @@ export type State = {
     siderOpenedWidth: string
     /** 侧边栏关闭宽度 */
     siderClosedWidth: string
+    /** 侧边栏图标高度 */
+    siderLogoHeight: string
   }
   tabs: {
     /** 浏览的页面 */
