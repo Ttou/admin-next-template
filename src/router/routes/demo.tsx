@@ -13,6 +13,12 @@ export default {
   },
   children: [
     {
+      path: 'copy-text',
+      name: 'DemoCopyText',
+      component: () => import('@/views/demo/copy-text'),
+      meta: { title: '复制文本' }
+    },
+    {
       path: 'editor',
       name: 'DemoEditor',
       component: () => import('@/views/demo/editor'),
@@ -35,6 +41,12 @@ export default {
       name: 'DemoQRCode',
       component: () => import('@/views/demo/qrcode'),
       meta: { title: '高级二维码' }
+    },
+    {
+      path: 'sign',
+      name: 'DemoSign',
+      component: () => import('@/views/demo/sign'),
+      meta: { title: '手写签名' }
     },
     {
       path: 'table',

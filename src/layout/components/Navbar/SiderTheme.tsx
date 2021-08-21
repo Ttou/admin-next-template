@@ -26,7 +26,7 @@ export default defineComponent({
   render() {
     return (
       <div
-        title="侧边栏主题"
+        title="主题"
         style={{ cursor: 'pointer' }}
         onClick={this.handleClick}
       >
