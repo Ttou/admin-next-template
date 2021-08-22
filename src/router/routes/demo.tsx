@@ -43,12 +43,6 @@ export default {
       meta: { title: '高级二维码' }
     },
     {
-      path: 'sign',
-      name: 'DemoSign',
-      component: () => import('@/views/demo/sign'),
-      meta: { title: '手写签名' }
-    },
-    {
       path: 'table',
       name: 'DemoTable',
       component: () => import('@/views/demo/table'),
