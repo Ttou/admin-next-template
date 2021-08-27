@@ -1,7 +1,7 @@
 {
-  "name": "admin-next",
+  "name": "admin-next-template",
   "author": "WangRuiJin <1361572192@qq.com>",
-  "repository": "git@gitee.com:jh_shot/admin-next.git",
+  "repository": "git@gitee.com:jh_shot/admin-next-template.git",
   "license": "MulanPSL2",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
@@ -55,7 +55,7 @@
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "husky": "^7.0.0",
+    "husky": "^7.0.2",
     "less": "^4.1.1",
     "lint-staged": "^11.1.2",
     "mockjs": "^1.1.0",
@@ -63,7 +63,7 @@
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.4.2",
     "vite": "^2.5.1",
     "vite-plugin-compression": "^0.3.5",
     "vite-plugin-html": "^2.1.0",
