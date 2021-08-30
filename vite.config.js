@@ -22,15 +22,12 @@ export default defineConfig({
       {
         find: '@',
         replacement: resolve(__dirname, 'src')
-      },
-      {
-        find: 'vue-types',
-        replacement:
-          process.env.NODE_ENV === 'development'
-            ? 'vue-types'
-            : 'vue-types/shim'
       }
     ]
+  },
+  optimizeDeps: {
+    include: ['ant-design-vue/es/locale/zh_CN', 'moment/dist/locale/zh-cn'],
+    exclude: ['vue-demi']
   },
   plugins: [
     vue(),
