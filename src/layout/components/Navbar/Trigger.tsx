@@ -12,7 +12,7 @@ export default defineComponent({
     const collapsed = computed(() => !store.state.settings.siderOpened)
 
     function handleClick() {
-      store.dispatch(Actions.setting.changeSetting, {
+      store.dispatch(Actions.settings.changeSetting, {
         key: 'siderOpened',
         value: collapsed.value
       })

@@ -66,7 +66,7 @@ export const UserModule = {
 
 export const Actions = {
   permission: createActions(PermissionModule.name, PermissionModule.actions),
-  setting: createActions(SettingsModule.name, SettingsModule.actions),
+  settings: createActions(SettingsModule.name, SettingsModule.actions),
   tabs: createActions(TabsModule.name, TabsModule.actions),
   user: createActions(UserModule.name, UserModule.actions)
 }

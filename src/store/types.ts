@@ -12,7 +12,11 @@ export type State = {
     fixedHeader: boolean
     /** 头部高度 */
     headerHeight: string
-    /** 侧边栏主题 */
+    /**
+     * 侧边栏主题
+     * - `light` 亮色
+     * - `dark` 暗色
+     */
     siderTheme: 'light' | 'dark'
     /** 侧边栏打开状态 */
     siderOpened: boolean

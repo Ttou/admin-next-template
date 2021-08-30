@@ -12,7 +12,7 @@ export default defineComponent({
     const siderTheme = computed(() => store.state.settings.siderTheme)
 
     function handleClick() {
-      store.dispatch(Actions.setting.changeSetting, {
+      store.dispatch(Actions.settings.changeSetting, {
         key: 'siderTheme',
         value: siderTheme.value === 'dark' ? 'light' : 'dark'
       })
