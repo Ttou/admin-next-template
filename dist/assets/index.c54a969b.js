@@ -1,0 +1,1 @@
+import{S as a}from"./index.9d00c635.js";import{d,c as r}from"./vendor.5d6b18ab.js";var s=d({name:"Dashboard",render:()=>r("div",{class:"dashboard-view"},[r(a,{name:"dashboard"},null)])});export{s as default};

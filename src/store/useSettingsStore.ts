@@ -3,10 +3,14 @@ import { defineStore } from 'pinia'
 import defaultSetting from '@/settings'
 
 export default defineStore('SettingsStore', {
-  state: () => ({
-    ...defaultSetting
-  }),
+  state: () => {
+    return {
+      ...defaultSetting
+    }
+  },
   actions: {
-    changeSetting() {}
+    change({ key, value }) {
+      this.$state[key] = value
+    }
   }
 })

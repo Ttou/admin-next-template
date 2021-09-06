@@ -3,9 +3,8 @@ import { cloneDeep } from 'lodash-es'
 import { computed, CSSProperties, defineComponent, ref, watch } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 
-import { Key } from '@/store'
+import { usePermissionStore, useSettingsStore } from '@/store'
 
 import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
@@ -22,10 +21,11 @@ export default defineComponent({
     const selectedKeys = ref([] as any[])
 
     const route = useRoute()
-    const store = useStore(Key)
+    const permissionStore = usePermissionStore()
+    const settingsStore = useSettingsStore()
 
-    const routes = computed(() => cloneDeep(store.state.permission.routes))
-    const settings = computed(() => store.state.settings)
+    const routes = computed(() => cloneDeep(permissionStore.routes))
+    const settings = computed(() => settingsStore.$state)
 
     const style = computed(() => {
       const ret = {} as CSSProperties

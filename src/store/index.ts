@@ -1,20 +1,10 @@
-import type { InjectionKey } from 'vue'
-import type { Store } from 'vuex'
-import { createStore } from 'vuex'
+import { createPinia } from 'pinia'
 
-import type { State } from './types'
+const store = createPinia()
 
-export { Actions } from './constants'
-
-export const Key: InjectionKey<Store<State>> = Symbol('store')
-
-const files = import.meta.globEager('./modules/*')
-
-const modules = Object.values(files).reduce((total, current) => {
-  total[current.Name] = current.default
-  return total
-}, {})
-
-export default createStore<State>({
-  modules
-})
+export default store
+export * from './types'
+export { default as usePermissionStore } from './usePermissionStore'
+export { default as useSettingsStore } from './useSettingsStore'
+export { default as useTabsStore } from './useTabsStore'
+export { default as useUserStore } from './useUserStore'

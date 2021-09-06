@@ -2,18 +2,17 @@ import './index.less'
 
 import { Layout } from 'ant-design-vue'
 import { computed, CSSProperties, defineComponent } from 'vue'
-import { useStore } from 'vuex'
 
-import { Key } from '@/store'
+import { useSettingsStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 
 export default defineComponent({
   name: 'Layout',
   setup() {
-    const store = useStore(Key)
+    const settingsStore = useSettingsStore()
 
-    const settings = computed(() => store.state.settings)
+    const settings = computed(() => settingsStore.$state)
 
     const mainStyle = computed<CSSProperties>(() => {
       const ret: CSSProperties = {}

@@ -5,13 +5,13 @@ import { createApp } from 'vue'
 
 import App from './App'
 import router, { setupGuards } from './router'
-import store, { Key } from './store'
+import store from './store'
 
 async function bootstrap() {
   const app = createApp(App)
 
   app.use(router)
-  app.use(store, Key)
+  app.use(store)
 
   setupGuards(router)
 

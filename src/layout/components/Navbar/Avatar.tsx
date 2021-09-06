@@ -5,16 +5,15 @@ import {
 import { Dropdown, Menu, Modal } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import { SvgIcon } from '@/components'
-import { Actions, Key } from '@/store'
+import { useUserStore } from '@/store'
 
 export default defineComponent({
   name: 'Avatar',
   setup() {
     const router = useRouter()
-    const store = useStore(Key)
+    const userStore = useUserStore()
 
     function handleLogout() {
       Modal.confirm({
@@ -22,7 +21,7 @@ export default defineComponent({
         icon: <ExclamationCircleOutlined />,
         content: '确认退出登录？',
         async onOk() {
-          await store.dispatch(Actions.user.logout)
+          await userStore.logout()
           router.replace({ path: '/login' })
         }
       })

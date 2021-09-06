@@ -1,15 +1,14 @@
 import { computed, defineComponent, KeepAlive, Transition } from 'vue'
 import { RouterView } from 'vue-router'
-import { useStore } from 'vuex'
 
-import { Key } from '@/store'
+import { useTabsStore } from '@/store'
 
 export default defineComponent({
   name: 'Content',
   setup() {
-    const store = useStore(Key)
+    const tabsStore = useTabsStore()
 
-    const cachedTabs = computed(() => store.state.tabs.cachedTabs)
+    const cachedTabs = computed(() => tabsStore.cachedTabs)
 
     return {
       cachedTabs

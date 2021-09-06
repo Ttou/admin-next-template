@@ -5,18 +5,18 @@ import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-es'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import { ProForm, SvgIcon } from '@/components'
 import type { FormRef, ProFormProps } from '@/components/ProForm/types'
-import { Actions, Key } from '@/store'
+import { useSettingsStore, useUserStore } from '@/store'
 
 export default defineComponent({
   name: 'Login',
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const store = useStore(Key)
+    const settingsStore = useSettingsStore()
+    const userStore = useUserStore()
 
     const loading = ref(false)
     const redirect = ref<Nullable<string>>(null)
@@ -69,7 +69,7 @@ export default defineComponent({
       ]
     })
 
-    const title = computed(() => store.state.settings.title)
+    const title = computed(() => settingsStore.title)
 
     function handleSubmit() {
       formRef.value?.form
@@ -77,8 +77,8 @@ export default defineComponent({
         .then(() => {
           loading.value = true
 
-          store
-            .dispatch(Actions.user.login, formRef.value?.formModel)
+          userStore
+            .login(formRef.value!.formModel)
             .then(() => {
               router.replace({
                 path: redirect.value || '/',

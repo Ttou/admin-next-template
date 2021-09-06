@@ -1,4 +1,4 @@
-import type { State } from '@/store/types'
+import type { Settings } from '@/store/types'
 
 export default {
   title: '后台管理系统',
@@ -9,4 +9,4 @@ export default {
   siderOpenedWidth: '256px',
   siderClosedWidth: '80px',
   siderLogoHeight: '44px'
-} as State['settings']
+} as Settings

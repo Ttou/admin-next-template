@@ -1,18 +1,17 @@
 import { AppstoreFilled, AppstoreOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent } from 'vue'
-import { useStore } from 'vuex'
 
-import { Actions, Key } from '@/store'
+import { useSettingsStore } from '@/store'
 
 export default defineComponent({
   name: 'SiderTheme',
   setup() {
-    const store = useStore(Key)
+    const settingsStore = useSettingsStore()
 
-    const siderTheme = computed(() => store.state.settings.siderTheme)
+    const siderTheme = computed(() => settingsStore.siderTheme)
 
     function handleClick() {
-      store.dispatch(Actions.settings.changeSetting, {
+      settingsStore.change({
         key: 'siderTheme',
         value: siderTheme.value === 'dark' ? 'light' : 'dark'
       })

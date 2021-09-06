@@ -2,19 +2,18 @@ import './index.less'
 
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
-import { useStore } from 'vuex'
 
 import { SvgIcon } from '@/components'
-import { Key } from '@/store'
+import { useSettingsStore } from '@/store'
 
 export default defineComponent({
   name: 'Logo',
   setup() {
     const style = ref({} as CSSProperties)
 
-    const store = useStore(Key)
+    const settingsStore = useSettingsStore()
 
-    const settings = computed(() => store.state.settings)
+    const settings = computed(() => settingsStore.$state)
 
     watch(
       settings,

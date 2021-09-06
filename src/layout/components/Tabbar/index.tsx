@@ -19,10 +19,9 @@ import {
   withModifiers
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import { ROUTE_ENUM } from '@/enums'
-import { Actions, Key } from '@/store'
+import { useTabsStore } from '@/store'
 
 export default defineComponent({
   name: 'Tabs',
@@ -31,9 +30,9 @@ export default defineComponent({
 
     const route = useRoute()
     const router = useRouter()
-    const store = useStore(Key)
+    const tabsStore = useTabsStore()
 
-    const visitedTabs = computed(() => store.state.tabs.visitedTabs)
+    const visitedTabs = computed(() => tabsStore.visitedTabs)
 
     const closeLeftDisabled = computed(
       () =>
@@ -60,14 +59,14 @@ export default defineComponent({
         name &&
         [ROUTE_ENUM.LOGIN, ROUTE_ENUM.ERROR].indexOf(path as ROUTE_ENUM) === -1
       ) {
-        store.dispatch(Actions.tabs.addTab, route)
+        tabsStore.addTab(route)
         activeKey.value = path
       }
       return false
     }
 
     function handleRefreshTab() {
-      store.dispatch(Actions.tabs.delCachedTab, route).then(() => {
+      tabsStore.delCachedTab(route).then(() => {
         const { fullPath } = route
 
         nextTick(() => {
@@ -79,7 +78,7 @@ export default defineComponent({
     }
 
     function handleCloseTab(tab) {
-      store.dispatch(Actions.tabs.delTab, tab).then(({ visitedTabs }) => {
+      tabsStore.delTab(tab).then(({ visitedTabs }) => {
         if (isActive(tab)) {
           toLastTab(visitedTabs)
         }
@@ -87,19 +86,19 @@ export default defineComponent({
     }
 
     function handleCloseLeftTabs() {
-      store.dispatch(Actions.tabs.delLeftTabs, route)
+      tabsStore.delLeftTabs(route)
     }
 
     function handleCloseRightTabs() {
-      store.dispatch(Actions.tabs.delRightTabs, route)
+      tabsStore.delRightTabs(route)
     }
 
     function handleCloseOtherTabs() {
-      store.dispatch(Actions.tabs.delOthersTabs, route)
+      tabsStore.delOthersTabs(route)
     }
 
     function handleCloseAllTabs() {
-      store.dispatch(Actions.tabs.delAllTabs).then(({ visitedTabs }) => {
+      tabsStore.delAllTabs().then(({ visitedTabs }) => {
         toLastTab(visitedTabs)
       })
     }
