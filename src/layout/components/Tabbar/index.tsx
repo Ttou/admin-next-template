@@ -214,6 +214,9 @@ export default defineComponent({
               </Menu>
             )
           }}
+          overlayStyle={{
+            zIndex: 100002
+          }}
         />
       </div>
     )
