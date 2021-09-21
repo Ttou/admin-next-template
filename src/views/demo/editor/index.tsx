@@ -1,10 +1,10 @@
-import './index.less'
-
 import { Button, message, Space } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
 import { ProEditor } from '@/components'
 import type { EditorRef } from '@/components/ProEditor/types'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'DemoEditor',
@@ -36,8 +36,8 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="demo-editor-view">
-        <div class="btns-wrap">
+      <div class={css.view}>
+        <div class={css.btnsWrap}>
           <Space>
             <Button onClick={this.handleGetHTML}>获取 HTML</Button>
             <Button onClick={this.handleGetTXT}>获取 TXT</Button>

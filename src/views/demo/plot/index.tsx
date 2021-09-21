@@ -1,5 +1,3 @@
-import './index.less'
-
 import {
   Area,
   AreaOptions,
@@ -14,6 +12,8 @@ import { Col, Row } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
 
 import { ProPlot } from '@/components'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'DemoPlot',
@@ -106,7 +106,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="demo-plot-view">
+      <div class={css.view}>
         <Row gutter={20}>
           <Col span="1"></Col>
           <Col span="10">

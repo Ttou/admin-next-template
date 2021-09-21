@@ -1,11 +1,11 @@
-import './index.less'
-
 import { Tag } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
 import { getList } from '@/api'
 import { ProTable } from '@/components'
 import { ProTableProps } from '@/components/ProTable/types'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'DemoTable',
@@ -134,7 +134,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="demo-table-view">
+      <div class={css.view}>
         {/* @ts-ignore */}
         <ProTable {...this.tableConfig} />
       </div>

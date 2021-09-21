@@ -1,3 +1,4 @@
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
@@ -32,6 +33,9 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    vanillaExtractPlugin({
+      devStyleRuntime: 'vanilla-extract'
+    }),
     compression(),
     svgIcons({
       iconDirs: [resolve(__dirname, 'src/icons')],

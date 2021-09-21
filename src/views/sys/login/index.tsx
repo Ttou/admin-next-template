@@ -1,5 +1,3 @@
-import './index.less'
-
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-es'
@@ -9,6 +7,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { ProForm, SvgIcon } from '@/components'
 import type { FormRef, ProFormProps } from '@/components/ProForm/types'
 import { useSettingsStore, useUserStore } from '@/store'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Login',
@@ -23,9 +23,6 @@ export default defineComponent({
     const otherQuery = ref({})
     const formRef = ref<FormRef>(null)
     const formConfig = ref<ProFormProps>({
-      props: {
-        class: 'login-form'
-      },
       items: [
         {
           name: 'username',
@@ -109,17 +106,17 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="login-view">
-        <div class="top">
-          <div class="header">
-            <SvgIcon class="logo" name="ant-design" />
-            <span class="title">{this.title}</span>
+      <div class={css.view}>
+        <div class={css.top}>
+          <div class={css.header}>
+            <SvgIcon class={css.logoIcon} name="ant-design" />
+            <span class={css.title}>{this.title}</span>
           </div>
-          <div class="desc">基于 Ant Design 的后台管理系统</div>
+          <div class={css.desc}>基于 Ant Design 的后台管理系统</div>
         </div>
         {/* @ts-ignore */}
-        <ProForm ref="formRef" {...this.formConfig} />
-        <SvgIcon name="background" class="background" />
+        <ProForm ref="formRef" class={css.loginForm} {...this.formConfig} />
+        <SvgIcon class={css.backgroundIcon} name="background" />
       </div>
     )
   }

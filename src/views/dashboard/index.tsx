@@ -1,15 +1,15 @@
-import './index.less'
-
 import { defineComponent } from 'vue'
 
 import { SvgIcon } from '@/components'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Dashboard',
   render() {
     return (
-      <div class="dashboard-view">
-        <SvgIcon name="dashboard" />
+      <div class={css.view}>
+        <SvgIcon class={css.dashboardIcon} name="dashboard" />
       </div>
     )
   }
