@@ -1,11 +1,10 @@
-import './index.less'
-
 import { Layout } from 'ant-design-vue'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
 import { useSettingsStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Layout',
@@ -61,9 +60,9 @@ export default defineComponent({
   },
   render() {
     return (
-      <Layout class="layout">
+      <Layout class={css.layout}>
         <Layout.Sider
-          class="layout-sider"
+          class={css.layoutSider}
           collapsed={!this.settings.siderOpened}
           trigger={null}
           theme={this.settings.siderTheme}
@@ -74,12 +73,12 @@ export default defineComponent({
           <Logo />
           <Menu />
         </Layout.Sider>
-        <Layout class="layout-main" style={this.mainStyle}>
-          <Layout.Header class="layout-header" style={this.headerStyle}>
+        <Layout class={css.layoutMain} style={this.mainStyle}>
+          <Layout.Header class={css.layoutHeader} style={this.headerStyle}>
             <Navbar />
           </Layout.Header>
           <Tabbar style={this.tabbarStyle} />
-          <Layout.Content class="layout-content">
+          <Layout.Content class={css.layoutContent}>
             <Content />
           </Layout.Content>
         </Layout>

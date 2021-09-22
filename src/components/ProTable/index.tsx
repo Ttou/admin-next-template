@@ -1,5 +1,3 @@
-import './index.less'
-
 import {
   ColumnHeightOutlined,
   DownOutlined,
@@ -27,11 +25,11 @@ import { defineComponent, onMounted, ref } from 'vue'
 
 import { propTypes } from '@/utils'
 
+import * as css from './index.css'
 import type {
   FormItem,
   Slots,
   TableColumn,
-  TablePagination,
   TableRequest,
   TableRowKeyFunc
 } from './types'
@@ -204,10 +202,10 @@ export default defineComponent({
     )
 
     return (
-      <div class="pro-table">
-        <div class="form-wrapper">
+      <div class={css.proTable}>
+        <div class={css.formWrapper}>
           <Form ref="formRef" layout="inline" model={this.formModel}>
-            <Row class="form-row" gutter={[16, 16]}>
+            <Row class={css.formRow} gutter={[16, 16]}>
               {this.formItems
                 .filter(item => !item.defaultHidden)
                 .map(renderItem)}
@@ -252,9 +250,9 @@ export default defineComponent({
           </Form>
         </div>
         <Spin spinning={this.loading}>
-          <div class="table-wrapper">
-            <div class="table-header">
-              <div class="btns-wrapper">
+          <div class={css.tableWrapper}>
+            <div class={css.tableHeader}>
+              <div class={css.btnsWrapper}>
                 {this.slots.btns?.(this.tableData)}
               </div>
               <Space>

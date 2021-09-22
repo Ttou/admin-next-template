@@ -33,9 +33,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    vanillaExtractPlugin({
-      devStyleRuntime: 'vanilla-extract'
-    }),
+    vanillaExtractPlugin(),
     compression(),
     svgIcons({
       iconDirs: [resolve(__dirname, 'src/icons')],

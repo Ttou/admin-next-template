@@ -1,10 +1,10 @@
-import './index.less'
-
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 
 import { SvgIcon } from '@/components'
 import { useSettingsStore } from '@/store'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Logo',
@@ -34,8 +34,8 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="logo" style={this.style}>
-        <SvgIcon class="logo-icon" name="ant-design" />
+      <div class={css.logo} style={this.style}>
+        <SvgIcon class={css.logoIcon} name="ant-design" />
       </div>
     )
   }

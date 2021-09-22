@@ -1,5 +1,3 @@
-import './index.less'
-
 import {
   CloseCircleFilled,
   CloseOutlined,
@@ -22,6 +20,8 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { ROUTE_ENUM } from '@/enums'
 import { useTabsStore } from '@/store'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Tabs',
@@ -149,7 +149,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class="tabbar">
+      <div class={css.tabbar}>
         <Tabs
           v-model={[this.activeKey, 'activeKey']}
           onChange={this.handleSelectTab}
@@ -157,7 +157,7 @@ export default defineComponent({
           {this.visitedTabs.map(view => (
             <Tabs.TabPane
               tab={() => (
-                <div class="tab-content">
+                <div class={css.tabContent}>
                   <span>{view.meta!.title}</span>
                   <CloseOutlined
                     onClick={withModifiers(
@@ -174,7 +174,7 @@ export default defineComponent({
         <Dropdown
           v-slots={{
             default: () => (
-              <div class="tabs-menu">
+              <div class={css.tabsMenu}>
                 <DownOutlined />
               </div>
             ),

@@ -1,4 +1,4 @@
-import './index.less'
+import './index.css'
 
 import { computed, defineComponent } from 'vue'
 
