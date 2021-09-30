@@ -10,14 +10,13 @@
     "prepare": "husky install",
     "commit": "git add . && git cz",
     "format": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "lint:eslint": "eslint \"src/**/*.{ts,tsx}\" --fix",
-    "lint:stylelint": "stylelint \"src/**/*.{css,less}\" --fix"
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --fix"
   },
   "dependencies": {
     "@ant-design/icons-vue": "6.0.1",
-    "@antv/g2plot": "2.3.33",
-    "@vanilla-extract/css": "1.6.0",
-    "@vueuse/core": "6.4.1",
+    "@antv/g2plot": "2.3.35",
+    "@vanilla-extract/css": "1.6.1",
+    "@vueuse/core": "6.5.3",
     "ant-design-vue": "2.2.8",
     "axios": "0.21.4",
     "lodash-es": "4.17.21",
@@ -25,7 +24,7 @@
     "nprogress": "0.2.0",
     "pinia": "2.0.0-rc.9",
     "qrcode": "1.4.4",
-    "vue": "3.2.13",
+    "vue": "3.2.19",
     "vue-router": "4.0.11",
     "vue-types": "4.1.0",
     "wangeditor": "4.7.8"
@@ -43,7 +42,7 @@
     "@vitejs/plugin-legacy": "^1.5.3",
     "@vitejs/plugin-vue": "^1.9.0",
     "@vitejs/plugin-vue-jsx": "^1.1.8",
-    "@vue/compiler-sfc": "^3.2.13",
+    "@vue/compiler-sfc": "^3.2.19",
     "@vue/eslint-config-standard": "^6.1.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "commitizen": "^4.2.4",
@@ -62,11 +61,8 @@
     "lint-staged": "^11.1.2",
     "mockjs": "^1.1.0",
     "prettier": "^2.4.0",
-    "stylelint": "^13.12.0",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.4.3",
-    "vite": "^2.5.10",
+    "vite": "^2.6.1",
     "vite-plugin-compression": "^0.3.5",
     "vite-plugin-html": "^2.1.0",
     "vite-plugin-mock": "^2.9.6",
@@ -83,7 +79,6 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": "npm run lint:eslint",
-    "*.{css,less}": "npm run lint:stylelint"
+    "*.{ts,tsx}": "npm run lint"
   }
 }
