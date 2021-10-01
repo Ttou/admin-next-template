@@ -1,0 +1,1 @@
+import{S as s}from"./index.2be8b783.js";import{u as e,d as n,c as a}from"./vendor.5386b81d.js";const o=e({display:"flex",justifyContent:"center"}),r=e({width:"100%",height:"100%",marginTop:"100px",transform:"scale(1.25)"});var i=n({name:"Dashboard",render(){return a("div",{class:o},[a(s,{class:r,name:"dashboard"},null)])}});export{i as default};

@@ -11,8 +11,7 @@ export const top = style({
 })
 
 export const header = style({
-  height: '55px',
-  lineHeight: 1
+  height: '55px'
 })
 
 export const logoIcon = style({
