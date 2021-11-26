@@ -6,15 +6,17 @@ import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
 import { injectHtml } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
-import styleImport from 'vite-plugin-style-import'
 import svgIcons from 'vite-plugin-svg-icons'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/admin-next-template/',
+  cacheDir: resolve('.vite'),
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true
+        javascriptEnabled: true,
+        // @see https://gitee.com/ant-design-vue/ant-design-vue/blob/next/components/style/themes/default.less
+        modifyVars: {}
       }
     }
   },
@@ -38,17 +40,6 @@ export default defineConfig({
     svgIcons({
       iconDirs: [resolve(__dirname, 'src/icons')],
       symbolId: 'icon-[dir]-[name]'
-    }),
-    styleImport({
-      libs: [
-        {
-          libraryName: 'ant-design-vue',
-          esModule: true,
-          resolveStyle: name => {
-            return `ant-design-vue/es/${name}/style/index`
-          }
-        }
-      ]
     }),
     injectHtml({
       injectData: {

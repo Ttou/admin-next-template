@@ -1,6 +1,8 @@
 import 'virtual:svg-icons-register'
 import './styles/index.css'
+import 'ant-design-vue/dist/antd.less'
 
+import Antd from 'ant-design-vue'
 import { createApp } from 'vue'
 
 import App from './App'
@@ -16,6 +18,8 @@ async function bootstrap() {
   setupGuards(router)
 
   await router.isReady()
+
+  app.use(Antd)
 
   app.mount('#app')
 }
