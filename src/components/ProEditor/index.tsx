@@ -1,17 +1,12 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import E from 'wangeditor'
 
-import { propTypes } from '@/utils'
-
-import type { EditorConfig, EditorInstance } from './types'
+import props from './props'
+import type { EditorInstance } from './types'
 
 export default defineComponent({
   name: 'ProEditor',
-  props: {
-    config: propTypes.object<EditorConfig>().def({
-      height: 500
-    } as EditorConfig)
-  },
+  props,
   setup(props) {
     const editor = ref({} as EditorInstance)
     const editorEl = ref<ElementRef>(null)

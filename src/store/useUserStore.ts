@@ -1,11 +1,11 @@
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 
-import { getUserInfo, login, logout } from '@/api'
+import { userApi } from '@/api'
 
 import { useTabsStore } from '.'
 
-export default defineStore('UserStore', {
+export const useUserStore = defineStore('user', {
   state: () => {
     return {
       token: useStorage('token', '') as unknown as string,
@@ -15,17 +15,17 @@ export default defineStore('UserStore', {
   },
   actions: {
     async login(payload: Record<string, any>) {
-      const data = await login(payload)
+      const data = await userApi.login(payload)
 
       this.token = data.token
     },
     async logout() {
-      await logout()
+      await userApi.logout()
 
       this.clear()
     },
     async getInfo() {
-      const { name, roles } = await getUserInfo()
+      const { name, roles } = await userApi.getInfo()
 
       this.name = name
       this.roles = roles

@@ -9,16 +9,12 @@ import {
 } from 'ant-design-vue'
 import { defineComponent, ref, watch } from 'vue'
 
-import { propTypes } from '@/utils'
-
-import type { FormItem, FormProps } from './types'
+import props from './props'
+import type { FormItem } from './types'
 
 export default defineComponent({
   name: 'ProForm',
-  props: {
-    props: propTypes.object<FormProps>(),
-    items: propTypes.array<FormItem>().def([])
-  },
+  props,
   setup(props) {
     const form = ref(null)
     const model = ref({})

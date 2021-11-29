@@ -1,6 +1,6 @@
-import type { Settings } from '@/store/types'
+import type { Setting } from '@/types'
 
-export default {
+export const DEFAULT_SETTING = {
   title: '后台管理系统',
   fixedHeader: true,
   headerHeight: '48px',
@@ -9,4 +9,4 @@ export default {
   siderOpenedWidth: '256px',
   siderClosedWidth: '80px',
   siderLogoHeight: '44px'
-} as Settings
+} as Setting

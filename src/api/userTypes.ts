@@ -2,7 +2,7 @@ export type LoginRes = {
   token: string
 }
 
-export type GetUserInfoRes = {
+export type GetInfoRes = {
   name: string
   roles: string[]
 }

@@ -3,7 +3,7 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import type { Tabs } from './types'
 
-export default defineStore('TabsStore', {
+export const useTabsStore = defineStore('tabs', {
   state: () => {
     return {
       cachedTabs: [] as string[],

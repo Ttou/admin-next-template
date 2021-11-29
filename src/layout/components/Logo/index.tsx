@@ -2,7 +2,7 @@ import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 
 import { SvgIcon } from '@/components'
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 
 import * as css from './index.css'
 
@@ -11,12 +11,12 @@ export default defineComponent({
   setup() {
     const style = ref({} as CSSProperties)
 
-    const settingsStore = useSettingsStore()
+    const settingStore = useSettingStore()
 
-    const settings = computed(() => settingsStore.$state)
+    const setting = computed(() => settingStore.$state)
 
     watch(
-      settings,
+      setting,
       val => {
         style.value.height = val.siderLogoHeight
         style.value.borderRight =

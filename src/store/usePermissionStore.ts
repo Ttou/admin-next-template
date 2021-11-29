@@ -29,7 +29,7 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
   return res
 }
 
-export default defineStore('PermissionStore', {
+export const usePermissionStore = defineStore('permission', {
   state: () => {
     return {
       routes: [] as RouteRecordRaw[]

@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-import defaultSetting from '@/settings'
+import { DEFAULT_SETTING } from '@/constants'
 
-export default defineStore('SettingsStore', {
+export const useSettingStore = defineStore('setting', {
   state: () => {
     return {
-      ...defaultSetting
+      ...DEFAULT_SETTING
     }
   },
   actions: {

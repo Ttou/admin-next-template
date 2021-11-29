@@ -6,7 +6,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { ProForm, SvgIcon } from '@/components'
 import type { FormRef, ProFormProps } from '@/components/ProForm/types'
-import { useSettingsStore, useUserStore } from '@/store'
+import { useSettingStore, useUserStore } from '@/store'
 
 import * as css from './index.css'
 
@@ -15,7 +15,7 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const router = useRouter()
-    const settingsStore = useSettingsStore()
+    const settingStore = useSettingStore()
     const userStore = useUserStore()
 
     const loading = ref(false)
@@ -66,7 +66,7 @@ export default defineComponent({
       ]
     })
 
-    const title = computed(() => settingsStore.title)
+    const title = computed(() => settingStore.title)
 
     function handleSubmit() {
       formRef.value?.form

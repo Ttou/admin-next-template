@@ -2,21 +2,18 @@ import type { Plot } from '@antv/g2plot'
 import { isEmpty, isEqual } from 'lodash-es'
 import { defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-import { propTypes } from '@/utils'
+import props from './props'
 
 export default defineComponent({
   name: 'ProPlot',
-  props: {
-    plot: propTypes.any().isRequired,
-    config: propTypes.object().def({}),
-    data: propTypes.array().def([])
-  },
+  props,
   setup(props) {
     const plotEl = ref<ElementRef>(null)
     const plotRef = ref({} as Plot<any>)
 
     function init() {
       const { plot: Plot } = props
+      // @ts-ignore
       plotRef.value = new Plot(plotEl.value, {
         data: props.data,
         ...props.config

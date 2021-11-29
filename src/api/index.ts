@@ -1,2 +1,2 @@
-export * from './demo'
-export * from './user'
+export { default as demoApi } from './demoApi'
+export { default as userApi } from './userApi'

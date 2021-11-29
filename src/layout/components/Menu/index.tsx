@@ -4,7 +4,7 @@ import { computed, CSSProperties, defineComponent, ref, watch } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 
-import { usePermissionStore, useSettingsStore } from '@/store'
+import { usePermissionStore, useSettingStore } from '@/store'
 
 import MainMenu from './MainMenu'
 import SubMenu from './SubMenu'
@@ -22,15 +22,15 @@ export default defineComponent({
 
     const route = useRoute()
     const permissionStore = usePermissionStore()
-    const settingsStore = useSettingsStore()
+    const settingStore = useSettingStore()
 
     const routes = computed(() => cloneDeep(permissionStore.routes))
-    const settings = computed(() => settingsStore.$state)
+    const setting = computed(() => settingStore.$state)
 
     const style = computed(() => {
       const ret = {} as CSSProperties
 
-      ret.minHeight = `calc(100vh - ${settings.value.siderLogoHeight})`
+      ret.minHeight = `calc(100vh - ${setting.value.siderLogoHeight})`
 
       return ret
     })
@@ -81,7 +81,7 @@ export default defineComponent({
       list,
       openKeys,
       selectedKeys,
-      settings,
+      setting,
       style
     }
   },
@@ -92,7 +92,7 @@ export default defineComponent({
     return (
       <Menu
         mode="inline"
-        theme={this.settings.siderTheme}
+        theme={this.setting.siderTheme}
         v-models={[
           [this.openKeys, 'openKeys'],
           [this.selectedKeys, 'selectedKeys']

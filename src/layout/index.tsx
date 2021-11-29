@@ -1,7 +1,7 @@
 import { Layout } from 'ant-design-vue'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 import * as css from './index.css'
@@ -9,19 +9,19 @@ import * as css from './index.css'
 export default defineComponent({
   name: 'Layout',
   setup() {
-    const settingsStore = useSettingsStore()
+    const settingStore = useSettingStore()
 
-    const settings = computed(() => settingsStore.$state)
+    const setting = computed(() => settingStore.$state)
 
     const mainStyle = computed<CSSProperties>(() => {
       const ret: CSSProperties = {}
 
-      if (settings.value.siderOpened) {
-        ret.marginLeft = settings.value.siderOpenedWidth
-        ret.width = `calc(100vw - ${settings.value.siderOpenedWidth})`
+      if (setting.value.siderOpened) {
+        ret.marginLeft = setting.value.siderOpenedWidth
+        ret.width = `calc(100vw - ${setting.value.siderOpenedWidth})`
       } else {
-        ret.marginLeft = settings.value.siderClosedWidth
-        ret.width = `calc(100vw - ${settings.value.siderClosedWidth})`
+        ret.marginLeft = setting.value.siderClosedWidth
+        ret.width = `calc(100vw - ${setting.value.siderClosedWidth})`
       }
 
       return ret
@@ -29,10 +29,10 @@ export default defineComponent({
 
     const headerStyle = computed(() => {
       const ret = {
-        height: settings.value.headerHeight
+        height: setting.value.headerHeight
       } as CSSProperties
 
-      if (settings.value.fixedHeader) {
+      if (setting.value.fixedHeader) {
         ret.position = 'sticky'
         ret.top = '0px'
       }
@@ -43,16 +43,16 @@ export default defineComponent({
     const tabbarStyle = computed(() => {
       const ret = {} as CSSProperties
 
-      if (settings.value.fixedHeader) {
+      if (setting.value.fixedHeader) {
         ret.position = 'sticky'
-        ret.top = settings.value.headerHeight
+        ret.top = setting.value.headerHeight
       }
 
       return ret
     })
 
     return {
-      settings,
+      settings: setting,
       mainStyle,
       headerStyle,
       tabbarStyle

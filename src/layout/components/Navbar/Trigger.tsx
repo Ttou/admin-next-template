@@ -1,17 +1,17 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent } from 'vue'
 
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 
 export default defineComponent({
   name: 'Trigger',
   setup() {
-    const settingsStore = useSettingsStore()
+    const settingStore = useSettingStore()
 
-    const collapsed = computed(() => !settingsStore.siderOpened)
+    const collapsed = computed(() => !settingStore.siderOpened)
 
     function handleClick() {
-      settingsStore.change({
+      settingStore.change({
         key: 'siderOpened',
         value: collapsed.value
       })

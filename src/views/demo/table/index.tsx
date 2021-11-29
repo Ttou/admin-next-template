@@ -1,9 +1,9 @@
 import { Tag } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
-import { getList } from '@/api'
+import { demoApi } from '@/api'
 import { ProTable } from '@/components'
-import { ProTableProps } from '@/components/ProTable/types'
+import type { ProTableProps } from '@/components/ProTable/types'
 
 import * as css from './index.css'
 
@@ -122,7 +122,7 @@ export default defineComponent({
         }
       ],
       request: async params => {
-        return await getList({
+        return await demoApi.getList({
           ...params
         })
       }
