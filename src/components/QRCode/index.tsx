@@ -1,17 +1,11 @@
 import { toCanvas } from 'qrcode'
 import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import { propTypes } from '@/utils'
-
-import type { QRCodeProps } from './types'
+import props from './props'
 
 export default defineComponent({
   name: 'QRCode',
-  props: {
-    text: propTypes.string().def('').isRequired,
-    logo: propTypes.string().def(''),
-    options: propTypes.object<Required<QRCodeProps>['options']>().def({})
-  },
+  props,
   setup(props) {
     const qrRef = ref<Nullable<HTMLCanvasElement>>(null)
 

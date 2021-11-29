@@ -1,15 +1,11 @@
-import './index.css'
-
 import { computed, defineComponent } from 'vue'
 
-import { propTypes } from '@/utils'
+import * as css from './index.css'
+import props from './props'
 
 export default defineComponent({
   name: 'SvgIcon',
-  props: {
-    prefix: propTypes.string().def('icon'),
-    name: propTypes.string().isRequired
-  },
+  props,
   setup(props) {
     const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
@@ -19,7 +15,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <svg class="svg-icon" aria-hidden="true">
+      <svg class={css.svgIcon} aria-hidden="true">
         <use xlinkHref={this.symbolId} />
       </svg>
     )

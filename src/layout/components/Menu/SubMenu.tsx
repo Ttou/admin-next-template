@@ -1,7 +1,6 @@
 import { Menu } from 'ant-design-vue'
+import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
-
-import { propTypes } from '@/utils'
 
 import MainMenu from './MainMenu'
 import type { Item } from './types'
@@ -9,7 +8,10 @@ import type { Item } from './types'
 export default defineComponent({
   name: 'SubMenu',
   props: {
-    item: propTypes.object<Item>().isRequired
+    item: {
+      type: Object as PropType<Item>,
+      required: true
+    }
   },
   setup(props) {
     const onlyOneChild = computed(() => {

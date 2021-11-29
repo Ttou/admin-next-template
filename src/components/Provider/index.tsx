@@ -1,20 +1,20 @@
 import { ConfigProvider } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 
-import useLocale from './useLocale'
+import { useConfig } from '@/hooks'
 
 export default defineComponent({
   name: 'Provider',
   setup() {
-    const { antdLocale } = useLocale()
+    const config = useConfig()
 
     return {
-      antdLocale
+      config
     }
   },
   render() {
     return (
-      <ConfigProvider locale={this.antdLocale}>
+      <ConfigProvider {...this.config}>
         {this.$slots.default?.()}
       </ConfigProvider>
     )

@@ -23,32 +23,16 @@ import {
 } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import { propTypes } from '@/utils'
-
 import * as css from './index.css'
-import type {
-  FormItem,
-  Slots,
-  TableColumn,
-  TableRequest,
-  TableRowKeyFunc
-} from './types'
+import props from './props'
+import type { FormItem } from './types'
 import useForm from './useForm'
 import useTable from './useTable'
 import useTools from './useTools'
 
 export default defineComponent({
   name: 'ProTable',
-  props: {
-    autoLoad: propTypes.bool().def(true),
-    request: propTypes.func<TableRequest>().isRequired,
-    formItems: propTypes.array<FormItem>().def([]),
-    tableRowKey: propTypes
-      .oneOfType([propTypes.string(), propTypes.func<TableRowKeyFunc>()])
-      .def('id'),
-    tableColumns: propTypes.array<TableColumn>().isRequired,
-    slots: propTypes.object<Slots>().def({})
-  },
+  props,
   setup(props) {
     const loading = ref(false)
 
@@ -76,7 +60,7 @@ export default defineComponent({
       try {
         loading.value = true
 
-        const res = await props.request({
+        const res = await props.request!({
           ...formModel.value,
           current: tableCurrent.value,
           pageSize: tablePageSize.value
@@ -206,12 +190,12 @@ export default defineComponent({
         <div class={css.formWrapper}>
           <Form ref="formRef" layout="inline" model={this.formModel}>
             <Row class={css.formRow} gutter={[16, 16]}>
-              {this.formItems
-                .filter(item => !item.defaultHidden)
-                .map(renderItem)}
-              {this.formItems
-                .filter(item => item.defaultHidden)
-                .map(renderHiddenItem)}
+              {this.formItems!.filter(item => !item.defaultHidden).map(
+                renderItem
+              )}
+              {this.formItems!.filter(item => item.defaultHidden).map(
+                renderHiddenItem
+              )}
               <Col md={this.formExpand ? 24 : 8} sm={24}>
                 <Space
                   style={

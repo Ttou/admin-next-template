@@ -4,7 +4,9 @@ import type {
 } from 'ant-design-vue/lib/form/Form'
 import type { FormItemProps } from 'ant-design-vue/lib/form/FormItem'
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
-import type { CSSProperties } from 'vue'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+
+import type props from './props'
 
 type BaseProps = {
   class?: string
@@ -62,10 +64,7 @@ export type FormItem = {
 
 export type FormProps = Omit<_FormProps, 'ref' | 'model' | 'rules'> & BaseProps
 
-export type ProFormProps = {
-  props?: FormProps
-  items: FormItem[]
-}
+export type ProFormProps = ExtractPropTypes<typeof props>
 
 export type FormInstance = {
   /** 触发表单验证, 同 validateFields */

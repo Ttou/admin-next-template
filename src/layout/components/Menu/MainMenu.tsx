@@ -1,15 +1,17 @@
 import { Menu } from 'ant-design-vue'
+import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import { propTypes } from '@/utils'
 
 import type { Item } from './types'
 
 export default defineComponent({
   name: 'MainMenu',
   props: {
-    item: propTypes.object<Item>().isRequired
+    item: {
+      type: Object as PropType<Item>,
+      required: true
+    }
   },
   setup(props) {
     const show = computed(() => {

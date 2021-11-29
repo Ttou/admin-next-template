@@ -18,7 +18,7 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { ROUTE_ENUM } from '@/enums'
+import { ROUTE_ENUM } from '@/constants'
 import { useTabsStore } from '@/store'
 
 import * as css from './index.css'

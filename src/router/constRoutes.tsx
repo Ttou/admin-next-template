@@ -1,7 +1,7 @@
 import { DashboardOutlined } from '@ant-design/icons-vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE_ENUM } from '@/enums'
+import { ROUTE_ENUM } from '@/constants'
 
 export default [
   {

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE_ENUM } from '@/enums'
+import { ROUTE_ENUM } from '@/constants'
 import { asyncRoutes, constRoutes } from '@/router'
 
 function hasPermission(roles: string[], route: RouteRecordRaw) {

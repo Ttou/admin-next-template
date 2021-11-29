@@ -1,10 +1,8 @@
-import type { QRCodeRenderersOptions } from 'qrcode'
+import { ExtractPropTypes } from 'vue'
 
-export type QRCodeProps = {
-  text: string
-  logo?: string
-  options?: QRCodeRenderersOptions
-}
+import type props from './props'
+
+export type QRCodeProps = ExtractPropTypes<typeof props>
 
 export type QRCodeRef = {
   qrRef: HTMLCanvasElement

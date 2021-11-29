@@ -1,7 +1,9 @@
 import type { FormItemProps } from 'ant-design-vue/lib/form/FormItem'
 import type { NamePath } from 'ant-design-vue/lib/form/interface'
 import type { TableProps } from 'ant-design-vue/lib/table/interface'
-import type { Slot } from 'vue'
+import type { ExtractPropTypes, Slot } from 'vue'
+
+import type props from './props'
 
 type Option = {
   label: string
@@ -78,17 +80,4 @@ export type TableRowKey = string | TableRowKeyFunc
 
 export type TableColumn = TableProps['columns']
 
-export type ProTableProps = {
-  /** 自动加载 */
-  autoLoad?: boolean
-  /** 请求逻辑 */
-  request: TableRequest
-  /** 内容插槽 */
-  slots?: Slots
-  /** 搜索表单项 */
-  formItems?: FormItem[]
-  /** 表格行键值 */
-  tableRowKey?: TableRowKey
-  /** 表格列项 */
-  tableColumns: TableColumn[]
-}
+export type ProTableProps = ExtractPropTypes<typeof props>
