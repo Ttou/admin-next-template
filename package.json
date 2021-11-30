@@ -26,7 +26,6 @@
     "qrcode": "1.5.0",
     "vue": "3.2.22",
     "vue-router": "4.0.12",
-    "vue-types": "4.1.1",
     "wangeditor": "4.7.9"
   },
   "devDependencies": {

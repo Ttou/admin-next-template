@@ -18,7 +18,7 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { ROUTE_ENUM } from '@/constants'
+import { ROUTE } from '@/constants'
 import { useTabsStore } from '@/store'
 
 import * as css from './index.css'
@@ -55,10 +55,7 @@ export default defineComponent({
       const { name, path } = route
 
       // 只添加配置过名称且不是异常和登录页面
-      if (
-        name &&
-        [ROUTE_ENUM.LOGIN, ROUTE_ENUM.ERROR].indexOf(path as ROUTE_ENUM) === -1
-      ) {
+      if (name && [ROUTE.LOGIN, ROUTE.ERROR].indexOf(path as ROUTE) === -1) {
         tabsStore.addTab(route)
         activeKey.value = path
       }

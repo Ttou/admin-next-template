@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE_ENUM } from '@/constants'
+import { ROUTE } from '@/constants'
 import { asyncRoutes, constRoutes } from '@/router'
 
 function hasPermission(roles: string[], route: RouteRecordRaw) {
@@ -49,7 +49,7 @@ export const usePermissionStore = defineStore('permission', {
         accessedRoutes.push({
           path: '/:pathMatch(.*)*',
           redirect: {
-            path: ROUTE_ENUM.ERROR,
+            path: ROUTE.ERROR,
             query: { status: 404 }
           }
         })

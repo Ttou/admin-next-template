@@ -63,7 +63,7 @@ export default defineComponent({
             <RouterLink to={route.path}>{route.breadcrumbName}</RouterLink>
           )
         }
-      ></Breadcrumb>
+      />
     )
   }
 })

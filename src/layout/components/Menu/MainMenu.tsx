@@ -3,6 +3,8 @@ import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 
+import { SvgIcon } from '@/components'
+
 import type { Item } from './types'
 
 export default defineComponent({
@@ -32,7 +34,10 @@ export default defineComponent({
   },
   render() {
     return this.show ? (
-      <Menu.Item icon={this.item.meta.icon} key={this.item.path}>
+      <Menu.Item
+        icon={<SvgIcon name={this.item.meta.icon} />}
+        key={this.item.path}
+      >
         <RouterLink to={this.item.path}>{this.item.meta.title}</RouterLink>
       </Menu.Item>
     ) : null

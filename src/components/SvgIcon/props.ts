@@ -1,4 +1,4 @@
-const props = {
+export default {
   prefix: {
     type: String,
     default: 'icon'
@@ -8,5 +8,3 @@ const props = {
     required: true
   }
 }
-
-export default props

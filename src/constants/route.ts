@@ -1,5 +1,6 @@
-export enum ROUTE_ENUM {
+export enum ROUTE {
   INDEX = '/',
   LOGIN = '/login',
-  ERROR = '/error'
+  ERROR = '/error',
+  REDIRECT = '/redirect'
 }

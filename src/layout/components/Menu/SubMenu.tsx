@@ -2,6 +2,8 @@ import { Menu } from 'ant-design-vue'
 import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 
+import { SvgIcon } from '@/components'
+
 import MainMenu from './MainMenu'
 import type { Item } from './types'
 
@@ -40,7 +42,7 @@ export default defineComponent({
     ) : (
       <Menu.SubMenu
         key={this.item.path}
-        icon={this.item.meta.icon}
+        icon={<SvgIcon name={this.item.meta.icon} />}
         title={this.item.meta.title}
       >
         {this.item.children?.map(item =>

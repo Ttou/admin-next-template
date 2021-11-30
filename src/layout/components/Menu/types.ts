@@ -1,11 +1,10 @@
-import type { VNodeChild } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 export type Item = {
   path: string
   meta: {
     title: string
-    icon: VNodeChild | JSX.Element
+    icon: string
     alwaysShow: boolean
     hidden: boolean
   }

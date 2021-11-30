@@ -18,3 +18,8 @@ globalStyle('html,body,#app ', {
 globalStyle('ul,li,ol', {
   listStyle: 'none'
 })
+
+globalStyle('a', {
+  color: 'inherit !important',
+  textDecoration: 'inherit !important'
+})

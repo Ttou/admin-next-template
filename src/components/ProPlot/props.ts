@@ -1,8 +1,6 @@
-import type { PropType } from 'vue'
-
 export default {
   plot: {
-    type: Object as PropType<any>,
+    type: Function,
     required: true
   },
   config: {
