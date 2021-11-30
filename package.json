@@ -13,9 +13,8 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\" --fix"
   },
   "dependencies": {
-    "@ant-design/icons-vue": "6.0.1",
     "@antv/g2plot": "2.3.40",
-    "@vanilla-extract/css": "1.6.4",
+    "@vanilla-extract/css": "1.6.6",
     "@vueuse/core": "7.1.1",
     "ant-design-vue": "2.2.8",
     "axios": "0.24.0",
@@ -26,7 +25,10 @@
     "qrcode": "1.5.0",
     "vue": "3.2.22",
     "vue-router": "4.0.12",
-    "wangeditor": "4.7.9"
+    "vxe-table": "4.1.13",
+    "vxe-table-plugin-antd": "3.0.5",
+    "wangeditor": "4.7.9",
+    "xe-utils": "3.4.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",

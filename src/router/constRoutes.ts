@@ -12,7 +12,7 @@ export default [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard'),
-        meta: { title: 'Dashboard', icon: 'menu-dashboard' }
+        meta: { title: '仪表盘', icon: 'menu-dashboard' }
       }
     ]
   },

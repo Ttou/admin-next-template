@@ -1,11 +1,3 @@
-import {
-  CloseCircleFilled,
-  CloseOutlined,
-  DownOutlined,
-  RedoOutlined,
-  VerticalLeftOutlined,
-  VerticalRightOutlined
-} from '@ant-design/icons-vue'
 import { Dropdown, Menu, Tabs } from 'ant-design-vue'
 import {
   computed,
@@ -18,6 +10,7 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import { SvgIcon } from '@/components'
 import { ROUTE } from '@/constants'
 import { useTabsStore } from '@/store'
 
@@ -156,7 +149,9 @@ export default defineComponent({
               tab={() => (
                 <div class={css.tabContent}>
                   <span>{view.meta!.title}</span>
-                  <CloseOutlined
+                  <SvgIcon
+                    name="tabbar-close"
+                    class={css.tabCloseIcon}
                     onClick={withModifiers(
                       () => this.handleCloseTab(view),
                       ['stop']
@@ -172,13 +167,13 @@ export default defineComponent({
           v-slots={{
             default: () => (
               <div class={css.tabsMenu}>
-                <DownOutlined />
+                <SvgIcon name="tabbar-down" />
               </div>
             ),
             overlay: () => (
-              <Menu>
+              <Menu class={css.tabsDropdownMenu}>
                 <Menu.Item onClick={this.handleRefreshTab}>
-                  <RedoOutlined />
+                  <SvgIcon name="tabbar-refresh" />
                   刷新页面
                 </Menu.Item>
                 <Menu.Divider />
@@ -186,14 +181,14 @@ export default defineComponent({
                   onClick={this.handleCloseLeftTabs}
                   disabled={this.closeLeftDisabled}
                 >
-                  <VerticalRightOutlined />
+                  <SvgIcon name="tabbar-close-left" />
                   关闭左侧
                 </Menu.Item>
                 <Menu.Item
                   onClick={this.handleCloseRightTabs}
                   disabled={this.closeRightDisabled}
                 >
-                  <VerticalLeftOutlined />
+                  <SvgIcon name="tabbar-close-right" />
                   关闭右侧
                 </Menu.Item>
                 <Menu.Divider />
@@ -201,11 +196,11 @@ export default defineComponent({
                   onClick={this.handleCloseOtherTabs}
                   disabled={this.closeOtherDisabled}
                 >
-                  <CloseOutlined />
+                  <SvgIcon name="tabbar-close" />
                   关闭其它
                 </Menu.Item>
                 <Menu.Item onClick={this.handleCloseAllTabs}>
-                  <CloseCircleFilled />
+                  <SvgIcon name="tabbar-close-all" />
                   关闭所有
                 </Menu.Item>
               </Menu>

@@ -48,13 +48,15 @@ globalStyle(`${tabbar} .ant-tabs-ink-bar`, {
 
 export const tabContent = style({})
 
-globalStyle(`${tabContent} .anticon`, {
+export const tabCloseIcon = style({
   margin: '0 0 0 6px',
-  color: '#999'
-})
-
-globalStyle(`${tabContent} .anticon:hover`, {
-  color: '#444'
+  color: '#999',
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      color: '#2d8cf0'
+    }
+  }
 })
 
 export const tabsMenu = style({
@@ -67,4 +69,10 @@ export const tabsMenu = style({
   backgroundColor: '#fff',
   borderRadius: '2px',
   cursor: 'pointer'
+})
+
+export const tabsDropdownMenu = style({})
+
+globalStyle(`${tabsDropdownMenu} svg`, {
+  marginRight: '5px'
 })

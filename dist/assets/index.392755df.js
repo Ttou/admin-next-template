@@ -1,0 +1,1 @@
+import{d as o,G as n,J as u,c}from"./vendor.4ce04a3c.js";var d=o({name:"Redirect",setup(){const t=n(),r=u(),{params:a,query:s}=t,e=a.path;r.replace({path:e.startsWith("/")?e:`/${e}`,query:s})},render(){return c("section",null,null)}});export{d as default};

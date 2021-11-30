@@ -4,7 +4,7 @@ export default {
   path: '/demo',
   name: 'Demo',
   component: () => import('@/layout'),
-  redirect: '/demo/form',
+  redirect: '/demo/copy-text',
   meta: {
     title: '组件演示',
     icon: 'menu-demo',
@@ -40,12 +40,6 @@ export default {
       name: 'DemoQRCode',
       component: () => import('@/views/demo/qrcode'),
       meta: { title: '高级二维码' }
-    },
-    {
-      path: 'table',
-      name: 'DemoTable',
-      component: () => import('@/views/demo/table'),
-      meta: { title: '自定义表格' }
     }
   ]
 } as RouteRecordRaw
