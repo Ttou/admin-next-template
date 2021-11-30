@@ -35,7 +35,7 @@ export default defineComponent({
   render() {
     return (
       <div class={css.logo} style={this.style}>
-        <SvgIcon class={css.logoIcon} name="ant-design" />
+        <SvgIcon class={css.logoIcon} name="logo" />
       </div>
     )
   }

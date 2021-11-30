@@ -9,7 +9,7 @@ export default defineComponent({
   render() {
     return (
       <div class={css.view}>
-        <SvgIcon class={css.dashboardIcon} name="dashboard" />
+        <SvgIcon class={css.dashboardIcon} name="view-dashboard" />
       </div>
     )
   }

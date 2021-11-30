@@ -109,7 +109,7 @@ export default defineComponent({
       <div class={css.view}>
         <div class={css.top}>
           <div class={css.header}>
-            <SvgIcon class={css.logoIcon} name="ant-design" />
+            <SvgIcon class={css.logoIcon} name="logo" />
             <span class={css.title}>{this.title}</span>
           </div>
           <div class={css.desc}>基于 Ant Design 的后台管理系统</div>
