@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 
-import { useConfig } from '@/hooks'
+import { useConfig } from './useConfig'
 
 export default defineComponent({
   name: 'Provider',
