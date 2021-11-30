@@ -42,7 +42,9 @@ export default defineComponent({
     ) : (
       <Menu.SubMenu
         key={this.item.path}
-        icon={<SvgIcon name={this.item.meta.icon} />}
+        icon={
+          this.item.meta.icon ? <SvgIcon name={this.item.meta.icon} /> : null
+        }
         title={this.item.meta.title}
       >
         {this.item.children?.map(item =>

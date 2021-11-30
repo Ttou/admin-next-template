@@ -1,10 +1,8 @@
-import {
-  FullscreenExitOutlined,
-  FullscreenOutlined
-} from '@ant-design/icons-vue'
 import { useFullscreen } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 import { defineComponent } from 'vue'
+
+import { SvgIcon } from '@/components'
 
 export default defineComponent({
   name: 'ScreenFull',
@@ -32,9 +30,9 @@ export default defineComponent({
         onClick={this.handleClick}
       >
         {this.isFullscreen ? (
-          <FullscreenExitOutlined />
+          <SvgIcon name="navbar-fullscreen-exit" />
         ) : (
-          <FullscreenOutlined />
+          <SvgIcon name="navbar-fullscreen" />
         )}
       </div>
     )

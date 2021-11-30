@@ -35,7 +35,9 @@ export default defineComponent({
   render() {
     return this.show ? (
       <Menu.Item
-        icon={<SvgIcon name={this.item.meta.icon} />}
+        icon={
+          this.item.meta.icon ? <SvgIcon name={this.item.meta.icon} /> : null
+        }
         key={this.item.path}
       >
         <RouterLink to={this.item.path}>{this.item.meta.title}</RouterLink>

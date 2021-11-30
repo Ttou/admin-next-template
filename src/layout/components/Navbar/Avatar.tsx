@@ -1,13 +1,11 @@
-import {
-  ExclamationCircleOutlined,
-  LogoutOutlined
-} from '@ant-design/icons-vue'
 import { Dropdown, Menu, Modal } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { SvgIcon } from '@/components'
 import { useUserStore } from '@/store'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Avatar',
@@ -18,7 +16,7 @@ export default defineComponent({
     function handleLogout() {
       Modal.confirm({
         title: '提示',
-        icon: <ExclamationCircleOutlined />,
+        icon: <SvgIcon class="anticon" name="navbar-exclamation" />,
         content: '确认退出登录？',
         async onOk() {
           await userStore.logout()
@@ -36,14 +34,19 @@ export default defineComponent({
       <Dropdown
         v-slots={{
           default: () => (
-            <div class="avatar-wrapper">
-              <SvgIcon name="avatar" class="avatar" />
+            <div class={css.avatarWrapper}>
+              <SvgIcon class={css.avatar} name="avatar" />
             </div>
           ),
           overlay: () => (
             <Menu>
               <Menu.Item onClick={this.handleLogout}>
-                <LogoutOutlined />
+                <SvgIcon
+                  name="navbar-logout"
+                  style={{
+                    marginRight: '5px'
+                  }}
+                />
                 <span>退出登录</span>
               </Menu.Item>
             </Menu>

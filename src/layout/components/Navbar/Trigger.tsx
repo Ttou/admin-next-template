@@ -1,7 +1,9 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent } from 'vue'
 
+import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
+
+import * as css from './index.css'
 
 export default defineComponent({
   name: 'Trigger',
@@ -23,10 +25,12 @@ export default defineComponent({
     }
   },
   render() {
-    return this.collapsed ? (
-      <MenuUnfoldOutlined class="trigger" onClick={this.handleClick} />
-    ) : (
-      <MenuFoldOutlined class="trigger" onClick={this.handleClick} />
+    return (
+      <SvgIcon
+        class={css.trigger}
+        name={this.collapsed ? 'navbar-menu-unfold' : 'navbar-menu-fold'}
+        onClick={this.handleClick}
+      />
     )
   }
 })

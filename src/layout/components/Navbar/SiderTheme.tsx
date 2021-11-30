@@ -1,6 +1,6 @@
-import { AppstoreFilled, AppstoreOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent } from 'vue'
 
+import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
 export default defineComponent({
@@ -29,7 +29,11 @@ export default defineComponent({
         style={{ cursor: 'pointer' }}
         onClick={this.handleClick}
       >
-        {this.siderTheme === 'dark' ? <AppstoreFilled /> : <AppstoreOutlined />}
+        {this.siderTheme === 'dark' ? (
+          <SvgIcon name="navbar-theme-dark" />
+        ) : (
+          <SvgIcon name="navbar-theme-light" />
+        )}
       </div>
     )
   }

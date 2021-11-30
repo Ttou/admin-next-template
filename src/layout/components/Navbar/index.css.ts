@@ -13,13 +13,13 @@ export const left = style({
   height: '100%'
 })
 
-globalStyle(`${left} .trigger`, {
+export const trigger = style({
   fontSize: '18px',
   cursor: 'pointer',
   transition: 'color 0.3s'
 })
 
-globalStyle(`${left} .breadcrumb`, {
+export const breadcrumb = style({
   marginLeft: '20px'
 })
 
@@ -40,12 +40,12 @@ globalStyle(`${right} .ant-space-item:hover`, {
   backgroundColor: 'rgba(0, 0, 0, 0.025)'
 })
 
-globalStyle(`${right} .avatar-wrapper`, {
+export const avatarWrapper = style({
   display: 'flex',
   alignItems: 'center'
 })
 
-globalStyle(`${right} .avatar`, {
+export const avatar = style({
   width: '24px',
   height: '24px'
 })

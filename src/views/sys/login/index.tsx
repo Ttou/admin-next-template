@@ -1,4 +1,3 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-es'
 import { computed, defineComponent, onMounted, ref } from 'vue'
@@ -31,7 +30,7 @@ export default defineComponent({
           props: { wrapperCol: { span: 24 } },
           componentProps: {
             placeholder: '账号：admin',
-            prefix: <UserOutlined />,
+            prefix: <SvgIcon name="view-user" />,
             size: 'large'
           }
         },
@@ -42,7 +41,7 @@ export default defineComponent({
           props: { wrapperCol: { span: 24 } },
           componentProps: {
             placeholder: '密码：任意',
-            prefix: <LockOutlined />,
+            prefix: <SvgIcon name="view-lock" />,
             size: 'large',
             onPressEnter: () => handleSubmit()
           }
