@@ -7,5 +7,7 @@ declare namespace JSX {
     ['v-model']?: unknown
     ['v-models']?: unknown
     ['v-slots']?: unknown
+
+    [property: string]: unknown
   }
 }
