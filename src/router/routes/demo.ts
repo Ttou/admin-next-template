@@ -40,6 +40,12 @@ export default {
       name: 'DemoQRCode',
       component: () => import('@/views/demo/qrcode'),
       meta: { title: '高级二维码' }
+    },
+    {
+      path: 'table',
+      name: 'DemoTable',
+      component: () => import('@/views/demo/table'),
+      meta: { title: '高级表格' }
     }
   ]
 } as RouteRecordRaw

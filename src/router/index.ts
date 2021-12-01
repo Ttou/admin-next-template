@@ -8,8 +8,6 @@ const router = createRouter({
   routes: constRoutes
 })
 
-export * from './guards'
-
 export { asyncRoutes, constRoutes }
 
 export default router

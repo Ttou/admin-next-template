@@ -6,7 +6,8 @@ import Antd from 'ant-design-vue'
 import { createApp } from 'vue'
 
 import App from './App'
-import router, { usePermissionGuard, useProgressGuard } from './router'
+import { usePermissionGuard, useProgressGuard, useTable } from './hooks'
+import router from './router'
 import store from './store'
 
 async function bootstrap() {
@@ -17,6 +18,8 @@ async function bootstrap() {
 
   usePermissionGuard(router)
   useProgressGuard(router)
+
+  useTable(app)
 
   await router.isReady()
 
