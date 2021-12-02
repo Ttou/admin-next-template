@@ -10,20 +10,40 @@ export default defineComponent({
     const tableConfig = ref({
       options: {
         showOverflow: true,
+        border: true,
+        toolbarConfig: {
+          perfect: true,
+          custom: true,
+          refresh: true,
+          zoom: true
+        },
+        editConfig: {
+          trigger: 'click',
+          showStatus: true
+        },
+        customConfig: {
+          storage: true
+        },
         formConfig: {
           items: [
             {
               title: '账号',
               field: 'account',
               itemRender: {
-                name: 'AInput'
+                name: 'AInput',
+                props: {
+                  placeholder: '请输入'
+                }
               }
             },
             {
               title: '昵称',
               field: 'nickname',
               itemRender: {
-                name: 'AInput'
+                name: 'AInput',
+                props: {
+                  placeholder: '请输入'
+                }
               }
             },
             {
@@ -31,6 +51,9 @@ export default defineComponent({
               field: 'role',
               itemRender: {
                 name: 'ASelect',
+                props: {
+                  placeholder: '请选择'
+                },
                 options: [
                   {
                     label: 'admin',
@@ -48,6 +71,9 @@ export default defineComponent({
               field: 'status',
               itemRender: {
                 name: 'ASelect',
+                props: {
+                  placeholder: '请选择'
+                },
                 options: [
                   {
                     label: '禁用',
@@ -68,6 +94,7 @@ export default defineComponent({
           ]
         },
         columns: [
+          { type: 'checkbox', width: 50 },
           {
             title: 'ID',
             field: 'id'
@@ -82,7 +109,10 @@ export default defineComponent({
           },
           {
             title: '昵称',
-            field: 'nickname'
+            field: 'nickname',
+            editRender: {
+              name: 'AInput'
+            }
           },
           {
             title: '角色',
@@ -90,11 +120,27 @@ export default defineComponent({
           },
           {
             title: '状态',
-            field: 'status'
+            field: 'status',
+            editRender: {
+              name: 'ASelect',
+              options: [
+                {
+                  label: '禁用',
+                  value: '0'
+                },
+                {
+                  label: '启用',
+                  value: '1'
+                }
+              ]
+            }
           },
           {
             title: '备注',
-            field: 'remark'
+            field: 'remark',
+            editRender: {
+              name: 'AInput'
+            }
           },
           {
             title: '创建时间',
@@ -106,15 +152,17 @@ export default defineComponent({
         },
         proxyConfig: {
           seq: true,
+          form: true,
           props: {
             result: 'content',
             total: 'total'
           },
           ajax: {
-            query: async ({ page }) => {
+            query: async ({ page, form }) => {
               const data = await demoApi.getList({
                 pageSize: page.pageSize,
-                current: page.currentPage
+                current: page.currentPage,
+                ...form
               })
               return data
             }
