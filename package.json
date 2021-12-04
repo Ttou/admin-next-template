@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@antv/g2plot": "2.3.40",
-    "@vanilla-extract/css": "1.6.6",
+    "@vanilla-extract/css": "1.6.8",
     "@vueuse/core": "7.1.2",
     "ant-design-vue": "2.2.8",
     "axios": "0.24.0",
@@ -49,7 +49,7 @@
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.3.0",
+    "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",

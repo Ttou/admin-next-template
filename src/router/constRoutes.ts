@@ -5,14 +5,25 @@ import { ROUTE } from '@/constants'
 export default [
   {
     path: ROUTE.INDEX,
-    redirect: '/dashboard',
+    redirect: '/dashboard'
+  },
+  {
+    path: ROUTE.DASHBOARD,
+    redirect: `${ROUTE.DASHBOARD}/analysis`,
     component: () => import('@/layout'),
+    meta: { title: 'Dashboard', icon: 'menu-dashboard' },
     children: [
       {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/dashboard'),
-        meta: { title: '仪表盘', icon: 'menu-dashboard' }
+        path: 'analysis',
+        name: 'Analysis',
+        component: () => import('@/views/dashboard/analysis'),
+        meta: { title: '分析页' }
+      },
+      {
+        path: 'workbench',
+        name: 'Workbench',
+        component: () => import('@/views/dashboard/workbench'),
+        meta: { title: '工作台' }
       }
     ]
   },

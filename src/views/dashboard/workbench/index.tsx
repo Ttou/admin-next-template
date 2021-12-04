@@ -1,15 +1,13 @@
 import { defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components'
-
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Dashboard',
+  name: 'Workbench',
   render() {
     return (
       <div class={css.view}>
-        <SvgIcon class={css.dashboardIcon} name="view-dashboard" />
+        <h2>工作台</h2>
       </div>
     )
   }

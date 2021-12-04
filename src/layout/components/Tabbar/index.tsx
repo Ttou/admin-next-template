@@ -103,10 +103,11 @@ export default defineComponent({
       if (latestView) {
         router.push(latestView.fullPath!)
       } else {
-        if (route.name === 'Dashboard') {
+        // Dashboard 下的首页面被关闭时跳转重定向
+        if (route.name === 'Analysis') {
           router.replace({ path: '/redirect' + route.fullPath })
         } else {
-          router.push('/')
+          router.replace('/')
         }
       }
     }
