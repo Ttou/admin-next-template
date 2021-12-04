@@ -1,7 +1,7 @@
 import { Card, Col, Row, Skeleton, Tag } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import { CountTo } from '@/components'
+import { CountTo, SvgIcon } from '@/components'
 
 import * as css from './index.css'
 
@@ -38,10 +38,9 @@ export default defineComponent({
                 extra: () => <Tag color="blue">月</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div>
-                      <div>
-                        <CountTo prefix="¥" endVal={2000} />
-                      </div>
+                    <div class={css.cardContent}>
+                      <CountTo class={css.text} prefix="¥" endVal={2000} />
+                      <SvgIcon class={css.icon} name="view-visit-count" />
                     </div>
                   </Skeleton>
                 )
@@ -56,10 +55,9 @@ export default defineComponent({
                 extra: () => <Tag color="green">月</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div>
-                      <div>
-                        <CountTo prefix="¥" endVal={2000} />
-                      </div>
+                    <div class={css.cardContent}>
+                      <CountTo class={css.text} prefix="¥" endVal={2000} />
+                      <SvgIcon class={css.icon} name="view-total-sales" />
                     </div>
                   </Skeleton>
                 )
@@ -74,10 +72,9 @@ export default defineComponent({
                 extra: () => <Tag color="blue">周</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div>
-                      <div>
-                        <CountTo endVal={2000} />
-                      </div>
+                    <div class={css.cardContent}>
+                      <CountTo class={css.text} endVal={2000} />
+                      <SvgIcon class={css.icon} name="view-download-count" />
                     </div>
                   </Skeleton>
                 )
@@ -92,10 +89,9 @@ export default defineComponent({
                 extra: () => <Tag color="green">年</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div>
-                      <div>
-                        <CountTo endVal={2000} />
-                      </div>
+                    <div class={css.cardContent}>
+                      <CountTo class={css.text} endVal={2000} />
+                      <SvgIcon class={css.icon} name="view-transaction" />
                     </div>
                   </Skeleton>
                 )
