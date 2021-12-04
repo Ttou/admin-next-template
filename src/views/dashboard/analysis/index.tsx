@@ -1,10 +1,31 @@
-import { Card, Col, Row, Tag } from 'ant-design-vue'
-import { defineComponent } from 'vue'
+import { Card, Col, Row, Skeleton, Tag } from 'ant-design-vue'
+import { defineComponent, onMounted, ref } from 'vue'
+
+import { CountTo } from '@/components'
 
 import * as css from './index.css'
 
 export default defineComponent({
   name: 'Analysis',
+  setup() {
+    const loading = ref(false)
+
+    function init() {
+      loading.value = true
+
+      setTimeout(() => {
+        loading.value = false
+      }, 1500)
+    }
+
+    onMounted(() => {
+      init()
+    })
+
+    return {
+      loading
+    }
+  },
   render() {
     return (
       <div class={css.view}>
@@ -16,9 +37,13 @@ export default defineComponent({
               v-slots={{
                 extra: () => <Tag color="blue">月</Tag>,
                 default: () => (
-                  <div>
-                    <div>2000</div>
-                  </div>
+                  <Skeleton loading={this.loading} active>
+                    <div>
+                      <div>
+                        <CountTo prefix="¥" endVal={2000} />
+                      </div>
+                    </div>
+                  </Skeleton>
                 )
               }}
             />
@@ -28,7 +53,16 @@ export default defineComponent({
               title="成交额"
               size="small"
               v-slots={{
-                extra: () => <Tag color="green">月</Tag>
+                extra: () => <Tag color="green">月</Tag>,
+                default: () => (
+                  <Skeleton loading={this.loading} active>
+                    <div>
+                      <div>
+                        <CountTo prefix="¥" endVal={2000} />
+                      </div>
+                    </div>
+                  </Skeleton>
+                )
               }}
             />
           </Col>
@@ -37,7 +71,16 @@ export default defineComponent({
               title="下载数"
               size="small"
               v-slots={{
-                extra: () => <Tag color="blue">周</Tag>
+                extra: () => <Tag color="blue">周</Tag>,
+                default: () => (
+                  <Skeleton loading={this.loading} active>
+                    <div>
+                      <div>
+                        <CountTo endVal={2000} />
+                      </div>
+                    </div>
+                  </Skeleton>
+                )
               }}
             />
           </Col>
@@ -46,7 +89,16 @@ export default defineComponent({
               title="成交数"
               size="small"
               v-slots={{
-                extra: () => <Tag color="green">年</Tag>
+                extra: () => <Tag color="green">年</Tag>,
+                default: () => (
+                  <Skeleton loading={this.loading} active>
+                    <div>
+                      <div>
+                        <CountTo endVal={2000} />
+                      </div>
+                    </div>
+                  </Skeleton>
+                )
               }}
             />
           </Col>
