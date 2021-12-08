@@ -74,7 +74,7 @@ export default defineComponent({
           loading.value = true
 
           userStore
-            .login(formRef.value!.formModel)
+            .login(formRef.value!.model)
             .then(() => {
               router.replace({
                 path: redirect.value || '/',

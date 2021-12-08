@@ -81,5 +81,5 @@ export type FormInstance = {
 
 export type FormRef = Nullable<{
   form: FormInstance
-  formModel: Record<string, unknown>
+  model: Record<string, unknown>
 }>
