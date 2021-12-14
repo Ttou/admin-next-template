@@ -10,7 +10,6 @@ import svgIcons from 'vite-plugin-svg-icons'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/admin-next-template/',
-  cacheDir: resolve('.vite'),
   css: {
     preprocessorOptions: {
       less: {
@@ -24,7 +23,7 @@ export default defineConfig({
     alias: [
       {
         find: '@',
-        replacement: resolve(__dirname, 'src')
+        replacement: resolve('src')
       }
     ]
   },
@@ -38,7 +37,7 @@ export default defineConfig({
     vanillaExtractPlugin(),
     compression(),
     svgIcons({
-      iconDirs: [resolve(__dirname, 'src/icons')],
+      iconDirs: [resolve('src/icons')],
       symbolId: 'icon-[dir]-[name]'
     }),
     injectHtml({
