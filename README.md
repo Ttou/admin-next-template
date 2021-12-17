@@ -26,7 +26,7 @@ git clone https://gitee.com/jh_shot/admin-next-template.git
 - 安装依赖
 
 ```bash
-npm i -f
+npm i
 ```
 
 - 运行
