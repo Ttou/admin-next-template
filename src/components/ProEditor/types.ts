@@ -1,11 +1,11 @@
-import type E from 'wangeditor'
-import type { ConfigType } from 'wangeditor/src/config'
+import { IDomEditor } from '@wangeditor/editor'
+import { ExtractPropTypes } from 'vue'
 
-export type EditorInstance = E
+import type props from './props'
 
-export type EditorConfig = ConfigType
+export type ProEditorProps = ExtractPropTypes<typeof props>
 
-export type EditorRef = {
-  editor: EditorInstance
-  editorEl: HTMLElement
+export type ProEditorRef = {
+  editor: IDomEditor
+  editorId: string
 }

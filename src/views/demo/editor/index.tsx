@@ -2,32 +2,32 @@ import { Button, message, Space } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
 import { ProEditor } from '@/components'
-import type { EditorRef } from '@/components/ProEditor/types'
+import type { ProEditorProps, ProEditorRef } from '@/components/ProEditor/types'
 
 import * as css from './index.css'
 
 export default defineComponent({
   name: 'DemoEditor',
   setup() {
-    const editorRef = ref({} as EditorRef)
+    const editorConfig = ref({} as ProEditorProps)
+    const editorRef = ref({} as ProEditorRef)
 
     function handleGetHTML() {
-      const value = editorRef.value.editor.txt.html()
-
+      const value = editorRef.value.editor.getHtml()
       message.info(value!)
     }
 
     function handleGetTXT() {
-      const value = editorRef.value.editor.txt.text()
-
+      const value = editorRef.value.editor.getText()
       message.info(value)
     }
 
     function handleClear() {
-      editorRef.value.editor.txt.clear()
+      editorRef.value.editor.clear()
     }
 
     return {
+      editorConfig,
       editorRef,
       handleGetHTML,
       handleGetTXT,
@@ -44,7 +44,7 @@ export default defineComponent({
             <Button onClick={this.handleClear}>清除内容</Button>
           </Space>
         </div>
-        <ProEditor ref="editorRef" />
+        <ProEditor ref="editorRef" {...this.editorConfig} />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 
-import { demoApi } from '@/api'
+import { demoApi } from '@/apis'
 import { ProTable } from '@/components'
 import type { PropTableProps } from '@/components/ProTable/types'
 

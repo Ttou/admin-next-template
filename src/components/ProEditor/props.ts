@@ -1,10 +1,25 @@
-import type { PropType } from 'vue'
-
-import type { EditorConfig } from './types'
+import type { IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
+import type { CSSProperties, PropType } from 'vue'
 
 export default {
-  config: {
-    type: Object as PropType<EditorConfig>,
-    default: (): Partial<EditorConfig> => ({ height: 500 })
+  wrapStyle: {
+    type: Object as PropType<CSSProperties>,
+    default: (): CSSProperties => ({ border: '1px solid #ccc' })
+  },
+  toolbarConfig: {
+    type: Object as PropType<IToolbarConfig>,
+    default: () => ({})
+  },
+  toolbarStyle: {
+    type: Object as PropType<CSSProperties>,
+    default: (): CSSProperties => ({ borderBottom: '1px solid #ccc' })
+  },
+  editorConfig: {
+    type: Object as PropType<IEditorConfig>,
+    default: () => ({})
+  },
+  editorStyle: {
+    type: Object as PropType<CSSProperties>,
+    default: (): CSSProperties => ({ height: '500px' })
   }
 }

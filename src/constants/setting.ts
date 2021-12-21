@@ -1,6 +1,6 @@
 import type { Setting } from '@/types'
 
-export const DEFAULT_SETTING = {
+export const SETTING = {
   title: '后台管理系统',
   fixedHeader: true,
   headerHeight: '48px',

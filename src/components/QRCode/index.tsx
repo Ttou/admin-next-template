@@ -4,21 +4,21 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 import props from './props'
 
 export default defineComponent({
-  name: 'QRCode',
+  name: 'QrCode',
   props,
   setup(props) {
-    const qrRef = ref<Nullable<HTMLCanvasElement>>(null)
+    const qrEl = ref<Nullable<HTMLCanvasElement>>(null)
 
     function drawLogo() {
       const image = new Image()
 
       image.src = props.logo!
       image.onload = () => {
-        const ctx = qrRef.value!.getContext('2d')!
+        const ctx = qrEl.value!.getContext('2d')!
 
         ctx.imageSmoothingEnabled = false
 
-        const cw = qrRef.value!.clientWidth
+        const cw = qrEl.value!.clientWidth
         const iw = cw / 4
         const ih = cw / 4
         const dx = (cw - iw) / 2
@@ -29,7 +29,7 @@ export default defineComponent({
     }
 
     async function init() {
-      await toCanvas(qrRef.value, props.text, props.options)
+      await toCanvas(qrEl.value, props.text, props.options)
 
       props.logo && drawLogo()
     }
@@ -46,10 +46,10 @@ export default defineComponent({
     })
 
     return {
-      qrRef
+      qrEl
     }
   },
   render() {
-    return <canvas ref="qrRef" />
+    return <canvas ref="qrEl" />
   }
 })

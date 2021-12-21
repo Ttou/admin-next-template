@@ -1,7 +1,7 @@
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 
-import { userApi } from '@/api'
+import { userApi } from '@/apis'
 
 import { useTabsStore } from '.'
 

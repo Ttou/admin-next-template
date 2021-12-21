@@ -1,34 +1,29 @@
 import {
-  Area,
-  AreaOptions,
-  Bar,
-  BarOptions,
-  Column,
-  ColumnOptions,
-  Line,
-  LineOptions
-} from '@antv/g2plot'
+  AreaChart,
+  AreaChartProps,
+  BarChart,
+  BarChartProps,
+  ColumnChart,
+  ColumnChartProps,
+  LineChart,
+  LineChartProps
+} from '@opd/g2plot-vue'
 import { Col, Row } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
-
-import { ProPlot } from '@/components'
 
 import * as css from './index.css'
 
 export default defineComponent({
   name: 'DemoPlot',
   setup() {
-    const lineData = ref([])
     const lineConfig = ref({
       xField: 'Date',
       yField: 'scales'
-    } as LineOptions)
-    const columnData = ref([])
+    } as LineChartProps)
     const columnConfig = ref({
       xField: 'type',
       yField: 'sales'
-    } as ColumnOptions)
-    const barData = ref([] as any[])
+    } as ColumnChartProps)
     const barConfig = ref({
       xField: 'value',
       yField: 'year',
@@ -36,15 +31,14 @@ export default defineComponent({
       legend: {
         position: 'top-left'
       }
-    } as BarOptions)
-    const areaData = ref([])
+    } as BarChartProps)
     const areaConfig = ref({
       xField: 'timePeriod',
       yField: 'value',
       xAxis: {
         range: [0, 1]
       }
-    } as AreaOptions)
+    } as AreaChartProps)
 
     function initLine() {
       fetch(
@@ -52,7 +46,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          lineData.value = data
+          lineConfig.value.data = data
         })
     }
 
@@ -62,12 +56,12 @@ export default defineComponent({
       )
         .then(data => data.json())
         .then(data => {
-          columnData.value = data
+          columnConfig.value.data = data
         })
     }
 
     function initBar() {
-      barData.value = [
+      barConfig.value.data = [
         { year: '1951 年', value: 38 },
         { year: '1952 年', value: 52 },
         { year: '1956 年', value: 61 },
@@ -82,7 +76,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          areaData.value = data
+          areaConfig.value.data = data
         })
     }
 
@@ -94,13 +88,9 @@ export default defineComponent({
     })
 
     return {
-      lineData,
       lineConfig,
-      columnData,
       columnConfig,
-      barData,
       barConfig,
-      areaData,
       areaConfig
     }
   },
@@ -111,20 +101,13 @@ export default defineComponent({
           <Col span="1"></Col>
           <Col span="10">
             <h3>折线图</h3>
-            <ProPlot
-              plot={Line}
-              config={this.lineConfig}
-              data={this.lineData}
-            />
+            {/* @ts-ignore */}
+            <LineChart {...this.lineConfig} />
           </Col>
           <Col span="2"></Col>
           <Col span="10">
             <h3>柱状图</h3>
-            <ProPlot
-              plot={Column}
-              config={this.columnConfig}
-              data={this.columnData}
-            />
+            <ColumnChart {...this.columnConfig} />
           </Col>
           <Col span="1"></Col>
         </Row>
@@ -132,16 +115,12 @@ export default defineComponent({
           <Col span="1"></Col>
           <Col span="10">
             <h3>条形图</h3>
-            <ProPlot plot={Bar} config={this.barConfig} data={this.barData} />
+            <BarChart {...this.barConfig} />
           </Col>
           <Col span="2"></Col>
           <Col span="10">
             <h3>面积图</h3>
-            <ProPlot
-              plot={Area}
-              config={this.areaConfig}
-              data={this.areaData}
-            />
+            <AreaChart {...this.areaConfig} />
           </Col>
           <Col span="1"></Col>
         </Row>
