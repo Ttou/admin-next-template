@@ -16,7 +16,7 @@ export default defineComponent({
   props,
   setup() {
     const editor = ref<Nullable<IDomEditor>>(null)
-    const editorId = ref(`w-e-${Math.random().toString().slice(-5)}`)
+    const editorId = ref(`pro-editor-${Math.random().toString().slice(-5)}`)
 
     onMounted(() => {
       nextTick(() => {

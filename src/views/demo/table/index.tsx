@@ -11,6 +11,7 @@ export default defineComponent({
       options: {
         showOverflow: true,
         border: true,
+        keepSource: true,
         toolbarConfig: {
           perfect: true,
           custom: true,

@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { Grid as VxeGrid } from 'vxe-table'
 
 import * as css from './index.css'
@@ -7,8 +7,19 @@ import props from './props'
 export default defineComponent({
   name: 'ProTable',
   props,
-  setup() {},
+  setup(props) {
+    const tableId = ref(`pro-table-${Math.random().toString().slice(-5)}`)
+
+    const config = computed(() => ({
+      id: tableId.value,
+      ...props.options
+    }))
+
+    return {
+      config
+    }
+  },
   render() {
-    return <VxeGrid class={css.proTable} {...this.options} />
+    return <VxeGrid class={css.proTable} {...this.config} />
   }
 })
