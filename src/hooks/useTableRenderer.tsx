@@ -1,8 +1,11 @@
 import { Button, Space } from 'ant-design-vue'
 import type VXETable from 'vxe-table'
 
+import { TBALE_RENDERER } from '@/constants'
+
+/** 渲染器注册 */
 export function useTableRenderer(vxe: typeof VXETable) {
-  vxe.renderer.add('FormItemBtns', {
+  vxe.renderer.add(TBALE_RENDERER.FormItemBtns, {
     renderItemContent(renderOpts, params) {
       return [
         <Space>

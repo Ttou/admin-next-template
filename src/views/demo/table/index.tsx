@@ -3,6 +3,12 @@ import { defineComponent, ref } from 'vue'
 import { demoApi } from '@/apis'
 import { ProTable } from '@/components'
 import type { PropTableProps } from '@/components/ProTable/types'
+import {
+  TABLE_EDIT_RENDER,
+  TABLE_FORMAT,
+  TABLE_ITEM_RENDER,
+  TBALE_RENDERER
+} from '@/constants'
 
 export default defineComponent({
   name: 'DemoTable',
@@ -31,7 +37,7 @@ export default defineComponent({
               title: '账号',
               field: 'account',
               itemRender: {
-                name: 'AInput',
+                name: TABLE_ITEM_RENDER.AInput,
                 props: {
                   placeholder: '请输入'
                 }
@@ -41,7 +47,7 @@ export default defineComponent({
               title: '昵称',
               field: 'nickname',
               itemRender: {
-                name: 'AInput',
+                name: TABLE_ITEM_RENDER.AInput,
                 props: {
                   placeholder: '请输入'
                 }
@@ -51,7 +57,7 @@ export default defineComponent({
               title: '角色',
               field: 'role',
               itemRender: {
-                name: 'ASelect',
+                name: TABLE_ITEM_RENDER.ASelect,
                 props: {
                   placeholder: '请选择'
                 },
@@ -71,7 +77,7 @@ export default defineComponent({
               title: '状态',
               field: 'status',
               itemRender: {
-                name: 'ASelect',
+                name: TABLE_ITEM_RENDER.ASelect,
                 props: {
                   placeholder: '请选择'
                 },
@@ -89,7 +95,7 @@ export default defineComponent({
             },
             {
               itemRender: {
-                name: 'FormItemBtns'
+                name: TBALE_RENDERER.FormItemBtns
               }
             }
           ]
@@ -112,7 +118,7 @@ export default defineComponent({
             title: '昵称',
             field: 'nickname',
             editRender: {
-              name: 'AInput'
+              name: TABLE_EDIT_RENDER.AInput
             }
           },
           {
@@ -123,7 +129,7 @@ export default defineComponent({
             title: '状态',
             field: 'status',
             editRender: {
-              name: 'ASelect',
+              name: TABLE_EDIT_RENDER.ASelect,
               options: [
                 {
                   label: '禁用',
@@ -140,12 +146,13 @@ export default defineComponent({
             title: '备注',
             field: 'remark',
             editRender: {
-              name: 'AInput'
+              name: TABLE_EDIT_RENDER.AInput
             }
           },
           {
             title: '创建时间',
-            field: 'createTs'
+            field: 'createTs',
+            formatter: TABLE_FORMAT.Date
           }
         ],
         pagerConfig: {
