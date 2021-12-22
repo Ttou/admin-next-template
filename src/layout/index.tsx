@@ -1,6 +1,7 @@
 import { Layout } from 'ant-design-vue'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
+import { Scrollbar } from '@/components'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
@@ -52,36 +53,56 @@ export default defineComponent({
     })
 
     return {
-      settings: setting,
+      setting,
       mainStyle,
       headerStyle,
       tabbarStyle
     }
   },
   render() {
+    const renderHeader = () => (
+      <Layout.Header class={css.layoutHeader} style={this.headerStyle}>
+        <Navbar />
+      </Layout.Header>
+    )
+
+    const renderTabbar = () => <Tabbar style={this.tabbarStyle} />
+
+    const renderContent = () => (
+      <Layout.Content class={css.layoutContent}>
+        <Content />
+      </Layout.Content>
+    )
+
     return (
       <Layout class={css.layout}>
         <Layout.Sider
           class={css.layoutSider}
-          collapsed={!this.settings.siderOpened}
+          collapsed={!this.setting.siderOpened}
           trigger={null}
-          theme={this.settings.siderTheme}
-          width={this.settings.siderOpenedWidth}
-          collapsedWidth={this.settings.siderClosedWidth}
+          theme={this.setting.siderTheme}
+          width={this.setting.siderOpenedWidth}
+          collapsedWidth={this.setting.siderClosedWidth}
           collapsible
         >
           <Logo />
           <Menu />
         </Layout.Sider>
-        <Layout class={css.layoutMain} style={this.mainStyle}>
-          <Layout.Header class={css.layoutHeader} style={this.headerStyle}>
-            <Navbar />
-          </Layout.Header>
-          <Tabbar style={this.tabbarStyle} />
-          <Layout.Content class={css.layoutContent}>
-            <Content />
-          </Layout.Content>
-        </Layout>
+        {this.setting.fixedHeader ? (
+          <Layout class={css.layoutMain} style={this.mainStyle}>
+            {renderHeader()}
+            {renderTabbar()}
+            <Scrollbar>{renderContent()}</Scrollbar>
+          </Layout>
+        ) : (
+          <Scrollbar>
+            <Layout class={css.layoutMain} style={this.mainStyle}>
+              {renderHeader()}
+              {renderTabbar()}
+              {renderContent()}
+            </Layout>
+          </Scrollbar>
+        )}
       </Layout>
     )
   }

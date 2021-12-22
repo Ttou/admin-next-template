@@ -1,4 +1,3 @@
-import './scrollbar.css'
 import './transitions.css'
 
 import { globalStyle } from '@vanilla-extract/css'

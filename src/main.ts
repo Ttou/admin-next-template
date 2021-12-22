@@ -1,6 +1,6 @@
 import 'virtual:svg-icons-register'
-import './styles/index.css'
 import 'ant-design-vue/dist/antd.less'
+import './styles/index.css'
 
 import Antd from 'ant-design-vue'
 import { createApp } from 'vue'
