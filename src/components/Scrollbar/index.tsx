@@ -14,6 +14,7 @@ export default defineComponent({
     const contentEl = ref<Nullable<HTMLDivElement>>(null)
     const bs = ref({} as BScrollConstructor)
     const verticalEl = ref<Nullable<HTMLDivElement>>(null)
+    const horizontalEl = ref<Nullable<HTMLDivElement>>(null)
 
     BScroll.use(Scrollbar)
     BScroll.use(MouseWheel)
@@ -22,6 +23,7 @@ export default defineComponent({
       bs.value = new BScroll(scrollbarEl.value!, {
         bounce: false,
         scrollY: true,
+        scrollX: true,
         mouseWheel: true,
         scrollbar: {
           fade: true,
@@ -29,7 +31,7 @@ export default defineComponent({
           fadeOutTime: 500,
           interactive: true,
           scrollbarTrackClickable: true,
-          customElements: [verticalEl.value!]
+          customElements: [horizontalEl.value!, verticalEl.value!]
         }
       })
     }
@@ -45,7 +47,8 @@ export default defineComponent({
     return {
       scrollbarEl,
       contentEl,
-      verticalEl
+      verticalEl,
+      horizontalEl
     }
   },
   render() {
@@ -57,6 +60,10 @@ export default defineComponent({
         {/* 自定义纵向滚动条 */}
         <div class={css.verticalScrollbar} ref="verticalEl">
           <div class={css.verticalIndicator}></div>
+        </div>
+        {/* 自定义横向滚动条 */}
+        <div class={css.horizontalScroll} ref="horizontalEl">
+          <div class={css.horizontalIndicator}></div>
         </div>
       </div>
     )
