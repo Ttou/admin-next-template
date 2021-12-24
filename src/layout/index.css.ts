@@ -7,7 +7,7 @@ export const layout = style({
 
 export const layoutSider = style({
   position: 'fixed',
-  overflow: 'auto',
+  overflow: 'hidden',
   height: '100vh',
   left: 0,
   zIndex: 100

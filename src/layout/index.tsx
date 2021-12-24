@@ -86,7 +86,9 @@ export default defineComponent({
           collapsible
         >
           <Logo />
-          <Menu />
+          <Scrollbar>
+            <Menu />
+          </Scrollbar>
         </Layout.Sider>
         {this.setting.fixedHeader ? (
           <Layout class={css.layoutMain} style={this.mainStyle}>
