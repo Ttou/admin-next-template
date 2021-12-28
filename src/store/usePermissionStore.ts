@@ -29,34 +29,36 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
   return res
 }
 
-export const usePermissionStore = defineStore('permission', {
-  state: () => {
-    return {
-      routes: [] as RouteRecordRaw[]
-    }
-  },
-  actions: {
-    generate(roles: string[]): Promise<RouteRecordRaw[]> {
-      return new Promise(resolve => {
-        let accessedRoutes: RouteRecordRaw[]
+export function usePermissionStore() {
+  return defineStore('permission', {
+    state: () => {
+      return {
+        routes: [] as RouteRecordRaw[]
+      }
+    },
+    actions: {
+      generate(roles: string[]): Promise<RouteRecordRaw[]> {
+        return new Promise(resolve => {
+          let accessedRoutes: RouteRecordRaw[]
 
-        // eslint-disable-next-line prefer-const
-        accessedRoutes = filterAsyncRoutes(
-          asyncRoutes as RouteRecordRaw[],
-          roles
-        )
+          // eslint-disable-next-line prefer-const
+          accessedRoutes = filterAsyncRoutes(
+            asyncRoutes as RouteRecordRaw[],
+            roles
+          )
 
-        accessedRoutes.push({
-          path: '/:pathMatch(.*)*',
-          redirect: {
-            path: ROUTE.ERROR,
-            query: { status: 404 }
-          }
+          accessedRoutes.push({
+            path: '/:pathMatch(.*)*',
+            redirect: {
+              path: ROUTE.ERROR,
+              query: { status: 404 }
+            }
+          })
+
+          this.routes = constRoutes.concat(accessedRoutes)
+          resolve(accessedRoutes)
         })
-
-        this.routes = constRoutes.concat(accessedRoutes)
-        resolve(accessedRoutes)
-      })
+      }
     }
-  }
-})
+  })()
+}
