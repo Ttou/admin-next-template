@@ -20,6 +20,13 @@ export default defineComponent({
         data: props.data,
         ...props.config
       })
+
+      if (!isEmpty(props.events)) {
+        Object.keys(props.events!).forEach(key => {
+          plotRef.value.on(key, props.events![key])
+        })
+      }
+
       plotRef.value.render()
     }
 
