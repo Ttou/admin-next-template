@@ -5,7 +5,7 @@ import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Breadcrumb',
+  name: 'BreadcrumbComp',
   setup() {
     const routes = ref([] as any[])
 

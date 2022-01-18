@@ -6,7 +6,7 @@ import { CountTo, SvgIcon } from '@/components'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Analysis',
+  name: 'AnalysisView',
   setup() {
     const loading = ref(false)
 

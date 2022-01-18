@@ -2,7 +2,7 @@ import { Alert } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'NestedMenu1-2-2',
+  name: 'NestedMenu122',
   render() {
     return (
       <div

@@ -6,7 +6,7 @@ import { useSettingStore } from '@/store'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Trigger',
+  name: 'TriggerComp',
   setup() {
     const settingStore = useSettingStore()
 

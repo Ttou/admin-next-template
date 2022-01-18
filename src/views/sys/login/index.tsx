@@ -10,7 +10,7 @@ import { useSettingStore, useUserStore } from '@/store'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Login',
+  name: 'LoginView',
   setup() {
     const route = useRoute()
     const router = useRouter()

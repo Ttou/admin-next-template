@@ -4,7 +4,7 @@ import { defineComponent } from 'vue'
 import { useAntdConfig } from '@/hooks'
 
 export default defineComponent({
-  name: 'Provider',
+  name: 'ProviderComp',
   setup() {
     const config = useAntdConfig()
 

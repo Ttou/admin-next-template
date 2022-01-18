@@ -9,7 +9,7 @@ import SiderTheme from './SiderTheme'
 import Trigger from './Trigger'
 
 export default defineComponent({
-  name: 'Header',
+  name: 'HeaderComp',
   render() {
     return (
       <div class={css.navbar}>

@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Workbench',
+  name: 'WorkbenchView',
   render() {
     return (
       <div class={css.view}>

@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 import { useTabsStore } from '@/store'
 
 export default defineComponent({
-  name: 'Content',
+  name: 'ContentComp',
   setup() {
     const tabsStore = useTabsStore()
 

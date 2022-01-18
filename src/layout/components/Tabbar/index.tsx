@@ -17,7 +17,7 @@ import { useTabsStore } from '@/store'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Tabs',
+  name: 'TabsComp',
   setup() {
     const activeKey = ref('')
 

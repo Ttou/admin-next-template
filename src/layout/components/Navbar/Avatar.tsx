@@ -8,7 +8,7 @@ import { useUserStore } from '@/store'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Avatar',
+  name: 'AvatarComp',
   setup() {
     const router = useRouter()
     const userStore = useUserStore()

@@ -8,7 +8,7 @@ import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Layout',
+  name: 'DefaultLayout',
   setup() {
     const settingStore = useSettingStore()
 

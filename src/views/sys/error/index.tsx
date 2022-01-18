@@ -6,7 +6,7 @@ import { SUB_TITLE_MAP } from './constants'
 import type { Status } from './types'
 
 export default defineComponent({
-  name: 'Error',
+  name: 'ErrorView',
   setup() {
     const route = useRoute()
     const router = useRouter()

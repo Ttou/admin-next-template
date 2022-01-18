@@ -1,6 +1,5 @@
-/**
- * @type {import('eslint').Linter.BaseConfig}
- */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
 module.exports = {
   root: true,
   env: {
@@ -8,12 +7,11 @@ module.exports = {
     node: true
   },
   extends: [
-    '@vue/standard',
-    '@vue/typescript/recommended',
-    'prettier',
-    'plugin:prettier/recommended'
+    'plugin:vue/vue3-recommended',
+    '@vue/eslint-config-typescript/recommended',
+    '@vue/eslint-config-prettier'
   ],
-  plugins: ['prettier', 'simple-import-sort'],
+  plugins: ['simple-import-sort'],
   parserOptions: {
     ecmaVersion: 2020
   },

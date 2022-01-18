@@ -1,7 +1,4 @@
 {
-  "[vue]": {
-    "editor.defaultFormatter": "johnsoncodehk.volar"
-  },
   "path-intellisense.mappings": {
     "@": "${workspaceFolder}/src"
   }

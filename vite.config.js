@@ -4,7 +4,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
-import { injectHtml } from 'vite-plugin-html'
+import html from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
 import svgIcons from 'vite-plugin-svg-icons'
 
@@ -40,9 +40,11 @@ export default defineConfig({
       iconDirs: [resolve('src/icons')],
       symbolId: 'icon-[dir]-[name]'
     }),
-    injectHtml({
-      injectData: {
-        title: '后台管理系统'
+    html({
+      inject: {
+        data: {
+          title: '后台管理系统'
+        }
       }
     }),
     viteMockServe({

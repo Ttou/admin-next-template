@@ -8,13 +8,11 @@ import { defineComponent, onMounted, ref } from 'vue'
 import * as css from './index.css'
 
 export default defineComponent({
-  name: 'Scrollbar',
+  name: 'ScrollbarComp',
   setup() {
     const scrollbarEl = ref<Nullable<HTMLDivElement>>(null)
     const contentEl = ref<Nullable<HTMLDivElement>>(null)
     const bs = ref({} as BScrollConstructor)
-    const verticalEl = ref<Nullable<HTMLDivElement>>(null)
-    const horizontalEl = ref<Nullable<HTMLDivElement>>(null)
 
     BScroll.use(Scrollbar)
     BScroll.use(MouseWheel)
@@ -30,8 +28,7 @@ export default defineComponent({
           fadeInTime: 300,
           fadeOutTime: 500,
           interactive: true,
-          scrollbarTrackClickable: true,
-          customElements: [horizontalEl.value!, verticalEl.value!]
+          scrollbarTrackClickable: true
         }
       })
     }
@@ -46,9 +43,7 @@ export default defineComponent({
 
     return {
       scrollbarEl,
-      contentEl,
-      verticalEl,
-      horizontalEl
+      contentEl
     }
   },
   render() {
@@ -56,14 +51,6 @@ export default defineComponent({
       <div ref="scrollbarEl" class={css.scrollbar}>
         <div ref="contentEl" class={css.content}>
           {this.$slots.default?.()}
-        </div>
-        {/* 自定义纵向滚动条 */}
-        <div class={css.verticalScrollbar} ref="verticalEl">
-          <div class={css.verticalIndicator}></div>
-        </div>
-        {/* 自定义横向滚动条 */}
-        <div class={css.horizontalScroll} ref="horizontalEl">
-          <div class={css.horizontalIndicator}></div>
         </div>
       </div>
     )
