@@ -3,10 +3,10 @@ import { computed, defineComponent } from 'vue'
 import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'TriggerComp',
+  name: 'Trigger',
   setup() {
     const settingStore = useSettingStore()
 
@@ -27,7 +27,7 @@ export default defineComponent({
   render() {
     return (
       <SvgIcon
-        class={css.trigger}
+        class={styles.trigger}
         name={this.collapsed ? 'navbar-menu-unfold' : 'navbar-menu-fold'}
         onClick={this.handleClick}
       />

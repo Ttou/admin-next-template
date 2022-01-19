@@ -3,7 +3,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 
 import { CountTo, SvgIcon } from '@/components'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'AnalysisView',
@@ -28,7 +28,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.view}>
+      <div class={styles.view}>
         <Row gutter={10}>
           <Col span={6}>
             <Card
@@ -38,9 +38,9 @@ export default defineComponent({
                 extra: () => <Tag color="blue">月</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div class={css.cardContent}>
-                      <CountTo class={css.text} prefix="¥" endVal={2000} />
-                      <SvgIcon class={css.icon} name="view-visit-count" />
+                    <div class={styles.cardContent}>
+                      <CountTo class={styles.text} prefix="¥" endVal={2000} />
+                      <SvgIcon class={styles.icon} name="view-visit-count" />
                     </div>
                   </Skeleton>
                 )
@@ -55,9 +55,9 @@ export default defineComponent({
                 extra: () => <Tag color="green">月</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div class={css.cardContent}>
-                      <CountTo class={css.text} prefix="¥" endVal={2000} />
-                      <SvgIcon class={css.icon} name="view-total-sales" />
+                    <div class={styles.cardContent}>
+                      <CountTo class={styles.text} prefix="¥" endVal={2000} />
+                      <SvgIcon class={styles.icon} name="view-total-sales" />
                     </div>
                   </Skeleton>
                 )
@@ -72,9 +72,9 @@ export default defineComponent({
                 extra: () => <Tag color="blue">周</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div class={css.cardContent}>
-                      <CountTo class={css.text} endVal={2000} />
-                      <SvgIcon class={css.icon} name="view-download-count" />
+                    <div class={styles.cardContent}>
+                      <CountTo class={styles.text} endVal={2000} />
+                      <SvgIcon class={styles.icon} name="view-download-count" />
                     </div>
                   </Skeleton>
                 )
@@ -89,9 +89,9 @@ export default defineComponent({
                 extra: () => <Tag color="green">年</Tag>,
                 default: () => (
                   <Skeleton loading={this.loading} active>
-                    <div class={css.cardContent}>
-                      <CountTo class={css.text} endVal={2000} />
-                      <SvgIcon class={css.icon} name="view-transaction" />
+                    <div class={styles.cardContent}>
+                      <CountTo class={styles.text} endVal={2000} />
+                      <SvgIcon class={styles.icon} name="view-transaction" />
                     </div>
                   </Skeleton>
                 )

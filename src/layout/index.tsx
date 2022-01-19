@@ -5,7 +5,7 @@ import { Scrollbar } from '@/components'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -61,7 +61,7 @@ export default defineComponent({
   },
   render() {
     const renderHeader = () => (
-      <Layout.Header class={css.layoutHeader} style={this.headerStyle}>
+      <Layout.Header class={styles.layoutHeader} style={this.headerStyle}>
         <Navbar />
       </Layout.Header>
     )
@@ -69,15 +69,15 @@ export default defineComponent({
     const renderTabbar = () => <Tabbar style={this.tabbarStyle} />
 
     const renderContent = () => (
-      <Layout.Content class={css.layoutContent}>
+      <Layout.Content class={styles.layoutContent}>
         <Content />
       </Layout.Content>
     )
 
     return (
-      <Layout class={css.layout}>
+      <Layout class={styles.layout}>
         <Layout.Sider
-          class={css.layoutSider}
+          class={styles.layoutSider}
           collapsed={!this.setting.siderOpened}
           trigger={null}
           theme={this.setting.siderTheme}
@@ -91,14 +91,14 @@ export default defineComponent({
           </Scrollbar>
         </Layout.Sider>
         {this.setting.fixedHeader ? (
-          <Layout class={css.layoutMain} style={this.mainStyle}>
+          <Layout class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}
             {renderTabbar()}
             <Scrollbar>{renderContent()}</Scrollbar>
           </Layout>
         ) : (
           <Scrollbar>
-            <Layout class={css.layoutMain} style={this.mainStyle}>
+            <Layout class={styles.layoutMain} style={this.mainStyle}>
               {renderHeader()}
               {renderTabbar()}
               {renderContent()}

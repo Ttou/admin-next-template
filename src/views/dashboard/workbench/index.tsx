@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'WorkbenchView',
   render() {
     return (
-      <div class={css.view}>
+      <div class={styles.view}>
         <h2>工作台</h2>
       </div>
     )

@@ -45,7 +45,8 @@ export default defineConfig({
         data: {
           title: '后台管理系统'
         }
-      }
+      },
+      minify: true
     }),
     viteMockServe({
       mockPath: 'mock',

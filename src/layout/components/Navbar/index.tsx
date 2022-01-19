@@ -3,21 +3,21 @@ import { defineComponent } from 'vue'
 
 import Avatar from './Avatar'
 import Breadcrumb from './Breadcrumb'
-import * as css from './index.css'
+import * as styles from './index.css'
 import ScreenFull from './ScreenFull'
 import SiderTheme from './SiderTheme'
 import Trigger from './Trigger'
 
 export default defineComponent({
-  name: 'HeaderComp',
+  name: 'Header',
   render() {
     return (
-      <div class={css.navbar}>
-        <div class={css.left}>
+      <div class={styles.navbar}>
+        <div class={styles.left}>
           <Trigger />
           <Breadcrumb />
         </div>
-        <div class={css.right}>
+        <div class={styles.right}>
           <Space>
             <ScreenFull />
             <SiderTheme />

@@ -5,10 +5,10 @@ import Scrollbar from '@better-scroll/scroll-bar'
 import { useResizeObserver } from '@vueuse/core'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'ScrollbarComp',
+  name: 'Scrollbar',
   setup() {
     const scrollbarEl = ref<Nullable<HTMLDivElement>>(null)
     const contentEl = ref<Nullable<HTMLDivElement>>(null)
@@ -48,8 +48,8 @@ export default defineComponent({
   },
   render() {
     return (
-      <div ref="scrollbarEl" class={css.scrollbar}>
-        <div ref="contentEl" class={css.content}>
+      <div ref="scrollbarEl" class={styles.scrollbar}>
+        <div ref="contentEl" class={styles.content}>
           {this.$slots.default?.()}
         </div>
       </div>

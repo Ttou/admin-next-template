@@ -4,10 +4,10 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'LogoComp',
+  name: 'Logo',
   setup() {
     const style = ref({} as CSSProperties)
 
@@ -34,8 +34,8 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.logo} style={this.style}>
-        <SvgIcon class={css.logoIcon} name="logo" />
+      <div class={styles.logo} style={this.style}>
+        <SvgIcon class={styles.logoIcon} name="logo" />
       </div>
     )
   }

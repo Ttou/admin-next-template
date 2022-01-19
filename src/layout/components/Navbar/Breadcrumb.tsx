@@ -2,10 +2,10 @@ import { Breadcrumb } from 'ant-design-vue'
 import { defineComponent, ref, watchEffect } from 'vue'
 import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'BreadcrumbComp',
+  name: 'Breadcrumb',
   setup() {
     const routes = ref([] as any[])
 
@@ -56,7 +56,7 @@ export default defineComponent({
   render() {
     return (
       <Breadcrumb
-        class={css.breadcrumb}
+        class={styles.breadcrumb}
         routes={this.routes}
         itemRender={({ route, routes }) =>
           routes.indexOf(route) === routes.length - 1 ? (

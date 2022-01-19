@@ -11,7 +11,7 @@ import SubMenu from './SubMenu'
 import type { Item } from './types'
 
 export default defineComponent({
-  name: 'MenuComp',
+  name: 'Menu',
   components: {
     SubMenu
   },

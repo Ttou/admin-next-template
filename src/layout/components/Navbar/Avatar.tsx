@@ -5,10 +5,10 @@ import { useRouter } from 'vue-router'
 import { SvgIcon } from '@/components'
 import { useUserStore } from '@/store'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'AvatarComp',
+  name: 'Avatar',
   setup() {
     const router = useRouter()
     const userStore = useUserStore()
@@ -34,8 +34,8 @@ export default defineComponent({
       <Dropdown
         v-slots={{
           default: () => (
-            <div class={css.avatarWrapper}>
-              <SvgIcon class={css.avatar} name="avatar" />
+            <div class={styles.avatarWrapper}>
+              <SvgIcon class={styles.avatar} name="avatar" />
             </div>
           ),
           overlay: () => (

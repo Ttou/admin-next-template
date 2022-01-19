@@ -14,10 +14,10 @@ import { SvgIcon } from '@/components'
 import { ROUTE } from '@/constants'
 import { useTabsStore } from '@/store'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
-  name: 'TabsComp',
+  name: 'Tabs',
   setup() {
     const activeKey = ref('')
 
@@ -140,7 +140,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.tabbar}>
+      <div class={styles.tabbar}>
         <Tabs
           v-model={[this.activeKey, 'activeKey']}
           onChange={this.handleSelectTab}
@@ -148,11 +148,11 @@ export default defineComponent({
           {this.visitedTabs.map(view => (
             <Tabs.TabPane
               tab={() => (
-                <div class={css.tabContent}>
+                <div class={styles.tabContent}>
                   <span>{view.meta!.title}</span>
                   <SvgIcon
                     name="tabbar-close"
-                    class={css.tabCloseIcon}
+                    class={styles.tabCloseIcon}
                     onClick={withModifiers(
                       () => this.handleCloseTab(view),
                       ['stop']
@@ -167,12 +167,12 @@ export default defineComponent({
         <Dropdown
           v-slots={{
             default: () => (
-              <div class={css.tabsMenu}>
+              <div class={styles.tabsMenu}>
                 <SvgIcon name="tabbar-down" />
               </div>
             ),
             overlay: () => (
-              <Menu class={css.tabsDropdownMenu}>
+              <Menu class={styles.tabsDropdownMenu}>
                 <Menu.Item onClick={this.handleRefreshTab}>
                   <SvgIcon name="tabbar-refresh" />
                   刷新页面

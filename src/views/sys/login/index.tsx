@@ -7,7 +7,7 @@ import { ProForm, SvgIcon } from '@/components'
 import type { FormRef, ProFormProps } from '@/components/ProForm/types'
 import { useSettingStore, useUserStore } from '@/store'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'LoginView',
@@ -105,17 +105,17 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.view}>
-        <div class={css.top}>
-          <div class={css.header}>
-            <SvgIcon class={css.logoIcon} name="logo" />
-            <span class={css.title}>{this.title}</span>
+      <div class={styles.view}>
+        <div class={styles.top}>
+          <div class={styles.header}>
+            <SvgIcon class={styles.logoIcon} name="logo" />
+            <span class={styles.title}>{this.title}</span>
           </div>
-          <div class={css.desc}>基于 Ant Design 的后台管理系统</div>
+          <div class={styles.desc}>基于 Ant Design 的后台管理系统</div>
         </div>
         {/* @ts-ignore */}
-        <ProForm ref="formRef" class={css.loginForm} {...this.formConfig} />
-        <SvgIcon class={css.backgroundIcon} name="background" />
+        <ProForm ref="formRef" class={styles.loginForm} {...this.formConfig} />
+        <SvgIcon class={styles.backgroundIcon} name="background" />
       </div>
     )
   }

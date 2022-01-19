@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 import props from './props'
 
 export default defineComponent({
@@ -15,7 +15,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <svg class={css.svgIcon} aria-hidden="true">
+      <svg class={styles.svgIcon} aria-hidden="true">
         <use xlinkHref={this.symbolId} />
       </svg>
     )

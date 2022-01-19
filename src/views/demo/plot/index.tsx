@@ -13,7 +13,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 
 import { ProPlot } from '@/components'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'DemoPlot',
@@ -106,7 +106,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.view}>
+      <div class={styles.view}>
         <Row gutter={20}>
           <Col span="1"></Col>
           <Col span="10">

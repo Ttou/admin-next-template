@@ -4,7 +4,7 @@ import { defineComponent, ref } from 'vue'
 import { ProEditor } from '@/components'
 import type { ProEditorProps, ProEditorRef } from '@/components/ProEditor/types'
 
-import * as css from './index.css'
+import * as styles from './index.css'
 
 export default defineComponent({
   name: 'DemoEditor',
@@ -36,8 +36,8 @@ export default defineComponent({
   },
   render() {
     return (
-      <div class={css.view}>
-        <div class={css.btnsWrap}>
+      <div class={styles.view}>
+        <div class={styles.btnsWrap}>
           <Space>
             <Button onClick={this.handleGetHTML}>获取 HTML</Button>
             <Button onClick={this.handleGetTXT}>获取 TXT</Button>
