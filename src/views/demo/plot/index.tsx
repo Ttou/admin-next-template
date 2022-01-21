@@ -13,7 +13,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 
 import { ProPlot } from '@/components'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'DemoPlot',

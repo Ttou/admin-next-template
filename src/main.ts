@@ -1,6 +1,6 @@
 import 'virtual:svg-icons-register'
 import 'ant-design-vue/dist/antd.less'
-import './styles/index.css'
+import './styles'
 
 import Antd from 'ant-design-vue'
 import { createPinia } from 'pinia'

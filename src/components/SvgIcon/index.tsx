@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 import props from './props'
 
 export default defineComponent({

@@ -1,4 +1,3 @@
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
@@ -17,6 +16,9 @@ export default defineConfig({
         // @see https://gitee.com/ant-design-vue/ant-design-vue/blob/next/components/style/themes/default.less
         modifyVars: {}
       }
+    },
+    modules: {
+      generateScopedName: '[name]__[local]___[hash:base64:5]'
     }
   },
   resolve: {
@@ -34,7 +36,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    vanillaExtractPlugin(),
     compression(),
     svgIcons({
       iconDirs: [resolve('src/icons')],

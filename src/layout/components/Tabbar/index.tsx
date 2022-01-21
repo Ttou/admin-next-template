@@ -14,7 +14,7 @@ import { SvgIcon } from '@/components'
 import { ROUTE } from '@/constants'
 import { useTabsStore } from '@/store'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'Tabs',

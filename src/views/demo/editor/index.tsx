@@ -4,7 +4,7 @@ import { defineComponent, ref } from 'vue'
 import { ProEditor } from '@/components'
 import type { ProEditorProps, ProEditorRef } from '@/components/ProEditor/types'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'DemoEditor',

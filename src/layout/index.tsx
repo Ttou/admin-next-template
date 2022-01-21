@@ -5,7 +5,7 @@ import { Scrollbar } from '@/components'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'DefaultLayout',

@@ -5,7 +5,7 @@ import Scrollbar from '@better-scroll/scroll-bar'
 import { useResizeObserver } from '@vueuse/core'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'Scrollbar',

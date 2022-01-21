@@ -7,7 +7,7 @@ import { ProForm, SvgIcon } from '@/components'
 import type { FormRef, ProFormProps } from '@/components/ProForm/types'
 import { useSettingStore, useUserStore } from '@/store'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'LoginView',

@@ -1,1 +1,0 @@
-import{d as o,a4 as n,a6 as u,b as p}from"./vendor.9426880b.js";var d=o({name:"RedirectView",setup(){const t=n(),r=u(),{params:a,query:s}=t,e=a.path;r.replace({path:e.startsWith("/")?e:`/${e}`,query:s})},render(){return p("section",null,null)}});export{d as default};

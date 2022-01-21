@@ -1,0 +1,55 @@
+.view {
+  padding: 110px 0 144px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.top {
+  text-align: center;
+}
+
+.header {
+  height: 55px;
+}
+
+.logoIcon {
+  width: 55px;
+  height: 55px;
+  vertical-align: top;
+  margin-right: 16px;
+  border-style: none;
+}
+
+.title {
+  position: relative;
+  top: 2px;
+  font-size: 33px;
+  font-weight: bold;
+  font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: rgb(0 0 0 / 85%);
+}
+
+.desc {
+  margin-top: 12px;
+  margin-bottom: 40px;
+  color: rgb(0 0 0 / 45%);
+  font-size: 14px;
+}
+
+.loginForm {
+  width: 368px;
+  min-width: 260px;
+  margin: 0 auto;
+}
+
+.backgroundIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f2f5;
+  z-index: -1;
+}

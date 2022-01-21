@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref } from 'vue'
 import { Grid as VxeGrid } from 'vxe-table'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 import props from './props'
 
 export default defineComponent({
@@ -20,6 +20,8 @@ export default defineComponent({
     }
   },
   render() {
-    return <VxeGrid class={styles.proTable} {...this.config} />
+    return (
+      <VxeGrid class={styles.proTable} {...this.config} v-slots={this.$slots} />
+    )
   }
 })

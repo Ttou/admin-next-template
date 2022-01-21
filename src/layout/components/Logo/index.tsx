@@ -4,7 +4,7 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'Logo',

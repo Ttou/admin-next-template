@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import { SvgIcon } from '@/components'
 import { useUserStore } from '@/store'
 
-import * as styles from './index.css'
+import styles from './index.module.css'
 
 export default defineComponent({
   name: 'Avatar',
