@@ -18,7 +18,7 @@ export default defineConfig({
       }
     },
     modules: {
-      generateScopedName: '[local]___[hash:base64:5]'
+      generateScopedName: '[local]__[hash:base64:5]'
     }
   },
   resolve: {
