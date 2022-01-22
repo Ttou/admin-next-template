@@ -9,6 +9,40 @@ export default defineComponent({
   name: 'AnalysisView',
   setup() {
     const loading = ref(false)
+    const list = ref([
+      {
+        title: '访问数',
+        subText: '月',
+        subColor: 'blue',
+        valPrefix: '￥',
+        valNum: 2000,
+        icon: 'view-visit-count'
+      },
+      {
+        title: '成交额',
+        subText: '月',
+        subColor: 'green',
+        valPrefix: '￥',
+        valNum: 2000,
+        icon: 'view-total-sales'
+      },
+      {
+        title: '下载数',
+        subText: '周',
+        subColor: 'blue',
+        valPrefix: '',
+        valNum: 2000,
+        icon: 'view-download-count'
+      },
+      {
+        title: '成交数',
+        subText: '年',
+        subColor: 'green',
+        valPrefix: '',
+        valNum: 2000,
+        icon: 'view-transaction'
+      }
+    ])
 
     function init() {
       loading.value = true
@@ -23,82 +57,38 @@ export default defineComponent({
     })
 
     return {
-      loading
+      loading,
+      list
     }
   },
   render() {
+    const renderItem = (item: typeof this.list[0]) => (
+      <Col span={6}>
+        <Card
+          title={item.title}
+          size="small"
+          v-slots={{
+            extra: () => <Tag color={item.subColor}>{item.subText}</Tag>,
+            default: () => (
+              <Skeleton loading={this.loading} active>
+                <div class={styles.cardContent}>
+                  <CountTo
+                    class={styles.text}
+                    prefix={item.valPrefix}
+                    endVal={item.valNum}
+                  />
+                  <SvgIcon class={styles.icon} name={item.icon} />
+                </div>
+              </Skeleton>
+            )
+          }}
+        />
+      </Col>
+    )
+
     return (
       <div class={styles.view}>
-        <Row gutter={10}>
-          <Col span={6}>
-            <Card
-              title="访问数"
-              size="small"
-              v-slots={{
-                extra: () => <Tag color="blue">月</Tag>,
-                default: () => (
-                  <Skeleton loading={this.loading} active>
-                    <div class={styles.cardContent}>
-                      <CountTo class={styles.text} prefix="¥" endVal={2000} />
-                      <SvgIcon class={styles.icon} name="view-visit-count" />
-                    </div>
-                  </Skeleton>
-                )
-              }}
-            />
-          </Col>
-          <Col span={6}>
-            <Card
-              title="成交额"
-              size="small"
-              v-slots={{
-                extra: () => <Tag color="green">月</Tag>,
-                default: () => (
-                  <Skeleton loading={this.loading} active>
-                    <div class={styles.cardContent}>
-                      <CountTo class={styles.text} prefix="¥" endVal={2000} />
-                      <SvgIcon class={styles.icon} name="view-total-sales" />
-                    </div>
-                  </Skeleton>
-                )
-              }}
-            />
-          </Col>
-          <Col span={6}>
-            <Card
-              title="下载数"
-              size="small"
-              v-slots={{
-                extra: () => <Tag color="blue">周</Tag>,
-                default: () => (
-                  <Skeleton loading={this.loading} active>
-                    <div class={styles.cardContent}>
-                      <CountTo class={styles.text} endVal={2000} />
-                      <SvgIcon class={styles.icon} name="view-download-count" />
-                    </div>
-                  </Skeleton>
-                )
-              }}
-            />
-          </Col>
-          <Col span={6}>
-            <Card
-              title="成交数"
-              size="small"
-              v-slots={{
-                extra: () => <Tag color="green">年</Tag>,
-                default: () => (
-                  <Skeleton loading={this.loading} active>
-                    <div class={styles.cardContent}>
-                      <CountTo class={styles.text} endVal={2000} />
-                      <SvgIcon class={styles.icon} name="view-transaction" />
-                    </div>
-                  </Skeleton>
-                )
-              }}
-            />
-          </Col>
-        </Row>
+        <Row gutter={10}>{this.list.map(renderItem)}</Row>
       </div>
     )
   }
