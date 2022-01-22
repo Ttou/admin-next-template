@@ -1,4 +1,4 @@
-import { Button, Space } from 'ant-design-vue'
+import { Button, DatePicker, Space } from 'ant-design-vue'
 import type VXETable from 'vxe-table'
 
 import { TBALE_RENDERER } from '@/constants'
@@ -15,6 +15,29 @@ export function useTableRenderer(vxe: typeof VXETable) {
           <Button htmlType="reset">重置</Button>
         </Space>
       ]
+    }
+  })
+
+  vxe.renderer.add(TBALE_RENDERER.FormItemDate, {
+    renderItemContent(renderOpts, params) {
+      const { props } = renderOpts
+      const { data, property } = params
+      let Component
+
+      switch (props!.type) {
+        case 'range':
+          Component = DatePicker.RangePicker
+          break
+        case 'month':
+          Component = DatePicker.MonthPicker
+          break
+        case 'date':
+        default:
+          Component = DatePicker
+          break
+      }
+
+      return [<Component v-model={[data[property], 'value']} {...props} />]
     }
   })
 }

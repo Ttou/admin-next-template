@@ -1,6 +1,7 @@
 /** 表格渲染器 */
 export enum TBALE_RENDERER {
-  FormItemBtns = 'FormItemBtns'
+  FormItemBtns = 'FormItemBtns',
+  FormItemDate = 'FormItemDate'
 }
 
 /** 表格格式化 */

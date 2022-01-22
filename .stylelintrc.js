@@ -1,7 +1,7 @@
 const { defineStylelintConfig } = require('@ttou/define-config')
 
 module.exports = defineStylelintConfig({
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: ['stylelint-config-prettier', 'stylelint-config-standard'],
   overrides: [
     {
       files: ['**/*.less'],
@@ -16,6 +16,7 @@ module.exports = defineStylelintConfig({
     'block-no-empty': null,
     'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': null,
-    'no-descending-specificity': null
+    'no-descending-specificity': null,
+    'declaration-colon-newline-after': null
   }
 })

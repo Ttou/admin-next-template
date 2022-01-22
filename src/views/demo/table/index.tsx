@@ -1,3 +1,4 @@
+import { omit } from 'lodash-es'
 import { defineComponent, ref } from 'vue'
 
 import { demoApi } from '@/apis'
@@ -94,6 +95,18 @@ export default defineComponent({
               }
             },
             {
+              title: '时间',
+              field: 'date',
+              itemRender: {
+                name: TBALE_RENDERER.FormItemDate,
+                props: {
+                  type: 'range',
+                  placeholder: ['开始时间', '结束时间'],
+                  valueFormat: 'YYYY-MM-DD HH:mm:ss'
+                }
+              }
+            },
+            {
               itemRender: {
                 name: TBALE_RENDERER.FormItemBtns
               }
@@ -167,6 +180,12 @@ export default defineComponent({
           },
           ajax: {
             query: async ({ page, form }) => {
+              if (form.date) {
+                form.start = form.date[0]
+                form.end = form.date[1]
+                form = omit(form, ['date'])
+              }
+
               const data = await demoApi.getList({
                 pageSize: page.pageSize,
                 current: page.currentPage,
