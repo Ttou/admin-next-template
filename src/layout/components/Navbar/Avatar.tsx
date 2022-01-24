@@ -1,4 +1,4 @@
-import { Dropdown, Menu, Modal } from 'ant-design-vue'
+import { Dropdown, Menu, MenuItem, Modal } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -40,7 +40,7 @@ export default defineComponent({
           ),
           overlay: () => (
             <Menu>
-              <Menu.Item onClick={this.handleLogout}>
+              <MenuItem onClick={this.handleLogout}>
                 <SvgIcon
                   name="navbar-logout"
                   style={{
@@ -48,7 +48,7 @@ export default defineComponent({
                   }}
                 />
                 <span>退出登录</span>
-              </Menu.Item>
+              </MenuItem>
             </Menu>
           )
         }}

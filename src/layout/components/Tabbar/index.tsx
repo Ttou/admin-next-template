@@ -1,4 +1,4 @@
-import { Dropdown, Menu, Tabs } from 'ant-design-vue'
+import { Dropdown, Menu, MenuDivider, MenuItem, Tabs } from 'ant-design-vue'
 import {
   computed,
   defineComponent,
@@ -173,37 +173,37 @@ export default defineComponent({
             ),
             overlay: () => (
               <Menu class={styles.tabsDropdownMenu}>
-                <Menu.Item onClick={this.handleRefreshTab}>
+                <MenuItem onClick={this.handleRefreshTab}>
                   <SvgIcon name="tabbar-refresh" />
                   刷新页面
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem
                   onClick={this.handleCloseLeftTabs}
                   disabled={this.closeLeftDisabled}
                 >
                   <SvgIcon name="tabbar-close-left" />
                   关闭左侧
-                </Menu.Item>
-                <Menu.Item
+                </MenuItem>
+                <MenuItem
                   onClick={this.handleCloseRightTabs}
                   disabled={this.closeRightDisabled}
                 >
                   <SvgIcon name="tabbar-close-right" />
                   关闭右侧
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item
+                </MenuItem>
+                <MenuDivider />
+                <MenuItem
                   onClick={this.handleCloseOtherTabs}
                   disabled={this.closeOtherDisabled}
                 >
                   <SvgIcon name="tabbar-close" />
                   关闭其它
-                </Menu.Item>
-                <Menu.Item onClick={this.handleCloseAllTabs}>
+                </MenuItem>
+                <MenuItem onClick={this.handleCloseAllTabs}>
                   <SvgIcon name="tabbar-close-all" />
                   关闭所有
-                </Menu.Item>
+                </MenuItem>
               </Menu>
             )
           }}

@@ -1,4 +1,4 @@
-import { Menu } from 'ant-design-vue'
+import { SubMenu } from 'ant-design-vue'
 import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 
@@ -40,7 +40,7 @@ export default defineComponent({
     return this.onlyOneChild ? (
       <MainMenu item={this.item.children![0]} />
     ) : (
-      <Menu.SubMenu
+      <SubMenu
         key={this.item.path}
         icon={
           this.item.meta.icon ? <SvgIcon name={this.item.meta.icon} /> : null
@@ -50,7 +50,7 @@ export default defineComponent({
         {this.item.children?.map(item =>
           item.children ? <sub-menu item={item} /> : <MainMenu item={item} />
         )}
-      </Menu.SubMenu>
+      </SubMenu>
     )
   }
 })

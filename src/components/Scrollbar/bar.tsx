@@ -1,22 +1,3 @@
-<template>
-  <transition name="el-scrollbar-fade">
-    <div
-      v-show="always || visible"
-      ref="instance"
-      :class="['el-scrollbar__bar', 'is-' + bar.key]"
-      @mousedown="clickTrackHandler"
-    >
-      <div
-        ref="thumb"
-        class="el-scrollbar__thumb"
-        :style="thumbStyle"
-        @mousedown="clickThumbHandler"
-      ></div>
-    </div>
-  </transition>
-</template>
-
-<script lang="ts">
 import { isClient, useEventListener } from '@vueuse/core'
 import {
   computed,
@@ -24,16 +5,22 @@ import {
   inject,
   onBeforeUnmount,
   ref,
-  toRef
+  toRef,
+  Transition
 } from 'vue'
 
-import { props } from './bar'
 import { scrollbarContextKey } from './constant'
 import { BAR_MAP, renderThumbStyle } from './util'
 
 export default defineComponent({
   name: 'Bar',
-  props,
+  props: {
+    vertical: Boolean,
+    size: { type: String },
+    move: { type: Number },
+    ratio: { type: Number, required: true },
+    always: Boolean
+  },
   setup(props) {
     const scrollbar = inject(scrollbarContextKey)
     if (!scrollbar) throw new Error('can not inject scrollbar context')
@@ -185,6 +172,24 @@ export default defineComponent({
       clickTrackHandler,
       clickThumbHandler
     }
+  },
+  render() {
+    return (
+      <Transition name="el-scrollbar-fade">
+        <div
+          v-show={this.always || this.visible}
+          ref="instance"
+          class={['el-scrollbar__bar', 'is-' + this.bar.key]}
+          onMousedown={this.clickTrackHandler}
+        >
+          <div
+            ref="thumb"
+            class="el-scrollbar__thumb"
+            style={this.thumbStyle}
+            onMousedown={this.clickThumbHandler}
+          ></div>
+        </div>
+      </Transition>
+    )
   }
 })
-</script>

@@ -50,7 +50,7 @@ type FormItemType =
   | 'radio'
   | 'textarea'
 
-export type FormItem = {
+export type Item = {
   label?: string
   name?: string
   type?: FormItemType

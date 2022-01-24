@@ -1,4 +1,10 @@
-import { Button, DatePicker, Space } from 'ant-design-vue'
+import {
+  Button,
+  DatePicker,
+  MonthPicker,
+  RangePicker,
+  Space
+} from 'ant-design-vue'
 import type VXETable from 'vxe-table'
 
 import { TBALE_RENDERER } from '@/constants'
@@ -22,14 +28,14 @@ export function useTableRenderer(vxe: typeof VXETable) {
     renderItemContent(renderOpts, params) {
       const { props } = renderOpts
       const { data, property } = params
-      let Component
+      let Component: any
 
       switch (props!.type) {
         case 'range':
-          Component = DatePicker.RangePicker
+          Component = RangePicker
           break
         case 'month':
-          Component = DatePicker.MonthPicker
+          Component = MonthPicker
           break
         case 'date':
         default:

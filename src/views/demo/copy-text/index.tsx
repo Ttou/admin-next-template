@@ -1,4 +1,4 @@
-import { Input, message } from 'ant-design-vue'
+import { InputSearch, message } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
 import { copyText } from '@/utils'
@@ -26,7 +26,7 @@ export default defineComponent({
   render() {
     return (
       <div>
-        <Input.Search
+        <InputSearch
           v-model={[this.inputValue, 'value']}
           onSearch={this.handleCopy}
           enterButton={'复制'}

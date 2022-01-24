@@ -1,16 +1,22 @@
 import {
   Checkbox,
+  CheckboxGroup,
   DatePicker,
   Form,
+  FormItem,
   Input,
+  InputPassword,
   Radio,
+  RadioGroup,
   Select,
-  Switch
+  SelectOption,
+  Switch,
+  Textarea
 } from 'ant-design-vue'
 import { defineComponent, ref, watch } from 'vue'
 
 import props from './props'
-import type { FormItem } from './types'
+import type { Item } from './types'
 
 export default defineComponent({
   name: 'ProForm',
@@ -50,7 +56,7 @@ export default defineComponent({
     }
   },
   render() {
-    const renderComponent = (item: FormItem) => {
+    const renderComponent = (item: Item) => {
       if (item.render) return item.render(this.model)
 
       switch (item.type) {
@@ -63,7 +69,7 @@ export default defineComponent({
           )
         case 'input-password':
           return (
-            <Input.Password
+            <InputPassword
               v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
@@ -76,9 +82,7 @@ export default defineComponent({
               {...item.componentProps}
             >
               {item.options?.map(option => (
-                <Select.Option value={option.value}>
-                  {option.label}
-                </Select.Option>
+                <SelectOption value={option.value}>{option.label}</SelectOption>
               ))}
             </Select>
           )
@@ -98,29 +102,29 @@ export default defineComponent({
           )
         case 'checkbox':
           return (
-            <Checkbox.Group
+            <CheckboxGroup
               v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             >
               {item.options?.map(option => (
                 <Checkbox value={option.value}>{option.label}</Checkbox>
               ))}
-            </Checkbox.Group>
+            </CheckboxGroup>
           )
         case 'radio':
           return (
-            <Radio.Group
+            <RadioGroup
               v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             >
               {item.options?.map(option => (
                 <Radio value={option.value}>{option.label}</Radio>
               ))}
-            </Radio.Group>
+            </RadioGroup>
           )
         case 'textarea':
           return (
-            <Input.TextArea
+            <Textarea
               v-model={[this.model[item.name!], 'value']}
               {...item.componentProps}
             />
@@ -134,14 +138,14 @@ export default defineComponent({
       <Form ref="form" model={this.model} {...this.props}>
         {this.items.map(item => {
           return (
-            <Form.Item
+            <FormItem
               label={item.label}
               name={item.name}
               rules={item.rules}
               {...item.props}
             >
               {renderComponent(item)}
-            </Form.Item>
+            </FormItem>
           )
         })}
       </Form>

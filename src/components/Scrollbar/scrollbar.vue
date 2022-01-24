@@ -33,7 +33,7 @@
 </template>
 <script lang="ts">
 import { useEventListener, useResizeObserver } from '@vueuse/core'
-import type { CSSProperties, StyleValue } from 'vue'
+import type { CSSProperties, PropType, StyleValue } from 'vue'
 import {
   computed,
   defineComponent,
@@ -45,9 +45,8 @@ import {
   watch
 } from 'vue'
 
-import Bar from './bar.vue'
+import Bar from './bar'
 import { scrollbarContextKey } from './constant'
-import { emits, props } from './scrollbar'
 import { addUnit, isNumber } from './util'
 
 export default defineComponent({
@@ -55,8 +54,23 @@ export default defineComponent({
   components: {
     Bar
   },
-  props,
-  emits,
+  props: {
+    height: { type: [String, Number], default: '' },
+    maxHeight: { type: [String, Number], default: '' },
+    native: { type: Boolean, default: false },
+    wrapStyle: {
+      type: [String, Object, Array] as PropType<StyleValue>,
+      default: ''
+    },
+    wrapClass: { type: [String, Array], default: '' },
+    viewClass: { type: [String, Array], default: '' },
+    viewStyle: { type: [String, Array], default: '' },
+    noresize: Boolean,
+    tag: { type: String, default: 'div' },
+    always: { type: Boolean, default: false },
+    minSize: { type: Number, default: 20 }
+  },
+  emits: ['scroll'],
   setup(props, { emit }) {
     let stopResizeObserver: (() => void) | undefined = undefined
     let stopResizeListener: (() => void) | undefined = undefined
@@ -167,7 +181,6 @@ export default defineComponent({
       scrollbar$,
       wrap$,
       resize$,
-
       moveX,
       moveY,
       ratioX,
