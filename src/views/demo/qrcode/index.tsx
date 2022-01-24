@@ -1,8 +1,8 @@
 import { Card, Col, Row } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
-import { QrCode } from '@/components'
-import type { QrCodeProps } from '@/components/QrCode/types'
+import { ProQr } from '@/components'
+import type { ProQrProps } from '@/components/ProQr/types'
 
 import logo from './images/logo.svg'
 
@@ -11,19 +11,19 @@ export default defineComponent({
   setup() {
     const qr1Config = ref({
       text: 'http://www.baidu.com'
-    } as QrCodeProps)
+    } as ProQrProps)
 
     const qr2Config = ref({
       text: 'http://www.baidu.com',
       options: {
         color: { dark: '#43d08c' }
       }
-    } as QrCodeProps)
+    } as ProQrProps)
 
     const qr3Config = ref({
       text: 'http://www.baidu.com',
       logo
-    } as QrCodeProps)
+    } as ProQrProps)
 
     return {
       qr1Config,
@@ -37,17 +37,17 @@ export default defineComponent({
         <Row gutter={15}>
           <Col span={8}>
             <Card title="基础示例">
-              <QrCode {...this.qr1Config} />
+              <ProQr {...this.qr1Config} />
             </Card>
           </Col>
           <Col span={8}>
             <Card title="配置样式">
-              <QrCode {...this.qr2Config} />
+              <ProQr {...this.qr2Config} />
             </Card>
           </Col>
           <Col span={8}>
             <Card title="集成图标">
-              <QrCode {...this.qr3Config} />
+              <ProQr {...this.qr3Config} />
             </Card>
           </Col>
         </Row>

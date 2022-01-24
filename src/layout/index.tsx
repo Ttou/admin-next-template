@@ -1,4 +1,9 @@
-import { Layout } from 'ant-design-vue'
+import {
+  Layout,
+  LayoutContent,
+  LayoutHeader,
+  LayoutSider
+} from 'ant-design-vue'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
 import { Scrollbar } from '@/components'
@@ -61,22 +66,22 @@ export default defineComponent({
   },
   render() {
     const renderHeader = () => (
-      <Layout.Header class={styles.layoutHeader} style={this.headerStyle}>
+      <LayoutHeader class={styles.layoutHeader} style={this.headerStyle}>
         <Navbar />
-      </Layout.Header>
+      </LayoutHeader>
     )
 
     const renderTabbar = () => <Tabbar style={this.tabbarStyle} />
 
     const renderContent = () => (
-      <Layout.Content class={styles.layoutContent}>
+      <LayoutContent class={styles.layoutContent}>
         <Content />
-      </Layout.Content>
+      </LayoutContent>
     )
 
     return (
       <Layout class={styles.layout}>
-        <Layout.Sider
+        <LayoutSider
           class={styles.layoutSider}
           collapsed={!this.setting.siderOpened}
           trigger={null}
@@ -89,7 +94,7 @@ export default defineComponent({
           <Scrollbar>
             <Menu />
           </Scrollbar>
-        </Layout.Sider>
+        </LayoutSider>
         {this.setting.fixedHeader ? (
           <Layout class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}

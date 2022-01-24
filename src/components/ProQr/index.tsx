@@ -4,7 +4,7 @@ import { defineComponent, onMounted, ref, watch } from 'vue'
 import props from './props'
 
 export default defineComponent({
-  name: 'QrCode',
+  name: 'ProQr',
   props,
   setup(props) {
     const qrEl = ref<Nullable<HTMLCanvasElement>>(null)

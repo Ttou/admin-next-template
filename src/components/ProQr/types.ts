@@ -2,4 +2,4 @@ import { ExtractPropTypes } from 'vue'
 
 import type props from './props'
 
-export type QrCodeProps = ExtractPropTypes<typeof props>
+export type ProQrProps = ExtractPropTypes<typeof props>
