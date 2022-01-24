@@ -16,8 +16,8 @@ export default defineComponent({
   name: 'Bar',
   props: {
     vertical: Boolean,
-    size: { type: String },
-    move: { type: Number },
+    size: { type: String, default: '' },
+    move: { type: Number, default: 0 },
     ratio: { type: Number, required: true },
     always: Boolean
   },
@@ -60,7 +60,7 @@ export default defineComponent({
         thumb.value![bar.value.offset]
     )
 
-    const clickThumbHandler = (e: MouseEvent) => {
+    function clickThumbHandler(e: MouseEvent) {
       // prevent click event of middle and right button
       e.stopPropagation()
       if (e.ctrlKey || [1, 2].includes(e.button)) return
@@ -75,8 +75,8 @@ export default defineComponent({
         (e[bar.value.client] - el.getBoundingClientRect()[bar.value.direction])
     }
 
-    const clickTrackHandler = (e: MouseEvent) => {
-      if (!thumb.value || !instance.value || !scrollbar.wrapElement) return
+    function clickTrackHandler(e: MouseEvent) {
+      if (!thumb.value || !instance.value || !scrollbar!.wrapElement) return
 
       const offset = Math.abs(
         (e.target as HTMLElement).getBoundingClientRect()[bar.value.direction] -
@@ -87,13 +87,13 @@ export default defineComponent({
         ((offset - thumbHalf) * 100 * offsetRatio.value) /
         instance.value[bar.value.offset]
 
-      scrollbar.wrapElement[bar.value.scroll] =
+      scrollbar!.wrapElement[bar.value.scroll] =
         (thumbPositionPercentage *
-          scrollbar.wrapElement[bar.value.scrollSize]) /
+          scrollbar!.wrapElement[bar.value.scrollSize]) /
         100
     }
 
-    const startDrag = (e: MouseEvent) => {
+    function startDrag(e: MouseEvent) {
       e.stopImmediatePropagation()
       cursorDown = true
       document.addEventListener('mousemove', mouseMoveDocumentHandler)
@@ -102,7 +102,7 @@ export default defineComponent({
       document.onselectstart = () => false
     }
 
-    const mouseMoveDocumentHandler = (e: MouseEvent) => {
+    function mouseMoveDocumentHandler(e: MouseEvent) {
       if (!instance.value || !thumb.value) return
       if (cursorDown === false) return
 
@@ -117,13 +117,13 @@ export default defineComponent({
       const thumbPositionPercentage =
         ((offset - thumbClickPosition) * 100 * offsetRatio.value) /
         instance.value[bar.value.offset]
-      scrollbar.wrapElement[bar.value.scroll] =
+      scrollbar!.wrapElement[bar.value.scroll] =
         (thumbPositionPercentage *
-          scrollbar.wrapElement[bar.value.scrollSize]) /
+          scrollbar!.wrapElement[bar.value.scrollSize]) /
         100
     }
 
-    const mouseUpDocumentHandler = () => {
+    function mouseUpDocumentHandler() {
       cursorDown = false
       barStore.value[bar.value.axis] = 0
       document.removeEventListener('mousemove', mouseMoveDocumentHandler)
@@ -132,12 +132,12 @@ export default defineComponent({
       if (cursorLeave) visible.value = false
     }
 
-    const mouseMoveScrollbarHandler = () => {
+    function mouseMoveScrollbarHandler() {
       cursorLeave = false
       visible.value = !!props.size
     }
 
-    const mouseLeaveScrollbarHandler = () => {
+    function mouseLeaveScrollbarHandler() {
       cursorLeave = true
       visible.value = cursorDown
     }
@@ -157,6 +157,7 @@ export default defineComponent({
       'mousemove',
       mouseMoveScrollbarHandler
     )
+
     useEventListener(
       toRef(scrollbar, 'scrollbarElement'),
       'mouseleave',
