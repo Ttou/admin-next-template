@@ -14,7 +14,7 @@ import props from './props'
 export default defineComponent({
   name: 'CountTo',
   props,
-  emits: ['onStarted', 'onFinished'],
+  emits: ['started', 'finished'],
   setup(props, { emit }) {
     const source = ref(props.startVal)
     const disabled = ref(false)
@@ -37,8 +37,8 @@ export default defineComponent({
       outputValue = useTransition(source, {
         disabled,
         duration: props.duration,
-        onFinished: () => emit('onFinished'),
-        onStarted: () => emit('onStarted'),
+        onFinished: () => emit('finished'),
+        onStarted: () => emit('started'),
         ...(props.useEasing
           ? { transition: TransitionPresets[props.transition] }
           : {})
