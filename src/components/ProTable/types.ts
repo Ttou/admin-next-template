@@ -2,4 +2,4 @@ import type { ExtractPropTypes } from 'vue'
 
 import type props from './props'
 
-export type PropTableProps = ExtractPropTypes<typeof props>
+export type ProTableProps = ExtractPropTypes<typeof props>

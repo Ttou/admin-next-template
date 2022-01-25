@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue'
 
 import { demoApi } from '@/apis'
 import { ProTable } from '@/components'
-import type { PropTableProps } from '@/components/ProTable/types'
+import type { ProTableProps } from '@/components/ProTable/types'
 import {
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,
@@ -15,6 +15,7 @@ export default defineComponent({
   name: 'DemoTable',
   setup() {
     const tableConfig = ref({
+      fixedHeight: true,
       options: {
         showOverflow: true,
         border: true,
@@ -196,7 +197,7 @@ export default defineComponent({
           }
         }
       }
-    } as PropTableProps)
+    } as ProTableProps)
 
     return {
       tableConfig
