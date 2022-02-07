@@ -78,6 +78,7 @@
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-html": "^3.0.3",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^0.2.0"
   },

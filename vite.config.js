@@ -6,6 +6,10 @@ import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
+import {
+  AndDesignVueResolve,
+  createStyleImportPlugin
+} from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export default defineConfig({
@@ -45,6 +49,9 @@ export default defineConfig({
         }
       },
       minify: true
+    }),
+    createStyleImportPlugin({
+      resolves: [AndDesignVueResolve()]
     }),
     createSvgIconsPlugin({
       iconDirs: [resolve('src/icons')],

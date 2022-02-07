@@ -1,0 +1,1 @@
+import{d as s,b as e,aI as a}from"./vendor.b0d7ea73.js";/* empty css               */var r=s({name:"NestedMenu11",render(){return e("div",{style:{padding:"30px"}},[e(a,{closable:!1,message:"Menu 1-1",type:"success"},null)])}});export{r as default};

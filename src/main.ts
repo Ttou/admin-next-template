@@ -1,8 +1,6 @@
 import 'virtual:svg-icons-register'
-import 'ant-design-vue/dist/antd.less'
 import './styles'
 
-import Antd from 'ant-design-vue'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
@@ -23,8 +21,6 @@ async function bootstrap() {
   useTable(app)
 
   await router.isReady()
-
-  app.use(Antd)
 
   app.mount('#app')
 }
