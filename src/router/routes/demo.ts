@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { Route } from '@/layout/components/Menu/types'
 
 export default {
   path: '/demo',
@@ -48,4 +48,4 @@ export default {
       meta: { title: '高级表格' }
     }
   ]
-} as RouteRecordRaw
+} as Route

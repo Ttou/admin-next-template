@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router'
+import { Route } from '@/layout/components/Menu/types'
 
 export default {
   path: '/nested',
@@ -56,4 +56,4 @@ export default {
       meta: { title: 'Menu2' }
     }
   ]
-} as RouteRecordRaw
+} as Route
