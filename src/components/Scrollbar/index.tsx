@@ -40,8 +40,8 @@ export default defineComponent({
   },
   emits: ['scroll'],
   setup(props, { emit }) {
-    let stopResizeObserver: (() => void) | undefined = undefined
-    let stopResizeListener: (() => void) | undefined = undefined
+    let stopResizeObserver: (() => void) | undefined
+    let stopResizeListener: (() => void) | undefined
 
     const scrollbar$ = ref<HTMLDivElement>()
     const wrap$ = ref<HTMLDivElement>()
