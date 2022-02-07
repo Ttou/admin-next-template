@@ -25,13 +25,13 @@
     "lodash-es": "4.17.21",
     "moment": "2.29.1",
     "nprogress": "0.2.0",
-    "pinia": "2.0.9",
+    "pinia": "2.0.11",
     "qrcode": "1.5.0",
     "vue": "3.2.29",
     "vue-router": "4.0.12",
-    "vxe-table": "4.1.19",
+    "vxe-table": "4.1.20",
     "vxe-table-plugin-antd": "3.0.5",
-    "xe-utils": "3.5.2"
+    "xe-utils": "3.5.4"
   },
   "devDependencies": {
     "@babel/runtime": "^7.16.5",
@@ -75,10 +75,10 @@
     "stylelint-config-standard": "^24.0.0",
     "typescript": "^4.5.2",
     "vite": "^2.7.13",
-    "vite-plugin-compression": "^0.4.0",
-    "vite-plugin-html": "^2.1.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-html": "^3.0.3",
     "vite-plugin-mock": "^2.9.6",
-    "vite-plugin-svg-icons": "^1.1.0",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^0.2.0"
   },
   "browserslist": [

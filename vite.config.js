@@ -4,9 +4,9 @@ import { resolve } from 'path'
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
-import html from 'vite-plugin-html'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
-import svgIcons from 'vite-plugin-svg-icons'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export default defineConfig({
   base: process.env.NODE_ENV === 'development' ? '/' : '/admin-next-template/',
@@ -38,17 +38,17 @@ export default defineConfig({
     vue(),
     vueJsx(),
     compression(),
-    svgIcons({
-      iconDirs: [resolve('src/icons')],
-      symbolId: 'icon-[dir]-[name]'
-    }),
-    html({
+    createHtmlPlugin({
       inject: {
         data: {
           title: '后台管理系统'
         }
       },
       minify: true
+    }),
+    createSvgIconsPlugin({
+      iconDirs: [resolve('src/icons')],
+      symbolId: 'icon-[dir]-[name]'
     }),
     viteMockServe({
       mockPath: 'mock',

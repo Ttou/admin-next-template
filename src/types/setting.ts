@@ -17,6 +17,9 @@ export type Setting = {
   siderOpenedWidth: string
   /** 侧边栏关闭宽度 */
   siderClosedWidth: string
-  /** 侧边栏图标高度 */
+  /**
+   * 侧边栏图标高度
+   * @description 设为`0`时不显示
+   */
   siderLogoHeight: string
 }
