@@ -29,15 +29,18 @@ export default defineComponent({
   },
   render() {
     return (
-      <Result status={this.status} title={this.status} subTitle={this.subTitle}>
-        {{
+      <Result
+        v-slots={{
           extra: () => (
             <Button type="primary" onClick={this.handleClick}>
               返回首页
             </Button>
           )
         }}
-      </Result>
+        status={this.status}
+        title={this.status}
+        subTitle={this.subTitle}
+      />
     )
   }
 })

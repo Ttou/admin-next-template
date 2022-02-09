@@ -65,8 +65,6 @@ export default defineComponent({
     const renderItem = (item: typeof this.list[0]) => (
       <Col span={6}>
         <Card
-          title={item.title}
-          size="small"
           v-slots={{
             extra: () => <Tag color={item.subColor}>{item.subText}</Tag>,
             default: () => (
@@ -82,6 +80,8 @@ export default defineComponent({
               </Skeleton>
             )
           }}
+          title={item.title}
+          size="small"
         />
       </Col>
     )

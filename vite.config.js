@@ -35,7 +35,7 @@ export default defineConfig({
     ]
   },
   optimizeDeps: {
-    include: ['ant-design-vue/es/locale/zh_CN', 'moment/dist/locale/zh-cn'],
+    include: ['ant-design-vue/es/locale/zh_CN', 'dayjs/locale/zh-cn'],
     exclude: ['vue-demi']
   },
   plugins: [
