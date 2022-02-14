@@ -1,9 +1,13 @@
+import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-es'
 import { defineComponent, ref } from 'vue'
 
 import { demoApi } from '@/apis'
 import { ProTable } from '@/components'
-import type { ProTableProps } from '@/components/ProTable/types'
+import {
+  type ProTableProps,
+  type ProTableRef
+} from '@/components/ProTable/types'
 import {
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,
@@ -14,17 +18,22 @@ import {
 export default defineComponent({
   name: 'DemoTable',
   setup() {
+    const tableRef = ref({} as ProTableRef)
     const tableConfig = ref({
       fixedHeight: true,
       options: {
         showOverflow: true,
         border: true,
+        loading: false,
         keepSource: true,
         toolbarConfig: {
           perfect: true,
           custom: true,
           refresh: true,
-          zoom: true
+          zoom: true,
+          slots: {
+            buttons: 'toolbar_buttons'
+          }
         },
         editConfig: {
           trigger: 'click',
@@ -199,14 +208,32 @@ export default defineComponent({
       }
     } as ProTableProps)
 
+    function handleCustomRefresh() {
+      tableRef.value.table.commitProxy('query')
+    }
+
     return {
-      tableConfig
+      tableRef,
+      tableConfig,
+      handleCustomRefresh
     }
   },
   render() {
     return (
       <div>
-        <ProTable {...this.tableConfig} />
+        <ProTable
+          ref="tableRef"
+          v-slots={{
+            toolbar_buttons: () => {
+              return (
+                <Button type="link" onClick={this.handleCustomRefresh}>
+                  自定义刷新
+                </Button>
+              )
+            }
+          }}
+          {...this.tableConfig}
+        />
       </div>
     )
   }
