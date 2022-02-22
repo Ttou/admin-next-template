@@ -5,7 +5,12 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import App from './App'
-import { usePermissionGuard, useProgressGuard, useTable } from './hooks'
+import {
+  useAntd,
+  usePermissionGuard,
+  useProgressGuard,
+  useTable
+} from './hooks'
 import router from './router'
 
 async function bootstrap() {
@@ -18,6 +23,7 @@ async function bootstrap() {
   usePermissionGuard(router)
   useProgressGuard(router)
 
+  useAntd(app)
   useTable(app)
 
   await router.isReady()

@@ -1,3 +1,4 @@
+export * from './useAntd'
 export * from './useAntdConfig'
 export * from './usePermissionGuard'
 export * from './useProgressGuard'
