@@ -1,4 +1,4 @@
-import { isString } from '@vue/shared'
+import { isString } from 'lodash-es'
 import type { CSSProperties } from 'vue'
 
 export const BAR_MAP = {
