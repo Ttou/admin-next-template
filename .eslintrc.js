@@ -7,26 +7,13 @@ module.exports = defineEslintConfig({
     node: true
   },
   extends: [
-    'standard',
     'plugin:vue/vue3-recommended',
+    'eslint:recommended',
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier'
   ],
   plugins: ['simple-import-sort'],
-  parserOptions: {
-    ecmaVersion: 2020
-  },
   rules: {
-    indent: 'off',
-    'no-new': 'off',
-    'no-undef': 'off',
-    'multiline-ternary': 'off',
-    'no-useless-escape': 'off',
-    'no-return-await': 'off',
-    'no-prototype-builtins': 'off',
-    'no-throw-literal': 'off',
-    'import/no-webpack-loader-syntax': 'off',
-    'space-before-function-paren': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'vue/multi-word-component-names': 'off',
