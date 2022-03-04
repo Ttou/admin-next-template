@@ -115,7 +115,7 @@ export function useTabsStore() {
         for (const tab of this.visitedTabs) {
           const name = tab.name as string
 
-          if (!tab.meta!.noCache) {
+          if (tab.meta!.noCache !== true) {
             cachedTabs.add(name)
           }
         }

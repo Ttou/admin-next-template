@@ -12,7 +12,7 @@ import {
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,
   TABLE_ITEM_RENDER,
-  TBALE_RENDERER
+  TABLE_RENDERER
 } from '@/constants'
 
 export default defineComponent({
@@ -108,7 +108,7 @@ export default defineComponent({
               title: '时间',
               field: 'date',
               itemRender: {
-                name: TBALE_RENDERER.FormItemDate,
+                name: TABLE_RENDERER.FormItemDate,
                 props: {
                   type: 'range',
                   placeholder: ['开始时间', '结束时间'],
@@ -118,7 +118,7 @@ export default defineComponent({
             },
             {
               itemRender: {
-                name: TBALE_RENDERER.FormItemBtns
+                name: TABLE_RENDERER.FormItemBtns
               }
             }
           ]

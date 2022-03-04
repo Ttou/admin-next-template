@@ -15,7 +15,7 @@ export type Item = {
      * 是否一直显示
      * - `true` 只有一个子级时也显示父级
      * - `false` 只有一个子级时只显示子级
-     * @default fasle
+     * @default false
      */
     alwaysShow?: boolean
     /**
@@ -25,6 +25,13 @@ export type Item = {
      * @default false
      */
     hidden?: boolean
+    /**
+     * 是否不缓存
+     * - `true` 不缓存
+     * - `false` 缓存
+     * @default false
+     */
+    noCache?: boolean
   }
   children?: Item[]
 }

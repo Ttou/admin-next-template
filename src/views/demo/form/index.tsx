@@ -1,149 +1,165 @@
-import { Button, Space } from 'ant-design-vue'
+import {
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  DatePicker,
+  Form,
+  FormItem,
+  Input,
+  Radio,
+  RadioGroup,
+  Select,
+  SelectOption,
+  Space,
+  Switch,
+  Textarea
+} from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
-
-import { ProForm } from '@/components'
-import type { FormRef, ProFormProps } from '@/components/ProForm/types'
 
 export default defineComponent({
   name: 'DemoForm',
   setup() {
-    const formRef = ref<FormRef>(null)
-    const formConfig = ref<ProFormProps>({
-      props: {
-        labelCol: { span: 4 },
-        wrapperCol: { span: 20 }
-      },
-      items: [
-        {
-          name: 'name',
-          label: 'Activity name',
-          type: 'input',
-          rules: [
-            { required: true, message: '请输入', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度 3 到 5', trigger: 'blur' }
-          ]
-        },
-        {
-          name: 'zone',
-          label: 'Activity zone',
-          type: 'select',
-          options: [
-            { label: 'ShangHai', value: 'shanghai' },
-            { label: 'BeiJing', value: 'beijing' }
-          ],
-          rules: [
-            {
-              required: true,
-              message: '请选择',
-              trigger: 'change'
-            }
-          ]
-        },
-        {
-          name: 'date',
-          label: 'Activity time',
-          type: 'date-picker',
-          rules: [
-            {
-              required: true,
-              message: '请选择',
-              trigger: 'change',
-              type: 'object'
-            }
-          ],
-          componentProps: {
-            style: { width: '100%' }
-          }
-        },
-        {
-          name: 'delivery',
-          label: 'Instant delivery',
-          type: 'switch'
-        },
-        {
-          name: 'type',
-          label: 'Activity type',
-          type: 'checkbox',
-          options: [
-            { label: 'Online', value: '1' },
-            { label: 'Promotion', value: '2' },
-            { label: 'Offline', value: '3' }
-          ],
-          rules: [
-            {
-              type: 'array',
-              required: true,
-              message: '请选择',
-              trigger: 'change'
-            }
-          ]
-        },
-        {
-          name: 'resource',
-          label: 'Resources',
-          type: 'radio',
-          options: [
-            { label: 'Sponsor', value: '1' },
-            { label: 'Venue', value: '2' }
-          ],
-          rules: [
-            {
-              required: true,
-              message: '请选择',
-              trigger: 'change'
-            }
-          ]
-        },
-        {
-          name: 'desc',
-          label: 'Activity form',
-          type: 'textarea',
-          rules: [{ required: true, message: '请输入', trigger: 'blur' }]
-        },
-        {
-          render: () => (
-            <Space>
-              <Button onClick={handleReset} danger>
-                重置
-              </Button>
-              <Button onClick={handleCancel}>取消</Button>
-              <Button type="primary" onClick={handleSubmit}>
-                确定
-              </Button>
-            </Space>
-          ),
-          props: {
-            wrapperCol: {
-              span: 14,
-              offset: 4
-            }
-          }
-        }
-      ]
+    const formModel = ref({
+      name: '',
+      zone: '',
+      date: '',
+      delivery: '',
+      type: '',
+      resource: '',
+      desc: ''
     })
+    const formRules = ref({
+      name: [
+        { required: true, message: '请输入', trigger: 'blur' },
+        { min: 3, max: 5, message: '长度 3 到 5', trigger: 'blur' }
+      ],
+      zone: [{ required: true, message: '请选择', trigger: 'change' }],
+      date: [
+        { required: true, message: '请选择', trigger: 'change', type: 'object' }
+      ],
+      type: [
+        { type: 'array', required: true, message: '请选择', trigger: 'change' }
+      ],
+      resource: [{ required: true, message: '请选择', trigger: 'change' }],
+      desc: [{ required: true, message: '请输入', trigger: 'blur' }]
+    } as FormRules)
+    const zoneOptions = ref([
+      { label: 'ShangHai', value: 'shanghai' },
+      { label: 'BeiJing', value: 'beijing' }
+    ])
+    const typeOptions = ref([
+      { label: 'Online', value: '1' },
+      { label: 'Promotion', value: '2' },
+      { label: 'Offline', value: '3' }
+    ])
+    const resourceOptions = ref([
+      { label: 'Sponsor', value: '1' },
+      { label: 'Venue', value: '2' }
+    ])
+
+    const { useForm } = Form
+
+    const formRef = useForm(formModel.value, formRules.value)
 
     function handleReset() {
-      formRef.value?.form.resetFields()
+      formRef.resetFields()
     }
 
     function handleCancel() {
-      formRef.value?.form.clearValidate()
+      formRef.clearValidate()
     }
 
     function handleSubmit() {
-      formRef.value?.form.validate()
+      formRef.validate()
     }
 
     return {
       formRef,
-      formConfig
+      formModel,
+      zoneOptions,
+      typeOptions,
+      resourceOptions,
+      handleReset,
+      handleCancel,
+      handleSubmit
     }
   },
   render() {
     return (
       <div>
-        {/* @ts-ignore */}
-        <ProForm ref="formRef" {...this.formConfig} />
+        <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
+          <FormItem
+            name="name"
+            label="Activity name"
+            {...this.formRef.validateInfos.name}
+          >
+            <Input v-model={[this.formModel.name, 'value']} />
+          </FormItem>
+          <FormItem
+            name="zone"
+            label="Activity zone"
+            {...this.formRef.validateInfos.zone}
+          >
+            <Select v-model={[this.formModel.zone, 'value']}>
+              {this.zoneOptions.map(v => (
+                <SelectOption value={v.value}>{v.label}</SelectOption>
+              ))}
+            </Select>
+          </FormItem>
+          <FormItem
+            name="date"
+            label="Activity time"
+            {...this.formRef.validateInfos.date}
+          >
+            <DatePicker
+              v-model={[this.formModel.date, 'value']}
+              style={{ width: '100%' }}
+            />
+          </FormItem>
+          <FormItem name="delivery" label="Instant delivery">
+            <Switch v-model={[this.formModel.delivery, 'checked']} />
+          </FormItem>
+          <FormItem
+            name="type"
+            label="Activity type"
+            {...this.formRef.validateInfos.type}
+          >
+            <CheckboxGroup v-model={[this.formModel.type, 'value']}>
+              {this.typeOptions.map(v => (
+                <Checkbox value={v.value}>{v.label}</Checkbox>
+              ))}
+            </CheckboxGroup>
+          </FormItem>
+          <FormItem
+            name="resource"
+            label="Resource"
+            {...this.formRef.validateInfos.resource}
+          >
+            <RadioGroup v-model={[this.formModel.resource, 'value']}>
+              {this.resourceOptions.map(v => (
+                <Radio value={v.value}>{v.label}</Radio>
+              ))}
+            </RadioGroup>
+          </FormItem>
+          <FormItem
+            name="desc"
+            label="Activity form"
+            {...this.formRef.validateInfos.desc}
+          >
+            <Textarea v-model={[this.formModel.desc, 'value']} />
+          </FormItem>
+          <FormItem wrapperCol={{ span: 14, offset: 4 }}>
+            <Space>
+              <Button onClick={this.handleReset} danger>
+                重置
+              </Button>
+              <Button onClick={this.handleCancel}>取消</Button>
+              <Button type="primary" onClick={this.handleSubmit}>
+                确定
+              </Button>
+            </Space>
+          </FormItem>
+        </Form>
       </div>
     )
   }

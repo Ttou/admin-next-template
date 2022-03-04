@@ -7,11 +7,11 @@ import {
 } from 'ant-design-vue'
 import type VXETable from 'vxe-table'
 
-import { TBALE_RENDERER } from '@/constants'
+import { TABLE_RENDERER } from '@/constants'
 
 /** 渲染器注册 */
 export function useTableRenderer(vxe: typeof VXETable) {
-  vxe.renderer.add(TBALE_RENDERER.FormItemBtns, {
+  vxe.renderer.add(TABLE_RENDERER.FormItemBtns, {
     renderItemContent(renderOpts, params) {
       return [
         <Space>
@@ -24,7 +24,7 @@ export function useTableRenderer(vxe: typeof VXETable) {
     }
   })
 
-  vxe.renderer.add(TBALE_RENDERER.FormItemDate, {
+  vxe.renderer.add(TABLE_RENDERER.FormItemDate, {
     renderItemContent(renderOpts, params) {
       const { props } = renderOpts
       const { data, property } = params

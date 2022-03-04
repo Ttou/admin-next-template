@@ -1,10 +1,9 @@
-import { Button } from 'ant-design-vue'
+import { Button, Form, FormItem, Input, InputPassword } from 'ant-design-vue'
 import { omit } from 'lodash-es'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { ProForm, SvgIcon } from '@/components'
-import type { FormRef, ProFormProps } from '@/components/ProForm/types'
+import { SvgIcon } from '@/components'
 import { useSettingStore, useUserStore } from '@/store'
 
 import styles from './index.module.css'
@@ -20,61 +19,29 @@ export default defineComponent({
     const loading = ref(false)
     const redirect = ref<Nullable<string>>(null)
     const otherQuery = ref({})
-    const formRef = ref<FormRef>(null)
-    const formConfig = ref<ProFormProps>({
-      items: [
-        {
-          name: 'username',
-          type: 'input',
-          rules: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-          props: { wrapperCol: { span: 24 } },
-          componentProps: {
-            placeholder: '账号：admin',
-            prefix: <SvgIcon name="view-user" />,
-            size: 'large'
-          }
-        },
-        {
-          name: 'password',
-          type: 'input-password',
-          rules: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-          props: { wrapperCol: { span: 24 } },
-          componentProps: {
-            placeholder: '密码：任意',
-            prefix: <SvgIcon name="view-lock" />,
-            size: 'large',
-            onPressEnter: () => handleSubmit()
-          }
-        },
-        {
-          render: () => (
-            <Button
-              size="large"
-              type="primary"
-              loading={loading.value}
-              onClick={handleSubmit}
-              style={{ width: '100%' }}
-            >
-              登录
-            </Button>
-          ),
-          props: {
-            wrapperCol: { span: 24 }
-          }
-        }
-      ]
+    const formModel = ref({
+      username: '',
+      password: ''
     })
+    const formRules = ref({
+      username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+      password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+    } as FormRules)
+
+    const { useForm } = Form
+
+    const formRef = useForm(formModel.value, formRules.value)
 
     const title = computed(() => settingStore.title)
 
     function handleSubmit() {
-      formRef.value?.form
+      formRef
         .validate()
         .then(() => {
           loading.value = true
 
           userStore
-            .login(formRef.value!.model)
+            .login(formModel.value)
             .then(() => {
               router.replace({
                 path: redirect.value || '/',
@@ -99,8 +66,10 @@ export default defineComponent({
 
     return {
       title,
+      loading,
       formRef,
-      formConfig
+      formModel,
+      handleSubmit
     }
   },
   render() {
@@ -113,8 +82,44 @@ export default defineComponent({
           </div>
           <div class={styles.desc}>基于 Ant Design 的后台管理系统</div>
         </div>
-        {/* @ts-ignore */}
-        <ProForm ref="formRef" class={styles.loginForm} {...this.formConfig} />
+        <Form class={styles.loginForm}>
+          <FormItem
+            name="username"
+            wrapperCol={{ span: 24 }}
+            {...this.formRef.validateInfos.username}
+          >
+            <Input
+              v-model={[this.formModel.username, 'value']}
+              placeholder="账号：admin"
+              size="large"
+              prefix={<SvgIcon name="view-user" />}
+            />
+          </FormItem>
+          <FormItem
+            name="password"
+            wrapperCol={{ span: 24 }}
+            {...this.formRef.validateInfos.password}
+          >
+            <InputPassword
+              v-model={[this.formModel.password, 'value']}
+              placeholder="密码：任意"
+              size="large"
+              prefix={<SvgIcon name="view-lock" />}
+              onPressEnter={this.handleSubmit}
+            />
+          </FormItem>
+          <FormItem wrapperCol={{ span: 24 }}>
+            <Button
+              size="large"
+              type="primary"
+              loading={this.loading}
+              onClick={this.handleSubmit}
+              style={{ width: '100%' }}
+            >
+              登录
+            </Button>
+          </FormItem>
+        </Form>
         <SvgIcon class={styles.backgroundIcon} name="background" />
       </div>
     )

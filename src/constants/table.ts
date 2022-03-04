@@ -1,5 +1,5 @@
 /** 表格渲染器 */
-export enum TBALE_RENDERER {
+export enum TABLE_RENDERER {
   FormItemBtns = 'FormItemBtns',
   FormItemDate = 'FormItemDate'
 }
@@ -11,7 +11,7 @@ export enum TABLE_FORMAT {
 }
 
 /** 单元格渲染器 */
-export enum TBALE_CELL_RENDER {
+export enum TABLE_CELL_RENDER {
   AInput = 'AInput',
   AAutocomplete = 'AAutocomplete',
   AInputNumber = 'AInputNumber',
