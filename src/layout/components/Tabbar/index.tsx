@@ -12,7 +12,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { SvgIcon } from '@/components'
 import { ROUTE } from '@/constants'
-import { useTabsStore } from '@/store'
+import { useSettingStore, useTabsStore } from '@/store'
 
 import styles from './index.module.css'
 
@@ -24,6 +24,7 @@ export default defineComponent({
     const route = useRoute()
     const router = useRouter()
     const tabsStore = useTabsStore()
+    const settingStore = useSettingStore()
 
     const visitedTabs = computed(() => tabsStore.visitedTabs)
 
@@ -103,8 +104,8 @@ export default defineComponent({
       if (latestView) {
         router.push(latestView.fullPath!)
       } else {
-        // Dashboard 下的首页面被关闭时跳转重定向
-        if (route.name === 'Analysis') {
+        // 首面被关闭时跳转重定向
+        if (route.name === settingStore.homeRoute.name) {
           router.replace({ path: '/redirect' + route.fullPath })
         } else {
           router.replace('/')

@@ -1,11 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE } from '@/constants'
+import { ROUTE, SETTING } from '@/constants'
 
 export default [
   {
     path: ROUTE.INDEX,
-    redirect: '/dashboard'
+    redirect: SETTING.homeRoute.path
   },
   {
     path: ROUTE.DASHBOARD,

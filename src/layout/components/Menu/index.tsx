@@ -37,13 +37,9 @@ export default defineComponent({
 
     function createMenu(routes: RouteRecordRaw[], basePath = '') {
       for (const route of routes) {
-        if (route.name !== 'Dashboard') {
-          route.path =
-            basePath +
-            (route.path.startsWith('/') ? route.path : `/${route.path}`)
-        } else {
-          route.path = `/${route.path}`
-        }
+        route.path =
+          basePath +
+          (route.path.startsWith('/') ? route.path : `/${route.path}`)
 
         delete route.component
         delete route.redirect

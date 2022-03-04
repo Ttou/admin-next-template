@@ -22,4 +22,11 @@ export type Setting = {
    * @description 设为`0`时不显示
    */
   siderLogoHeight: string
+  /** 首页路由 */
+  homeRoute: {
+    /** 名称 */
+    name: string
+    /** 路径 */
+    path: string
+  }
 }

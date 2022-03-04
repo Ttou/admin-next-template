@@ -8,5 +8,9 @@ export const SETTING = {
   siderTheme: 'dark',
   siderOpenedWidth: '256px',
   siderClosedWidth: '80px',
-  siderLogoHeight: '44px'
+  siderLogoHeight: '44px',
+  homeRoute: {
+    name: 'Analysis',
+    path: '/dashboard/analysis'
+  }
 } as Setting
