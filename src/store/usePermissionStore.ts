@@ -26,6 +26,10 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
     }
   })
 
+  res.sort((a, b) => {
+    return ((a.meta!.sort as number) || 0) - ((b.meta!.sort as number) || 0)
+  })
+
   return res
 }
 

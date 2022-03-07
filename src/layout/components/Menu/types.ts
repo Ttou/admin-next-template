@@ -1,5 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 
+type OmitRouteRecordRaw = Omit<RouteRecordRaw, 'path' | 'children' | 'meta'>
+
 export type Item = {
   path: string
   meta: {
@@ -32,8 +34,13 @@ export type Item = {
      * @default false
      */
     noCache?: boolean
+    /**
+     * 排序
+     * @description 从0开始计算，数值越小排越前面
+     */
+    sort?: number
   }
-  children?: Item[]
+  children?: (OmitRouteRecordRaw & Item)[]
 }
 
-export type Route = Omit<RouteRecordRaw, 'path' | 'children' | 'meta'> & Item
+export type Route = OmitRouteRecordRaw & Item
