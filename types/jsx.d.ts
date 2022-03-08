@@ -5,7 +5,6 @@ declare namespace JSX {
     ['style']?: import('vue').StyleValue
     ['v-show']?: unknown
     ['v-model']?: unknown
-    ['v-models']?: unknown
     ['v-slots']?: unknown
 
     [property: string]: unknown

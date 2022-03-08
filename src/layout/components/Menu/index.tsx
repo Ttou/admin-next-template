@@ -89,10 +89,8 @@ export default defineComponent({
       <Menu
         mode="inline"
         theme={this.setting.siderTheme}
-        v-models={[
-          [this.openKeys, 'openKeys'],
-          [this.selectedKeys, 'selectedKeys']
-        ]}
+        v-model:openKeys={this.openKeys}
+        v-model:selectedKeys={this.selectedKeys}
         style={this.style}
       >
         {this.list.map(renderItem)}
