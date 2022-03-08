@@ -37,10 +37,27 @@ export default defineComponent({
     }
   },
   render() {
-    return (
+    return this.editorVisible ? (
       <div style={this.wrapStyle}>
         <Toolbar editorId={this.editorId} style={this.toolbarStyle} />
-        <Editor editorId={this.editorId} style={this.editorStyle} />
+        <Editor
+          editorId={this.editorId}
+          defaultHtml={this.editorHtml}
+          style={this.editorStyle}
+        />
+      </div>
+    ) : (
+      <div style={this.wrapStyle}>
+        <div
+          style={{
+            ...this.editorStyle,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
+          编辑器正在初始化...
+        </div>
       </div>
     )
   }

@@ -21,5 +21,13 @@ export default {
   editorStyle: {
     type: Object as PropType<CSSProperties>,
     default: (): CSSProperties => ({ height: '500px' })
+  },
+  editorHtml: {
+    type: String,
+    default: ''
+  },
+  editorVisible: {
+    type: Boolean,
+    default: true
   }
 }
