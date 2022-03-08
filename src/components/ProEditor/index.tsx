@@ -7,21 +7,42 @@ import {
   removeEditor,
   Toolbar
 } from '@wangeditor/editor-for-vue'
-import { defineComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import {
+  defineComponent,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch
+} from 'vue'
 
 import props from './props'
 
 export default defineComponent({
   name: 'ProEditor',
   props,
-  setup() {
+  setup(props) {
     const editor = ref<Nullable<IDomEditor>>(null)
     const editorId = ref(`pro-editor-${Math.random().toString().slice(-5)}`)
 
-    onMounted(() => {
+    function init() {
       nextTick(() => {
         editor.value = getEditor(editorId.value)
+        console.log(editor.value)
       })
+    }
+
+    watch(
+      () => props.editorVisible,
+      (newVal, oldVal) => {
+        if (newVal) {
+          init()
+        }
+      }
+    )
+
+    onMounted(() => {
+      init()
     })
 
     onBeforeUnmount(() => {
