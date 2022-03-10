@@ -27,7 +27,7 @@ export default defineComponent({
     return (
       <div>
         <InputSearch
-          v-model={[this.inputValue, 'value']}
+          v-model:value={this.inputValue}
           onSearch={this.handleCopy}
           enterButton={'复制'}
         />

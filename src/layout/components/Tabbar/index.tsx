@@ -143,7 +143,7 @@ export default defineComponent({
     return (
       <div class={styles.tabbar}>
         <Tabs
-          v-model={[this.activeKey, 'activeKey']}
+          v-model:activeKey={this.activeKey}
           onChange={this.handleSelectTab}
         >
           {this.visitedTabs.map(view => (

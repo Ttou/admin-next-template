@@ -89,7 +89,7 @@ export default defineComponent({
             {...this.formRef.validateInfos.username}
           >
             <Input
-              v-model={[this.formModel.username, 'value']}
+              v-model:value={this.formModel.username}
               placeholder="账号：admin"
               size="large"
               prefix={<SvgIcon name="view-user" />}
@@ -101,7 +101,7 @@ export default defineComponent({
             {...this.formRef.validateInfos.password}
           >
             <InputPassword
-              v-model={[this.formModel.password, 'value']}
+              v-model:value={this.formModel.password}
               placeholder="密码：任意"
               size="large"
               prefix={<SvgIcon name="view-lock" />}

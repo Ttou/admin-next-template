@@ -93,14 +93,14 @@ export default defineComponent({
             label="Activity name"
             {...this.formRef.validateInfos.name}
           >
-            <Input v-model={[this.formModel.name, 'value']} />
+            <Input v-model:value={this.formModel.name} />
           </FormItem>
           <FormItem
             name="zone"
             label="Activity zone"
             {...this.formRef.validateInfos.zone}
           >
-            <Select v-model={[this.formModel.zone, 'value']}>
+            <Select v-model:value={this.formModel.zone}>
               {this.zoneOptions.map(v => (
                 <SelectOption value={v.value}>{v.label}</SelectOption>
               ))}
@@ -112,19 +112,19 @@ export default defineComponent({
             {...this.formRef.validateInfos.date}
           >
             <DatePicker
-              v-model={[this.formModel.date, 'value']}
+              v-model:value={this.formModel.date}
               style={{ width: '100%' }}
             />
           </FormItem>
           <FormItem name="delivery" label="Instant delivery">
-            <Switch v-model={[this.formModel.delivery, 'checked']} />
+            <Switch v-model:checked={this.formModel.delivery} />
           </FormItem>
           <FormItem
             name="type"
             label="Activity type"
             {...this.formRef.validateInfos.type}
           >
-            <CheckboxGroup v-model={[this.formModel.type, 'value']}>
+            <CheckboxGroup v-model:value={this.formModel.type}>
               {this.typeOptions.map(v => (
                 <Checkbox value={v.value}>{v.label}</Checkbox>
               ))}
@@ -135,7 +135,7 @@ export default defineComponent({
             label="Resource"
             {...this.formRef.validateInfos.resource}
           >
-            <RadioGroup v-model={[this.formModel.resource, 'value']}>
+            <RadioGroup v-model:value={this.formModel.resource}>
               {this.resourceOptions.map(v => (
                 <Radio value={v.value}>{v.label}</Radio>
               ))}
@@ -146,7 +146,7 @@ export default defineComponent({
             label="Activity form"
             {...this.formRef.validateInfos.desc}
           >
-            <Textarea v-model={[this.formModel.desc, 'value']} />
+            <Textarea v-model:value={this.formModel.desc} />
           </FormItem>
           <FormItem wrapperCol={{ span: 14, offset: 4 }}>
             <Space>

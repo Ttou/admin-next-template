@@ -43,7 +43,7 @@ export function useTableRenderer(vxe: typeof VXETable) {
           break
       }
 
-      return [<Component v-model={[data[property], 'value']} {...props} />]
+      return [<Component v-model:value={data[property]} {...props} />]
     }
   })
 }
