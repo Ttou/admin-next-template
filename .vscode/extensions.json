@@ -1,6 +1,7 @@
 {
   "recommendations": [
+    "clinyong.vscode-css-modules",
     "johnsoncodehk.volar",
-    "clinyong.vscode-css-modules"
+    "johnsoncodehk.vscode-typescript-vue-plugin",
   ]
 }
