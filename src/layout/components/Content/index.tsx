@@ -18,10 +18,10 @@ export default defineComponent({
     return (
       <RouterView
         v-slots={{
-          default: ({ Component, route }) => (
+          default: ({ Component }) => (
             <Transition name="fade-slide" mode="out-in" appear>
               <KeepAlive max={20} include={this.cachedTabs}>
-                <Component key={route.fullPath} />
+                <Component />
               </KeepAlive>
             </Transition>
           )
