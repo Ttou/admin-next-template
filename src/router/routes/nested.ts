@@ -1,8 +1,10 @@
+import { DefaultLayout, ParentLayout } from '@/layout'
 import { Route } from '@/layout/components/Menu/types'
 
 export default {
   path: '/nested',
-  component: () => import('@/layout'),
+  name: 'Nested',
+  component: DefaultLayout,
   redirect: '/nested/menu1',
   meta: {
     title: '嵌套路由',
@@ -12,7 +14,7 @@ export default {
     {
       path: 'menu1',
       name: 'Menu1',
-      component: () => import('@/views/nested/menu1'),
+      component: ParentLayout,
       meta: { title: 'Menu1' },
       children: [
         {
@@ -25,21 +27,7 @@ export default {
           path: 'menu1-2',
           name: 'Menu1-2',
           component: () => import('@/views/nested/menu1/menu1-2'),
-          meta: { title: 'Menu1-2' },
-          children: [
-            {
-              path: 'menu1-2-1',
-              name: 'Menu1-2-1',
-              component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-              meta: { title: 'Menu1-2-1' }
-            },
-            {
-              path: 'menu1-2-2',
-              name: 'Menu1-2-2',
-              component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-              meta: { title: 'Menu1-2-2' }
-            }
-          ]
+          meta: { title: 'Menu1-2' }
         },
         {
           path: 'menu1-3',

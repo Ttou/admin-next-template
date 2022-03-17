@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 
 import { ROUTE, SETTING } from '@/constants'
+import { DefaultLayout } from '@/layout'
 
 export default [
   {
@@ -10,7 +11,7 @@ export default [
   {
     path: ROUTE.DASHBOARD,
     redirect: `${ROUTE.DASHBOARD}/analysis`,
-    component: () => import('@/layout'),
+    component: DefaultLayout,
     meta: { title: 'Dashboard', icon: 'menu-dashboard' },
     children: [
       {
@@ -42,7 +43,7 @@ export default [
   {
     path: ROUTE.REDIRECT,
     name: 'Redirect',
-    component: () => import('@/layout'),
+    component: DefaultLayout,
     meta: { hidden: true },
     children: [
       {

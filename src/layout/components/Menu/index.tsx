@@ -65,7 +65,7 @@ export default defineComponent({
       () => route.path,
       val => {
         init()
-        openKeys.value = [...route.matched.map(item => item.path)]
+        openKeys.value = [...permissionStore.matched]
         selectedKeys.value = [val]
       },
       {

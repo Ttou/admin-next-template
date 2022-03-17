@@ -24,7 +24,7 @@ export default defineComponent({
       zone: '',
       date: '',
       delivery: '',
-      type: '',
+      type: [],
       resource: '',
       desc: ''
     })
@@ -88,29 +88,17 @@ export default defineComponent({
     return (
       <div>
         <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
-          <FormItem
-            name="name"
-            label="Activity name"
-            {...this.formRef.validateInfos.name}
-          >
+          <FormItem label="Activity name" {...this.formRef.validateInfos.name}>
             <Input v-model:value={this.formModel.name} />
           </FormItem>
-          <FormItem
-            name="zone"
-            label="Activity zone"
-            {...this.formRef.validateInfos.zone}
-          >
+          <FormItem label="Activity zone" {...this.formRef.validateInfos.zone}>
             <Select v-model:value={this.formModel.zone}>
               {this.zoneOptions.map(v => (
                 <SelectOption value={v.value}>{v.label}</SelectOption>
               ))}
             </Select>
           </FormItem>
-          <FormItem
-            name="date"
-            label="Activity time"
-            {...this.formRef.validateInfos.date}
-          >
+          <FormItem label="Activity time" {...this.formRef.validateInfos.date}>
             <DatePicker
               v-model:value={this.formModel.date}
               style={{ width: '100%' }}
@@ -119,33 +107,21 @@ export default defineComponent({
           <FormItem name="delivery" label="Instant delivery">
             <Switch v-model:checked={this.formModel.delivery} />
           </FormItem>
-          <FormItem
-            name="type"
-            label="Activity type"
-            {...this.formRef.validateInfos.type}
-          >
+          <FormItem label="Activity type" {...this.formRef.validateInfos.type}>
             <CheckboxGroup v-model:value={this.formModel.type}>
               {this.typeOptions.map(v => (
                 <Checkbox value={v.value}>{v.label}</Checkbox>
               ))}
             </CheckboxGroup>
           </FormItem>
-          <FormItem
-            name="resource"
-            label="Resource"
-            {...this.formRef.validateInfos.resource}
-          >
+          <FormItem label="Resource" {...this.formRef.validateInfos.resource}>
             <RadioGroup v-model:value={this.formModel.resource}>
               {this.resourceOptions.map(v => (
                 <Radio value={v.value}>{v.label}</Radio>
               ))}
             </RadioGroup>
           </FormItem>
-          <FormItem
-            name="desc"
-            label="Activity form"
-            {...this.formRef.validateInfos.desc}
-          >
+          <FormItem label="Activity form" {...this.formRef.validateInfos.desc}>
             <Textarea v-model:value={this.formModel.desc} />
           </FormItem>
           <FormItem wrapperCol={{ span: 14, offset: 4 }}>

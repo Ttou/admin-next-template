@@ -13,19 +13,26 @@ export function useTabsStore() {
     },
     actions: {
       addTab(tab: RouteLocationNormalizedLoaded) {
-        if (this.visitedTabs.some(v => v.path === tab.path)) {
-          return
+        const visitedTab = this.visitedTabs.find(v => v.path === tab.path)
+
+        if (visitedTab) {
+          if (visitedTab.fullPath === tab.fullPath) {
+            return
+          }
+
+          const index = this.visitedTabs.findIndex(v => v.path === tab.path)
+          this.visitedTabs[index] = { ...tab }
+        } else {
+          const v = { ...tab }
+
+          if (!v.meta!.title) {
+            v.meta!.title = 'undefined'
+          }
+
+          this.visitedTabs.push(v)
+
+          this.updateCachedTab()
         }
-
-        const v = { ...tab }
-
-        if (!v.meta!.title) {
-          v.meta!.title = 'undefined'
-        }
-
-        this.visitedTabs.push(v)
-
-        this.updateCachedTab()
       },
       delTab(tab: RouteLocationNormalizedLoaded): Promise<Tabs> {
         return new Promise(resolve => {

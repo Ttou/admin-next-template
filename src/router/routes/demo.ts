@@ -1,9 +1,10 @@
+import { DefaultLayout } from '@/layout'
 import { Route } from '@/layout/components/Menu/types'
 
 export default {
   path: '/demo',
   name: 'Demo',
-  component: () => import('@/layout'),
+  component: DefaultLayout,
   redirect: '/demo/copy-text',
   meta: {
     title: '组件演示',

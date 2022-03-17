@@ -37,7 +37,8 @@ export function usePermissionStore() {
   return defineStore('permission', {
     state: () => {
       return {
-        routes: [] as RouteRecordRaw[]
+        routes: [] as RouteRecordRaw[],
+        matched: [] as string[]
       }
     },
     actions: {

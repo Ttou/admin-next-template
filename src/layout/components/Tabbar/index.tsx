@@ -1,4 +1,11 @@
-import { Dropdown, Menu, MenuDivider, MenuItem, Tabs } from 'ant-design-vue'
+import {
+  Dropdown,
+  Menu,
+  MenuDivider,
+  MenuItem,
+  TabPane,
+  Tabs
+} from 'ant-design-vue'
 import {
   computed,
   defineComponent,
@@ -30,28 +37,29 @@ export default defineComponent({
 
     const closeLeftDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.path === activeKey.value) === 0
+        visitedTabs.value.findIndex(tab => tab.fullPath === activeKey.value) ===
+        0
     )
 
     const closeRightDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.path === activeKey.value) ===
+        visitedTabs.value.findIndex(tab => tab.fullPath === activeKey.value) ===
         visitedTabs.value.length - 1
     )
 
     const closeOtherDisabled = computed(() => visitedTabs.value.length <= 1)
 
     function isActive(tab: any) {
-      return activeKey.value === tab.path
+      return activeKey.value === tab.fullPath
     }
 
     function addTabs() {
-      const { name, path } = route
+      const { name, path, fullPath } = route
 
       // 只添加配置过名称且不是异常和登录页面
       if (name && [ROUTE.LOGIN, ROUTE.ERROR].indexOf(path as ROUTE) === -1) {
         tabsStore.addTab(route)
-        activeKey.value = path
+        activeKey.value = fullPath
       }
       return false
     }
@@ -102,9 +110,9 @@ export default defineComponent({
       const latestView = visitedTabs.slice(-1)[0]
 
       if (latestView) {
-        router.push(latestView.fullPath!)
+        router.push(latestView.fullPath)
       } else {
-        // 首面被关闭时跳转重定向
+        // 首页被关闭时跳转重定向
         if (route.name === settingStore.homeRoute.name) {
           router.replace({ path: '/redirect' + route.fullPath })
         } else {
@@ -147,9 +155,10 @@ export default defineComponent({
           onChange={this.handleSelectTab}
         >
           {this.visitedTabs.map(view => (
-            <Tabs.TabPane
+            <TabPane
               tab={() => (
                 <div class={styles.tabContent}>
+                  <input data-key={view.fullPath} hidden />
                   <span>{view.meta!.title}</span>
                   <SvgIcon
                     name="tabbar-close"
@@ -161,7 +170,7 @@ export default defineComponent({
                   />
                 </div>
               )}
-              key={view.path}
+              key={view.fullPath}
             />
           ))}
         </Tabs>

@@ -1,4 +1,4 @@
-import type { Router } from 'vue-router'
+import type { RouteLocationNormalized, Router } from 'vue-router'
 
 import { ROUTE } from '@/constants'
 import { usePermissionStore, useUserStore } from '@/store'
@@ -9,6 +9,8 @@ export function usePermissionGuard(router: Router) {
   router.beforeEach(async (to, from) => {
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
+
+    useKeepAliveFix(to, permissionStore)
 
     const hasToken = userStore.token
 
@@ -39,4 +41,21 @@ export function usePermissionGuard(router: Router) {
       }
     }
   })
+}
+
+function useKeepAliveFix(
+  to: RouteLocationNormalized,
+  store: ReturnType<typeof usePermissionStore>
+) {
+  store.matched = to.matched.map(v => v.path)
+
+  if (to.matched && to.matched.length > 2) {
+    for (let i = 0; i < to.matched.length; i++) {
+      const v = to.matched[i]
+
+      if (v.components.default.name === 'ParentLayout') {
+        to.matched.splice(i, 1)
+      }
+    }
+  }
 }
