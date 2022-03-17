@@ -217,6 +217,7 @@ export default defineComponent({
               </Menu>
             )
           }}
+          placement="bottomRight"
           overlayStyle={{
             zIndex: 100002
           }}
