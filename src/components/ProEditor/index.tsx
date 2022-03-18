@@ -28,7 +28,6 @@ export default defineComponent({
     function init() {
       nextTick(() => {
         editor.value = getEditor(editorId.value)
-        console.log(editor.value)
       })
     }
 
@@ -60,9 +59,14 @@ export default defineComponent({
   render() {
     return this.editorVisible ? (
       <div style={this.wrapStyle}>
-        <Toolbar editorId={this.editorId} style={this.toolbarStyle} />
+        <Toolbar
+          editorId={this.editorId}
+          defaultConfig={this.toolbarConfig}
+          style={this.toolbarStyle}
+        />
         <Editor
           editorId={this.editorId}
+          defaultConfig={this.editorConfig}
           defaultHtml={this.editorHtml}
           style={this.editorStyle}
         />

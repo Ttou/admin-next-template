@@ -12,4 +12,4 @@ ajax.interceptors.response.use(res => {
   return res.data
 })
 
-export default ajax
+export { ajax }

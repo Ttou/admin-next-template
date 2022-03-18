@@ -52,6 +52,7 @@ export default defineComponent({
             </Menu>
           )
         }}
+        placement="bottomRight"
       />
     )
   }

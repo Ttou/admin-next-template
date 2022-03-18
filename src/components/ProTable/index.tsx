@@ -1,9 +1,10 @@
-import { isNumber } from 'lodash-es'
+import { isNumber, set } from 'lodash-es'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { type VxeGridInstance, Grid as VxeGrid } from 'vxe-table'
 
 import styles from './index.module.css'
 import props from './props'
+import type { UpdateFormItemOptions } from './types'
 
 export default defineComponent({
   name: 'ProTable',
@@ -12,11 +13,12 @@ export default defineComponent({
     const tableHeight = ref(0)
     const tableId = ref(`pro-table-${Math.random().toString().slice(-5)}`)
     const table = ref({} as VxeGridInstance)
+    const tableOptions = ref(props.options)
 
     const config = computed(() => ({
       id: tableId.value,
       height: tableHeight.value || '',
-      ...props.options
+      ...tableOptions.value
     }))
 
     function calcHeight() {
@@ -28,13 +30,43 @@ export default defineComponent({
       }
     }
 
+    function updateFormItem(options: UpdateFormItemOptions) {
+      const item = tableOptions.value!.formConfig!.items!.find(
+        v => v.field === options.field
+      )
+
+      set(item!, options.key, options.value)
+    }
+
+    function showLoading() {
+      tableOptions.value!.loading = true
+    }
+
+    function hideLoading() {
+      tableOptions.value!.loading = false
+    }
+
+    async function refresh(callback?: PromiseFunc) {
+      try {
+        showLoading()
+        await callback?.()
+        await table.value.commitProxy('query')
+      } finally {
+        hideLoading()
+      }
+    }
+
     onMounted(() => {
       calcHeight()
     })
 
     return {
       config,
-      table
+      table,
+      updateFormItem,
+      showLoading,
+      hideLoading,
+      refresh
     }
   },
   render() {

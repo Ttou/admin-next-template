@@ -1,5 +1,5 @@
 import { Button, Form, FormItem, Input, InputPassword } from 'ant-design-vue'
-import { omit } from 'lodash-es'
+import { parseUrl } from 'query-string'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -60,7 +60,7 @@ export default defineComponent({
 
       if (query) {
         redirect.value = query.redirect as string
-        otherQuery.value = omit(query, ['redirect'])
+        otherQuery.value = parseUrl(redirect.value).searchQuery
       }
     })
 
