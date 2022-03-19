@@ -1,5 +1,6 @@
 export * from './useAntd'
 export * from './useAntdConfig'
+export * from './useDialog'
 export * from './usePermissionGuard'
 export * from './useProgressGuard'
 export * from './useTable'

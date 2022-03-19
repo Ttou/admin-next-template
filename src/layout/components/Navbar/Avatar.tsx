@@ -1,8 +1,9 @@
-import { Dropdown, Menu, MenuItem, Modal } from 'ant-design-vue'
+import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { SvgIcon } from '@/components'
+import { useDialog } from '@/hooks'
 import { useUserStore } from '@/store'
 
 import styles from './index.module.css'
@@ -12,11 +13,10 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const userStore = useUserStore()
+    const { showConfirm } = useDialog()
 
     function handleLogout() {
-      Modal.confirm({
-        title: '提示',
-        icon: <SvgIcon class="anticon" name="navbar-exclamation" />,
+      showConfirm({
         content: '确认退出登录？',
         async onOk() {
           await userStore.logout()
