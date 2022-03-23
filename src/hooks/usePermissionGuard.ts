@@ -23,14 +23,18 @@ export function usePermissionGuard(router: Router) {
         if (hasUser) {
           return true
         } else {
-          const roles = await userStore.getInfo()
-          const routes = await permissionStore.generate(roles)
+          try {
+            const roles = await userStore.getInfo()
+            const routes = await permissionStore.generate(roles)
 
-          routes.forEach(route => {
-            router.addRoute(route)
-          })
+            routes.forEach(route => {
+              router.addRoute(route)
+            })
 
-          return to.fullPath
+            return to.fullPath
+          } catch {
+            return ROUTE.INDEX
+          }
         }
       }
     } else {
