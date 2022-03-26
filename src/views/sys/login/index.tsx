@@ -60,7 +60,10 @@ export default defineComponent({
 
       if (query) {
         redirect.value = query.redirect as string
-        otherQuery.value = parseUrl(redirect.value).searchQuery
+
+        if (redirect.value) {
+          otherQuery.value = parseUrl(redirect.value).query
+        }
       }
     })
 
