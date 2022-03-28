@@ -14,6 +14,7 @@ module.exports = defineEslintConfig({
   ],
   plugins: ['simple-import-sort'],
   rules: {
+    'no-empty': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'vue/multi-word-component-names': 'off',

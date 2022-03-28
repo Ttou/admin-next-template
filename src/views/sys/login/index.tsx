@@ -59,10 +59,13 @@ export default defineComponent({
       const { query } = route
 
       if (query) {
-        redirect.value = query.redirect as string
+        const str = query.redirect as string
 
-        if (redirect.value) {
-          otherQuery.value = parseUrl(redirect.value).query
+        if (str) {
+          const { url, query } = parseUrl(str)
+
+          redirect.value = url
+          otherQuery.value = query
         }
       }
     })

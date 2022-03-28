@@ -32,9 +32,7 @@ export function usePermissionGuard(router: Router) {
             })
 
             return to.fullPath
-          } catch {
-            return ROUTE.INDEX
-          }
+          } catch {}
         }
       }
     } else {
