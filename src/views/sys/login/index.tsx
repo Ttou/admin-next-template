@@ -8,6 +8,8 @@ import { useSettingStore, useUserStore } from '@/store'
 
 import styles from './index.module.css'
 
+const { useForm } = Form
+
 export default defineComponent({
   name: 'LoginView',
   setup() {
@@ -27,8 +29,6 @@ export default defineComponent({
       username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
       password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
     } as FormRules)
-
-    const { useForm } = Form
 
     const formRef = useForm(formModel.value, formRules.value)
 
@@ -92,7 +92,7 @@ export default defineComponent({
           <FormItem
             name="username"
             wrapperCol={{ span: 24 }}
-            {...this.formRef.validateInfos.username}
+            {...this.formRef.validateInfos['username']}
           >
             <Input
               v-model:value={this.formModel.username}
@@ -104,7 +104,7 @@ export default defineComponent({
           <FormItem
             name="password"
             wrapperCol={{ span: 24 }}
-            {...this.formRef.validateInfos.password}
+            {...this.formRef.validateInfos['password']}
           >
             <InputPassword
               v-model:value={this.formModel.password}
