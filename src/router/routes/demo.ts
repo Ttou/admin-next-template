@@ -47,6 +47,12 @@ export default {
       name: 'DemoTable',
       component: () => import('@/views/demo/table'),
       meta: { title: '高级表格' }
+    },
+    {
+      path: 'video',
+      name: 'DemoVideo',
+      component: () => import('@/views/demo/video'),
+      meta: { title: '视频播放' }
     }
   ]
 } as Route

@@ -30,7 +30,8 @@
     "vue-router": "4.0.14",
     "vxe-table": "4.2.1",
     "vxe-table-plugin-antd": "3.0.5",
-    "xe-utils": "3.5.4"
+    "xe-utils": "3.5.4",
+    "xgplayer": "2.31.6"
   },
   "devDependencies": {
     "@babel/runtime": "^7.16.5",

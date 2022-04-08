@@ -1,1 +1,0 @@
-import{f as a,g as e,a2 as s}from"./index.06d1992b.js";var r=a({name:"NestedMenu12",render(){return e("div",{style:{padding:"30px"}},[e(s,{closable:!1,message:"Menu 1-2",type:"success"},null)])}});export{r as default};
