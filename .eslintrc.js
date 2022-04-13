@@ -9,14 +9,18 @@ module.exports = defineEslintConfig({
   extends: [
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/eslint-config-typescript/recommended',
-    '@vue/eslint-config-prettier'
+    '@vue/typescript/recommended',
+    'plugin:prettier/recommended'
   ],
-  plugins: ['simple-import-sort'],
+  parserOptions: {
+    ecmaVersion: 2020
+  },
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
     'no-empty': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'prettier/prettier': 'error',
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': 'off',

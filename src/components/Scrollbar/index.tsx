@@ -126,6 +126,7 @@ export default defineComponent({
           stopResizeObserver?.()
           stopResizeListener?.()
         } else {
+          // eslint-disable-next-line @typescript-eslint/no-extra-semi
           ;({ stop: stopResizeObserver } = useResizeObserver(resize$, update))
           stopResizeListener = useEventListener('resize', update)
         }
