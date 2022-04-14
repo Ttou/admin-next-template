@@ -1,5 +1,5 @@
 import { Button, message, Space } from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 
 import { ProEditor } from '@/components'
 import type { ProEditorProps, ProEditorRef } from '@/components/ProEditor/types'
@@ -9,7 +9,10 @@ import styles from './index.module.css'
 export default defineComponent({
   name: 'DemoEditor',
   setup() {
-    const editorConfig = ref({} as ProEditorProps)
+    const editorConfig = ref({
+      editorHtml: '',
+      editorVisible: false
+    } as ProEditorProps)
     const editorRef = ref({} as ProEditorRef)
 
     function handleGetHTML() {
@@ -25,6 +28,13 @@ export default defineComponent({
     function handleClear() {
       editorRef.value.editor.clear()
     }
+
+    onMounted(() => {
+      setTimeout(() => {
+        editorConfig.value.editorHtml = '<p><b>哈哈</b></p>'
+        editorConfig.value.editorVisible = true
+      }, 1500)
+    })
 
     return {
       editorConfig,

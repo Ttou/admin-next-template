@@ -3,3 +3,7 @@
   flex-flow: column nowrap;
   align-items: center;
 }
+
+.btns {
+  margin-top: 15px;
+}

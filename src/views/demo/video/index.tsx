@@ -25,8 +25,12 @@ export default defineComponent({
       videoRef.value.player.pause()
     }
 
-    function handleReplay() {
+    function handleContinueToPlay() {
       videoRef.value.player.play()
+    }
+
+    function handleReplay() {
+      videoRef.value.player.reload()
     }
 
     return {
@@ -34,6 +38,7 @@ export default defineComponent({
       videoConfig,
       handlePlay,
       handlePause,
+      handleContinueToPlay,
       handleReplay
     }
   },
@@ -41,11 +46,12 @@ export default defineComponent({
     return (
       <div class={styles.view}>
         <ProVideo ref="videoRef" {...this.videoConfig} />
-        <div>
+        <div class={styles.btns}>
           <Space>
-            <Button onClick={this.handlePlay}>开始播放</Button>
+            <Button onClick={this.handlePlay}>播放</Button>
             <Button onClick={this.handlePause}>暂停</Button>
-            <Button onClick={this.handleReplay}>继续播放</Button>
+            <Button onClick={this.handleContinueToPlay}>继续播放</Button>
+            <Button onClick={this.handleReplay}>重新播放</Button>
           </Space>
         </div>
       </div>
