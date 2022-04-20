@@ -4,7 +4,7 @@ import type { CSSProperties, PropType } from 'vue'
 export default {
   wrapStyle: {
     type: Object as PropType<CSSProperties>,
-    default: (): CSSProperties => ({ border: '1px solid #ccc' })
+    default: (): CSSProperties => ({ border: '1px solid #ccc', zIndex: 9999 })
   },
   toolbarConfig: {
     type: Object as PropType<IToolbarConfig>,
