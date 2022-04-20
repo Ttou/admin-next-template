@@ -4,7 +4,7 @@ import type { CSSProperties, PropType } from 'vue'
 export default {
   wrapStyle: {
     type: Object as PropType<CSSProperties>,
-    default: (): CSSProperties => ({ border: '1px solid #ccc', zIndex: 9999 })
+    default: (): CSSProperties => ({})
   },
   toolbarConfig: {
     type: Object as PropType<IToolbarConfig>,
@@ -12,7 +12,7 @@ export default {
   },
   toolbarStyle: {
     type: Object as PropType<CSSProperties>,
-    default: (): CSSProperties => ({ borderBottom: '1px solid #ccc' })
+    default: (): CSSProperties => ({})
   },
   editorConfig: {
     type: Object as PropType<IEditorConfig>,
@@ -20,7 +20,7 @@ export default {
   },
   editorStyle: {
     type: Object as PropType<CSSProperties>,
-    default: (): CSSProperties => ({ height: '500px' })
+    default: (): CSSProperties => ({})
   },
   editorHtml: {
     type: String,
