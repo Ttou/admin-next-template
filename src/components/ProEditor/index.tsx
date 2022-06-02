@@ -18,7 +18,7 @@ export default defineComponent({
   setup(props) {
     const editor = shallowRef<Nullable<IDomEditor>>(null)
 
-    const _wrapStyle = computed(
+    const computedWrapStyle = computed(
       () =>
         ({
           border: '1px solid #ccc',
@@ -27,7 +27,7 @@ export default defineComponent({
         } as CSSProperties)
     )
 
-    const _toolbarStyle = computed(
+    const computedToolbarStyle = computed(
       () =>
         ({
           borderBottom: '1px solid #ccc',
@@ -35,7 +35,7 @@ export default defineComponent({
         } as CSSProperties)
     )
 
-    const _editorStyle = computed(
+    const computedEditorStyle = computed(
       () => ({ height: '500px', ...props.editorStyle } as CSSProperties)
     )
 
@@ -51,9 +51,9 @@ export default defineComponent({
 
     return {
       editor,
-      _wrapStyle,
-      _toolbarStyle,
-      _editorStyle,
+      computedWrapStyle,
+      computedToolbarStyle,
+      computedEditorStyle,
       handleCreated
     }
   },
