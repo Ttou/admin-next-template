@@ -7,11 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview --mode=production",
-    "prepare": "husky install",
-    "commit": "git add . && git cz",
-    "format": "prettier \"src/**/*.{ts,tsx,vue}\" --write",
-    "lint:script": "eslint \"src/**/*.{ts,tsx,vue}\" --fix",
-    "lint:style": "stylelint \"src/**/*.{css,less,vue}\" --fix"
+    "commit": "git add . && git cz"
   },
   "dependencies": {
     "@antv/g2plot": "2.4.17",
@@ -37,7 +33,7 @@
     "@babel/runtime": "^7.16.5",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
-    "@ttou/define-config": "^1.0.7",
+    "@ttou/define-config": "^1.0.0",
     "@types/lodash-es": "^4.17.4",
     "@types/node": "^16.0.0",
     "@types/nprogress": "^0.2.0",
@@ -56,7 +52,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-vue": "^8.0.0",
-    "husky": "^7.0.4",
     "less": "^4.1.2",
     "lint-staged": "^13.0.0",
     "mockjs": "^1.1.0",
@@ -64,6 +59,7 @@
     "postcss-html": "^1.4.1",
     "postcss-less": "^6.0.0",
     "prettier": "^2.6.2",
+    "simple-git-hooks": "^2.8.0",
     "stylelint": "^14.8.2",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
@@ -85,7 +81,17 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,vue}": "npm run lint:script",
-    "*.{css,less,vue}": "npm run lint:style"
+    "*.{ts,tsx,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,less,vue}": [
+      "stylelint --fix",
+      "prettier --write"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx commitlint --edit $1"
   }
 }
