@@ -1,8 +1,7 @@
 import { Button, Space } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
-import { ProVideo } from '@/components'
-import { ProVideoProps, ProVideoRef } from '@/components/ProVideo/types'
+import { type ProVideoProps, type ProVideoRef, ProVideo } from '@/components'
 
 import styles from './index.module.css'
 

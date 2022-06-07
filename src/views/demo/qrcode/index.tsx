@@ -1,8 +1,7 @@
 import { Card, Col, Row } from 'ant-design-vue'
 import { defineComponent, ref } from 'vue'
 
-import { ProQr } from '@/components'
-import type { ProQrProps } from '@/components/ProQr/types'
+import { ProQr, ProQrProps } from '@/components'
 
 import logo from './images/logo.svg'
 

@@ -1,8 +1,7 @@
 import { Button, message, Space } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import { ProEditor } from '@/components'
-import type { ProEditorProps, ProEditorRef } from '@/components/ProEditor/types'
+import { type ProEditorProps, type ProEditorRef, ProEditor } from '@/components'
 
 import styles from './index.module.css'
 

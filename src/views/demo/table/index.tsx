@@ -3,11 +3,7 @@ import { omit } from 'lodash-es'
 import { defineComponent, ref } from 'vue'
 
 import { demoApi } from '@/apis'
-import { ProTable } from '@/components'
-import {
-  type ProTableProps,
-  type ProTableRef
-} from '@/components/ProTable/types'
+import { type ProTableProps, type ProTableRef, ProTable } from '@/components'
 import {
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,

@@ -9,18 +9,13 @@ import {
   Transition
 } from 'vue'
 
+import barProps from './BarTypes'
 import { scrollbarContextKey } from './constant'
 import { BAR_MAP, renderThumbStyle } from './util'
 
 export default defineComponent({
   name: 'Bar',
-  props: {
-    vertical: Boolean,
-    size: { type: String, default: '' },
-    move: { type: Number, default: 0 },
-    ratio: { type: Number, required: true },
-    always: Boolean
-  },
+  props: barProps(),
   setup(props) {
     const scrollbar = inject(scrollbarContextKey)
     if (!scrollbar) throw new Error('can not inject scrollbar context')
