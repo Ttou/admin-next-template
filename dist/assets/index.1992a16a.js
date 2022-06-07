@@ -1,0 +1,1 @@
+import{f as a,g as e,a3 as s}from"./index.473cd3cf.js";var r=a({name:"NestedMenu11",render(){return e("div",{style:{padding:"30px"}},[e(s,{closable:!1,message:"Menu 1-1",type:"success"},null)])}});export{r as default};

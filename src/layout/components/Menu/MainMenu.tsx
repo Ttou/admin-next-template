@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 
 import { SvgIcon } from '@/components'
 
-import type { Item } from './types'
+import type { MenuItem as Item } from './MenuTypes'
 
 export default defineComponent({
   name: 'MainMenu',

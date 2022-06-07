@@ -5,7 +5,7 @@ import { computed, defineComponent } from 'vue'
 import { SvgIcon } from '@/components'
 
 import MainMenu from './MainMenu'
-import type { Item } from './types'
+import type { MenuItem as Item } from './MenuTypes'
 
 export default defineComponent({
   name: 'SubMenu',

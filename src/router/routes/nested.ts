@@ -1,5 +1,5 @@
 import { DefaultLayout, ParentLayout } from '@/layout'
-import { Route } from '@/layout/components/Menu/types'
+import { Route } from '@/layout/components'
 
 export default {
   path: '/nested',

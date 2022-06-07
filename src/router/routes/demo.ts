@@ -1,5 +1,5 @@
 import { DefaultLayout } from '@/layout'
-import { Route } from '@/layout/components/Menu/types'
+import { Route } from '@/layout/components'
 
 export default {
   path: '/demo',
