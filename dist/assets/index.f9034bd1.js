@@ -1,1 +1,0 @@
-import{f as r,g as e,l as a}from"./index.42b5c8c7.js";const n="view__4TGYI";var t={view:n},o=r({name:"WorkbenchView",render(){return e("div",{class:t.view},[e("h2",null,[a("\u5DE5\u4F5C\u53F0")])])}});export{o as default};
