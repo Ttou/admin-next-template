@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 
 export const proPlotProps = () => ({
   plot: { type: Function as PropType<any>, required: true },
@@ -7,8 +7,6 @@ export const proPlotProps = () => ({
   events: { type: Object }
 })
 
-export type ProPlotProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proPlotProps>>
->
+export type ProPlotProps = ComponentProps<typeof proPlotProps>
 
 export default proPlotProps

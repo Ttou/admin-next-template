@@ -1,5 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
-
 export const countToProps = () => ({
   startVal: { type: Number, default: 0 },
   endVal: { type: Number, default: 1000 },
@@ -20,8 +18,6 @@ export const countToProps = () => ({
   transition: { type: String, default: 'linear' }
 })
 
-export type CountToProps = Partial<
-  ExtractPropTypes<ReturnType<typeof countToProps>>
->
+export type CountToProps = ComponentProps<typeof countToProps>
 
 export default countToProps

@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType, StyleValue } from 'vue'
+import type { PropType, StyleValue } from 'vue'
 
 export const scrollbarProps = () => ({
   height: { type: [String, Number], default: '' },
@@ -17,8 +17,6 @@ export const scrollbarProps = () => ({
   minSize: { type: Number, default: 20 }
 })
 
-export type ScrollbarProps = Partial<
-  ExtractPropTypes<ReturnType<typeof scrollbarProps>>
->
+export type ScrollbarProps = ComponentProps<typeof scrollbarProps>
 
 export default scrollbarProps

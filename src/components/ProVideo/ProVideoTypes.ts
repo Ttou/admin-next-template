@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 import Player, { type IPlayerOptions } from 'xgplayer'
 
 export const proVideoProps = () => ({
@@ -8,9 +8,7 @@ export const proVideoProps = () => ({
   }
 })
 
-export type ProVideoProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proVideoProps>>
->
+export type ProVideoProps = ComponentProps<typeof proVideoProps>
 
 export type ProVideoRef = {
   /** 视频容器 */

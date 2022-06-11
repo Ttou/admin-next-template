@@ -1,5 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
-
 export const barProps = () => ({
   vertical: Boolean,
   size: { type: String, default: '' },
@@ -8,6 +6,6 @@ export const barProps = () => ({
   always: Boolean
 })
 
-export type BarProps = Partial<ExtractPropTypes<ReturnType<typeof barProps>>>
+export type BarProps = ComponentProps<typeof barProps>
 
 export default barProps

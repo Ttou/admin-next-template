@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 import type { VxeGridInstance, VxeGridProps } from 'vxe-table'
 
 export const proTableProps = () => ({
@@ -21,9 +21,7 @@ export type UpdateFormItemOptions = {
   value: any
 }
 
-export type ProTableProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proTableProps>>
->
+export type ProTableProps = ComponentProps<typeof proTableProps>
 
 export type ProTableRef = {
   /** 配置数据 */

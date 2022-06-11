@@ -1,5 +1,5 @@
 import type { QRCodeRenderersOptions } from 'qrcode'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 
 export const proQrProps = () => ({
   text: { type: String, default: '', required: true },
@@ -10,8 +10,6 @@ export const proQrProps = () => ({
   }
 })
 
-export type ProQrProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proQrProps>>
->
+export type ProQrProps = ComponentProps<typeof proQrProps>
 
 export default proQrProps

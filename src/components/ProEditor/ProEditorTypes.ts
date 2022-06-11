@@ -3,7 +3,7 @@ import type {
   IEditorConfig,
   IToolbarConfig
 } from '@wangeditor/editor'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import type { CSSProperties, PropType } from 'vue'
 
 export const proEditorProps = () => ({
   wrapStyle: {
@@ -36,9 +36,7 @@ export const proEditorProps = () => ({
   }
 })
 
-export type ProEditorProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proEditorProps>>
->
+export type ProEditorProps = ComponentProps<typeof proEditorProps>
 
 export type ProEditorRef = {
   editor: IDomEditor
