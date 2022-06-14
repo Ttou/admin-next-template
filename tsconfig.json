@@ -25,6 +25,8 @@
       "dom"
     ],
     "types": [
+      "ant-design-vue/typings/global",
+      "element-plus/global",
       "vite/client"
     ]
   },

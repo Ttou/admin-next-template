@@ -6,6 +6,10 @@ import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
+import {
+  createStyleImportPlugin,
+  ElementPlusResolve
+} from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export default defineConfig(({ mode }) => {
@@ -39,6 +43,9 @@ export default defineConfig(({ mode }) => {
       vue(),
       vueJsx(),
       compression(),
+      createStyleImportPlugin({
+        resolves: [ElementPlusResolve()]
+      }),
       createHtmlPlugin({
         inject: {
           data: {
