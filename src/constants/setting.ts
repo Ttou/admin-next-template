@@ -1,4 +1,4 @@
-import type { Setting } from '@/types'
+import type { Setting } from './settingTypes'
 
 export const SETTING = {
   title: '后台管理系统',

@@ -1,7 +1,6 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { resolve } from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
@@ -28,12 +27,9 @@ export default defineConfig(({ mode }) => {
       }
     },
     resolve: {
-      alias: [
-        {
-          find: '@',
-          replacement: fileURLToPath(new URL('./src', import.meta.url))
-        }
-      ]
+      alias: {
+        '@/': `${resolve(__dirname, 'src')}/`
+      }
     },
     optimizeDeps: {
       include: ['ant-design-vue/es/locale/zh_CN', 'dayjs/locale/zh-cn'],
