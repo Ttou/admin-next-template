@@ -1,10 +1,17 @@
 import type { PropType } from 'vue'
-import type { VxeGridInstance, VxeGridProps } from 'vxe-table'
+import type {
+  VxeGridEventProps,
+  VxeGridInstance,
+  VxeGridProps
+} from 'vxe-table'
+
+type Options = VxeGridProps & VxeGridEventProps
 
 export const proTableProps = () => ({
   fixedHeight: { type: [Boolean, Number], default: false },
   options: {
-    type: Object as PropType<VxeGridProps>,
+    type: Object as PropType<Options>,
+    default: () => ({} as Options),
     required: true
   }
 })
