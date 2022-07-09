@@ -1,12 +1,14 @@
-declare namespace JSX {
-  interface IntrinsicAttributes {
-    ['id']?: unknown
-    ['class']?: unknown
-    ['style']?: import('vue').StyleValue
-    ['v-show']?: unknown
-    ['v-model']?: unknown
-    ['v-slots']?: unknown
+import type { StyleValue } from 'vue'
 
-    [property: string]: unknown
+declare global {
+  namespace JSX {
+    interface IntrinsicAttributes {
+      ['v-show']?: unknown
+      ['v-model']?: unknown
+      ['v-slots']?: unknown
+      ['style']?: StyleValue
+    }
   }
 }
+
+export {}
