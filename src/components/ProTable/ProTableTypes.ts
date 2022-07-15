@@ -9,6 +9,7 @@ type Options = VxeGridProps & VxeGridEventProps
 
 export const proTableProps = () => ({
   fixedHeight: { type: [Boolean, Number], default: false },
+  fixedInContent: { type: Boolean, default: true },
   options: {
     type: Object as PropType<Options>,
     default: () => ({} as Options),

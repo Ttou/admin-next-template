@@ -29,8 +29,22 @@ export default defineComponent({
       if (isNumber(props.fixedHeight)) {
         tableHeight.value = props.fixedHeight
       } else if (props.fixedHeight) {
-        const app = document.querySelector('#app')
-        tableHeight.value = app!.clientHeight - 114
+        if (props.fixedInContent) {
+          const app = document.querySelector('#app')
+          tableHeight.value = app!.clientHeight - 114
+        } else {
+          const parentEl = table.value.$parent!.$el.parentElement
+          const paddingTop = getComputedStyle(parentEl).paddingTop.replace(
+            'px',
+            ''
+          )
+          const paddingBottom = getComputedStyle(
+            parentEl
+          ).paddingBottom.replace('px', '')
+
+          tableHeight.value =
+            parentEl.clientHeight - Number(paddingTop) - Number(paddingBottom)
+        }
       }
     }
 

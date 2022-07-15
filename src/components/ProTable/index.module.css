@@ -1,4 +1,5 @@
-.proTable {}
+.proTable {
+}
 
 .proTable :global(.vxe-grid--form-wrapper .ant-select) {
   width: 183px !important;
