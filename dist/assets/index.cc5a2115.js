@@ -1,0 +1,1 @@
+import{f as a,g as e,a3 as n}from"./index.7d5c1abf.js";const t=a({name:"NestedMenu2",render(){return e("div",{style:{padding:"30px"}},[e(n,{closable:!1,message:"Menu 2"},null)])}});export{t as default};
