@@ -7,6 +7,8 @@ declare global {
       ['v-model']?: unknown
       ['v-slots']?: unknown
       ['style']?: StyleValue
+
+      [x: string]: unknown
     }
   }
 }
