@@ -31,6 +31,12 @@ export default {
       meta: { title: '自定义表单' }
     },
     {
+      path: 'form-create',
+      name: 'DemoFormCreate',
+      component: () => import('@/views/demo/form-create'),
+      meta: { title: '构建表单' }
+    },
+    {
       path: 'plot',
       name: 'DemoPlot',
       component: () => import('@/views/demo/plot'),
