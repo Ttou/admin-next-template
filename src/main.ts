@@ -7,6 +7,7 @@ import { createApp } from 'vue'
 import App from './App'
 import {
   useAntd,
+  useErrorHandler,
   useFormCreate,
   usePermissionGuard,
   useProgressGuard,
@@ -27,6 +28,7 @@ async function bootstrap() {
   useAntd(app)
   useTable(app)
   useFormCreate(app)
+  useErrorHandler(app)
 
   await router.isReady()
 
