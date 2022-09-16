@@ -1,133 +1,150 @@
 import { defineStore } from 'pinia'
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { ref } from 'vue'
 
-import type { Tabs } from './types'
+import store from '.'
+import type { Tab, Tabs } from './types'
 
-export function useTabsStore() {
-  return defineStore('tabs', {
-    state: () => {
-      return {
-        cachedTabs: [] as string[],
-        visitedTabs: [] as RouteLocationNormalizedLoaded[]
+export const useTabsStore = defineStore('tabs', () => {
+  const cachedTabs = ref<string[]>([])
+  const visitedTabs = ref<Tab[]>([])
+
+  function addTab(tab: Tab) {
+    const visitedTab = visitedTabs.value.find(v => v.path === tab.path)
+
+    if (visitedTab) {
+      if (visitedTab.fullPath === tab.fullPath) {
+        return
       }
-    },
-    actions: {
-      addTab(tab: RouteLocationNormalizedLoaded) {
-        const visitedTab = this.visitedTabs.find(v => v.path === tab.path)
 
-        if (visitedTab) {
-          if (visitedTab.fullPath === tab.fullPath) {
-            return
-          }
+      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
+      visitedTabs.value[index] = { ...tab }
+    } else {
+      const v = { ...tab }
 
-          const index = this.visitedTabs.findIndex(v => v.path === tab.path)
-          this.visitedTabs[index] = { ...tab }
-        } else {
-          const v = { ...tab }
+      if (!v.meta!.title) {
+        v.meta!.title = 'undefined'
+      }
 
-          if (!v.meta!.title) {
-            v.meta!.title = 'undefined'
-          }
+      visitedTabs.value.push(v)
 
-          this.visitedTabs.push(v)
+      updateCachedTab()
+    }
+  }
 
-          this.updateCachedTab()
+  function delTab(tab: Tab): Promise<Tabs> {
+    return new Promise(resolve => {
+      for (const [i, v] of visitedTabs.value.entries()) {
+        if (v.path === tab.path) {
+          visitedTabs.value.splice(i, 1)
+          break
         }
-      },
-      delTab(tab: RouteLocationNormalizedLoaded): Promise<Tabs> {
-        return new Promise(resolve => {
-          for (const [i, v] of this.visitedTabs.entries()) {
-            if (v.path === tab.path) {
-              this.visitedTabs.splice(i, 1)
-              break
-            }
-          }
+      }
 
-          this.updateCachedTab()
+      updateCachedTab()
 
-          resolve({
-            cachedTabs: [...this.cachedTabs],
-            visitedTabs: [...this.visitedTabs]
-          })
-        })
-      },
-      delLeftTabs(tab: RouteLocationNormalizedLoaded) {
-        return new Promise(resolve => {
-          const index = this.visitedTabs.findIndex(v => v.path === tab.path)
+      resolve({
+        cachedTabs: [...cachedTabs.value],
+        visitedTabs: [...visitedTabs.value]
+      })
+    })
+  }
 
-          if (index > 0) {
-            this.visitedTabs = this.visitedTabs.slice(index)
-          }
+  function delLeftTabs(tab: Tab): Promise<Tabs> {
+    return new Promise(resolve => {
+      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
 
-          this.updateCachedTab()
+      if (index > 0) {
+        visitedTabs.value = visitedTabs.value.slice(index)
+      }
 
-          resolve({
-            cachedTabs: [...this.cachedTabs],
-            visitedTabs: [...this.visitedTabs]
-          })
-        })
-      },
-      delRightTabs(tab: RouteLocationNormalizedLoaded) {
-        return new Promise(resolve => {
-          const index = this.visitedTabs.findIndex(v => v.path === tab.path)
+      updateCachedTab()
 
-          if (index >= 0 && index < this.visitedTabs.length - 1) {
-            this.visitedTabs = this.visitedTabs.slice(0, index + 1)
-          }
+      resolve({
+        cachedTabs: [...cachedTabs.value],
+        visitedTabs: [...visitedTabs.value]
+      })
+    })
+  }
 
-          this.updateCachedTab()
+  function delRightTabs(tab: Tab): Promise<Tabs> {
+    return new Promise(resolve => {
+      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
 
-          resolve({
-            cachedTabs: [...this.cachedTabs],
-            visitedTabs: [...this.visitedTabs]
-          })
-        })
-      },
-      delOthersTabs(tab: RouteLocationNormalizedLoaded) {
-        return new Promise(resolve => {
-          this.visitedTabs = this.visitedTabs.filter(v => v.path === tab.path)
-          this.updateCachedTab()
+      if (index >= 0 && index < visitedTabs.value.length - 1) {
+        visitedTabs.value = visitedTabs.value.slice(0, index + 1)
+      }
 
-          resolve({
-            cachedTabs: [...this.cachedTabs],
-            visitedTabs: [...this.visitedTabs]
-          })
-        })
-      },
-      delAllTabs(): Promise<Tabs> {
-        return new Promise(resolve => {
-          this.visitedTabs = []
-          this.updateCachedTab()
+      updateCachedTab()
 
-          resolve({
-            cachedTabs: [...this.cachedTabs],
-            visitedTabs: [...this.visitedTabs]
-          })
-        })
-      },
-      delCachedTab(tab: RouteLocationNormalizedLoaded) {
-        return new Promise(resolve => {
-          const index = this.cachedTabs.indexOf(tab.name as string)
+      resolve({
+        cachedTabs: [...cachedTabs.value],
+        visitedTabs: [...visitedTabs.value]
+      })
+    })
+  }
 
-          if (index > -1) {
-            this.cachedTabs.splice(index, 1)
-          }
+  function delOthersTabs(tab: Tab): Promise<Tabs> {
+    return new Promise(resolve => {
+      visitedTabs.value = visitedTabs.value.filter(v => v.path === tab.path)
+      updateCachedTab()
 
-          resolve(true)
-        })
-      },
-      updateCachedTab() {
-        const cachedTabs = new Set<string>()
+      resolve({
+        cachedTabs: [...cachedTabs.value],
+        visitedTabs: [...visitedTabs.value]
+      })
+    })
+  }
 
-        for (const tab of this.visitedTabs) {
-          if (tab.meta!.noCache !== true) {
-            const name = tab.name as string
-            name && cachedTabs.add(name)
-          }
-        }
+  function delCachedTab(tab: Tab) {
+    return new Promise(resolve => {
+      const index = cachedTabs.value.indexOf(tab.name as string)
 
-        this.cachedTabs = Array.from(cachedTabs)
+      if (index > -1) {
+        cachedTabs.value.splice(index, 1)
+      }
+
+      resolve(true)
+    })
+  }
+
+  function delAllTabs() {
+    return new Promise(resolve => {
+      visitedTabs.value = []
+      updateCachedTab()
+
+      resolve({
+        cachedTabs: [...cachedTabs.value],
+        visitedTabs: [...visitedTabs.value]
+      })
+    })
+  }
+
+  function updateCachedTab() {
+    const _cachedTabs = new Set<string>()
+
+    for (const tab of visitedTabs.value) {
+      if (tab.meta!.noCache !== true) {
+        const name = tab.name as string
+        name && _cachedTabs.add(name)
       }
     }
-  })()
+
+    cachedTabs.value = Array.from(_cachedTabs)
+  }
+
+  return {
+    cachedTabs,
+    visitedTabs,
+    addTab,
+    delTab,
+    delLeftTabs,
+    delRightTabs,
+    delOthersTabs,
+    delCachedTab,
+    delAllTabs
+  }
+})
+
+export function useTabsStoreHook() {
+  return useTabsStore(store)
 }

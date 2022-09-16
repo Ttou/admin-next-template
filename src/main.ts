@@ -1,7 +1,6 @@
 import 'virtual:svg-icons-register'
 import './styles'
 
-import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import App from './App'
@@ -14,13 +13,13 @@ import {
   useTable
 } from './hooks'
 import router from './router'
+import store from './store'
 
 async function bootstrap() {
   const app = createApp(App)
-  const pinia = createPinia()
 
   app.use(router)
-  app.use(pinia)
+  app.use(store)
 
   usePermissionGuard(router)
   useProgressGuard(router)

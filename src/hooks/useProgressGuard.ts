@@ -1,16 +1,14 @@
-import 'nprogress/nprogress.css'
-
-import NProgress from 'nprogress'
+import { useNProgress } from '@vueuse/integrations/useNProgress'
 import type { Router } from 'vue-router'
 
 export function useProgressGuard(router: Router) {
-  NProgress.configure({
+  const { isLoading, start, done } = useNProgress(0, {
     showSpinner: false
   })
 
   router.beforeEach(() => {
-    if (!NProgress.isStarted()) {
-      NProgress.start()
+    if (!isLoading.value) {
+      start()
     }
 
     return true
@@ -18,8 +16,8 @@ export function useProgressGuard(router: Router) {
 
   router.afterEach(() => {
     // 加上页面过渡动画时间
-    if (NProgress.isStarted()) {
-      NProgress.done()
+    if (isLoading.value) {
+      done()
     }
   })
 }

@@ -1,8 +1,11 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { ROUTE } from '@/constants'
 import { asyncRoutes, constRoutes } from '@/router'
+
+import store from '.'
 
 function hasPermission(roles: string[], route: RouteRecordRaw) {
   if (route.meta && route.meta.roles) {
@@ -33,37 +36,37 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
   return res
 }
 
-export function usePermissionStore() {
-  return defineStore('permission', {
-    state: () => {
-      return {
-        routes: [] as RouteRecordRaw[],
-        matched: [] as string[]
-      }
-    },
-    actions: {
-      generate(roles: string[]): Promise<RouteRecordRaw[]> {
-        return new Promise(resolve => {
-          let accessedRoutes: RouteRecordRaw[]
+export const usePermissionStore = defineStore('permission', () => {
+  const routes = ref<RouteRecordRaw[]>([])
+  const matched = ref<string[]>([])
 
-          // eslint-disable-next-line prefer-const
-          accessedRoutes = filterAsyncRoutes(
-            asyncRoutes as RouteRecordRaw[],
-            roles
-          )
+  function generate(roles: string[]): Promise<RouteRecordRaw[]> {
+    return new Promise(resolve => {
+      let accessedRoutes: RouteRecordRaw[]
 
-          accessedRoutes.push({
-            path: '/:pathMatch(.*)*',
-            redirect: {
-              path: ROUTE.ERROR,
-              query: { status: 404 }
-            }
-          })
+      // eslint-disable-next-line prefer-const
+      accessedRoutes = filterAsyncRoutes(asyncRoutes as RouteRecordRaw[], roles)
 
-          this.routes = constRoutes.concat(accessedRoutes)
-          resolve(accessedRoutes)
-        })
-      }
-    }
-  })()
+      accessedRoutes.push({
+        path: '/:pathMatch(.*)*',
+        redirect: {
+          path: ROUTE.ERROR,
+          query: { status: 404 }
+        }
+      })
+
+      routes.value = constRoutes.concat(accessedRoutes)
+      resolve(accessedRoutes)
+    })
+  }
+
+  return {
+    routes,
+    matched,
+    generate
+  }
+})
+
+export function usePermissionStoreHook() {
+  return usePermissionStore(store)
 }

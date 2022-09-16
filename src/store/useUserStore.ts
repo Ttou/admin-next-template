@@ -1,46 +1,58 @@
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 import { userApi } from '@/apis'
 
 import { useTabsStore } from '.'
+import store from '.'
 
-export function useUserStore() {
-  return defineStore('user', {
-    state: () => {
-      return {
-        token: useStorage('token', '') as unknown as string,
-        name: '',
-        roles: [] as string[]
-      }
-    },
-    actions: {
-      async login(payload: Record<string, any>) {
-        const data = await userApi.login(payload)
+export const useUserStore = defineStore('user', () => {
+  const token = useStorage('token', '')
+  const name = ref('')
+  const roles = ref<string[]>([])
 
-        this.token = data.token
-      },
-      async logout() {
-        await userApi.logout()
+  async function login(payload: Record<string, any>) {
+    const data = await userApi.login(payload)
 
-        this.clear()
-      },
-      async getInfo() {
-        const { name, roles } = await userApi.getInfo()
+    token.value = data.token
+  }
 
-        this.name = name
-        this.roles = roles
+  async function logout() {
+    await userApi.logout()
 
-        return roles
-      },
-      clear() {
-        const tabsStore = useTabsStore()
+    clear()
+  }
 
-        this.token = ''
-        this.name = ''
-        this.roles = []
-        tabsStore.delAllTabs()
-      }
-    }
-  })()
+  async function getInfo() {
+    const data = await userApi.getInfo()
+
+    name.value = data.name
+    roles.value = data.roles
+
+    return data.roles
+  }
+
+  function clear() {
+    const tabsStore = useTabsStore()
+
+    token.value = ''
+    name.value = ''
+    roles.value = []
+    tabsStore.delAllTabs()
+  }
+
+  return {
+    token,
+    name,
+    roles,
+    login,
+    logout,
+    getInfo,
+    clear
+  }
+})
+
+export function useUserStoreHook() {
+  return useUserStore(store)
 }
