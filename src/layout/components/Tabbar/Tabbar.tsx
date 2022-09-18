@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/vue'
 import {
   Dropdown,
   Menu,
@@ -160,8 +161,8 @@ export default defineComponent({
                 <div class={styles.tabContent}>
                   <input data-key={view.fullPath} hidden />
                   <span>{view.meta!.title}</span>
-                  <SvgIcon
-                    name="tabbar-close"
+                  <Icon
+                    icon={'custom:tabbar-close'}
                     class={styles.tabCloseIcon}
                     onClick={withModifiers(
                       () => this.handleCloseTab(view),
@@ -178,13 +179,13 @@ export default defineComponent({
           v-slots={{
             default: () => (
               <div class={styles.tabsMenu}>
-                <SvgIcon name="tabbar-down" />
+                <Icon icon={'custom:tabbar-down'} />
               </div>
             ),
             overlay: () => (
               <Menu class={styles.tabsDropdownMenu}>
                 <MenuItem onClick={this.handleRefreshTab}>
-                  <SvgIcon name="tabbar-refresh" />
+                  <Icon icon={'custom:tabbar-refresh'} />
                   刷新页面
                 </MenuItem>
                 <MenuDivider />
@@ -192,14 +193,14 @@ export default defineComponent({
                   onClick={this.handleCloseLeftTabs}
                   disabled={this.closeLeftDisabled}
                 >
-                  <SvgIcon name="tabbar-close-left" />
+                  <Icon icon={'custom:tabbar-close-left'} />
                   关闭左侧
                 </MenuItem>
                 <MenuItem
                   onClick={this.handleCloseRightTabs}
                   disabled={this.closeRightDisabled}
                 >
-                  <SvgIcon name="tabbar-close-right" />
+                  <Icon icon={'custom:tabbar-close-right'} />
                   关闭右侧
                 </MenuItem>
                 <MenuDivider />
@@ -207,11 +208,11 @@ export default defineComponent({
                   onClick={this.handleCloseOtherTabs}
                   disabled={this.closeOtherDisabled}
                 >
-                  <SvgIcon name="tabbar-close" />
+                  <Icon icon={'custom:tabbar-close'} />
                   关闭其它
                 </MenuItem>
                 <MenuItem onClick={this.handleCloseAllTabs}>
-                  <SvgIcon name="tabbar-close-all" />
+                  <Icon icon={'custom:tabbar-close-all'} />
                   关闭所有
                 </MenuItem>
               </Menu>

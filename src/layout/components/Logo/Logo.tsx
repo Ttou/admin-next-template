@@ -1,7 +1,7 @@
+import { Icon } from '@iconify/vue'
 import type { CSSProperties } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 
-import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
 import styles from './index.module.css'
@@ -35,7 +35,7 @@ export default defineComponent({
   render() {
     return (
       <div class={styles.logo} style={this.style}>
-        <SvgIcon class={styles.logoIcon} name="logo" />
+        <Icon class={styles.logoIcon} icon={'custom:logo'} />
       </div>
     )
   }

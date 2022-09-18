@@ -1,6 +1,6 @@
+import { Icon } from '@iconify/vue'
 import { computed, defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
 import styles from './index.module.css'
@@ -26,9 +26,13 @@ export default defineComponent({
   },
   render() {
     return (
-      <SvgIcon
+      <Icon
         class={styles.trigger}
-        name={this.collapsed ? 'navbar-menu-unfold' : 'navbar-menu-fold'}
+        icon={
+          this.collapsed
+            ? 'ant-design:menu-unfold-outlined'
+            : 'ant-design:menu-fold-outlined'
+        }
         onClick={this.handleClick}
       />
     )

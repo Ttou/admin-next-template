@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/vue'
 import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
@@ -35,14 +36,14 @@ export default defineComponent({
         v-slots={{
           default: () => (
             <div class={styles.avatarWrapper}>
-              <SvgIcon class={styles.avatar} name="avatar" />
+              <Icon class={styles.avatar} icon={'custom:avatar'} />
             </div>
           ),
           overlay: () => (
             <Menu>
               <MenuItem onClick={this.handleLogout}>
-                <SvgIcon
-                  name="navbar-logout"
+                <Icon
+                  icon={'custom:navbar-logout'}
                   style={{
                     marginRight: '5px'
                   }}

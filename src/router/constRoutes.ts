@@ -12,7 +12,7 @@ export default [
     path: ROUTE.DASHBOARD,
     redirect: `${ROUTE.DASHBOARD}/analysis`,
     component: DefaultLayout,
-    meta: { title: 'Dashboard', icon: 'menu-dashboard' },
+    meta: { title: 'Dashboard', icon: 'ant-design:dashboard-outlined' },
     children: [
       {
         path: 'analysis',

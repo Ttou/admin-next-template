@@ -1,9 +1,8 @@
+import { Icon } from '@iconify/vue'
 import { MenuItem } from 'ant-design-vue'
 import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import { SvgIcon } from '@/components'
 
 import type { MenuItem as Item } from './MenuTypes'
 
@@ -35,9 +34,7 @@ export default defineComponent({
   render() {
     return this.show ? (
       <MenuItem
-        icon={
-          this.item.meta.icon ? <SvgIcon name={this.item.meta.icon} /> : null
-        }
+        icon={this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
         key={this.item.path}
       >
         <RouterLink to={this.item.path}>{this.item.meta.title}</RouterLink>

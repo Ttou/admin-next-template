@@ -1,8 +1,7 @@
+import { Icon } from '@iconify/vue'
 import { SubMenu } from 'ant-design-vue'
 import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
-
-import { SvgIcon } from '@/components'
 
 import MainMenu from './MainMenu'
 import type { MenuItem as Item } from './MenuTypes'
@@ -42,9 +41,7 @@ export default defineComponent({
     ) : (
       <SubMenu
         key={this.item.path}
-        icon={
-          this.item.meta.icon ? <SvgIcon name={this.item.meta.icon} /> : null
-        }
+        icon={this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
         title={this.item.meta.title}
       >
         {this.item.children?.map(item =>

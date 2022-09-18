@@ -1,6 +1,6 @@
+import { Icon } from '@iconify/vue'
 import { computed, defineComponent } from 'vue'
 
-import { SvgIcon } from '@/components'
 import { useSettingStore } from '@/store'
 
 export default defineComponent({
@@ -30,9 +30,9 @@ export default defineComponent({
         onClick={this.handleClick}
       >
         {this.siderTheme === 'dark' ? (
-          <SvgIcon name="navbar-theme-dark" />
+          <Icon icon={'ant-design:appstore-outlined'} />
         ) : (
-          <SvgIcon name="navbar-theme-light" />
+          <Icon icon={'ant-design:appstore-filled'} />
         )}
       </div>
     )

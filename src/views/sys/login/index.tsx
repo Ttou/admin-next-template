@@ -1,9 +1,9 @@
+import { Icon } from '@iconify/vue'
 import { Button, Form, FormItem, Input, InputPassword } from 'ant-design-vue'
 import { parseUrl } from 'query-string'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { SvgIcon } from '@/components'
 import { useSettingStore, useUserStore } from '@/store'
 
 import styles from './index.module.css'
@@ -83,7 +83,7 @@ export default defineComponent({
       <div class={styles.view}>
         <div class={styles.top}>
           <div class={styles.header}>
-            <SvgIcon class={styles.logoIcon} name="logo" />
+            <Icon class={styles.logoIcon} icon={'custom:logo'} />
             <span class={styles.title}>{this.title}</span>
           </div>
           <div class={styles.desc}>基于 Ant Design 的后台管理系统</div>
@@ -98,7 +98,7 @@ export default defineComponent({
               v-model:value={this.formModel.username}
               placeholder="账号：admin"
               size="large"
-              prefix={<SvgIcon name="view-user" />}
+              prefix={<Icon icon={'custom:view-user'} />}
             />
           </FormItem>
           <FormItem
@@ -110,7 +110,7 @@ export default defineComponent({
               v-model:value={this.formModel.password}
               placeholder="密码：任意"
               size="large"
-              prefix={<SvgIcon name="view-lock" />}
+              prefix={<Icon icon={'custom:view-lock'} />}
               onPressEnter={this.handleSubmit}
             />
           </FormItem>
@@ -126,7 +126,7 @@ export default defineComponent({
             </Button>
           </FormItem>
         </Form>
-        <SvgIcon class={styles.backgroundIcon} name="background" />
+        <Icon class={styles.backgroundIcon} icon={'custom:background'} />
       </div>
     )
   }

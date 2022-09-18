@@ -1,7 +1,8 @@
+import { Icon } from '@iconify/vue'
 import { Card, Col, Row, Skeleton, Tag } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
 
-import { CountTo, SvgIcon } from '@/components'
+import { CountTo } from '@/components'
 
 import styles from './index.module.css'
 
@@ -75,7 +76,7 @@ export default defineComponent({
                     prefix={item.valPrefix}
                     endVal={item.valNum}
                   />
-                  <SvgIcon class={styles.icon} name={item.icon} />
+                  <Icon class={styles.icon} icon={`custom:${item.icon}`} />
                 </div>
               </Skeleton>
             )

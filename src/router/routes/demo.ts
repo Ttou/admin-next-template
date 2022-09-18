@@ -8,7 +8,7 @@ export default {
   redirect: '/demo/copy-text',
   meta: {
     title: '组件演示',
-    icon: 'menu-demo',
+    icon: 'ant-design:database-outlined',
     roles: ['admin']
   },
   children: [
