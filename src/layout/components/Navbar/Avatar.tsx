@@ -3,7 +3,6 @@ import { Dropdown, Menu, MenuItem } from 'ant-design-vue'
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { SvgIcon } from '@/components'
 import { useDialog } from '@/hooks'
 import { useUserStore } from '@/store'
 
@@ -41,19 +40,17 @@ export default defineComponent({
           ),
           overlay: () => (
             <Menu>
-              <MenuItem onClick={this.handleLogout}>
-                <Icon
-                  icon={'custom:navbar-logout'}
-                  style={{
-                    marginRight: '5px'
-                  }}
-                />
+              <MenuItem
+                class={styles.avatarDropdownMenu}
+                onClick={this.handleLogout}
+              >
+                <Icon icon={'ant-design:logout-outlined'} />
                 <span>退出登录</span>
               </MenuItem>
             </Menu>
           )
         }}
-        placement="bottomRight"
+        placement={'bottom'}
       />
     )
   }

@@ -18,7 +18,6 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { SvgIcon } from '@/components'
 import { ROUTE } from '@/constants'
 import { useSettingStore, useTabsStore } from '@/store'
 
@@ -179,13 +178,13 @@ export default defineComponent({
           v-slots={{
             default: () => (
               <div class={styles.tabsMenu}>
-                <Icon icon={'custom:tabbar-down'} />
+                <Icon icon={'ant-design:down-outlined'} />
               </div>
             ),
             overlay: () => (
               <Menu class={styles.tabsDropdownMenu}>
                 <MenuItem onClick={this.handleRefreshTab}>
-                  <Icon icon={'custom:tabbar-refresh'} />
+                  <Icon icon={'ant-design:reload-outlined'} />
                   刷新页面
                 </MenuItem>
                 <MenuDivider />
@@ -193,14 +192,14 @@ export default defineComponent({
                   onClick={this.handleCloseLeftTabs}
                   disabled={this.closeLeftDisabled}
                 >
-                  <Icon icon={'custom:tabbar-close-left'} />
+                  <Icon icon={'ant-design:vertical-right-outlined'} />
                   关闭左侧
                 </MenuItem>
                 <MenuItem
                   onClick={this.handleCloseRightTabs}
                   disabled={this.closeRightDisabled}
                 >
-                  <Icon icon={'custom:tabbar-close-right'} />
+                  <Icon icon={'ant-design:vertical-left-outlined'} />
                   关闭右侧
                 </MenuItem>
                 <MenuDivider />
@@ -208,17 +207,17 @@ export default defineComponent({
                   onClick={this.handleCloseOtherTabs}
                   disabled={this.closeOtherDisabled}
                 >
-                  <Icon icon={'custom:tabbar-close'} />
+                  <Icon icon={'ant-design:close-outlined'} />
                   关闭其它
                 </MenuItem>
                 <MenuItem onClick={this.handleCloseAllTabs}>
-                  <Icon icon={'custom:tabbar-close-all'} />
+                  <Icon icon={'ant-design:close-circle-outlined'} />
                   关闭所有
                 </MenuItem>
               </Menu>
             )
           }}
-          placement="bottomRight"
+          placement={'bottomRight'}
           overlayStyle={{
             zIndex: 100002
           }}

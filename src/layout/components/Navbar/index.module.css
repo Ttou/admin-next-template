@@ -47,3 +47,15 @@
   width: 24px;
   height: 24px;
 }
+
+.avatarDropdownMenu {
+}
+
+.avatarDropdownMenu :global(svg) {
+  margin-right: 5px;
+}
+
+.avatarDropdownMenu :global(.ant-dropdown-menu-title-content) {
+  display: flex;
+  align-items: center;
+}

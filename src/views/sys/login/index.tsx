@@ -83,7 +83,7 @@ export default defineComponent({
       <div class={styles.view}>
         <div class={styles.top}>
           <div class={styles.header}>
-            <Icon class={styles.logoIcon} icon={'custom:logo'} />
+            <Icon class={styles.logoIcon} icon={'logos:ant-design'} />
             <span class={styles.title}>{this.title}</span>
           </div>
           <div class={styles.desc}>基于 Ant Design 的后台管理系统</div>
@@ -98,7 +98,7 @@ export default defineComponent({
               v-model:value={this.formModel.username}
               placeholder="账号：admin"
               size="large"
-              prefix={<Icon icon={'custom:view-user'} />}
+              prefix={<Icon icon={'ant-design:user-outlined'} />}
             />
           </FormItem>
           <FormItem
@@ -110,7 +110,7 @@ export default defineComponent({
               v-model:value={this.formModel.password}
               placeholder="密码：任意"
               size="large"
-              prefix={<Icon icon={'custom:view-lock'} />}
+              prefix={<Icon icon={'ant-design:lock-outlined'} />}
               onPressEnter={this.handleSubmit}
             />
           </FormItem>
