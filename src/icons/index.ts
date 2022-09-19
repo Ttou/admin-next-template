@@ -9,7 +9,7 @@ function getIcon(key: string, value: string) {
   const iconName = filename.split('.')[0]
 
   const body = value.replace(/^<svg[^>]+[\s\S]>/, '').replace(/<\/svg>/, '')
-  const match = value.match(/viewBox="[\s\S][^"]+"/)
+  const match = value.match(/viewBox="[\s\S][^"]+"/)!
 
   let width = 48
   let height = 48

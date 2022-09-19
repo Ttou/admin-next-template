@@ -38,6 +38,10 @@
   background-color: rgb(0 0 0 / 2.5%);
 }
 
+.right :global(.ant-space-item svg) {
+  vertical-align: middle;
+}
+
 .avatarWrapper {
   display: flex;
   align-items: center;

@@ -23,11 +23,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div
-        title="全屏"
-        style={{ cursor: 'pointer' }}
-        onClick={this.handleClick}
-      >
+      <div title="全屏" onClick={this.handleClick}>
         {this.isFullscreen ? (
           <Icon icon={'ant-design:fullscreen-exit-outlined'} />
         ) : (

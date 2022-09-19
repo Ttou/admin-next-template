@@ -24,11 +24,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <div
-        title="主题"
-        style={{ cursor: 'pointer' }}
-        onClick={this.handleClick}
-      >
+      <div title="主题" onClick={this.handleClick}>
         {this.siderTheme === 'dark' ? (
           <Icon icon={'ant-design:appstore-outlined'} />
         ) : (
