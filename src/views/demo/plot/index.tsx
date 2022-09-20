@@ -19,17 +19,17 @@ export default defineComponent({
   name: 'DemoPlot',
   setup() {
     const lineData = ref([])
-    const lineConfig = ref({
+    const lineOptions = ref({
       xField: 'Date',
       yField: 'scales'
     } as LineOptions)
     const columnData = ref([])
-    const columnConfig = ref({
+    const columnOptions = ref({
       xField: 'type',
       yField: 'sales'
     } as ColumnOptions)
     const barData = ref([] as any[])
-    const barConfig = ref({
+    const barOptions = ref({
       xField: 'value',
       yField: 'year',
       seriesField: 'year',
@@ -38,7 +38,7 @@ export default defineComponent({
       }
     } as BarOptions)
     const areaData = ref([])
-    const areaConfig = ref({
+    const areaOptions = ref({
       xField: 'timePeriod',
       yField: 'value',
       xAxis: {
@@ -95,13 +95,13 @@ export default defineComponent({
 
     return {
       lineData,
-      lineConfig,
+      lineOptions,
       columnData,
-      columnConfig,
+      columnOptions,
       barData,
-      barConfig,
+      barOptions,
       areaData,
-      areaConfig
+      areaOptions
     }
   },
   render() {
@@ -113,7 +113,7 @@ export default defineComponent({
             <h3>折线图</h3>
             <ProPlot
               plot={Line}
-              config={this.lineConfig}
+              options={this.lineOptions}
               data={this.lineData}
             />
           </Col>
@@ -122,7 +122,7 @@ export default defineComponent({
             <h3>柱状图</h3>
             <ProPlot
               plot={Column}
-              config={this.columnConfig}
+              options={this.columnOptions}
               data={this.columnData}
             />
           </Col>
@@ -132,14 +132,14 @@ export default defineComponent({
           <Col span="1"></Col>
           <Col span="10">
             <h3>条形图</h3>
-            <ProPlot plot={Bar} config={this.barConfig} data={this.barData} />
+            <ProPlot plot={Bar} options={this.barOptions} data={this.barData} />
           </Col>
           <Col span="2"></Col>
           <Col span="10">
             <h3>面积图</h3>
             <ProPlot
               plot={Area}
-              config={this.areaConfig}
+              options={this.areaOptions}
               data={this.areaData}
             />
           </Col>

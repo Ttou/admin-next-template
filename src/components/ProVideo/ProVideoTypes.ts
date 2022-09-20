@@ -2,6 +2,9 @@ import type { PropType } from 'vue'
 import Player, { type IPlayerOptions } from 'xgplayer'
 
 export const proVideoProps = () => ({
+  /**
+   * 配置
+   */
   options: {
     type: Object as PropType<IPlayerOptions>,
     required: true

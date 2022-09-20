@@ -20,7 +20,7 @@ export default defineComponent({
       // @ts-ignore
       plotRef.value = new Plot(plotEl.value, {
         data: props.data,
-        ...props.config
+        ...props.options
       })
 
       if (!isEmpty(props.events)) {
@@ -46,7 +46,7 @@ export default defineComponent({
         if (isEmpty(oldVal)) {
           plotRef.value.update({
             data: newVal,
-            ...props.config
+            ...props.options
           })
         } else {
           plotRef.value.changeData(newVal)
@@ -56,12 +56,12 @@ export default defineComponent({
 
     /** 监听配置变化 */
     watch(
-      () => props.config,
+      () => props.options,
       (newVal, oldVal) => {
         if (!isEqual(newVal, oldVal)) {
           plotRef.value.update({
             data: props.data,
-            ...props.config
+            ...props.options
           })
         }
       }

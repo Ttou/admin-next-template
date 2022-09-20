@@ -8,8 +8,25 @@ import type {
 type Options = VxeGridProps & VxeGridEventProps
 
 export const proTableProps = () => ({
-  fixedHeight: { type: [Boolean, Number], default: false },
-  fixedInContent: { type: Boolean, default: true },
+  /**
+   * 固定高度
+   * @default false
+   */
+  fixedHeight: {
+    type: [Boolean, Number],
+    default: false
+  },
+  /**
+   * 固定在主页面中
+   * @default true
+   */
+  fixedInContent: {
+    type: Boolean,
+    default: true
+  },
+  /**
+   * 配置
+   */
   options: {
     type: Object as PropType<Options>,
     default: () => ({} as Options),
@@ -18,14 +35,18 @@ export const proTableProps = () => ({
 })
 
 export type UpdateFormItemOptions = {
-  /** 表单项名称 */
+  /**
+   * 表单项名称
+   */
   field: string
   /**
    * 键名
    * @description 支持使用 `.` 分隔
    */
   key: string
-  /** 键值 */
+  /**
+   * 键值
+   */
   value: any
 }
 
