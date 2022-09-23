@@ -26,9 +26,9 @@ export default defineComponent({
     return (
       <div title="主题" onClick={this.handleClick}>
         {this.siderTheme === 'dark' ? (
-          <Icon icon={'ant-design:appstore-outlined'} />
+          <Icon icon={'ant-design:appstore-outlined'} inline />
         ) : (
-          <Icon icon={'ant-design:appstore-filled'} />
+          <Icon icon={'ant-design:appstore-filled'} inline />
         )}
       </div>
     )

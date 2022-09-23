@@ -161,8 +161,9 @@ export default defineComponent({
                   <input data-key={view.fullPath} hidden />
                   <span>{view.meta!.title}</span>
                   <Icon
-                    icon={'custom:tabbar-close'}
+                    icon={'ant-design:close-outlined'}
                     class={styles.tabCloseIcon}
+                    inline
                     onClick={withModifiers(
                       () => this.handleCloseTab(view),
                       ['stop']
@@ -178,13 +179,13 @@ export default defineComponent({
           v-slots={{
             default: () => (
               <div class={styles.tabsMenu}>
-                <Icon icon={'ant-design:down-outlined'} />
+                <Icon icon={'ant-design:down-outlined'} inline />
               </div>
             ),
             overlay: () => (
               <Menu class={styles.tabsDropdownMenu}>
                 <MenuItem onClick={this.handleRefreshTab}>
-                  <Icon icon={'ant-design:reload-outlined'} />
+                  <Icon icon={'ant-design:reload-outlined'} inline />
                   刷新页面
                 </MenuItem>
                 <MenuDivider />
@@ -192,14 +193,14 @@ export default defineComponent({
                   onClick={this.handleCloseLeftTabs}
                   disabled={this.closeLeftDisabled}
                 >
-                  <Icon icon={'ant-design:vertical-right-outlined'} />
+                  <Icon icon={'ant-design:vertical-right-outlined'} inline />
                   关闭左侧
                 </MenuItem>
                 <MenuItem
                   onClick={this.handleCloseRightTabs}
                   disabled={this.closeRightDisabled}
                 >
-                  <Icon icon={'ant-design:vertical-left-outlined'} />
+                  <Icon icon={'ant-design:vertical-left-outlined'} inline />
                   关闭右侧
                 </MenuItem>
                 <MenuDivider />
@@ -207,11 +208,11 @@ export default defineComponent({
                   onClick={this.handleCloseOtherTabs}
                   disabled={this.closeOtherDisabled}
                 >
-                  <Icon icon={'ant-design:close-outlined'} />
+                  <Icon icon={'ant-design:close-outlined'} inline />
                   关闭其它
                 </MenuItem>
                 <MenuItem onClick={this.handleCloseAllTabs}>
-                  <Icon icon={'ant-design:close-circle-outlined'} />
+                  <Icon icon={'ant-design:close-circle-outlined'} inline />
                   关闭所有
                 </MenuItem>
               </Menu>

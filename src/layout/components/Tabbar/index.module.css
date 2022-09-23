@@ -62,7 +62,7 @@
   flex-shrink: 0;
   width: 30px;
   height: 30px;
-  line-height: 34px;
+  line-height: 30px;
   text-align: center;
   background-color: #fff;
   border-radius: 2px;
@@ -74,9 +74,4 @@
 
 .tabsDropdownMenu :global(svg) {
   margin-right: 5px;
-}
-
-.tabsDropdownMenu :global(.ant-dropdown-menu-title-content) {
-  display: flex;
-  align-items: center;
 }

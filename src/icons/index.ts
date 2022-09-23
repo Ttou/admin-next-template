@@ -51,8 +51,6 @@ async function setupIcon() {
     prefix: 'custom',
     icons
   })
-  loadIcons(iconNames, res => {
-    console.log(res)
-  })
+  loadIcons(iconNames)
 }
 setupIcon()

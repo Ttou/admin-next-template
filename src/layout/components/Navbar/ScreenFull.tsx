@@ -25,9 +25,9 @@ export default defineComponent({
     return (
       <div title="全屏" onClick={this.handleClick}>
         {this.isFullscreen ? (
-          <Icon icon={'ant-design:fullscreen-exit-outlined'} />
+          <Icon icon={'ant-design:fullscreen-exit-outlined'} inline />
         ) : (
-          <Icon icon={'ant-design:fullscreen-outlined'} />
+          <Icon icon={'ant-design:fullscreen-outlined'} inline />
         )}
       </div>
     )

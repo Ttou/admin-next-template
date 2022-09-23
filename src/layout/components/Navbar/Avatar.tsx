@@ -35,7 +35,7 @@ export default defineComponent({
         v-slots={{
           default: () => (
             <div class={styles.avatarWrapper}>
-              <Icon class={styles.avatar} icon={'custom:avatar'} />
+              <Icon class={styles.avatar} icon={'custom:avatar'} inline />
             </div>
           ),
           overlay: () => (
@@ -44,7 +44,7 @@ export default defineComponent({
                 class={styles.avatarDropdownMenu}
                 onClick={this.handleLogout}
               >
-                <Icon icon={'ant-design:logout-outlined'} />
+                <Icon icon={'ant-design:logout-outlined'} inline />
                 <span>退出登录</span>
               </MenuItem>
             </Menu>
