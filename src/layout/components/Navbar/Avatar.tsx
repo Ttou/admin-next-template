@@ -39,11 +39,8 @@ export default defineComponent({
             </div>
           ),
           overlay: () => (
-            <Menu>
-              <MenuItem
-                class={styles.avatarDropdownMenu}
-                onClick={this.handleLogout}
-              >
+            <Menu class={styles.avatarDropdownMenu}>
+              <MenuItem onClick={this.handleLogout}>
                 <Icon icon={'ant-design:logout-outlined'} inline />
                 <span>退出登录</span>
               </MenuItem>
