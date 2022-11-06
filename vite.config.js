@@ -10,13 +10,6 @@ export default defineConfig(({ mode }) => {
   return {
     base: mode === 'development' ? '/' : '/admin-next-template/',
     css: {
-      preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-          // @see https://gitee.com/ant-design-vue/ant-design-vue/blob/next/components/style/themes/default.less
-          modifyVars: {}
-        }
-      },
       modules: {
         generateScopedName: '[local]__[hash:base64:5]'
       }
@@ -27,7 +20,11 @@ export default defineConfig(({ mode }) => {
       }
     },
     optimizeDeps: {
-      include: ['ant-design-vue/es/locale/zh_CN', 'dayjs/locale/zh-cn'],
+      include: [
+        '@opd/g2plot-vue',
+        'ant-design-vue/es/locale/zh_CN',
+        'dayjs/locale/zh-cn'
+      ],
       exclude: ['vue-demi']
     },
     plugins: [

@@ -1,50 +1,48 @@
 import {
-  Area,
-  AreaOptions,
-  Bar,
-  BarOptions,
-  Column,
-  ColumnOptions,
-  Line,
-  LineOptions
-} from '@antv/g2plot'
+  type AreaChartProps,
+  type BarChartProps,
+  type ColumnChartProps,
+  type LineChartProps,
+  AreaChart,
+  BarChart,
+  ColumnChart,
+  LineChart
+} from '@opd/g2plot-vue'
 import { Col, Row } from 'ant-design-vue'
 import { defineComponent, onMounted, ref } from 'vue'
-
-import { ProPlot } from '@/components'
 
 import styles from './index.module.css'
 
 export default defineComponent({
   name: 'DemoPlot',
   setup() {
-    const lineData = ref([])
-    const lineOptions = ref({
+    const lineConfig = ref({
       xField: 'Date',
-      yField: 'scales'
-    } as LineOptions)
-    const columnData = ref([])
-    const columnOptions = ref({
+      yField: 'scales',
+      data: []
+    } as LineChartProps)
+    const columnConfig = ref({
       xField: 'type',
-      yField: 'sales'
-    } as ColumnOptions)
-    const barData = ref([] as any[])
-    const barOptions = ref({
+      yField: 'sales',
+      data: []
+    } as ColumnChartProps)
+    const barConfig = ref({
       xField: 'value',
       yField: 'year',
       seriesField: 'year',
       legend: {
         position: 'top-left'
-      }
-    } as BarOptions)
-    const areaData = ref([])
-    const areaOptions = ref({
+      },
+      data: []
+    } as BarChartProps)
+    const areaConfig = ref({
       xField: 'timePeriod',
       yField: 'value',
       xAxis: {
         range: [0, 1]
-      }
-    } as AreaOptions)
+      },
+      data: []
+    } as AreaChartProps)
 
     function initLine() {
       fetch(
@@ -52,7 +50,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          lineData.value = data
+          lineConfig.value.data = data
         })
     }
 
@@ -62,12 +60,12 @@ export default defineComponent({
       )
         .then(data => data.json())
         .then(data => {
-          columnData.value = data
+          columnConfig.value.data = data
         })
     }
 
     function initBar() {
-      barData.value = [
+      barConfig.value.data = [
         { year: '1951 年', value: 38 },
         { year: '1952 年', value: 52 },
         { year: '1956 年', value: 61 },
@@ -82,7 +80,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          areaData.value = data
+          areaConfig.value.data = data
         })
     }
 
@@ -94,14 +92,10 @@ export default defineComponent({
     })
 
     return {
-      lineData,
-      lineOptions,
-      columnData,
-      columnOptions,
-      barData,
-      barOptions,
-      areaData,
-      areaOptions
+      lineConfig,
+      columnConfig,
+      barConfig,
+      areaConfig
     }
   },
   render() {
@@ -111,20 +105,14 @@ export default defineComponent({
           <Col span="1"></Col>
           <Col span="10">
             <h3>折线图</h3>
-            <ProPlot
-              plot={Line}
-              options={this.lineOptions}
-              data={this.lineData}
-            />
+            {/* @ts-ignore */}
+            <LineChart {...this.lineConfig} />
           </Col>
           <Col span="2"></Col>
           <Col span="10">
             <h3>柱状图</h3>
-            <ProPlot
-              plot={Column}
-              options={this.columnOptions}
-              data={this.columnData}
-            />
+            {/* @ts-ignore */}
+            <ColumnChart {...this.columnConfig} />
           </Col>
           <Col span="1"></Col>
         </Row>
@@ -132,16 +120,14 @@ export default defineComponent({
           <Col span="1"></Col>
           <Col span="10">
             <h3>条形图</h3>
-            <ProPlot plot={Bar} options={this.barOptions} data={this.barData} />
+            {/* @ts-ignore */}
+            <BarChart {...this.barConfig} />
           </Col>
           <Col span="2"></Col>
           <Col span="10">
             <h3>面积图</h3>
-            <ProPlot
-              plot={Area}
-              options={this.areaOptions}
-              data={this.areaData}
-            />
+            {/* @ts-ignore */}
+            <AreaChart {...this.areaConfig} />
           </Col>
           <Col span="1"></Col>
         </Row>

@@ -1,6 +1,5 @@
 export * from './CountTo'
 export * from './ProEditor'
-export * from './ProPlot'
 export * from './ProQr'
 export * from './ProTable'
 export * from './ProVideo'
