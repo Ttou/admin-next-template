@@ -2,7 +2,7 @@ import { Breadcrumb } from 'ant-design-vue'
 import { defineComponent, ref, watchEffect } from 'vue'
 import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
 
-import styles from './index.module.css'
+import styles from './Navbar.module.css'
 
 export default defineComponent({
   name: 'Breadcrumb',

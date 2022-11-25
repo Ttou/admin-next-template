@@ -4,6 +4,10 @@ module.exports = defineStylelintConfig({
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   overrides: [
     {
+      files: ['**/*.less'],
+      customSyntax: 'postcss-less'
+    },
+    {
       files: ['**/*.vue'],
       customSyntax: 'postcss-html'
     }

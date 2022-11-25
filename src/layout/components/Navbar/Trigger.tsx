@@ -3,7 +3,7 @@ import { computed, defineComponent } from 'vue'
 
 import { useSettingStore } from '@/store'
 
-import styles from './index.module.css'
+import styles from './Navbar.module.css'
 
 export default defineComponent({
   name: 'Trigger',

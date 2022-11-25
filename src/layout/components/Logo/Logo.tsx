@@ -4,7 +4,7 @@ import { computed, defineComponent, ref, watch } from 'vue'
 
 import { useSettingStore } from '@/store'
 
-import styles from './index.module.css'
+import styles from './Logo.module.css'
 
 export default defineComponent({
   name: 'Logo',

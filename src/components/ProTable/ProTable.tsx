@@ -1,8 +1,9 @@
+import './ProTable.less'
+
 import { isNumber, set } from 'lodash-es'
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { Grid as VxeGrid } from 'vxe-table'
 
-import styles from './index.module.css'
 import proTableProps, {
   ProTableRef,
   UpdateFormItemOptions
@@ -91,7 +92,7 @@ export default defineComponent({
     return (
       <VxeGrid
         ref="table"
-        class={styles.proTable}
+        class="proTable"
         v-slots={this.$slots}
         {...this.config}
       />

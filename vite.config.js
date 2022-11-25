@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
+import visualizer from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import compression from 'vite-plugin-compression'
 import { createHtmlPlugin } from 'vite-plugin-html'
@@ -49,6 +50,11 @@ export default defineConfig(({ mode }) => {
         `
       })
     ],
+    build: {
+      rollupOptions: {
+        plugins: [visualizer()]
+      }
+    },
     server: {
       host: true,
       port: 8080

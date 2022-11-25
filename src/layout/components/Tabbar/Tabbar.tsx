@@ -21,7 +21,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { ROUTE } from '@/constants'
 import { useSettingStore, useTabsStore } from '@/store'
 
-import styles from './index.module.css'
+import styles from './Tabbar.module.css'
 
 export default defineComponent({
   name: 'Tabbar',

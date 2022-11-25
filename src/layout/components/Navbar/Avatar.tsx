@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 import { useDialog } from '@/hooks'
 import { useUserStore } from '@/store'
 
-import styles from './index.module.css'
+import styles from './Navbar.module.css'
 
 export default defineComponent({
   name: 'Avatar',

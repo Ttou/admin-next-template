@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 
 import Avatar from './Avatar'
 import Breadcrumb from './Breadcrumb'
-import styles from './index.module.css'
+import styles from './Navbar.module.css'
 import ScreenFull from './ScreenFull'
 import SiderTheme from './SiderTheme'
 import Trigger from './Trigger'
