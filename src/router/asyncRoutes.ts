@@ -1,4 +1,4 @@
-const files = import.meta.globEager('./routes/*')
+const files = import.meta.glob('./routes/*', { eager: true })
 
 const routes = Object.values(files).reduce((total, current) => {
   total.push(current.default)

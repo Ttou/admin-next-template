@@ -1,9 +1,15 @@
 export type Setting = {
-  /** 标题 */
+  /**
+   * 标题
+   */
   title: string
-  /** 固定头部 */
+  /**
+   * 固定头部
+   */
   fixedHeader: boolean
-  /** 头部高度 */
+  /**
+   * 头部高度
+   */
   headerHeight: string
   /**
    * 侧边栏主题
@@ -11,22 +17,34 @@ export type Setting = {
    * - `dark` 暗色
    */
   siderTheme: 'light' | 'dark'
-  /** 侧边栏打开状态 */
+  /**
+   * 侧边栏打开状态
+   */
   siderOpened: boolean
-  /** 侧边栏打开宽度 */
+  /**
+   * 侧边栏打开宽度
+   */
   siderOpenedWidth: string
-  /** 侧边栏关闭宽度 */
+  /**
+   * 侧边栏关闭宽度
+   */
   siderClosedWidth: string
   /**
    * 侧边栏图标高度
    * @description 设为`0`时不显示
    */
   siderLogoHeight: string
-  /** 首页路由 */
+  /**
+   * 首页路由
+   */
   homeRoute: {
-    /** 名称 */
+    /**
+     * 名称
+     */
     name: string
-    /** 路径 */
+    /**
+     * 路径
+     */
     path: string
   }
 }

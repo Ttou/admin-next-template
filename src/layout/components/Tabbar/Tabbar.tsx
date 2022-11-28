@@ -18,7 +18,7 @@ import {
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { ROUTE } from '@/constants'
+import { CONST_ROUTES } from '@/constants'
 import { useSettingStore, useTabsStore } from '@/store'
 
 import styles from './Tabbar.module.css'
@@ -57,7 +57,12 @@ export default defineComponent({
       const { name, path, fullPath } = route
 
       // 只添加配置过名称且不是异常和登录页面
-      if (name && [ROUTE.LOGIN, ROUTE.ERROR].indexOf(path as ROUTE) === -1) {
+      if (
+        name &&
+        [CONST_ROUTES.LOGIN, CONST_ROUTES.ERROR].indexOf(
+          path as CONST_ROUTES
+        ) === -1
+      ) {
         tabsStore.addTab(route)
         activeKey.value = fullPath
       }

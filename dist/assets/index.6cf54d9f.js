@@ -1,1 +1,0 @@
-import{f as n,g as e,k as t}from"./index.703b45e8.js";const o="view__4TGYI",s={view:o},a=n({name:"WorkbenchView",render(){return e("div",{class:s.view},[e("h2",null,[t("\u5DE5\u4F5C\u53F0")])])}});export{a as default};

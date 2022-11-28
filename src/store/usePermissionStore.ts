@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE } from '@/constants'
+import { CONST_ROUTES } from '@/constants'
 import { asyncRoutes, constRoutes } from '@/router'
 
 import store from '.'
@@ -50,7 +50,7 @@ export const usePermissionStore = defineStore('permission', () => {
       accessedRoutes.push({
         path: '/:pathMatch(.*)*',
         redirect: {
-          path: ROUTE.ERROR,
+          path: CONST_ROUTES.ERROR,
           query: { status: 404 }
         }
       })

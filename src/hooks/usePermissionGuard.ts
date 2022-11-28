@@ -1,10 +1,10 @@
 import type { RouteLocationNormalized, Router } from 'vue-router'
 
-import { ROUTE } from '@/constants'
+import { CONST_ROUTES } from '@/constants'
 import { usePermissionStore, useUserStore } from '@/store'
 
 export function usePermissionGuard(router: Router) {
-  const whiteList = [ROUTE.LOGIN] as string[]
+  const whiteList = [CONST_ROUTES.LOGIN] as string[]
 
   router.beforeEach(async (to, from) => {
     const userStore = useUserStore()
@@ -15,8 +15,8 @@ export function usePermissionGuard(router: Router) {
     const hasToken = userStore.token
 
     if (hasToken) {
-      if (to.path === ROUTE.LOGIN) {
-        return ROUTE.INDEX
+      if (to.path === CONST_ROUTES.LOGIN) {
+        return CONST_ROUTES.INDEX
       } else {
         const hasUser = userStore.name
 
@@ -39,7 +39,7 @@ export function usePermissionGuard(router: Router) {
       if (whiteList.includes(to.path)) {
         return true
       } else {
-        return `${ROUTE.LOGIN}?redirect=${to.path}`
+        return `${CONST_ROUTES.LOGIN}?redirect=${to.path}`
       }
     }
   })
@@ -55,7 +55,7 @@ function useKeepAliveFix(
     for (let i = 0; i < to.matched.length; i++) {
       const v = to.matched[i]
 
-      if (v.components.default.name === 'ParentLayout') {
+      if (v.components!.default.name === 'ParentLayout') {
         to.matched.splice(i, 1)
       }
     }

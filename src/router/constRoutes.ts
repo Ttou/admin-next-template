@@ -1,16 +1,16 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import { ROUTE, SETTING } from '@/constants'
+import { CONST_ROUTES, SETTING } from '@/constants'
 import { DefaultLayout } from '@/layout'
 
 export default [
   {
-    path: ROUTE.INDEX,
+    path: CONST_ROUTES.INDEX,
     redirect: SETTING.homeRoute.path
   },
   {
-    path: ROUTE.DASHBOARD,
-    redirect: `${ROUTE.DASHBOARD}/analysis`,
+    path: CONST_ROUTES.DASHBOARD,
+    redirect: `${CONST_ROUTES.DASHBOARD}/analysis`,
     component: DefaultLayout,
     meta: { title: 'Dashboard', icon: 'ant-design:dashboard-outlined' },
     children: [
@@ -29,19 +29,19 @@ export default [
     ]
   },
   {
-    path: ROUTE.LOGIN,
+    path: CONST_ROUTES.LOGIN,
     name: 'Login',
     component: () => import('@/views/sys/login'),
     meta: { title: '登录', hidden: true }
   },
   {
-    path: ROUTE.ERROR,
+    path: CONST_ROUTES.ERROR,
     name: 'Error',
     component: () => import('@/views/sys/error'),
     meta: { title: '错误', hidden: true }
   },
   {
-    path: ROUTE.REDIRECT,
+    path: CONST_ROUTES.REDIRECT,
     name: 'Redirect',
     component: DefaultLayout,
     meta: { hidden: true },
