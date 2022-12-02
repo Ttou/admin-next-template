@@ -1,5 +1,5 @@
 import { Menu } from 'ant-design-vue'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'lodash-unified'
 import {
   type CSSProperties,
   computed,

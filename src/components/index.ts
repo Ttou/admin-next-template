@@ -1,7 +1,6 @@
 export * from './CountTo'
 export * from './ProEditor'
 export * from './ProQr'
-export * from './ProTable'
 export * from './ProVideo'
 export * from './Provider'
 export * from './Scrollbar'

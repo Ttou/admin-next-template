@@ -1,5 +1,5 @@
 import { TransitionPresets, useTransition } from '@vueuse/core'
-import { isNumber } from 'lodash-es'
+import { isNumber } from 'lodash-unified'
 import {
   computed,
   defineComponent,
