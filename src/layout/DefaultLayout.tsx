@@ -99,7 +99,7 @@ export default defineComponent({
           <Layout class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}
             {renderTabbar()}
-            <Scrollbar>{renderContent()}</Scrollbar>
+            <Scrollbar id="page">{renderContent()}</Scrollbar>
           </Layout>
         ) : (
           <Scrollbar>

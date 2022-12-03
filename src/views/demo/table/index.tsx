@@ -10,7 +10,7 @@ import {
   TABLE_ITEM_RENDER,
   TABLE_RENDERER
 } from '@/constants'
-import { TableOptions, useTableRef } from '@/hooks'
+import { TableOptions, usePageHeight, useTableRef } from '@/hooks'
 
 export default defineComponent({
   name: 'DemoTable',
@@ -20,6 +20,7 @@ export default defineComponent({
       border: true,
       loading: false,
       keepSource: true,
+      height: 'auto',
       toolbarConfig: {
         perfect: true,
         custom: true,
@@ -202,6 +203,7 @@ export default defineComponent({
     } as TableOptions)
 
     const { tableRef } = useTableRef(tableConfig)
+    const { pageHeightPx } = usePageHeight()
 
     function handleCustomRefresh() {
       tableRef.value.commitProxy('query')
@@ -210,12 +212,17 @@ export default defineComponent({
     return {
       tableRef,
       tableConfig,
+      pageHeightPx,
       handleCustomRefresh
     }
   },
   render() {
     return (
-      <div>
+      <div
+        style={{
+          height: this.pageHeightPx
+        }}
+      >
         <ProTable
           ref="tableRef"
           v-slots={{
