@@ -1,9 +1,9 @@
 import { Button } from 'ant-design-vue'
 import { omit } from 'lodash-unified'
 import { defineComponent, ref } from 'vue'
-import { Grid as VxeGrid } from 'vxe-table'
 
 import { demoApi } from '@/apis'
+import { ProTable } from '@/components'
 import {
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,
@@ -216,7 +216,7 @@ export default defineComponent({
   render() {
     return (
       <div>
-        <VxeGrid
+        <ProTable
           ref="tableRef"
           v-slots={{
             ['toolbar_buttons']: () => {
