@@ -3,9 +3,10 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import visualizer from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
-import compression from 'vite-plugin-compression'
+import { compression } from 'vite-plugin-compression2'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
+import eslint from 'vite-plugin-eslint'
 
 export default defineConfig(({ mode }) => {
   return {
@@ -40,6 +41,7 @@ export default defineConfig(({ mode }) => {
         },
         minify: true
       }),
+      eslint(),
       viteMockServe({
         mockPath: 'mock',
         localEnabled: true,
