@@ -4,9 +4,10 @@ import { resolve } from 'path'
 import visualizer from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import { compression } from 'vite-plugin-compression2'
+import eslint from 'vite-plugin-eslint'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
-import eslint from 'vite-plugin-eslint'
+import stylelint from 'vite-plugin-stylelint'
 
 export default defineConfig(({ mode }) => {
   return {
@@ -42,6 +43,7 @@ export default defineConfig(({ mode }) => {
         minify: true
       }),
       eslint(),
+      stylelint(),
       viteMockServe({
         mockPath: 'mock',
         localEnabled: true,
