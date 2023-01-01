@@ -42,8 +42,12 @@ export default defineConfig(({ mode }) => {
         },
         minify: true
       }),
-      eslint(),
-      stylelint(),
+      eslint({
+        lintInWorker: true
+      }),
+      stylelint({
+        lintInWorker: true
+      }),
       viteMockServe({
         mockPath: 'mock',
         localEnabled: true,

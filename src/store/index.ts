@@ -4,7 +4,6 @@ const store = createPinia()
 
 export default store
 
-export * from './types'
 export * from './usePermissionStore'
 export * from './useSettingStore'
 export * from './useTabsStore'

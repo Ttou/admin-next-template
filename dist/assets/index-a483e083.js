@@ -1,0 +1,1 @@
+import{d as s,f as e}from"./runtime-core.esm-bundler-d3f66853.js";import{A as t}from"./index-952d61fb.js";import"./useConfigInject-bc8cb14d.js";import"./vnode-f0ed5691.js";const d=s({name:"NestedMenu13",render(){return e("div",{style:{padding:"30px"}},[e(t,{closable:!1,message:"Menu 1-3",type:"success"},null)])}});export{d as default};

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
@@ -37,15 +37,17 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
 }
 
 export const usePermissionStore = defineStore('permission', () => {
-  const routes = ref<RouteRecordRaw[]>([])
-  const matched = ref<string[]>([])
+  const state = reactive({
+    routes: [] as RouteRecordRaw[],
+    matched: [] as string[]
+  })
 
   function generate(roles: string[]): Promise<RouteRecordRaw[]> {
     return new Promise(resolve => {
-      let accessedRoutes: RouteRecordRaw[]
-
-      // eslint-disable-next-line prefer-const
-      accessedRoutes = filterAsyncRoutes(asyncRoutes as RouteRecordRaw[], roles)
+      const accessedRoutes: RouteRecordRaw[] = filterAsyncRoutes(
+        asyncRoutes as RouteRecordRaw[],
+        roles
+      )
 
       accessedRoutes.push({
         path: '/:pathMatch(.*)*',
@@ -55,14 +57,13 @@ export const usePermissionStore = defineStore('permission', () => {
         }
       })
 
-      routes.value = constRoutes.concat(accessedRoutes)
+      state.routes = constRoutes.concat(accessedRoutes)
       resolve(accessedRoutes)
     })
   }
 
   return {
-    routes,
-    matched,
+    ...toRefs(state),
     generate
   }
 })

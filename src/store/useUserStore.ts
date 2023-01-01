@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, toRefs } from 'vue'
 
 import { userApi } from '@/apis'
 
@@ -8,14 +8,16 @@ import { useTabsStore } from '.'
 import store from '.'
 
 export const useUserStore = defineStore('user', () => {
-  const token = useStorage('token', '')
-  const name = ref('')
-  const roles = ref<string[]>([])
+  const state = reactive({
+    token: useStorage('token', ''),
+    name: '',
+    roles: [] as string[]
+  })
 
   async function login(payload: Record<string, any>) {
     const data = await userApi.login(payload)
 
-    token.value = data.token
+    state.token = data.token
   }
 
   async function logout() {
@@ -27,8 +29,8 @@ export const useUserStore = defineStore('user', () => {
   async function getInfo() {
     const data = await userApi.getInfo()
 
-    name.value = data.name
-    roles.value = data.roles
+    state.name = data.name
+    state.roles = data.roles
 
     return data.roles
   }
@@ -36,16 +38,14 @@ export const useUserStore = defineStore('user', () => {
   function clear() {
     const tabsStore = useTabsStore()
 
-    token.value = ''
-    name.value = ''
-    roles.value = []
+    state.token = ''
+    state.name = ''
+    state.roles = []
     tabsStore.delAllTabs()
   }
 
   return {
-    token,
-    name,
-    roles,
+    ...toRefs(state),
     login,
     logout,
     getInfo,

@@ -1,23 +1,39 @@
+import { cloneDeep } from 'lodash-unified'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, toRefs } from 'vue'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import store from '.'
-import type { Tab, Tabs } from './types'
+
+type Tab = RouteLocationNormalizedLoaded
+
+interface HandlerReturn {
+  /**
+   * 缓存
+   */
+  cachedTabs: string[]
+  /**
+   * 访问
+   */
+  visitedTabs: RouteLocationNormalizedLoaded[]
+}
 
 export const useTabsStore = defineStore('tabs', () => {
-  const cachedTabs = ref<string[]>([])
-  const visitedTabs = ref<Tab[]>([])
+  const state = reactive({
+    cachedTabs: [] as string[],
+    visitedTabs: [] as Tab[]
+  })
 
   function addTab(tab: Tab) {
-    const visitedTab = visitedTabs.value.find(v => v.path === tab.path)
+    const visitedTab = state.visitedTabs.find(v => v.path === tab.path)
 
     if (visitedTab) {
       if (visitedTab.fullPath === tab.fullPath) {
         return
       }
 
-      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
-      visitedTabs.value[index] = { ...tab }
+      const index = state.visitedTabs.findIndex(v => v.path === tab.path)
+      state.visitedTabs[index] = { ...tab }
     } else {
       const v = { ...tab }
 
@@ -25,116 +41,100 @@ export const useTabsStore = defineStore('tabs', () => {
         v.meta!.title = 'undefined'
       }
 
-      visitedTabs.value.push(v)
+      state.visitedTabs.push(v)
 
       updateCachedTab()
     }
   }
 
-  function delTab(tab: Tab): Promise<Tabs> {
+  function delTab(tab: Tab): Promise<HandlerReturn> {
     return new Promise(resolve => {
-      for (const [i, v] of visitedTabs.value.entries()) {
+      for (const [i, v] of state.visitedTabs.entries()) {
         if (v.path === tab.path) {
-          visitedTabs.value.splice(i, 1)
+          state.visitedTabs.splice(i, 1)
           break
         }
       }
 
       updateCachedTab()
 
-      resolve({
-        cachedTabs: [...cachedTabs.value],
-        visitedTabs: [...visitedTabs.value]
-      })
+      resolve(cloneDeep(state))
     })
   }
 
-  function delLeftTabs(tab: Tab): Promise<Tabs> {
+  function delLeftTabs(tab: Tab): Promise<HandlerReturn> {
     return new Promise(resolve => {
-      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
+      const index = state.visitedTabs.findIndex(v => v.path === tab.path)
 
       if (index > 0) {
-        visitedTabs.value = visitedTabs.value.slice(index)
+        state.visitedTabs = state.visitedTabs.slice(index)
       }
 
       updateCachedTab()
 
-      resolve({
-        cachedTabs: [...cachedTabs.value],
-        visitedTabs: [...visitedTabs.value]
-      })
+      resolve(cloneDeep(state))
     })
   }
 
-  function delRightTabs(tab: Tab): Promise<Tabs> {
+  function delRightTabs(tab: Tab): Promise<HandlerReturn> {
     return new Promise(resolve => {
-      const index = visitedTabs.value.findIndex(v => v.path === tab.path)
+      const index = state.visitedTabs.findIndex(v => v.path === tab.path)
 
-      if (index >= 0 && index < visitedTabs.value.length - 1) {
-        visitedTabs.value = visitedTabs.value.slice(0, index + 1)
+      if (index >= 0 && index < state.visitedTabs.length - 1) {
+        state.visitedTabs = state.visitedTabs.slice(0, index + 1)
       }
 
       updateCachedTab()
 
-      resolve({
-        cachedTabs: [...cachedTabs.value],
-        visitedTabs: [...visitedTabs.value]
-      })
+      resolve(cloneDeep(state))
     })
   }
 
-  function delOthersTabs(tab: Tab): Promise<Tabs> {
+  function delOthersTabs(tab: Tab): Promise<HandlerReturn> {
     return new Promise(resolve => {
-      visitedTabs.value = visitedTabs.value.filter(v => v.path === tab.path)
+      state.visitedTabs = state.visitedTabs.filter(v => v.path === tab.path)
       updateCachedTab()
 
-      resolve({
-        cachedTabs: [...cachedTabs.value],
-        visitedTabs: [...visitedTabs.value]
-      })
+      resolve(cloneDeep(state))
     })
   }
 
-  function delCachedTab(tab: Tab) {
+  function delCachedTab(tab: Tab): Promise<boolean> {
     return new Promise(resolve => {
-      const index = cachedTabs.value.indexOf(tab.name as string)
+      const index = state.cachedTabs.indexOf(tab.name as string)
 
       if (index > -1) {
-        cachedTabs.value.splice(index, 1)
+        state.cachedTabs.splice(index, 1)
       }
 
       resolve(true)
     })
   }
 
-  function delAllTabs() {
+  function delAllTabs(): Promise<HandlerReturn> {
     return new Promise(resolve => {
-      visitedTabs.value = []
+      state.visitedTabs = []
       updateCachedTab()
 
-      resolve({
-        cachedTabs: [...cachedTabs.value],
-        visitedTabs: [...visitedTabs.value]
-      })
+      resolve(cloneDeep(state))
     })
   }
 
   function updateCachedTab() {
     const _cachedTabs = new Set<string>()
 
-    for (const tab of visitedTabs.value) {
+    for (const tab of state.visitedTabs) {
       if (tab.meta!.noCache !== true) {
         const name = tab.name as string
         name && _cachedTabs.add(name)
       }
     }
 
-    cachedTabs.value = Array.from(_cachedTabs)
+    state.cachedTabs = Array.from(_cachedTabs)
   }
 
   return {
-    cachedTabs,
-    visitedTabs,
+    ...toRefs(state),
     addTab,
     delTab,
     delLeftTabs,

@@ -6,16 +6,16 @@ import { SETTING } from '@/constants'
 import store from '.'
 
 export const useSettingStore = defineStore('setting', () => {
-  const setting = reactive({
+  const state = reactive({
     ...SETTING
   })
 
   function change({ key, value }) {
-    setting[key] = value
+    state[key] = value
   }
 
   return {
-    ...toRefs(setting),
+    ...toRefs(state),
     change
   }
 })
