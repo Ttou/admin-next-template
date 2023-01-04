@@ -1,58 +1,63 @@
 import { Icon } from '@iconify/vue'
-import { Button, Form, FormItem, Input, InputPassword } from 'ant-design-vue'
+import {
+  type FormInstance,
+  type FormRules,
+  ElButton,
+  ElForm,
+  ElFormItem,
+  ElInput
+} from 'element-plus'
 import { parseUrl } from 'query-string'
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import { useSettingStore, useUserStore } from '@/store'
 
 import styles from './index.module.css'
 
-const { useForm } = Form
-
 export default defineComponent({
   name: 'LoginView',
   setup() {
+    const state = reactive({
+      loading: false,
+      redirect: null as Nullable<string>,
+      otherQuery: {},
+      formRef: {} as FormInstance,
+      formModel: {
+        username: '',
+        password: ''
+      },
+      formRules: {
+        username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+      } as FormRules
+    })
+
     const route = useRoute()
     const router = useRouter()
     const settingStore = useSettingStore()
     const userStore = useUserStore()
 
-    const loading = ref(false)
-    const redirect = ref<Nullable<string>>(null)
-    const otherQuery = ref({})
-    const formModel = ref({
-      username: '',
-      password: ''
-    })
-    const formRules = ref({
-      username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-      password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
-    } as FormRules)
-
-    const formRef = useForm(formModel.value, formRules.value)
-
     const title = computed(() => settingStore.title)
 
     function handleSubmit() {
-      formRef
-        .validate()
-        .then(() => {
-          loading.value = true
+      state.formRef.validate(valid => {
+        if (valid) {
+          state.loading = true
 
           userStore
-            .login(formModel.value)
+            .login(state.formModel)
             .then(() => {
               router.replace({
-                path: redirect.value || '/',
-                query: otherQuery.value
+                path: state.redirect || '/',
+                query: state.otherQuery
               })
             })
             .finally(() => {
-              loading.value = false
+              state.loading = false
             })
-        })
-        .catch(() => {})
+        }
+      })
     }
 
     onMounted(() => {
@@ -64,17 +69,15 @@ export default defineComponent({
         if (str) {
           const { url, query } = parseUrl(str)
 
-          redirect.value = url
-          otherQuery.value = query
+          state.redirect = url
+          state.otherQuery = query
         }
       }
     })
 
     return {
+      ...toRefs(state),
       title,
-      loading,
-      formRef,
-      formModel,
       handleSubmit
     }
   },
@@ -83,49 +86,48 @@ export default defineComponent({
       <div class={styles.view}>
         <div class={styles.top}>
           <div class={styles.header}>
-            <Icon class={styles.logoIcon} icon={'logos:ant-design'} />
+            <Icon class={styles.logoIcon} icon={'logos:element'} />
             <span class={styles.title}>{this.title}</span>
           </div>
-          <div class={styles.desc}>基于 Ant Design 的后台管理系统</div>
+          <div class={styles.desc}>基于 Element Plus 的后台管理系统</div>
         </div>
-        <Form class={styles.loginForm}>
-          <FormItem
-            name="username"
-            wrapperCol={{ span: 24 }}
-            {...this.formRef.validateInfos['username']}
-          >
-            <Input
-              v-model:value={this.formModel.username}
+        <ElForm
+          ref="formRef"
+          class={styles.loginForm}
+          model={this.formModel}
+          rules={this.formRules}
+          size={'large'}
+        >
+          <ElFormItem prop="username">
+            <ElInput
+              v-model={this.formModel.username}
               placeholder="账号：admin"
-              size="large"
-              prefix={<Icon icon={'ant-design:user-outlined'} />}
+              v-slots={{
+                ['prefix']: () => <Icon icon={'ep:user'} />
+              }}
             />
-          </FormItem>
-          <FormItem
-            name="password"
-            wrapperCol={{ span: 24 }}
-            {...this.formRef.validateInfos['password']}
-          >
-            <InputPassword
-              v-model:value={this.formModel.password}
+          </ElFormItem>
+          <ElFormItem props="password">
+            <ElInput
+              v-model={this.formModel.password}
+              type={'password'}
               placeholder="密码：任意"
-              size="large"
-              prefix={<Icon icon={'ant-design:lock-outlined'} />}
-              onPressEnter={this.handleSubmit}
+              v-slots={{
+                ['prefix']: () => <Icon icon={'ep:lock'} />
+              }}
             />
-          </FormItem>
-          <FormItem wrapperCol={{ span: 24 }}>
-            <Button
-              size="large"
-              type="primary"
+          </ElFormItem>
+          <ElFormItem>
+            <ElButton
+              type={'primary'}
               loading={this.loading}
               onClick={this.handleSubmit}
               style={{ width: '100%' }}
             >
               登录
-            </Button>
-          </FormItem>
-        </Form>
+            </ElButton>
+          </ElFormItem>
+        </ElForm>
         <Icon class={styles.backgroundIcon} icon={'custom:background'} />
       </div>
     )

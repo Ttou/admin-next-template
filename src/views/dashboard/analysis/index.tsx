@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/vue'
-import { Card, Col, Row, Skeleton, Tag } from 'ant-design-vue'
-import { defineComponent, onMounted, ref } from 'vue'
+import { ElCard, ElCol, ElRow, ElSkeleton, ElTag } from 'element-plus'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 import { CountTo } from '@/components'
 
@@ -9,47 +9,49 @@ import styles from './index.module.css'
 export default defineComponent({
   name: 'AnalysisView',
   setup() {
-    const loading = ref(false)
-    const list = ref([
-      {
-        title: '访问数',
-        subText: '月',
-        subColor: 'blue',
-        valPrefix: '￥',
-        valNum: 2000,
-        icon: 'view-visit-count'
-      },
-      {
-        title: '成交额',
-        subText: '月',
-        subColor: 'green',
-        valPrefix: '￥',
-        valNum: 2000,
-        icon: 'view-total-sales'
-      },
-      {
-        title: '下载数',
-        subText: '周',
-        subColor: 'blue',
-        valPrefix: '',
-        valNum: 2000,
-        icon: 'view-download-count'
-      },
-      {
-        title: '成交数',
-        subText: '年',
-        subColor: 'green',
-        valPrefix: '',
-        valNum: 2000,
-        icon: 'view-transaction'
-      }
-    ])
+    const state = reactive({
+      loading: false,
+      list: [
+        {
+          title: '访问数',
+          subText: '月',
+          subColor: '#e6f7ff',
+          valPrefix: '￥',
+          valNum: 2000,
+          icon: 'view-visit-count'
+        },
+        {
+          title: '成交额',
+          subText: '月',
+          subColor: '#f6ffed',
+          valPrefix: '￥',
+          valNum: 2000,
+          icon: 'view-total-sales'
+        },
+        {
+          title: '下载数',
+          subText: '周',
+          subColor: '#e6f7ff',
+          valPrefix: '',
+          valNum: 2000,
+          icon: 'view-download-count'
+        },
+        {
+          title: '成交数',
+          subText: '年',
+          subColor: '#f6ffed',
+          valPrefix: '',
+          valNum: 2000,
+          icon: 'view-transaction'
+        }
+      ]
+    })
 
     function init() {
-      loading.value = true
+      state.loading = true
 
       setTimeout(() => {
-        loading.value = false
+        state.loading = false
       }, 1500)
     }
 
@@ -58,18 +60,24 @@ export default defineComponent({
     })
 
     return {
-      loading,
-      list
+      ...toRefs(state)
     }
   },
   render() {
     const renderItem = (item: typeof this.list[0]) => (
-      <Col span={6}>
-        <Card
+      <ElCol span={6}>
+        <ElCard
           v-slots={{
-            extra: () => <Tag color={item.subColor}>{item.subText}</Tag>,
-            default: () => (
-              <Skeleton loading={this.loading} active>
+            ['header']: () => (
+              <div class={styles.cardHeader}>
+                <span>{item.title}</span>
+                <ElTag color={item.subColor} effect={'light'}>
+                  {item.subText}
+                </ElTag>
+              </div>
+            ),
+            ['default']: () => (
+              <ElSkeleton loading={this.loading} rows={2} animated>
                 <div class={styles.cardContent}>
                   <CountTo
                     class={styles.text}
@@ -78,18 +86,16 @@ export default defineComponent({
                   />
                   <Icon class={styles.icon} icon={`custom:${item.icon}`} />
                 </div>
-              </Skeleton>
+              </ElSkeleton>
             )
           }}
-          title={item.title}
-          size="small"
         />
-      </Col>
+      </ElCol>
     )
 
     return (
       <div class={styles.view}>
-        <Row gutter={10}>{this.list.map(renderItem)}</Row>
+        <ElRow gutter={10}>{this.list.map(renderItem)}</ElRow>
       </div>
     )
   }

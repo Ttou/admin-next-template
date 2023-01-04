@@ -1,4 +1,4 @@
-import { Space } from 'ant-design-vue'
+import { ElSpace } from 'element-plus'
 import { defineComponent } from 'vue'
 
 import Avatar from './Avatar'
@@ -18,11 +18,11 @@ export default defineComponent({
           <Breadcrumb />
         </div>
         <div class={styles.right}>
-          <Space>
+          <ElSpace size={20}>
             <ScreenFull />
             <SiderTheme />
             <Avatar />
-          </Space>
+          </ElSpace>
         </div>
       </div>
     )

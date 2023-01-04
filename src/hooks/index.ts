@@ -1,6 +1,4 @@
 export * from './useAntd'
-export * from './useAntdConfig'
-export * from './useDialog'
 export * from './useElementPlus'
 export * from './useElementPlusConfig'
 export * from './useErrorHandler'

@@ -1,4 +1,11 @@
-.view {}
+.view {
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .cardContent {
   display: flex;

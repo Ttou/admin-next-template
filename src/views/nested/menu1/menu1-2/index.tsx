@@ -1,4 +1,4 @@
-import { Alert } from 'ant-design-vue'
+import { ElAlert } from 'element-plus'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -10,7 +10,7 @@ export default defineComponent({
           padding: '30px'
         }}
       >
-        <Alert closable={false} message="Menu 1-2" type="success"></Alert>
+        <ElAlert closable={false} title="Menu 1-2" type={'success'}></ElAlert>
       </div>
     )
   }

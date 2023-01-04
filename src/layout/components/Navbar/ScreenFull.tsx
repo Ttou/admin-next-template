@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/vue'
 import { useFullscreen } from '@vueuse/core'
-import { message } from 'ant-design-vue'
+import { ElMessage } from 'element-plus'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
       if (isSupported) {
         toggle()
       } else {
-        message.warn('浏览器不支持全屏')
+        ElMessage.warning('浏览器不支持全屏')
       }
     }
 

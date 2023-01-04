@@ -1,20 +1,19 @@
 import { Icon } from '@iconify/vue'
 import {
-  Dropdown,
-  Menu,
-  MenuDivider,
-  MenuItem,
-  TabPane,
-  Tabs
-} from 'ant-design-vue'
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElTabPane,
+  ElTabs
+} from 'element-plus'
 import {
   computed,
   defineComponent,
   nextTick,
   onMounted,
-  ref,
-  watch,
-  withModifiers
+  reactive,
+  toRefs,
+  watch
 } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -26,7 +25,16 @@ import styles from './Tabbar.module.css'
 export default defineComponent({
   name: 'Tabbar',
   setup() {
-    const activeKey = ref('')
+    const state = reactive({
+      activeKey: '',
+      commandMap: {
+        refresh: () => handleRefreshTab(),
+        closeLeft: () => handleCloseLeftTabs(),
+        closeRight: () => handleCloseRightTabs(),
+        closeOther: () => handleCloseOtherTabs(),
+        closeAll: () => handleCloseAllTabs()
+      }
+    })
 
     const route = useRoute()
     const router = useRouter()
@@ -37,20 +45,20 @@ export default defineComponent({
 
     const closeLeftDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.fullPath === activeKey.value) ===
+        visitedTabs.value.findIndex(tab => tab.fullPath === state.activeKey) ===
         0
     )
 
     const closeRightDisabled = computed(
       () =>
-        visitedTabs.value.findIndex(tab => tab.fullPath === activeKey.value) ===
+        visitedTabs.value.findIndex(tab => tab.fullPath === state.activeKey) ===
         visitedTabs.value.length - 1
     )
 
     const closeOtherDisabled = computed(() => visitedTabs.value.length <= 1)
 
     function isActive(tab: any) {
-      return activeKey.value === tab.fullPath
+      return state.activeKey === tab.fullPath
     }
 
     function addTabs() {
@@ -64,7 +72,7 @@ export default defineComponent({
         ) === -1
       ) {
         tabsStore.addTab(route)
-        activeKey.value = fullPath
+        state.activeKey = fullPath
       }
       return false
     }
@@ -81,7 +89,8 @@ export default defineComponent({
       })
     }
 
-    function handleCloseTab(tab) {
+    function handleCloseTab(tabName) {
+      const tab = visitedTabs.value.find(v => v.fullPath === tabName) as any
       tabsStore.delTab(tab).then(({ visitedTabs }) => {
         if (isActive(tab)) {
           toLastTab(visitedTabs)
@@ -126,6 +135,10 @@ export default defineComponent({
       }
     }
 
+    function handleCommand(command: any) {
+      state.commandMap[command]()
+    }
+
     watch(
       () => route.path,
       () => {
@@ -138,95 +151,78 @@ export default defineComponent({
     })
 
     return {
-      activeKey,
+      ...toRefs(state),
       visitedTabs,
       closeLeftDisabled,
       closeRightDisabled,
       closeOtherDisabled,
       handleCloseTab,
-      handleCloseLeftTabs,
-      handleCloseRightTabs,
-      handleCloseOtherTabs,
-      handleCloseAllTabs,
       handleSelectTab,
-      handleRefreshTab
+      handleCommand
     }
   },
   render() {
     return (
       <div class={styles.tabbar}>
-        <Tabs
-          v-model:activeKey={this.activeKey}
-          onChange={this.handleSelectTab}
+        <ElTabs
+          v-model={this.activeKey}
+          onTabChange={this.handleSelectTab}
+          onTabRemove={this.handleCloseTab}
         >
-          {this.visitedTabs.map(view => (
-            <TabPane
-              tab={() => (
-                <div class={styles.tabContent}>
-                  <input data-key={view.fullPath} hidden />
-                  <span>{view.meta!.title}</span>
-                  <Icon
-                    icon={'ant-design:close-outlined'}
-                    class={styles.tabCloseIcon}
-                    inline
-                    onClick={withModifiers(
-                      () => this.handleCloseTab(view),
-                      ['stop']
-                    )}
-                  />
-                </div>
-              )}
-              key={view.fullPath}
+          {this.visitedTabs.map(v => (
+            <ElTabPane
+              name={v.fullPath}
+              label={v.meta.title}
+              closable
+              key={v.fullPath}
             />
           ))}
-        </Tabs>
-        <Dropdown
+        </ElTabs>
+        <ElDropdown
+          onCommand={this.handleCommand}
           v-slots={{
-            default: () => (
+            ['default']: () => (
               <div class={styles.tabsMenu}>
                 <Icon icon={'ant-design:down-outlined'} inline />
               </div>
             ),
-            overlay: () => (
-              <Menu class={styles.tabsDropdownMenu}>
-                <MenuItem onClick={this.handleRefreshTab}>
+            ['dropdown']: () => (
+              <ElDropdownMenu class={styles.tabsDropdownMenu}>
+                <ElDropdownItem command="refresh">
                   <Icon icon={'ant-design:reload-outlined'} inline />
                   刷新页面
-                </MenuItem>
-                <MenuDivider />
-                <MenuItem
-                  onClick={this.handleCloseLeftTabs}
+                </ElDropdownItem>
+                <ElDropdownItem
+                  command="closeLeft"
                   disabled={this.closeLeftDisabled}
+                  divided
                 >
                   <Icon icon={'ant-design:vertical-right-outlined'} inline />
                   关闭左侧
-                </MenuItem>
-                <MenuItem
-                  onClick={this.handleCloseRightTabs}
+                </ElDropdownItem>
+                <ElDropdownItem
+                  command="closeRight"
                   disabled={this.closeRightDisabled}
                 >
                   <Icon icon={'ant-design:vertical-left-outlined'} inline />
                   关闭右侧
-                </MenuItem>
-                <MenuDivider />
-                <MenuItem
-                  onClick={this.handleCloseOtherTabs}
+                </ElDropdownItem>
+                <ElDropdownItem
+                  command="closeOther"
                   disabled={this.closeOtherDisabled}
+                  divided
                 >
                   <Icon icon={'ant-design:close-outlined'} inline />
                   关闭其它
-                </MenuItem>
-                <MenuItem onClick={this.handleCloseAllTabs}>
+                </ElDropdownItem>
+                <ElDropdownItem command="closeAll">
                   <Icon icon={'ant-design:close-circle-outlined'} inline />
                   关闭所有
-                </MenuItem>
-              </Menu>
+                </ElDropdownItem>
+              </ElDropdownMenu>
             )
           }}
-          placement={'bottomRight'}
-          overlayStyle={{
-            zIndex: 100002
-          }}
+          placement={'bottom-end'}
         />
       </div>
     )

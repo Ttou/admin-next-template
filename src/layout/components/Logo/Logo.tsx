@@ -35,7 +35,7 @@ export default defineComponent({
   render() {
     return (
       <div class={styles.logo} style={this.style}>
-        <Icon class={styles.logoIcon} icon={'logos:ant-design'} />
+        <Icon class={styles.logoIcon} icon={'logos:element'} />
       </div>
     )
   }

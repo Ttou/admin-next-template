@@ -1,84 +1,90 @@
 import {
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  DatePicker,
-  Form,
-  FormItem,
-  Input,
-  Radio,
-  RadioGroup,
-  Select,
-  SelectOption,
-  Space,
-  Switch,
-  Textarea
-} from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
-
-const { useForm } = Form
+  type FormInstance,
+  type FormRules,
+  ElButton,
+  ElCheckbox,
+  ElCheckboxGroup,
+  ElDatePicker,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElOption,
+  ElRadio,
+  ElRadioGroup,
+  ElSelect,
+  ElSpace,
+  ElSwitch
+} from 'element-plus'
+import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'DemoForm',
   setup() {
-    const formModel = ref({
-      name: '',
-      zone: '',
-      date: '',
-      delivery: '',
-      type: [],
-      resource: '',
-      desc: ''
+    const state = reactive({
+      formRef: {} as FormInstance,
+      formModel: {
+        name: '',
+        zone: '',
+        date: '',
+        delivery: '',
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      formRules: {
+        name: [
+          { required: true, message: '请输入', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度 3 到 5', trigger: 'blur' }
+        ],
+        zone: [{ required: true, message: '请选择', trigger: 'change' }],
+        date: [
+          {
+            required: true,
+            message: '请选择',
+            trigger: 'change',
+            type: 'object'
+          }
+        ],
+        type: [
+          {
+            type: 'array',
+            required: true,
+            message: '请选择',
+            trigger: 'change'
+          }
+        ],
+        resource: [{ required: true, message: '请选择', trigger: 'change' }],
+        desc: [{ required: true, message: '请输入', trigger: 'blur' }]
+      } as FormRules,
+      zoneOptions: [
+        { label: 'ShangHai', value: 'shanghai' },
+        { label: 'BeiJing', value: 'beijing' }
+      ],
+      typeOptions: [
+        { label: 'Online', value: '1' },
+        { label: 'Promotion', value: '2' },
+        { label: 'Offline', value: '3' }
+      ],
+      resourceOptions: [
+        { label: 'Sponsor', value: '1' },
+        { label: 'Venue', value: '2' }
+      ]
     })
-    const formRules = ref({
-      name: [
-        { required: true, message: '请输入', trigger: 'blur' },
-        { min: 3, max: 5, message: '长度 3 到 5', trigger: 'blur' }
-      ],
-      zone: [{ required: true, message: '请选择', trigger: 'change' }],
-      date: [
-        { required: true, message: '请选择', trigger: 'change', type: 'object' }
-      ],
-      type: [
-        { type: 'array', required: true, message: '请选择', trigger: 'change' }
-      ],
-      resource: [{ required: true, message: '请选择', trigger: 'change' }],
-      desc: [{ required: true, message: '请输入', trigger: 'blur' }]
-    } as FormRules)
-    const zoneOptions = ref([
-      { label: 'ShangHai', value: 'shanghai' },
-      { label: 'BeiJing', value: 'beijing' }
-    ])
-    const typeOptions = ref([
-      { label: 'Online', value: '1' },
-      { label: 'Promotion', value: '2' },
-      { label: 'Offline', value: '3' }
-    ])
-    const resourceOptions = ref([
-      { label: 'Sponsor', value: '1' },
-      { label: 'Venue', value: '2' }
-    ])
-
-    const formRef = useForm(formModel.value, formRules.value)
 
     function handleReset() {
-      formRef.resetFields()
+      state.formRef.resetFields()
     }
 
     function handleCancel() {
-      formRef.clearValidate()
+      state.formRef.clearValidate()
     }
 
     function handleSubmit() {
-      formRef.validate()
+      state.formRef.validate()
     }
 
     return {
-      formRef,
-      formModel,
-      zoneOptions,
-      typeOptions,
-      resourceOptions,
+      ...toRefs(state),
       handleReset,
       handleCancel,
       handleSubmit
@@ -87,73 +93,61 @@ export default defineComponent({
   render() {
     return (
       <div>
-        <Form labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
-          <FormItem
-            label="Activity name"
-            {...this.formRef.validateInfos['name']}
-          >
-            <Input v-model:value={this.formModel.name} />
-          </FormItem>
-          <FormItem
-            label="Activity zone"
-            {...this.formRef.validateInfos['zone']}
-          >
-            <Select v-model:value={this.formModel.zone}>
+        <ElForm
+          ref="formRef"
+          model={this.formModel}
+          rules={this.formRules}
+          labelWidth="120px"
+          labelPosition={'right'}
+        >
+          <ElFormItem label="Activity name" prop="name">
+            <ElInput v-model={this.formModel.name} />
+          </ElFormItem>
+          <ElFormItem label="Activity zone" prop="zone">
+            <ElSelect v-model={this.formModel.zone}>
               {this.zoneOptions.map(v => (
-                <SelectOption value={v.value}>{v.label}</SelectOption>
+                <ElOption label={v.label} value={v.value} />
               ))}
-            </Select>
-          </FormItem>
-          <FormItem
-            label="Activity time"
-            {...this.formRef.validateInfos['date']}
-          >
-            <DatePicker
-              v-model:value={this.formModel.date}
+            </ElSelect>
+          </ElFormItem>
+          <ElFormItem label="Activity time" prop="date">
+            <ElDatePicker
+              v-model={this.formModel.date}
               style={{ width: '100%' }}
             />
-          </FormItem>
-          <FormItem name="delivery" label="Instant delivery">
-            <Switch v-model:checked={this.formModel.delivery} />
-          </FormItem>
-          <FormItem
-            label="Activity type"
-            {...this.formRef.validateInfos['type']}
-          >
-            <CheckboxGroup v-model:value={this.formModel.type}>
+          </ElFormItem>
+          <ElFormItem prop="delivery" label="Instant delivery">
+            <ElSwitch v-model={this.formModel.delivery} />
+          </ElFormItem>
+          <ElFormItem label="Activity type" prop="type">
+            <ElCheckboxGroup v-model={this.formModel.type}>
               {this.typeOptions.map(v => (
-                <Checkbox value={v.value}>{v.label}</Checkbox>
+                <ElCheckbox label={v.value}>{v.label}</ElCheckbox>
               ))}
-            </CheckboxGroup>
-          </FormItem>
-          <FormItem
-            label="Resource"
-            {...this.formRef.validateInfos['resource']}
-          >
-            <RadioGroup v-model:value={this.formModel.resource}>
+            </ElCheckboxGroup>
+          </ElFormItem>
+          <ElFormItem label="Resource">
+            <ElRadioGroup v-model={this.formModel.resource}>
               {this.resourceOptions.map(v => (
-                <Radio value={v.value}>{v.label}</Radio>
+                <ElRadio label={v.value}>{v.label}</ElRadio>
               ))}
-            </RadioGroup>
-          </FormItem>
-          <FormItem
-            label="Activity form"
-            {...this.formRef.validateInfos['desc']}
-          >
-            <Textarea v-model:value={this.formModel.desc} />
-          </FormItem>
-          <FormItem wrapperCol={{ span: 14, offset: 4 }}>
-            <Space>
-              <Button onClick={this.handleReset} danger>
+            </ElRadioGroup>
+          </ElFormItem>
+          <ElFormItem label="Activity form">
+            <ElInput v-model={this.formModel.desc} type="textarea" />
+          </ElFormItem>
+          <ElFormItem>
+            <ElSpace>
+              <ElButton type={'danger'} onClick={this.handleReset}>
                 重置
-              </Button>
-              <Button onClick={this.handleCancel}>取消</Button>
-              <Button type="primary" onClick={this.handleSubmit}>
+              </ElButton>
+              <ElButton onClick={this.handleCancel}>取消</ElButton>
+              <ElButton type={'primary'} onClick={this.handleSubmit}>
                 确定
-              </Button>
-            </Space>
-          </FormItem>
-        </Form>
+              </ElButton>
+            </ElSpace>
+          </ElFormItem>
+        </ElForm>
       </div>
     )
   }

@@ -1,5 +1,5 @@
-import { Card, Col, Row } from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
+import { ElCard, ElCol, ElRow } from 'element-plus'
+import { defineComponent, reactive, toRefs } from 'vue'
 
 import { ProQr, ProQrProps } from '@/components'
 
@@ -8,48 +8,55 @@ import logo from './images/logo.svg'
 export default defineComponent({
   name: 'DemoQRCode',
   setup() {
-    const qr1Config = ref({
-      text: 'http://www.baidu.com'
-    } as ProQrProps)
-
-    const qr2Config = ref({
-      text: 'http://www.baidu.com',
-      options: {
-        color: { dark: '#43d08c' }
-      }
-    } as ProQrProps)
-
-    const qr3Config = ref({
-      text: 'http://www.baidu.com',
-      logo
-    } as ProQrProps)
+    const state = reactive({
+      qr1Config: {
+        text: 'http://www.baidu.com'
+      } as ProQrProps,
+      qr2Config: {
+        text: 'http://www.baidu.com',
+        options: {
+          color: { dark: '#43d08c' }
+        }
+      } as ProQrProps,
+      qr3Config: {
+        text: 'http://www.baidu.com',
+        logo
+      } as ProQrProps
+    })
 
     return {
-      qr1Config,
-      qr2Config,
-      qr3Config
+      ...toRefs(state)
     }
   },
   render() {
     return (
       <div>
-        <Row gutter={15}>
-          <Col span={8}>
-            <Card title="基础示例">
-              <ProQr {...this.qr1Config} />
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="配置样式">
-              <ProQr {...this.qr2Config} />
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="集成图标">
-              <ProQr {...this.qr3Config} />
-            </Card>
-          </Col>
-        </Row>
+        <ElRow gutter={15}>
+          <ElCol span={8}>
+            <ElCard
+              v-slots={{
+                ['header']: () => <span>基础示例</span>,
+                ['default']: () => <ProQr {...this.qr1Config} />
+              }}
+            />
+          </ElCol>
+          <ElCol span={8}>
+            <ElCard
+              v-slots={{
+                ['header']: () => <span>配置样式</span>,
+                ['default']: () => <ProQr {...this.qr2Config} />
+              }}
+            />
+          </ElCol>
+          <ElCol span={8}>
+            <ElCard
+              v-slots={{
+                ['header']: () => <span>集成图标</span>,
+                ['default']: () => <ProQr {...this.qr3Config} />
+              }}
+            />
+          </ElCol>
+        </ElRow>
       </div>
     )
   }

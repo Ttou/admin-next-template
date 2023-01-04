@@ -8,41 +8,43 @@ import {
   ColumnChart,
   LineChart
 } from '@opd/g2plot-vue'
-import { Col, Row } from 'ant-design-vue'
-import { defineComponent, onMounted, ref } from 'vue'
+import { ElCol, ElRow } from 'element-plus'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 import styles from './index.module.css'
 
 export default defineComponent({
   name: 'DemoPlot',
   setup() {
-    const lineConfig = ref({
-      xField: 'Date',
-      yField: 'scales',
-      data: []
-    } as LineChartProps)
-    const columnConfig = ref({
-      xField: 'type',
-      yField: 'sales',
-      data: []
-    } as ColumnChartProps)
-    const barConfig = ref({
-      xField: 'value',
-      yField: 'year',
-      seriesField: 'year',
-      legend: {
-        position: 'top-left'
-      },
-      data: []
-    } as BarChartProps)
-    const areaConfig = ref({
-      xField: 'timePeriod',
-      yField: 'value',
-      xAxis: {
-        range: [0, 1]
-      },
-      data: []
-    } as AreaChartProps)
+    const state = reactive({
+      lineConfig: {
+        xField: 'Date',
+        yField: 'scales',
+        data: []
+      } as LineChartProps,
+      columnConfig: {
+        xField: 'type',
+        yField: 'sales',
+        data: []
+      } as ColumnChartProps,
+      barConfig: {
+        xField: 'value',
+        yField: 'year',
+        seriesField: 'year',
+        legend: {
+          position: 'top-left'
+        },
+        data: []
+      } as BarChartProps,
+      areaConfig: {
+        xField: 'timePeriod',
+        yField: 'value',
+        xAxis: {
+          range: [0, 1]
+        },
+        data: []
+      } as AreaChartProps
+    })
 
     function initLine() {
       fetch(
@@ -50,7 +52,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          lineConfig.value.data = data
+          state.lineConfig.data = data
         })
     }
 
@@ -60,12 +62,12 @@ export default defineComponent({
       )
         .then(data => data.json())
         .then(data => {
-          columnConfig.value.data = data
+          state.columnConfig.data = data
         })
     }
 
     function initBar() {
-      barConfig.value.data = [
+      state.barConfig.data = [
         { year: '1951 年', value: 38 },
         { year: '1952 年', value: 52 },
         { year: '1956 年', value: 61 },
@@ -80,7 +82,7 @@ export default defineComponent({
       )
         .then(res => res.json())
         .then(data => {
-          areaConfig.value.data = data
+          state.areaConfig.data = data
         })
     }
 
@@ -92,45 +94,42 @@ export default defineComponent({
     })
 
     return {
-      lineConfig,
-      columnConfig,
-      barConfig,
-      areaConfig
+      ...toRefs(state)
     }
   },
   render() {
     return (
       <div class={styles.view}>
-        <Row gutter={20}>
-          <Col span="1"></Col>
-          <Col span="10">
+        <ElRow gutter={20}>
+          <ElCol span={1}></ElCol>
+          <ElCol span={10}>
             <h3>折线图</h3>
             {/* @ts-ignore */}
             <LineChart {...this.lineConfig} />
-          </Col>
-          <Col span="2"></Col>
-          <Col span="10">
+          </ElCol>
+          <ElCol span={2}></ElCol>
+          <ElCol span={10}>
             <h3>柱状图</h3>
             {/* @ts-ignore */}
             <ColumnChart {...this.columnConfig} />
-          </Col>
-          <Col span="1"></Col>
-        </Row>
-        <Row gutter={20}>
-          <Col span="1"></Col>
-          <Col span="10">
+          </ElCol>
+          <ElCol span={1}></ElCol>
+        </ElRow>
+        <ElRow gutter={20}>
+          <ElCol span={1}></ElCol>
+          <ElCol span={10}>
             <h3>条形图</h3>
             {/* @ts-ignore */}
             <BarChart {...this.barConfig} />
-          </Col>
-          <Col span="2"></Col>
-          <Col span="10">
+          </ElCol>
+          <ElCol span={2}></ElCol>
+          <ElCol span={10}>
             <h3>面积图</h3>
             {/* @ts-ignore */}
             <AreaChart {...this.areaConfig} />
-          </Col>
-          <Col span="1"></Col>
-        </Row>
+          </ElCol>
+          <ElCol span={1}></ElCol>
+        </ElRow>
       </div>
     )
   }

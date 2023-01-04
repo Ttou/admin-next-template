@@ -1,9 +1,23 @@
-import { Button, Result } from 'ant-design-vue'
+import { ElButton, ElResult } from 'element-plus'
 import { computed, defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { SUB_TITLE_MAP } from './constants'
-import type { Status } from './types'
+type Status = '403' | '404' | '500'
+
+const STATUS_MAP = {
+  403: {
+    title: '权限不够',
+    icon: 'error'
+  },
+  404: {
+    title: '页面不存在',
+    icon: 'error'
+  },
+  500: {
+    title: '服务器异常',
+    icon: 'error'
+  }
+}
 
 export default defineComponent({
   name: 'ErrorView',
@@ -15,31 +29,28 @@ export default defineComponent({
       return route.query.status as Status
     })
 
-    const subTitle = computed(() => SUB_TITLE_MAP[status.value!])
-
     function handleClick() {
       router.replace('/')
     }
 
     return {
       status,
-      subTitle,
       handleClick
     }
   },
   render() {
     return (
-      <Result
+      <ElResult
+        title={this.status}
+        subTitle={STATUS_MAP[this.status].title}
+        icon={STATUS_MAP[this.status].icon}
         v-slots={{
-          extra: () => (
-            <Button type="primary" onClick={this.handleClick}>
+          ['extra']: () => (
+            <ElButton type="primary" onClick={this.handleClick}>
               返回首页
-            </Button>
+            </ElButton>
           )
         }}
-        status={this.status}
-        title={this.status}
-        subTitle={this.subTitle}
       />
     )
   }

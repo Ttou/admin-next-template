@@ -1,35 +1,48 @@
-import { InputSearch, message } from 'ant-design-vue'
-import { defineComponent, ref } from 'vue'
+import { ElButton, ElInput, ElMessage } from 'element-plus'
+import { defineComponent, reactive, toRefs } from 'vue'
 
 import { copyText } from '@/utils'
 
 export default defineComponent({
   name: 'DemoCopyText',
   setup() {
-    const inputValue = ref('http://www.baidu.com')
+    const state = reactive({
+      inputValue: 'http://www.baidu.com'
+    })
 
     async function handleCopy() {
-      const result = await copyText(inputValue.value)
+      const result = await copyText(state.inputValue)
 
       if (result) {
-        message.success('复制成功')
+        ElMessage.success('复制成功')
       } else {
-        message.error('复制失败')
+        ElMessage.error('复制失败')
       }
     }
 
     return {
-      inputValue,
+      ...toRefs(state),
       handleCopy
     }
   },
   render() {
     return (
       <div>
-        <InputSearch
-          v-model:value={this.inputValue}
-          onSearch={this.handleCopy}
-          enterButton={'复制'}
+        <ElInput
+          v-model={this.inputValue}
+          v-slots={{
+            ['suffix']: () => (
+              <ElButton
+                type={'primary'}
+                style={{
+                  marginRight: '-11px'
+                }}
+                onClick={this.handleCopy}
+              >
+                复制
+              </ElButton>
+            )
+          }}
         />
       </div>
     )
