@@ -4,9 +4,9 @@ import {
   LayoutHeader,
   LayoutSider
 } from 'ant-design-vue'
+import { ElScrollbar } from 'element-plus'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
-import { Scrollbar } from '@/components'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
@@ -91,24 +91,24 @@ export default defineComponent({
           collapsible
         >
           <Logo />
-          <Scrollbar>
+          <ElScrollbar>
             <Menu />
-          </Scrollbar>
+          </ElScrollbar>
         </LayoutSider>
         {this.setting.fixedHeader ? (
           <Layout class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}
             {renderTabbar()}
-            <Scrollbar id="page">{renderContent()}</Scrollbar>
+            <ElScrollbar id="page">{renderContent()}</ElScrollbar>
           </Layout>
         ) : (
-          <Scrollbar>
+          <ElScrollbar>
             <Layout class={styles.layoutMain} style={this.mainStyle}>
               {renderHeader()}
               {renderTabbar()}
               {renderContent()}
             </Layout>
-          </Scrollbar>
+          </ElScrollbar>
         )}
       </Layout>
     )

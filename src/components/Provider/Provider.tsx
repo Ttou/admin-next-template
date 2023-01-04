@@ -1,12 +1,12 @@
-import { ConfigProvider } from 'ant-design-vue'
+import { ElConfigProvider } from 'element-plus'
 import { defineComponent } from 'vue'
 
-import { useAntdConfig } from '@/hooks'
+import { useElementPlusConfig } from '@/hooks'
 
 export default defineComponent({
   name: 'Provider',
   setup() {
-    const config = useAntdConfig()
+    const config = useElementPlusConfig()
 
     return {
       config
@@ -14,9 +14,9 @@ export default defineComponent({
   },
   render() {
     return (
-      <ConfigProvider {...this.config}>
+      <ElConfigProvider {...this.config}>
         {this.$slots.default?.()}
-      </ConfigProvider>
+      </ElConfigProvider>
     )
   }
 })

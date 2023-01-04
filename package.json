@@ -32,7 +32,7 @@
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
     "vxe-table": "^4.0.0",
-    "vxe-table-plugin-antd": "^3.0.5",
+    "vxe-table-plugin-element": "^3.0.6",
     "xe-utils": "^3.0.0",
     "xgplayer": "^2.0.0"
   },

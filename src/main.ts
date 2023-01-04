@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import App from './App'
 import {
   useAntd,
+  useElementPlus,
   useErrorHandler,
   usePermissionGuard,
   useProgressGuard,
@@ -24,6 +25,7 @@ async function bootstrap() {
   useProgressGuard(router)
 
   useAntd(app)
+  useElementPlus(app)
   useTable(app)
   useErrorHandler(app)
 

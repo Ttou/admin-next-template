@@ -43,7 +43,7 @@ export default defineComponent({
             title: '账号',
             field: 'account',
             itemRender: {
-              name: TABLE_ITEM_RENDER.AInput,
+              name: TABLE_ITEM_RENDER.Input,
               props: {
                 placeholder: '请输入'
               }
@@ -53,7 +53,7 @@ export default defineComponent({
             title: '昵称',
             field: 'nickname',
             itemRender: {
-              name: TABLE_ITEM_RENDER.AInput,
+              name: TABLE_ITEM_RENDER.Input,
               props: {
                 placeholder: '请输入'
               }
@@ -63,7 +63,7 @@ export default defineComponent({
             title: '角色',
             field: 'role',
             itemRender: {
-              name: TABLE_ITEM_RENDER.ASelect,
+              name: TABLE_ITEM_RENDER.Select,
               props: {
                 placeholder: '请选择'
               },
@@ -83,7 +83,7 @@ export default defineComponent({
             title: '状态',
             field: 'status',
             itemRender: {
-              name: TABLE_ITEM_RENDER.ASelect,
+              name: TABLE_ITEM_RENDER.Select,
               props: {
                 placeholder: '请选择'
               },
@@ -105,9 +105,10 @@ export default defineComponent({
             itemRender: {
               name: TABLE_RENDERER.FormItemDate,
               props: {
-                type: 'range',
-                placeholder: ['开始时间', '结束时间'],
-                valueFormat: 'YYYY-MM-DD HH:mm:ss'
+                type: 'datetimerange',
+                startPlaceholder: '开始时间',
+                endPlaceholder: '结束时间',
+                format: 'YYYY-MM-DD HH:mm:ss'
               }
             }
           },
@@ -136,7 +137,7 @@ export default defineComponent({
           title: '昵称',
           field: 'nickname',
           editRender: {
-            name: TABLE_EDIT_RENDER.AInput
+            name: TABLE_EDIT_RENDER.Input
           }
         },
         {
@@ -147,7 +148,7 @@ export default defineComponent({
           title: '状态',
           field: 'status',
           editRender: {
-            name: TABLE_EDIT_RENDER.ASelect,
+            name: TABLE_EDIT_RENDER.Select,
             options: [
               {
                 label: '禁用',
@@ -164,7 +165,7 @@ export default defineComponent({
           title: '备注',
           field: 'remark',
           editRender: {
-            name: TABLE_EDIT_RENDER.AInput
+            name: TABLE_EDIT_RENDER.Input
           }
         },
         {

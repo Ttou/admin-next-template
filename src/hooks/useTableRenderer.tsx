@@ -1,10 +1,4 @@
-import {
-  Button,
-  DatePicker,
-  MonthPicker,
-  RangePicker,
-  Space
-} from 'ant-design-vue'
+import { ElButton, ElDatePicker, ElSpace } from 'element-plus'
 import type VXETable from 'vxe-table'
 
 import { TABLE_RENDERER } from '@/constants'
@@ -14,12 +8,12 @@ export function useTableRenderer(vxe: typeof VXETable) {
   vxe.renderer.add(TABLE_RENDERER.FormItemBtns, {
     renderItemContent(renderOpts, params) {
       return [
-        <Space>
-          <Button type="primary" htmlType="submit">
+        <ElSpace>
+          <ElButton type={'primary'} nativeType={'submit'}>
             查询
-          </Button>
-          <Button htmlType="reset">重置</Button>
-        </Space>
+          </ElButton>
+          <ElButton nativeType={'reset'}>重置</ElButton>
+        </ElSpace>
       ]
     }
   })
@@ -27,23 +21,9 @@ export function useTableRenderer(vxe: typeof VXETable) {
   vxe.renderer.add(TABLE_RENDERER.FormItemDate, {
     renderItemContent(renderOpts, params) {
       const { props } = renderOpts
-      const { data, property } = params
-      let Component: any
+      const { data, field } = params
 
-      switch (props!.type) {
-        case 'range':
-          Component = RangePicker
-          break
-        case 'month':
-          Component = MonthPicker
-          break
-        case 'date':
-        default:
-          Component = DatePicker
-          break
-      }
-
-      return [<Component v-model:value={data[property]} {...props} />]
+      return [<ElDatePicker v-model={data[field]} {...props} />]
     }
   })
 }

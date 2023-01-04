@@ -1,10 +1,10 @@
 import 'xe-utils'
 import 'vxe-table/lib/style.css'
-import 'vxe-table-plugin-antd/dist/style.css'
+import 'vxe-table-plugin-element/dist/style.css'
 
 import type { App } from 'vue'
 import VXETable from 'vxe-table'
-import VXETablePluginAntd from 'vxe-table-plugin-antd'
+import VXETablePluginElement from 'vxe-table-plugin-element'
 
 import { useTableCommand } from './useTableCommand'
 import { useTableFormat } from './useTableFormat'
@@ -12,7 +12,7 @@ import { useTableInterceptor } from './useTableInterceptor'
 import { useTableRenderer } from './useTableRenderer'
 
 export function useTable(app: App) {
-  VXETable.use(VXETablePluginAntd)
+  VXETable.use(VXETablePluginElement)
 
   VXETable.setup({
     size: 'small'

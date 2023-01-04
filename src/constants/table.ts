@@ -1,4 +1,6 @@
-/** 表格渲染器 */
+/**
+ * 表格渲染器
+ */
 export enum TABLE_RENDERER {
   FormItemBtns = 'FormItemBtns',
   FormItemDate = 'FormItemDate'
@@ -6,60 +8,73 @@ export enum TABLE_RENDERER {
 
 /** 表格格式化 */
 export enum TABLE_FORMAT {
-  /** 日期格式化 */
+  /**
+   * 日期格式化
+   */
   Date = 'Date'
 }
 
-/** 单元格渲染器 */
+/**
+ * 单元格渲染器
+ */
 export enum TABLE_CELL_RENDER {
-  AInput = 'AInput',
-  AAutocomplete = 'AAutocomplete',
-  AInputNumber = 'AInputNumber',
-  ASwitch = 'ASwitch',
-  ARate = 'ARate',
-  AButton = 'AButton',
-  AButtons = 'AButtons'
+  Input = 'ElInput',
+  Autocomplete = 'ElAutocomplete',
+  InputNumber = 'ElInputNumber',
+  Switch = 'ElSwitch',
+  Rate = 'ElRate',
+  Slider = 'ElSlider',
+  Button = 'ElButton',
+  Buttons = 'ElButtons'
 }
 
-/** 可编辑渲染器 */
+/**
+ * 可编辑渲染器
+ */
 export enum TABLE_EDIT_RENDER {
-  AInput = 'AInput',
-  AAutocomplete = 'AAutocomplete',
-  AInputNumber = 'AInputNumber',
-  ASelect = 'ASelect',
-  ACascader = 'ACascader',
-  ADatePicker = 'ADatePicker',
-  AMonthPicker = 'AMonthPicker',
-  ARangePicker = 'ARangePicker',
-  AWeekPicker = 'AWeekPicker',
-  ATimePicker = 'ATimePicker',
-  ATreeSelect = 'ATreeSelect',
-  ASwitch = 'ASwitch',
-  ARate = 'ARate',
-  AButton = 'AButton',
-  AButtons = 'AButtons'
+  Input = 'ElInput',
+  Autocomplete = 'ElAutocomplete',
+  InputNumber = 'ElInputNumber',
+  Select = 'ElSelect',
+  Cascader = 'ElCascader',
+  DatePicker = 'ElDatePicker',
+  imeSelect = 'ElTimeSelect',
+  TimePicker = 'ElTimePicker',
+  Switch = 'ElSwitch',
+  Slider = 'ElSlider',
+  Rate = 'ElRate',
+  Button = 'ElButton',
+  Buttons = 'ElButtons'
 }
 
-/** 筛选渲染器 */
+/**
+ * 筛选渲染器
+ */
 export enum TABLE_FILTER_RENDER {
-  AInput = 'AInput',
-  AAutocomplete = 'AAutocomplete',
-  AInputNumber = 'AInputNumber',
-  ASelect = 'ASelect',
-  ASwitch = 'ASwitch',
-  ARate = 'ARate'
+  Input = 'ElInput',
+  Autocomplete = 'ElAutocomplete',
+  InputNumber = 'ElInputNumber',
+  DatePicker = 'ElDatePicker',
+  Select = 'ElSelect',
+  Switch = 'ElSwitch',
+  Slider = 'ElSlider',
+  Rate = 'ElRate'
 }
 
-/** 表单项渲染器 */
+/**
+ * 表单项渲染器
+ */
 export enum TABLE_ITEM_RENDER {
-  AInput = 'AInput',
-  AAutocomplete = 'AAutocomplete',
-  AInputNumber = 'AInputNumber',
-  ASelect = 'ASelect',
-  ASwitch = 'ASwitch',
-  ARate = 'ARate',
-  ARadio = 'ARadio',
-  ACheckbox = 'ACheckbox',
-  AButton = 'AButton',
-  AButtons = 'AButtons'
+  Input = 'ElInput',
+  Autocomplete = 'ElAutocomplete',
+  InputNumber = 'ElInputNumber',
+  DatePicker = 'ElDatePicker',
+  Select = 'ElSelect',
+  Switch = 'ElSwitch',
+  Slider = 'ElSlider',
+  Rate = 'ElRate',
+  Radio = 'ElRadio',
+  Checkbox = 'ElCheckbox',
+  Button = 'ElButton',
+  Buttons = 'ElButtons'
 }
