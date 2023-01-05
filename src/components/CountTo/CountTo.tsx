@@ -4,7 +4,8 @@ import {
   computed,
   defineComponent,
   onMounted,
-  ref,
+  reactive,
+  toRef,
   watch,
   watchEffect
 } from 'vue'
@@ -18,8 +19,11 @@ export default defineComponent({
   props: countToProps(),
   emits: ['started', 'finished'],
   setup(props, { emit }) {
-    const source = ref(props.startVal)
-    const disabled = ref(false)
+    const state = reactive({
+      source: props.startVal,
+      disabled: false
+    })
+    const source = toRef(state, 'source')
 
     let outputValue = useTransition(source)
 
@@ -27,17 +31,17 @@ export default defineComponent({
 
     function start() {
       run()
-      source.value = props.endVal
+      state.source = props.endVal
     }
 
     function reset() {
-      source.value = props.startVal
+      state.source = props.startVal
       run()
     }
 
     function run() {
       outputValue = useTransition(source, {
-        disabled,
+        disabled: state.disabled,
         duration: props.duration,
         onFinished: () => emit('finished'),
         onStarted: () => emit('started'),

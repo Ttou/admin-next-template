@@ -24,8 +24,8 @@ export function usePermissionGuard(router: Router) {
           return true
         } else {
           try {
-            const roles = await userStore.getInfo()
-            const routes = await permissionStore.generate(roles)
+            const menus = await userStore.getInfo()
+            const routes = await permissionStore.generate(menus)
 
             routes.forEach(route => {
               router.addRoute(route)

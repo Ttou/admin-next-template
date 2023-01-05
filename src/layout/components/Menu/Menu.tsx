@@ -5,7 +5,8 @@ import {
   computed,
   defineComponent,
   onBeforeMount,
-  ref
+  reactive,
+  toRefs
 } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
@@ -23,7 +24,9 @@ export default defineComponent({
     SubMenu
   },
   setup() {
-    const list = ref([] as any[])
+    const state = reactive({
+      list: [] as any[]
+    })
 
     const route = useRoute()
     const permissionStore = usePermissionStore()
@@ -64,8 +67,8 @@ export default defineComponent({
     }
 
     function init() {
-      const _routes = createMenu(routes.value)
-      list.value = _routes
+      const menu = createMenu(routes.value)
+      state.list = menu
     }
 
     onBeforeMount(() => {
@@ -73,7 +76,7 @@ export default defineComponent({
     })
 
     return {
-      list,
+      ...toRefs(state),
       activeMenu,
       setting,
       style
@@ -92,6 +95,8 @@ export default defineComponent({
         textColor={vars.menuText}
         activeTextColor={vars.menuActiveText}
         collapse={!this.setting.siderOpened}
+        collapseTransition={false}
+        uniqueOpened
         style={this.style}
       >
         {this.list.map(renderItem)}

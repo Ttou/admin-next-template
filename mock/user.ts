@@ -19,7 +19,6 @@ export default [
     method: 'get',
     response: () => ({
       name: '管理员',
-      roles: ['admin'],
       menus: [
         {
           path: '/demo',

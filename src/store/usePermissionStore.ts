@@ -3,7 +3,8 @@ import { reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
-import { asyncRoutes, constRoutes } from '@/router'
+import { DefaultLayout, ParentLayout } from '@/layout'
+import { constRoutes } from '@/router'
 
 import store from '.'
 
@@ -12,27 +13,33 @@ const routeComponents = import.meta.glob('../views/**/index.tsx')
 const loadComponent = (component: string) =>
   routeComponents[`../views/${component}/index.tsx`]
 
-function hasPermission(roles: string[], route: RouteRecordRaw) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => (route.meta!.roles as string[]).includes(role))
-  } else {
-    return true
-  }
-}
+/**
+ * 过滤菜单树
+ */
+async function filterMenuTree(menus: Menu[]) {
+  const res = [] as any[]
 
-function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
-  const res = [] as RouteRecordRaw[]
+  for (const menu of menus) {
+    const temp = { ...menu }
 
-  routes.forEach(route => {
-    const temp = { ...route }
+    if (menu.component === 'DefaultLayout') {
+      temp.component = DefaultLayout
+    } else if (menu.component === 'ParentLayout') {
+      temp.component = ParentLayout
+    } else {
+      const component = loadComponent(menu.component)
+      const module: any = await component()
 
-    if (hasPermission(roles, temp)) {
-      if (temp.children) {
-        temp.children = filterAsyncRoutes(temp.children, roles)
-      }
-      res.push(temp)
+      temp.name = module.default.name
+      temp.component = component
     }
-  })
+
+    if (temp.children) {
+      temp.children = await filterMenuTree(temp.children)
+    }
+
+    res.push(temp)
+  }
 
   return res
 }
@@ -43,24 +50,20 @@ export const usePermissionStore = defineStore('permission', () => {
     matched: [] as string[]
   })
 
-  function generate(roles: string[]): Promise<RouteRecordRaw[]> {
-    return new Promise(resolve => {
-      const accessedRoutes: RouteRecordRaw[] = filterAsyncRoutes(
-        asyncRoutes as RouteRecordRaw[],
-        roles
-      )
+  async function generate(menus: Menu[]) {
+    const accessedRoutes: RouteRecordRaw[] = await filterMenuTree(menus)
 
-      accessedRoutes.push({
-        path: '/:pathMatch(.*)*',
-        redirect: {
-          path: CONST_ROUTES.ERROR,
-          query: { status: 404 }
-        }
-      })
-
-      state.routes = constRoutes.concat(accessedRoutes)
-      resolve(accessedRoutes)
+    accessedRoutes.push({
+      path: '/:pathMatch(.*)*',
+      redirect: {
+        path: CONST_ROUTES.ERROR,
+        query: { status: 404 }
+      }
     })
+
+    state.routes = constRoutes.concat(accessedRoutes)
+
+    return accessedRoutes
   }
 
   return {

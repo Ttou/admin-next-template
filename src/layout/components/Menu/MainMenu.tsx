@@ -51,11 +51,12 @@ export default defineComponent({
               {this.item.meta.icon ? (
                 <Icon class="el-icon" icon={this.item.meta.icon} />
               ) : null}
-              <span onClick={this.handleJump}>{this.item.meta.title}</span>
+              <span>{this.item.meta.title}</span>
             </>
           )
         }}
-      ></ElMenuItem>
+        onClick={this.handleJump}
+      />
     ) : null
   }
 })

@@ -53,10 +53,6 @@ declare interface Menu {
      * @description 从0开始计算，数值越小排越前面
      */
     sort?: number
-    /**
-     * 角色
-     */
-    roles?: string[]
   }
   /**
    * 子级菜单
