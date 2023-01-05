@@ -67,6 +67,7 @@ export default defineComponent({
     const renderItem = (item: typeof this.list[0]) => (
       <ElCol span={6}>
         <ElCard
+          shadow={'never'}
           v-slots={{
             ['header']: () => (
               <div class={styles.cardHeader}>

@@ -50,14 +50,4 @@ function useKeepAliveFix(
   store: ReturnType<typeof usePermissionStore>
 ) {
   store.matched = to.matched.map(v => v.path)
-
-  if (to.matched && to.matched.length > 2) {
-    for (let i = 0; i < to.matched.length; i++) {
-      const v = to.matched[i]
-
-      if (v.components!.default.name === 'ParentLayout') {
-        to.matched.splice(i, 1)
-      }
-    }
-  }
 }

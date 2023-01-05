@@ -18,7 +18,7 @@ export default defineComponent({
           <Breadcrumb />
         </div>
         <div class={styles.right}>
-          <ElSpace size={20}>
+          <ElSpace size={15}>
             <ScreenFull />
             <SiderTheme />
             <Avatar />

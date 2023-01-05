@@ -5,7 +5,7 @@ export default {
   path: '/nested',
   name: 'Nested',
   component: DefaultLayout,
-  redirect: '/nested/menu1',
+  redirect: '/nested/menu1/menu1-1',
   meta: { title: '嵌套路由', icon: 'ant-design:align-left-outlined' },
   children: [
     {
@@ -13,6 +13,7 @@ export default {
       name: 'Menu1',
       component: ParentLayout,
       meta: { title: 'Menu1' },
+      redirect: '/nested/menu1/menu1-1',
       children: [
         {
           path: 'menu1-1',

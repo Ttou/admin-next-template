@@ -1,21 +1,20 @@
-import { Breadcrumb } from 'ant-design-vue'
-import { defineComponent, ref, watchEffect } from 'vue'
-import { RouteLocationMatched, RouterLink, useRouter } from 'vue-router'
+import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+import { defineComponent, onBeforeMount, reactive, toRefs, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 import styles from './Navbar.module.css'
 
 export default defineComponent({
   name: 'Breadcrumb',
   setup() {
-    const routes = ref([] as any[])
+    const state = reactive({
+      breadcrumbs: [] as any[]
+    })
 
-    const router = useRouter()
+    const route = useRoute()
 
-    function getBreadcrumbName(route) {
-      return route.meta?.title || 'undefined'
-    }
-
-    function createBreadcrumb(routes: RouteLocationMatched[]) {
+    function createBreadcrumb() {
+      const routes = route.matched
       const matched = [] as any
 
       for (const route of routes) {
@@ -23,49 +22,47 @@ export default defineComponent({
           continue
         }
 
-        const newRoute = {
+        matched.push({
           path: route.path.startsWith('/') ? route.path : `/${route.path}`,
-          breadcrumbName: route.meta?.title || 'undefined',
-          children: [] as any
-        }
-
-        if (route.children) {
-          newRoute.children = route.children.map(child => ({
-            path: route.path + `/${child.path}`,
-            breadcrumbName: child.meta?.title || 'undefined'
-          }))
-        }
-
-        matched.push(newRoute)
+          title: route.meta?.title || '-'
+        })
       }
 
-      return matched
+      state.breadcrumbs = matched
     }
 
-    watchEffect(() => {
-      const currentRoute = router.currentRoute.value
+    watch(
+      () => route.path,
+      path => {
+        if (path.startsWith('/redirect/')) {
+          return
+        }
+        createBreadcrumb()
+      }
+    )
 
-      routes.value = createBreadcrumb(currentRoute.matched)
+    onBeforeMount(() => {
+      createBreadcrumb()
     })
 
     return {
-      routes,
-      getBreadcrumbName
+      ...toRefs(state)
     }
   },
   render() {
+    const renderItem = (item: any, index: number) =>
+      index === this.breadcrumbs.length - 1 ? (
+        <ElBreadcrumbItem>{item.title}</ElBreadcrumbItem>
+      ) : (
+        <ElBreadcrumbItem to={{ path: item.path }}>
+          {item.title}
+        </ElBreadcrumbItem>
+      )
+
     return (
-      <Breadcrumb
-        class={styles.breadcrumb}
-        routes={this.routes}
-        itemRender={({ route, routes }) =>
-          routes.indexOf(route) === routes.length - 1 ? (
-            <span>{route.breadcrumbName}</span>
-          ) : (
-            <RouterLink to={route.path}>{route.breadcrumbName}</RouterLink>
-          )
-        }
-      />
+      <ElBreadcrumb class={styles.breadcrumb}>
+        {this.breadcrumbs.map(renderItem)}
+      </ElBreadcrumb>
     )
   }
 })

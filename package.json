@@ -9,7 +9,7 @@
     "serve": "vite preview --mode=production",
     "lint": "concurrently \"npm:lint:*\"",
     "lint:script": "eslint \"./src/**/*.{ts,tsx,vue}\" --fix",
-    "lint:style": "stylelint \"./src/**/*.{css,less,vue}\" --fix",
+    "lint:style": "stylelint \"./src/**/*.{css,vue}\" --fix",
     "commit": "git add . && git cz",
     "postinstall": "npx simple-git-hooks"
   },
@@ -62,7 +62,6 @@
     "mockjs": "^1.1.0",
     "postcss": "^8.4.13",
     "postcss-html": "^1.5.0",
-    "postcss-less": "^6.0.0",
     "prettier": "^2.6.2",
     "rollup-plugin-visualizer": "^5.8.3",
     "simple-git-hooks": "^2.8.0",

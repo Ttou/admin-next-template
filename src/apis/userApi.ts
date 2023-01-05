@@ -1,7 +1,5 @@
 import { ajax } from '@/utils'
 
-import type { GetInfoRes, LoginRes } from './userTypes'
-
 export default {
   login(data: Record<string, any>): Promise<LoginRes> {
     return ajax.post('/user/login', data)

@@ -4,7 +4,13 @@ import {
   LayoutHeader,
   LayoutSider
 } from 'ant-design-vue'
-import { ElScrollbar } from 'element-plus'
+import {
+  ElAside,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElScrollbar
+} from 'element-plus'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
 import { useSettingStore } from '@/store'
@@ -66,17 +72,17 @@ export default defineComponent({
   },
   render() {
     const renderHeader = () => (
-      <LayoutHeader class={styles.layoutHeader} style={this.headerStyle}>
+      <ElHeader class={styles.layoutHeader} style={this.headerStyle}>
         <Navbar />
-      </LayoutHeader>
+      </ElHeader>
     )
 
     const renderTabbar = () => <Tabbar style={this.tabbarStyle} />
 
     const renderContent = () => (
-      <LayoutContent class={styles.layoutContent}>
+      <ElMain class={styles.layoutContent}>
         <Content />
-      </LayoutContent>
+      </ElMain>
     )
 
     return (
@@ -96,18 +102,18 @@ export default defineComponent({
           </ElScrollbar>
         </LayoutSider>
         {this.setting.fixedHeader ? (
-          <Layout class={styles.layoutMain} style={this.mainStyle}>
+          <ElContainer class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}
             {renderTabbar()}
             <ElScrollbar id="page">{renderContent()}</ElScrollbar>
-          </Layout>
+          </ElContainer>
         ) : (
           <ElScrollbar>
-            <Layout class={styles.layoutMain} style={this.mainStyle}>
+            <ElContainer class={styles.layoutMain} style={this.mainStyle}>
               {renderHeader()}
               {renderTabbar()}
               {renderContent()}
-            </Layout>
+            </ElContainer>
           </ElScrollbar>
         )}
       </Layout>

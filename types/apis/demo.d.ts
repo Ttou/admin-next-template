@@ -1,11 +1,11 @@
-export type GetListReq = {
+declare interface GetListReq {
   account?: string
   nickname?: string
   current: number
   pageSize: number
 }
 
-export type GetListRes = {
+declare interface GetListRes {
   content: any[]
   current: number
   size: number
