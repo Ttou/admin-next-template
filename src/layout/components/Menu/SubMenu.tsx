@@ -10,10 +10,6 @@ export default defineComponent({
     item: {
       type: Object as PropType<Menu>,
       required: true
-    },
-    collapse: {
-      type: Boolean,
-      default: false
     }
   },
   setup(props) {
@@ -46,18 +42,16 @@ export default defineComponent({
         v-slots={{
           ['title']: () => (
             <>
-              {this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
-              {!this.collapse ? <span>{this.item.meta.title}</span> : null}
+              {this.item.meta.icon ? (
+                <Icon class="el-icon" icon={this.item.meta.icon} />
+              ) : null}
+              <span>{this.item.meta.title}</span>
             </>
           )
         }}
       >
         {this.item.children?.map(item =>
-          item.children ? (
-            <sub-menu item={item} collapse={this.collapse} />
-          ) : (
-            <MainMenu item={item} collapse={this.collapse} />
-          )
+          item.children ? <sub-menu item={item} /> : <MainMenu item={item} />
         )}
       </ElSubMenu>
     )

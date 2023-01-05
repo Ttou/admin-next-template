@@ -10,7 +10,7 @@ declare interface Menu {
   /**
    * 组件
    */
-  component: string
+  component: any
   /**
    * 跳转
    */

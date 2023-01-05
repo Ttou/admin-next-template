@@ -1,5 +1,4 @@
 import { DefaultLayout, ParentLayout } from '@/layout'
-import { Route } from '@/layout/components'
 
 export default {
   path: '/nested',
@@ -42,4 +41,4 @@ export default {
       meta: { title: 'Menu2' }
     }
   ]
-} as Route
+} as Menu

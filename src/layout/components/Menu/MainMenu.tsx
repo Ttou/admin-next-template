@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/vue'
 import { ElMenuItem } from 'element-plus'
 import { type PropType, computed, defineComponent } from 'vue'
-import { RouterLink } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MainMenu',
@@ -9,13 +9,12 @@ export default defineComponent({
     item: {
       type: Object as PropType<Menu>,
       required: true
-    },
-    collapse: {
-      type: Boolean,
-      default: false
     }
   },
   setup(props) {
+    const route = useRoute()
+    const router = useRouter()
+
     const show = computed(() => {
       if (props.item.meta) {
         if (props.item.meta.hidden) {
@@ -28,8 +27,18 @@ export default defineComponent({
       }
     })
 
+    function handleJump() {
+      if (route.path === props.item.path) {
+        return
+      }
+      router.push(props.item.path).catch(err => {
+        console.error(err)
+      })
+    }
+
     return {
-      show
+      show,
+      handleJump
     }
   },
   render() {
@@ -39,12 +48,10 @@ export default defineComponent({
         v-slots={{
           ['title']: () => (
             <>
-              {this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
-              {!this.collapse ? (
-                <RouterLink to={this.item.path}>
-                  {this.item.meta.title}
-                </RouterLink>
+              {this.item.meta.icon ? (
+                <Icon class="el-icon" icon={this.item.meta.icon} />
               ) : null}
+              <span onClick={this.handleJump}>{this.item.meta.title}</span>
             </>
           )
         }}

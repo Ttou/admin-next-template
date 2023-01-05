@@ -5,8 +5,7 @@ import {
   computed,
   defineComponent,
   onBeforeMount,
-  ref,
-  watch
+  ref
 } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
@@ -15,6 +14,7 @@ import { usePermissionStore, useSettingStore } from '@/store'
 import vars from '@/styles/var.module.css'
 
 import MainMenu from './MainMenu'
+import styles from './Menu.module.css'
 import SubMenu from './SubMenu'
 
 export default defineComponent({
@@ -24,8 +24,6 @@ export default defineComponent({
   },
   setup() {
     const list = ref([] as any[])
-    const openKeys = ref([] as any[])
-    const selectedKeys = ref([] as any[])
 
     const route = useRoute()
     const permissionStore = usePermissionStore()
@@ -70,17 +68,6 @@ export default defineComponent({
       list.value = _routes
     }
 
-    watch(
-      () => route.path,
-      val => {
-        openKeys.value = [...permissionStore.matched]
-        selectedKeys.value = [val]
-      },
-      {
-        immediate: true
-      }
-    )
-
     onBeforeMount(() => {
       init()
     })
@@ -94,14 +81,11 @@ export default defineComponent({
   },
   render() {
     const renderItem = (item: Menu) =>
-      item.children ? (
-        <SubMenu item={item} collapse={!this.setting.siderOpened} />
-      ) : (
-        <MainMenu item={item} collapse={!this.setting.siderOpened} />
-      )
+      item.children ? <SubMenu item={item} /> : <MainMenu item={item} />
 
     return (
       <ElMenu
+        class={styles.menu}
         defaultActive={this.activeMenu}
         mode={'vertical'}
         backgroundColor={vars.menuBg}

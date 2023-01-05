@@ -7,6 +7,11 @@ import { asyncRoutes, constRoutes } from '@/router'
 
 import store from '.'
 
+const routeComponents = import.meta.glob('../views/**/index.tsx')
+
+const loadComponent = (component: string) =>
+  routeComponents[`../views/${component}/index.tsx`]
+
 function hasPermission(roles: string[], route: RouteRecordRaw) {
   if (route.meta && route.meta.roles) {
     return roles.some(role => (route.meta!.roles as string[]).includes(role))
@@ -27,10 +32,6 @@ function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
       }
       res.push(temp)
     }
-  })
-
-  res.sort((a, b) => {
-    return ((a.meta!.sort as number) || 0) - ((b.meta!.sort as number) || 0)
   })
 
   return res

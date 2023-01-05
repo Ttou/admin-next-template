@@ -1,5 +1,4 @@
 import { DefaultLayout } from '@/layout'
-import { Route } from '@/layout/components'
 
 export default {
   path: '/demo',
@@ -55,4 +54,4 @@ export default {
       meta: { title: '视频播放' }
     }
   ]
-} as Route
+} as Menu
