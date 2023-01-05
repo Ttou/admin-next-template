@@ -5,7 +5,6 @@ import Avatar from './Avatar'
 import Breadcrumb from './Breadcrumb'
 import styles from './Navbar.module.css'
 import ScreenFull from './ScreenFull'
-import SiderTheme from './SiderTheme'
 import Trigger from './Trigger'
 
 export default defineComponent({
@@ -20,7 +19,6 @@ export default defineComponent({
         <div class={styles.right}>
           <ElSpace size={15}>
             <ScreenFull />
-            <SiderTheme />
             <Avatar />
           </ElSpace>
         </div>

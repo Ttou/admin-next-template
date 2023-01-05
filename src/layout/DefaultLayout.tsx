@@ -1,10 +1,4 @@
 import {
-  Layout,
-  LayoutContent,
-  LayoutHeader,
-  LayoutSider
-} from 'ant-design-vue'
-import {
   ElAside,
   ElContainer,
   ElHeader,
@@ -24,6 +18,12 @@ export default defineComponent({
     const settingStore = useSettingStore()
 
     const setting = computed(() => settingStore.$state)
+
+    const asideWidth = computed(() =>
+      setting.value.siderOpened
+        ? setting.value.siderOpenedWidth
+        : setting.value.siderClosedWidth
+    )
 
     const mainStyle = computed<CSSProperties>(() => {
       const ret: CSSProperties = {}
@@ -65,6 +65,7 @@ export default defineComponent({
 
     return {
       setting,
+      asideWidth,
       mainStyle,
       headerStyle,
       tabbarStyle
@@ -86,21 +87,13 @@ export default defineComponent({
     )
 
     return (
-      <Layout class={styles.layout}>
-        <LayoutSider
-          class={styles.layoutSider}
-          collapsed={!this.setting.siderOpened}
-          trigger={null}
-          theme={this.setting.siderTheme}
-          width={this.setting.siderOpenedWidth}
-          collapsedWidth={this.setting.siderClosedWidth}
-          collapsible
-        >
+      <ElContainer class={styles.layout}>
+        <ElAside class={styles.layoutSider} width={this.asideWidth}>
           <Logo />
           <ElScrollbar>
             <Menu />
           </ElScrollbar>
-        </LayoutSider>
+        </ElAside>
         {this.setting.fixedHeader ? (
           <ElContainer class={styles.layoutMain} style={this.mainStyle}>
             {renderHeader()}
@@ -116,7 +109,7 @@ export default defineComponent({
             </ElContainer>
           </ElScrollbar>
         )}
-      </Layout>
+      </ElContainer>
     )
   }
 })

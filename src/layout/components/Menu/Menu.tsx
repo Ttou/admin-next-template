@@ -1,4 +1,4 @@
-import { Menu } from 'ant-design-vue'
+import { ElMenu } from 'element-plus'
 import { cloneDeep } from 'lodash-unified'
 import {
   type CSSProperties,
@@ -12,9 +12,9 @@ import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 
 import { usePermissionStore, useSettingStore } from '@/store'
+import vars from '@/styles/var.module.css'
 
 import MainMenu from './MainMenu'
-import type { MenuItem as Item } from './MenuTypes'
 import SubMenu from './SubMenu'
 
 export default defineComponent({
@@ -33,9 +33,11 @@ export default defineComponent({
 
     const routes = computed(() => cloneDeep(permissionStore.routes))
     const setting = computed(() => settingStore.$state)
-
+    const activeMenu = computed(() => route.path)
     const style = computed(() => {
-      const ret = {} as CSSProperties
+      const ret = {
+        borderRight: 'none'
+      } as CSSProperties
 
       ret.minHeight = `calc(100vh - ${setting.value.siderLogoHeight})`
 
@@ -85,26 +87,31 @@ export default defineComponent({
 
     return {
       list,
-      openKeys,
-      selectedKeys,
+      activeMenu,
       setting,
       style
     }
   },
   render() {
-    const renderItem = (item: Item) =>
-      item.children ? <SubMenu item={item} /> : <MainMenu item={item} />
+    const renderItem = (item: Menu) =>
+      item.children ? (
+        <SubMenu item={item} collapse={!this.setting.siderOpened} />
+      ) : (
+        <MainMenu item={item} collapse={!this.setting.siderOpened} />
+      )
 
     return (
-      <Menu
-        mode="inline"
-        theme={this.setting.siderTheme}
-        v-model:openKeys={this.openKeys}
-        v-model:selectedKeys={this.selectedKeys}
+      <ElMenu
+        defaultActive={this.activeMenu}
+        mode={'vertical'}
+        backgroundColor={vars.menuBg}
+        textColor={vars.menuText}
+        activeTextColor={vars.menuActiveText}
+        collapse={!this.setting.siderOpened}
         style={this.style}
       >
         {this.list.map(renderItem)}
-      </Menu>
+      </ElMenu>
     )
   }
 })

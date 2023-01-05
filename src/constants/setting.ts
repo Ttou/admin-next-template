@@ -1,3 +1,5 @@
+import vars from '@/styles/var.module.css'
+
 import type { Setting } from './settingTypes'
 
 export const SETTING = {
@@ -6,8 +8,8 @@ export const SETTING = {
   headerHeight: '48px',
   siderOpened: true,
   siderTheme: 'dark',
-  siderOpenedWidth: '256px',
-  siderClosedWidth: '80px',
+  siderOpenedWidth: vars.menuWidth,
+  siderClosedWidth: vars.menuCollapseWidth,
   siderLogoHeight: '44px',
   homeRoute: {
     name: 'Analysis',

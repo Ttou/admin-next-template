@@ -1,17 +1,19 @@
 import { Icon } from '@iconify/vue'
-import { SubMenu } from 'ant-design-vue'
-import type { PropType } from 'vue'
-import { computed, defineComponent } from 'vue'
+import { ElSubMenu } from 'element-plus'
+import { type PropType, computed, defineComponent } from 'vue'
 
 import MainMenu from './MainMenu'
-import type { MenuItem as Item } from './MenuTypes'
 
 export default defineComponent({
   name: 'SubMenu',
   props: {
     item: {
-      type: Object as PropType<Item>,
+      type: Object as PropType<Menu>,
       required: true
+    },
+    collapse: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
@@ -39,15 +41,25 @@ export default defineComponent({
     return this.onlyOneChild ? (
       <MainMenu item={this.item.children![0]} />
     ) : (
-      <SubMenu
-        key={this.item.path}
-        icon={this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
-        title={this.item.meta.title}
+      <ElSubMenu
+        index={this.item.path}
+        v-slots={{
+          ['title']: () => (
+            <>
+              {this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
+              {!this.collapse ? <span>{this.item.meta.title}</span> : null}
+            </>
+          )
+        }}
       >
         {this.item.children?.map(item =>
-          item.children ? <sub-menu item={item} /> : <MainMenu item={item} />
+          item.children ? (
+            <sub-menu item={item} collapse={this.collapse} />
+          ) : (
+            <MainMenu item={item} collapse={this.collapse} />
+          )
         )}
-      </SubMenu>
+      </ElSubMenu>
     )
   }
 })

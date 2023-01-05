@@ -1,17 +1,18 @@
 import { Icon } from '@iconify/vue'
-import { MenuItem } from 'ant-design-vue'
-import type { PropType } from 'vue'
-import { computed, defineComponent } from 'vue'
+import { ElMenuItem } from 'element-plus'
+import { type PropType, computed, defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
-
-import type { MenuItem as Item } from './MenuTypes'
 
 export default defineComponent({
   name: 'MainMenu',
   props: {
     item: {
-      type: Object as PropType<Item>,
+      type: Object as PropType<Menu>,
       required: true
+    },
+    collapse: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
@@ -33,12 +34,21 @@ export default defineComponent({
   },
   render() {
     return this.show ? (
-      <MenuItem
-        icon={this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
-        key={this.item.path}
-      >
-        <RouterLink to={this.item.path}>{this.item.meta.title}</RouterLink>
-      </MenuItem>
+      <ElMenuItem
+        index={this.item.path}
+        v-slots={{
+          ['title']: () => (
+            <>
+              {this.item.meta.icon ? <Icon icon={this.item.meta.icon} /> : null}
+              {!this.collapse ? (
+                <RouterLink to={this.item.path}>
+                  {this.item.meta.title}
+                </RouterLink>
+              ) : null}
+            </>
+          )
+        }}
+      ></ElMenuItem>
     ) : null
   }
 })

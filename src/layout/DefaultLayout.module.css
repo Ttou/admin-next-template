@@ -8,12 +8,26 @@
   overflow: hidden;
   height: 100vh;
   left: 0;
+  background-color: var(--menu-bg);
   z-index: 100;
+  transition: all 0.4s;
+}
+
+.layoutSider :global(.el-menu .iconify) {
+  margin-right: 12px;
+}
+
+.layoutSider :global(.el-menu--collapse) {
+  width: var(--menu-collapse-width);
+}
+
+.layoutSider :global(.el-menu--collapse .iconify) {
+  margin: 0;
 }
 
 .layoutMain {
   background-color: #fff;
-  transition: all 0.2s;
+  transition: all 0.4s;
 }
 
 .layoutHeader {

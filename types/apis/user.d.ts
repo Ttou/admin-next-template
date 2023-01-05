@@ -5,5 +5,5 @@ declare interface LoginRes {
 declare interface GetInfoRes {
   name: string
   roles: string[]
-  menus: any[]
+  menus: Menu[]
 }
