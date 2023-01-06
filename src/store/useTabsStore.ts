@@ -1,11 +1,9 @@
 import { cloneDeep } from 'lodash-unified'
 import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { type RouteLocationNormalizedLoaded as Tab } from 'vue-router'
 
 import store from '.'
-
-type Tab = RouteLocationNormalizedLoaded
 
 interface HandlerReturn {
   /**
@@ -15,7 +13,7 @@ interface HandlerReturn {
   /**
    * 访问
    */
-  visitedTabs: RouteLocationNormalizedLoaded[]
+  visitedTabs: Tab[]
 }
 
 export const useTabsStore = defineStore('tabs', () => {
@@ -93,6 +91,7 @@ export const useTabsStore = defineStore('tabs', () => {
   function delOthersTabs(tab: Tab): Promise<HandlerReturn> {
     return new Promise(resolve => {
       state.visitedTabs = state.visitedTabs.filter(v => v.path === tab.path)
+
       updateCachedTab()
 
       resolve(cloneDeep(state))
@@ -114,6 +113,7 @@ export const useTabsStore = defineStore('tabs', () => {
   function delAllTabs(): Promise<HandlerReturn> {
     return new Promise(resolve => {
       state.visitedTabs = []
+
       updateCachedTab()
 
       resolve(cloneDeep(state))
@@ -121,16 +121,19 @@ export const useTabsStore = defineStore('tabs', () => {
   }
 
   function updateCachedTab() {
-    const _cachedTabs = new Set<string>()
+    const cachedTabs = new Set<string>()
 
     for (const tab of state.visitedTabs) {
-      if (tab.meta!.noCache !== true) {
+      if (tab.meta.noCache !== true) {
         const name = tab.name as string
-        name && _cachedTabs.add(name)
+
+        if (name) {
+          cachedTabs.add(name)
+        }
       }
     }
 
-    state.cachedTabs = Array.from(_cachedTabs)
+    state.cachedTabs = Array.from(cachedTabs)
   }
 
   return {

@@ -91,6 +91,7 @@ export default defineComponent({
 
     function handleCloseTab(tabName) {
       const tab = visitedTabs.value.find(v => v.fullPath === tabName) as any
+
       tabsStore.delTab(tab).then(({ visitedTabs }) => {
         if (isActive(tab)) {
           toLastTab(visitedTabs)
@@ -172,7 +173,7 @@ export default defineComponent({
           {this.visitedTabs.map(v => (
             <ElTabPane
               name={v.fullPath}
-              label={v.meta.title}
+              label={v.meta.title as string}
               closable
               key={v.fullPath}
             />

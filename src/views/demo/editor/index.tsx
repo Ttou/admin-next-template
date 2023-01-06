@@ -32,7 +32,7 @@ export default defineComponent({
 
     onMounted(() => {
       setTimeout(() => {
-        state.editorConfig.editorHtml = '<p><b>哈哈</b></p>'
+        state.editorConfig.editorHtml = '<p><strong>哈哈</strong></p>'
         state.editorConfig.editorVisible = true
       }, 1500)
     })
