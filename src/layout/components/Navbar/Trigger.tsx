@@ -10,11 +10,11 @@ export default defineComponent({
   setup() {
     const settingStore = useSettingStore()
 
-    const collapsed = computed(() => !settingStore.siderOpened)
+    const collapsed = computed(() => !settingStore.sideOpened)
 
     function handleClick() {
       settingStore.change({
-        key: 'siderOpened',
+        key: 'sideOpened',
         value: collapsed.value
       })
     }

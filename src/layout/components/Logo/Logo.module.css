@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--logo-height);
+  height: var(--side-logo-height);
 }
 
 .logoIcon {

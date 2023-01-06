@@ -1,5 +1,6 @@
 :root {
   --progress-color: #1890ff;
+  --header-height: 48px;
   --menu-width: 256px;
   --menu-collapse-width: 80px;
   --menu-text: #bfcbd9;
@@ -9,7 +10,7 @@
   --sub-menu-bg: #1f2d3d;
   --sub-menu-hover: #001528;
   --sub-menu-active-text: #f4f4f5;
-  --logo-height: 44px;
+  --side-logo-height: 44px;
 
   /* 覆盖 ElementPlus 变量 */
 }

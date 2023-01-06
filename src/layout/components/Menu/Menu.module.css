@@ -1,4 +1,6 @@
 .menu {
+  border-right: none;
+  min-height: calc(100vh - var(--side-logo-height));
 }
 
 .menu :global(.iconify) {

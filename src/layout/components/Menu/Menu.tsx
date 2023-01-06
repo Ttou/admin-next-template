@@ -1,13 +1,6 @@
 import { ElMenu } from 'element-plus'
 import { cloneDeep } from 'lodash-unified'
-import {
-  type CSSProperties,
-  computed,
-  defineComponent,
-  onBeforeMount,
-  reactive,
-  toRefs
-} from 'vue'
+import { computed, defineComponent, onBeforeMount, reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 
@@ -35,15 +28,6 @@ export default defineComponent({
     const routes = computed(() => cloneDeep(permissionStore.routes))
     const setting = computed(() => settingStore.$state)
     const activeMenu = computed(() => route.path)
-    const style = computed(() => {
-      const ret = {
-        borderRight: 'none'
-      } as CSSProperties
-
-      ret.minHeight = `calc(100vh - ${setting.value.siderLogoHeight})`
-
-      return ret
-    })
 
     function createMenu(routes: RouteRecordRaw[], basePath = '') {
       for (const route of routes) {
@@ -78,8 +62,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       activeMenu,
-      setting,
-      style
+      setting
     }
   },
   render() {
@@ -94,10 +77,9 @@ export default defineComponent({
         backgroundColor={vars.menuBg}
         textColor={vars.menuText}
         activeTextColor={vars.menuActiveText}
-        collapse={!this.setting.siderOpened}
+        collapse={!this.setting.sideOpened}
         collapseTransition={false}
         uniqueOpened
-        style={this.style}
       >
         {this.list.map(renderItem)}
       </ElMenu>

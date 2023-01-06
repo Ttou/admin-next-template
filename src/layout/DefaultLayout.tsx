@@ -8,6 +8,7 @@ import {
 import { computed, CSSProperties, defineComponent } from 'vue'
 
 import { useSettingStore } from '@/store'
+import vars from '@/styles/var.module.css'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 import styles from './DefaultLayout.module.css'
@@ -20,20 +21,20 @@ export default defineComponent({
     const setting = computed(() => settingStore.$state)
 
     const asideWidth = computed(() =>
-      setting.value.siderOpened
-        ? setting.value.siderOpenedWidth
-        : setting.value.siderClosedWidth
+      setting.value.sideOpened
+        ? setting.value.sideOpenedWidth
+        : setting.value.sideClosedWidth
     )
 
     const mainStyle = computed<CSSProperties>(() => {
       const ret: CSSProperties = {}
 
-      if (setting.value.siderOpened) {
-        ret.marginLeft = setting.value.siderOpenedWidth
-        ret.width = `calc(100vw - ${setting.value.siderOpenedWidth})`
+      if (setting.value.sideOpened) {
+        ret.marginLeft = setting.value.sideOpenedWidth
+        ret.width = `calc(100vw - ${setting.value.sideOpenedWidth})`
       } else {
-        ret.marginLeft = setting.value.siderClosedWidth
-        ret.width = `calc(100vw - ${setting.value.siderClosedWidth})`
+        ret.marginLeft = setting.value.sideClosedWidth
+        ret.width = `calc(100vw - ${setting.value.sideClosedWidth})`
       }
 
       return ret
@@ -41,7 +42,7 @@ export default defineComponent({
 
     const headerStyle = computed(() => {
       const ret = {
-        height: setting.value.headerHeight
+        height: vars.headerHeight
       } as CSSProperties
 
       if (setting.value.fixedHeader) {
@@ -57,7 +58,7 @@ export default defineComponent({
 
       if (setting.value.fixedHeader) {
         ret.position = 'sticky'
-        ret.top = setting.value.headerHeight
+        ret.top = vars.headerHeight
       }
 
       return ret
@@ -88,7 +89,7 @@ export default defineComponent({
 
     return (
       <ElContainer class={styles.layout}>
-        <ElAside class={styles.layoutSider} width={this.asideWidth}>
+        <ElAside class={styles.layoutSide} width={this.asideWidth}>
           <Logo />
           <ElScrollbar>
             <Menu />

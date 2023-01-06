@@ -1,5 +1,6 @@
 /* stylelint-disable property-no-unknown */
 :export {
+  headerHeight: var(--header-height);
   menuWidth: var(--menu-width);
   menuCollapseWidth: var(--menu-collapse-width);
   menuText: var(--menu-text);
