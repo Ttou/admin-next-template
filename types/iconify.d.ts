@@ -1,6 +1,6 @@
 interface _Icon {
   new (): {
-    $props: import('@iconify/vue/dist/iconify').IconProps
+    $props: import('@iconify/vue/dist/iconify').IconProps & { class?: any }
   }
 }
 
