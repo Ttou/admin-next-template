@@ -1,8 +1,3 @@
-/* 操作列按钮样式 */
-.vxe-cell .ant-space-item .ant-btn {
-  padding: 0;
-}
-
 /* 搜索区域样式 */
 .vxe-form--wrapper.vxe-row {
   display: flex;
