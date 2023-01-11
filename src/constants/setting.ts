@@ -1,4 +1,4 @@
-import vars from '@/styles/var.module.css'
+import vars from '@/assets/styles/var.module.css'
 
 export const SETTING = {
   title: '后台管理系统',

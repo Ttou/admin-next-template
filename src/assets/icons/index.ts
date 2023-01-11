@@ -2,6 +2,8 @@ import type { IconifyIcons } from '@iconify/types'
 import { addCollection, loadIcons } from '@iconify/vue'
 
 const svgs = import.meta.glob('./*.svg', { as: 'raw', eager: true })
+const getValueFromQuota = (str: string) =>
+  str.substring(str.indexOf('"') + 1, str.lastIndexOf('"'))
 
 function getIcon(key: string, value: string) {
   const pos = key.lastIndexOf('/')
@@ -9,21 +11,28 @@ function getIcon(key: string, value: string) {
   const iconName = filename.split('.')[0]
 
   const body = value.replace(/^<svg[^>]+[\s\S]>/, '').replace(/<\/svg>/, '')
-  const match = value.match(/viewBox="[\s\S][^"]+"/)!
+  const matchViewBox = value.match(/viewBox="[\s\S][^"]+"/)
+  const matchWidthHeight = value.match(/(width|height)="([^>+].*?)"/g)
 
+  // 默认宽高
   let width = 48
   let height = 48
 
   // 获取 viewBox 中的宽高
-  if (match.length > 0) {
-    const a = match[0].substring(
-      match[0].indexOf('"') + 1,
-      match[0].lastIndexOf('"')
-    )
+  if (matchViewBox?.length > 0) {
+    const a = getValueFromQuota(matchViewBox[0])
     const b = a.split(' ').filter(v => v !== ' ')
 
     width = Number(b[2])
     height = Number(b[3])
+  } else if (matchWidthHeight?.length > 0) {
+    matchWidthHeight.forEach(v => {
+      if (v.includes('width')) {
+        width = Number(getValueFromQuota(v))
+      } else if (v.includes('height')) {
+        height = Number(getValueFromQuota(v))
+      }
+    })
   }
 
   return {

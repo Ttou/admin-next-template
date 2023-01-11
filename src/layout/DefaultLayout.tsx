@@ -7,8 +7,8 @@ import {
 } from 'element-plus'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
+import vars from '@/assets/styles/var.module.css'
 import { useSettingStore } from '@/store'
-import vars from '@/styles/var.module.css'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
 import styles from './DefaultLayout.module.css'

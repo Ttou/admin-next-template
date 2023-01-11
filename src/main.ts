@@ -1,5 +1,5 @@
-import './icons'
-import './styles'
+import './assets/icons'
+import './assets/styles'
 
 import { createApp } from 'vue'
 

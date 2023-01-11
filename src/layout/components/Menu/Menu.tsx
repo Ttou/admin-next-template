@@ -4,8 +4,8 @@ import { computed, defineComponent, onBeforeMount, reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 
+import vars from '@/assets/styles/var.module.css'
 import { usePermissionStore, useSettingStore } from '@/store'
-import vars from '@/styles/var.module.css'
 
 import MainMenu from './MainMenu'
 import styles from './Menu.module.css'

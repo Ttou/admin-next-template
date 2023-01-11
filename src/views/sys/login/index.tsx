@@ -12,6 +12,7 @@ import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import { useSettingStore, useUserStore } from '@/store'
+import { withEnterKey } from '@/utils'
 
 import styles from './index.module.css'
 
@@ -112,6 +113,7 @@ export default defineComponent({
               v-model={this.formModel.password}
               type={'password'}
               placeholder="密码：任意"
+              onKeydown={withEnterKey(this.handleSubmit)}
               v-slots={{
                 ['prefix']: () => <Icon icon={'ep:lock'} />
               }}
