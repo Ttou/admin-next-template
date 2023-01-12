@@ -6,6 +6,7 @@ import type {
   VxeGridProps
 } from 'vxe-table'
 
+export type TableRefHook = ReturnType<typeof useTableRef>
 export type TableOptions<T = any> = VxeGridProps<T> & VxeGridEventProps
 
 interface FormItemOption {
