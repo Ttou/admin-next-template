@@ -46,9 +46,9 @@ export default [
               meta: { title: '自定义表单' }
             },
             {
-              path: 'plot',
-              name: 'DemoPlot',
-              component: 'demo/plot',
+              path: 'chart',
+              name: 'DemoChart',
+              component: 'demo/chart',
               meta: { title: '可视化图表' }
             },
             {

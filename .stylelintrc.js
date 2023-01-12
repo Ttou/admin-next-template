@@ -5,6 +5,10 @@ module.exports = defineStylelintConfig({
   overrides: [
     {
       files: ['**/*.vue'],
+      customSyntax: 'postcss-scss'
+    },
+    {
+      files: ['**/*.vue'],
       customSyntax: 'postcss-html'
     }
   ],
