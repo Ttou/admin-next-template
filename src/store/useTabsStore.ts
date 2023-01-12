@@ -1,4 +1,3 @@
-import { cloneDeep } from 'lodash-unified'
 import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
 import { type RouteLocationNormalizedLoaded as Tab } from 'vue-router'
@@ -56,7 +55,10 @@ export const useTabsStore = defineStore('tabs', () => {
 
       updateCachedTab()
 
-      resolve(cloneDeep(state))
+      resolve({
+        cachedTabs: [...state.cachedTabs],
+        visitedTabs: [...state.visitedTabs]
+      })
     })
   }
 
@@ -70,7 +72,10 @@ export const useTabsStore = defineStore('tabs', () => {
 
       updateCachedTab()
 
-      resolve(cloneDeep(state))
+      resolve({
+        cachedTabs: [...state.cachedTabs],
+        visitedTabs: [...state.visitedTabs]
+      })
     })
   }
 
@@ -84,7 +89,10 @@ export const useTabsStore = defineStore('tabs', () => {
 
       updateCachedTab()
 
-      resolve(cloneDeep(state))
+      resolve({
+        cachedTabs: [...state.cachedTabs],
+        visitedTabs: [...state.visitedTabs]
+      })
     })
   }
 
@@ -94,7 +102,10 @@ export const useTabsStore = defineStore('tabs', () => {
 
       updateCachedTab()
 
-      resolve(cloneDeep(state))
+      resolve({
+        cachedTabs: [...state.cachedTabs],
+        visitedTabs: [...state.visitedTabs]
+      })
     })
   }
 
@@ -116,7 +127,10 @@ export const useTabsStore = defineStore('tabs', () => {
 
       updateCachedTab()
 
-      resolve(cloneDeep(state))
+      resolve({
+        cachedTabs: [...state.cachedTabs],
+        visitedTabs: [...state.visitedTabs]
+      })
     })
   }
 

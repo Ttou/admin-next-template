@@ -25,7 +25,7 @@ export default defineComponent({
     const userStore = useUserStore()
 
     function handleLogout() {
-      ElMessageBox.confirm('确认退出登录？')
+      ElMessageBox.confirm('确认退出登录？', '提示')
         .then(async () => {
           await userStore.logout()
           router.replace({ path: '/login' })
