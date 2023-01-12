@@ -6,7 +6,9 @@ export enum TABLE_RENDERER {
   FormItemDate = 'FormItemDate'
 }
 
-/** 表格格式化 */
+/**
+ * 表格格式化
+ */
 export enum TABLE_FORMAT {
   /**
    * 日期格式化
