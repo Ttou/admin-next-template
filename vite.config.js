@@ -8,6 +8,8 @@ import { createHtmlPlugin } from 'vite-plugin-html'
 import { viteMockServe } from 'vite-plugin-mock'
 import stylelint from 'vite-plugin-stylelint'
 
+const versionNo = new Date().getTime()
+
 export default defineConfig(({ mode }) => {
   return {
     base: mode === 'development' ? '/' : '/admin-next-template/',
@@ -28,7 +30,8 @@ export default defineConfig(({ mode }) => {
       createHtmlPlugin({
         inject: {
           data: {
-            title: '后台管理系统'
+            title: '后台管理系统',
+            injectVer: `<meta name="version-no" content="${versionNo}"/>`
           }
         },
         minify: true

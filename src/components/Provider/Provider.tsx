@@ -1,12 +1,14 @@
 import { ElConfigProvider } from 'element-plus'
 import { defineComponent } from 'vue'
 
-import { useElementPlusConfig } from '@/hooks'
+import { useElementPlusConfig, useUpdate } from '@/hooks'
 
 export default defineComponent({
   name: 'Provider',
   setup() {
     const config = useElementPlusConfig()
+
+    useUpdate()
 
     return {
       config
