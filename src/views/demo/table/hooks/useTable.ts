@@ -9,10 +9,12 @@ import {
   TABLE_RENDERER
 } from '@/constants'
 import { TableOptions, useTableRef } from '@/hooks'
+import { genRandomID } from '@/utils'
 
 export function useTable() {
   const state = reactive({
     tableConfig: {
+      id: genRandomID(),
       showOverflow: true,
       border: true,
       loading: false,

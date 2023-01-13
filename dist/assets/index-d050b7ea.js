@@ -1,0 +1,1 @@
+import{d as n,q as e,v as t}from"./runtime-core.esm-bundler-f902e13f.js";const o="view__4TGYI",s={view:o},a=n({name:"WorkbenchView",render(){return e("div",{class:s.view},[e("h2",null,[t("工作台")])])}});export{a as default};

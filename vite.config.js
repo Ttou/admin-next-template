@@ -21,14 +21,6 @@ export default defineConfig(({ mode }) => {
         '@/': `${resolve(__dirname, 'src')}/`
       }
     },
-    optimizeDeps: {
-      include: [
-        '@opd/g2plot-vue',
-        'ant-design-vue/es/locale/zh_CN',
-        'dayjs/locale/zh-cn'
-      ],
-      exclude: ['vue-demi']
-    },
     plugins: [
       vue(),
       vueJsx(),
@@ -57,6 +49,10 @@ export default defineConfig(({ mode }) => {
         `
       })
     ],
+    optimizeDeps: {
+      include: ['lodash-unified', 'dayjs/locale/zh-cn'],
+      exclude: ['vue-demi']
+    },
     server: {
       host: true,
       port: 8080

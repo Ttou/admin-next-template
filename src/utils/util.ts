@@ -1,5 +1,6 @@
 import { useClipboard } from '@vueuse/core'
 import { ElMessage } from 'element-plus'
+import { nanoid } from 'nanoid'
 
 /**
  * 复制文本
@@ -24,4 +25,11 @@ export async function copyText(value: string) {
  */
 export function getImgUrl(imgPath: string) {
   return new URL(`../assets/${imgPath}`, import.meta.url).href
+}
+
+/**
+ * 生成随机ID
+ */
+export function genRandomID(size?: number) {
+  return nanoid(size)
 }
