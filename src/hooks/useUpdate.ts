@@ -39,7 +39,7 @@ export function useUpdate() {
   async function getNewVersion() {
     const timestamp = new Date().getTime()
     const response = await axios.get(
-      `${window.location.origin}/mobile-legacy-template`,
+      `${window.location.origin}/admin-next-template`,
       {
         params: { timestamp }
       }
