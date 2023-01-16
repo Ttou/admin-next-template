@@ -8,10 +8,12 @@ import { constRoutes } from '@/router'
 
 import store from '.'
 
-const routeComponents = import.meta.glob('../views/**/index.tsx')
-
-const loadComponent = (component: string) =>
-  routeComponents[`../views/${component}/index.tsx`]
+const routeComponents = import.meta.glob(`../views/**/index.{jsx,tsx,vue}`)
+const loadComponent = (component: string) => {
+  return ['jsx', 'tsx', 'vue']
+    .map(v => routeComponents[`../views/${component}/index.${v}`])
+    .find(v => !!v)
+}
 
 /**
  * 过滤菜单树

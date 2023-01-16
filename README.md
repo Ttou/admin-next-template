@@ -45,6 +45,8 @@ npm run build
 ## 注意事项
 
 - 装上 volar 插件后更好的支持模板开发
+- 路由页面支持 JSX、TSX、Vue 类型，文件名统一为 `index`
+- 装上 volar 插件后更好的支持模板开发
 - 缓存最多支持三级路由
 - 项目开发时请锁定依赖版本
-- 通用组件用 scss 编写样式，页面用 CssModule 编写样式
+- 通用组件用 scss 编写样式，页面支持用 CssModule + JSX 或 Scoped Style + Vue 编写
