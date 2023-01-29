@@ -1,1 +1,0 @@
-import{u as a,b as n}from"./vue-router-7d51514f.js";import{d as u,q as p}from"./runtime-core.esm-bundler-f902e13f.js";const d=u({name:"RedirectView",setup(){const t=a(),r=n(),{params:o,query:s}=t,e=o.path;r.replace({path:e.startsWith("/")?e:`/${e}`,query:s})},render(){return p("section",null,null)}});export{d as default};
