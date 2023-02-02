@@ -1,4 +1,5 @@
 export * from './ajax'
 export * from './getFile'
+export * from './instance'
 export * from './key'
 export * from './util'
