@@ -29,7 +29,7 @@ async function filterMenuTree(menus: Menu[]) {
     } else if (menu.component === 'ParentLayout') {
       temp.component = ParentLayout
     } else {
-      const component = loadComponent(menu.component)
+      const component = loadComponent(menu.component)!
       const module: any = await component()
 
       temp.name = module.default.name

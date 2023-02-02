@@ -10,9 +10,7 @@ import {
   shallowRef
 } from 'vue'
 
-import proEditorProps from './ProEditorTypes'
-
-export { proEditorProps }
+import { proEditorProps } from './ProEditor.constant'
 
 export default defineComponent({
   name: 'ProEditor',

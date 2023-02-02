@@ -10,9 +10,7 @@ import {
   watchEffect
 } from 'vue'
 
-import countToProps from './CountToTypes'
-
-export { countToProps }
+import { countToProps } from './CountTo.constant'
 
 export default defineComponent({
   name: 'CountTo',

@@ -17,10 +17,12 @@ module.exports = defineEslintConfig({
   },
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
+    'no-undef': 'off',
     'no-empty': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'prettier/prettier': 'error',
+    'vue/attribute-hyphenation': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-reserved-component-names': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',

@@ -1,2 +1,2 @@
-export { default as ProQr, proQrProps } from './ProQr'
-export type { ProQrProps } from './ProQrTypes'
+export { default as ProQr } from './ProQr'
+export * from './ProQr.constant'

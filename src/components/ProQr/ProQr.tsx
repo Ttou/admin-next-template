@@ -1,9 +1,7 @@
 import { toCanvas } from 'qrcode'
 import { defineComponent, onMounted, ref, watch } from 'vue'
 
-import proQrProps from './ProQrTypes'
-
-export { proQrProps }
+import { proQrProps } from './ProQr.constant'
 
 export default defineComponent({
   name: 'ProQr',

@@ -1,2 +1,2 @@
-export { default as ProEditor, proEditorProps } from './ProEditor'
-export type { ProEditorProps, ProEditorRef } from './ProEditorTypes'
+export { default as ProEditor } from './ProEditor'
+export * from './ProEditor.constant'

@@ -1,2 +1,2 @@
-export { default as CountTo, countToProps } from './CountTo'
-export type { CountToProps } from './CountToTypes'
+export { default as CountTo } from './CountTo'
+export * from './CountTo.constant'

@@ -17,13 +17,13 @@ export default [
       {
         path: 'analysis',
         name: 'Analysis',
-        component: () => import('@/views/dashboard/analysis'),
+        component: () => import('@/views/dashboard/analysis/index.vue'),
         meta: { title: '分析页' }
       },
       {
         path: 'workbench',
         name: 'Workbench',
-        component: () => import('@/views/dashboard/workbench'),
+        component: () => import('@/views/dashboard/workbench/index.vue'),
         meta: { title: '工作台' }
       }
     ]
@@ -31,13 +31,13 @@ export default [
   {
     path: CONST_ROUTES.LOGIN,
     name: 'Login',
-    component: () => import('@/views/sys/login'),
+    component: () => import('@/views/sys/login/index.vue'),
     meta: { title: '登录', hidden: true }
   },
   {
     path: CONST_ROUTES.ERROR,
     name: 'Error',
-    component: () => import('@/views/sys/error'),
+    component: () => import('@/views/sys/error/index.vue'),
     meta: { title: '错误', hidden: true }
   },
   {
@@ -48,7 +48,7 @@ export default [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/sys/redirect')
+        component: () => import('@/views/sys/redirect/index.vue')
       }
     ]
   }
