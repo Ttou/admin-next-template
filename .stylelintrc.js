@@ -4,7 +4,7 @@ module.exports = defineStylelintConfig({
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   overrides: [
     {
-      files: ['**/*.vue'],
+      files: ['**/*.scss'],
       customSyntax: 'postcss-scss'
     },
     {
