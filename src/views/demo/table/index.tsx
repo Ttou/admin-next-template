@@ -1,22 +1,22 @@
 import { ElButton } from 'element-plus'
 import { defineComponent } from 'vue'
 
-import { ProTable } from '@/components'
+import { ProGrid } from '@/components'
 import { usePageHeight } from '@/hooks'
 
-import { useTable, useTableToolbar } from './hooks'
+import { useGrid, useGridToolbar } from './hooks'
 
 export default defineComponent({
   name: 'DemoTable',
   setup() {
-    const { tableRefHook, ...tableRestHook } = useTable()
-    const tableToolbarHook = useTableToolbar({ tableRefHook })
+    const { proGridHook, ...gridRestHook } = useGrid()
+    const gridToolbarHook = useGridToolbar({ proGridHook })
     const { pageHeightPx } = usePageHeight()
 
     return {
-      ...tableRestHook,
-      ...tableToolbarHook,
-      tableRef: tableRefHook.tableRef,
+      ...gridRestHook,
+      ...gridToolbarHook,
+      gridRef: proGridHook.gridRef,
       pageHeightPx
     }
   },
@@ -27,8 +27,8 @@ export default defineComponent({
           height: this.pageHeightPx
         }}
       >
-        <ProTable
-          ref="tableRef"
+        <ProGrid
+          ref="gridRef"
           v-slots={{
             ['toolbar_buttons']: () => {
               return (
@@ -42,7 +42,7 @@ export default defineComponent({
               )
             }
           }}
-          {...this.tableConfig}
+          {...this.gridConfig}
         />
       </div>
     )
