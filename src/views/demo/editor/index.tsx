@@ -1,7 +1,7 @@
 import { ElButton, ElMessage, ElSpace } from 'element-plus'
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
-import { type ProEditorProps, type ProEditorRef, ProEditor } from '@/components'
+import { ProEditor, type ProEditorProps, type ProEditorRef } from '@/components'
 
 import styles from './index.module.css'
 

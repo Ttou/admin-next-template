@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/vue'
 import { ElMenuItem } from 'element-plus'
-import { type PropType, computed, defineComponent } from 'vue'
+import { computed, defineComponent, type PropType } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({

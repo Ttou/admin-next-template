@@ -3,11 +3,11 @@ import '@wangeditor/editor/dist/css/style.css'
 import type { IDomEditor } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import {
-  type StyleValue,
   computed,
   defineComponent,
   onBeforeUnmount,
-  shallowRef
+  shallowRef,
+  type StyleValue
 } from 'vue'
 
 import { proEditorProps } from './ProEditor.constant'
