@@ -16,7 +16,6 @@
 }
 
 .menu:global(.el-menu--collapse .el-sub-menu__title) {
-  display: flex;
   justify-content: center;
   padding: 0;
 }
