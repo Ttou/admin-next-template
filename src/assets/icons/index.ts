@@ -1,7 +1,7 @@
 import type { IconifyIcons } from '@iconify/types'
 import { addCollection, loadIcons } from '@iconify/vue'
 
-const svgs = import.meta.glob('./*.svg', { as: 'raw', eager: true })
+const svgs = import.meta.glob('./svg/*.svg', { as: 'raw', eager: true })
 const getValueFromQuota = (str: string) =>
   str.substring(str.indexOf('"') + 1, str.lastIndexOf('"'))
 
