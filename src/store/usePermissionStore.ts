@@ -32,7 +32,7 @@ async function filterMenuTree(menus: Menu[]) {
       const component = loadComponent(menu.component)!
       const module: any = await component()
 
-      temp.name = module.default.name
+      temp.name = menu.name || module.default.name
       temp.component = component
     }
 

@@ -6,7 +6,6 @@ import { ProEditor, type ProEditorProps, type ProEditorRef } from '@/components'
 import styles from './index.module.css'
 
 export default defineComponent({
-  name: 'DemoEditor',
   setup() {
     const state = reactive({
       editorConfig: {

@@ -26,7 +26,6 @@ use([
 ])
 
 export default defineComponent({
-  name: 'DemoChart',
   setup() {
     const state = reactive({
       lineConfig: {

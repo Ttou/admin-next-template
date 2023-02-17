@@ -7,7 +7,6 @@ import { usePageHeight } from '@/hooks'
 import { useGrid, useGridToolbar } from './hooks'
 
 export default defineComponent({
-  name: 'DemoTable',
   setup() {
     const { proGridHook, ...gridRestHook } = useGrid()
     const gridToolbarHook = useGridToolbar({ proGridHook })

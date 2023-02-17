@@ -18,7 +18,6 @@ import {
 import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
-  name: 'DemoForm',
   setup() {
     const state = reactive({
       formRef: {} as FormInstance,

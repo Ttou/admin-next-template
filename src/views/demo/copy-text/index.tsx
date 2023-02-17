@@ -4,7 +4,6 @@ import { defineComponent, reactive, toRefs } from 'vue'
 import { copyText } from '@/utils'
 
 export default defineComponent({
-  name: 'DemoCopyText',
   setup() {
     const state = reactive({
       inputValue: 'http://www.baidu.com'

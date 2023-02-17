@@ -1,12 +1,10 @@
 import { ElCard, ElCol, ElRow } from 'element-plus'
 import { defineComponent, reactive, toRefs } from 'vue'
 
-import { ProQr, ProQrProps } from '@/components'
-
-import logo from './images/logo.svg'
+import { ProQr, type ProQrProps } from '@/components'
+import { getImgFile } from '@/utils'
 
 export default defineComponent({
-  name: 'DemoQRCode',
   setup() {
     const state = reactive({
       qr1Config: {
@@ -20,7 +18,7 @@ export default defineComponent({
       } as ProQrProps,
       qr3Config: {
         text: 'http://www.baidu.com',
-        logo
+        logo: getImgFile('logo.svg')
       } as ProQrProps
     })
 

@@ -32,3 +32,8 @@
 .layout :global(#page) {
   background-color: #fff;
 }
+
+.layout :global(#page .el-scrollbar__view) {
+  display: flex;
+  min-height: 100%;
+}
