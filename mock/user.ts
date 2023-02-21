@@ -2,7 +2,7 @@ import type { MockMethod } from 'vite-plugin-mock'
 
 export default [
   {
-    url: '/api/user/login',
+    url: '/api/login',
     method: 'post',
     timeout: 2000,
     response: () => ({
@@ -10,15 +10,15 @@ export default [
     })
   },
   {
-    url: '/api/user/logout',
+    url: '/api/logout',
     method: 'post',
     response: () => null
   },
   {
-    url: '/api/user/info',
+    url: '/api/admin/getProfile',
     method: 'get',
     response: () => ({
-      name: '管理员',
+      nickname: '管理员',
       menus: [
         {
           path: '/demo',

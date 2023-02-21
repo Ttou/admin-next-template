@@ -2,10 +2,10 @@ import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
 
-import { userApi } from '@/apis'
+import { adminApi, userApi } from '@/apis'
 
-import { useTabsStore } from '.'
 import store from '.'
+import { useTabsStore } from '.'
 
 export const useUserStore = defineStore('user', () => {
   const state = reactive({
@@ -27,9 +27,9 @@ export const useUserStore = defineStore('user', () => {
   }
 
   async function getInfo() {
-    const data = await userApi.getInfo()
+    const data = await adminApi.getProfile()
 
-    state.name = data.name
+    state.name = data.nickname
     state.menus = data.menus
 
     return data.menus
