@@ -58,7 +58,14 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       host: true,
-      port: 8080
+      port: 4000,
+      proxy: {
+        '/admin-api': {
+          target: 'http://192.168.191.208:8080',
+          changeOrigin: true
+          // rewrite: path => path.replace(/^\/admin-api/, '/admin-api')
+        }
+      }
     }
   }
 })

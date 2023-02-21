@@ -3,7 +3,7 @@ declare interface LoginRes {
 }
 
 declare interface GetInfoRes {
-  name: string
+  nickname: string
   roles: string[]
   menus: Menu[]
 }

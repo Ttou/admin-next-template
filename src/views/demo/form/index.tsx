@@ -1,6 +1,4 @@
 import {
-  type FormInstance,
-  type FormRules,
   ElButton,
   ElCheckbox,
   ElCheckboxGroup,
@@ -13,7 +11,9 @@ import {
   ElRadioGroup,
   ElSelect,
   ElSpace,
-  ElSwitch
+  ElSwitch,
+  type FormInstance,
+  type FormRules
 } from 'element-plus'
 import { defineComponent, reactive, toRefs } from 'vue'
 

@@ -5,6 +5,7 @@
   "license": "MulanPSL2",
   "scripts": {
     "dev": "vite",
+    "dev-server": "vite --mode server",
     "build": "vite build",
     "serve": "vite preview --mode=production",
     "lint": "concurrently \"npm:lint:*\"",
