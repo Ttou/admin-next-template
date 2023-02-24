@@ -1,8 +1,8 @@
 import { ElCard, ElCol, ElRow } from 'element-plus'
 import { defineComponent, reactive, toRefs } from 'vue'
 
+import imgLogo from '@/assets/images/logo.svg'
 import { ProQr, type ProQrProps } from '@/components'
-import { getImgFile } from '@/utils'
 
 export default defineComponent({
   setup() {
@@ -18,7 +18,7 @@ export default defineComponent({
       } as ProQrProps,
       qr3Config: {
         text: 'http://www.baidu.com',
-        logo: getImgFile('logo.svg')
+        logo: imgLogo
       } as ProQrProps
     })
 

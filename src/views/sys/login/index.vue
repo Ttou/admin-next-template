@@ -51,7 +51,7 @@
 <script lang="ts">
 import { Icon } from '@iconify/vue'
 import type { FormInstance, FormRules } from 'element-plus'
-import { parseUrl } from 'query-string'
+import qs from 'query-string'
 import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -112,7 +112,7 @@ export default defineComponent({
         const str = query.redirect as string
 
         if (str) {
-          const { url, query } = parseUrl(str)
+          const { url, query } = qs.parseUrl(str)
 
           state.redirect = url
           state.otherQuery = query
