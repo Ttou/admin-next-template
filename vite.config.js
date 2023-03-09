@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
+import elementPlus from 'unplugin-element-plus/vite'
 import { defineConfig } from 'vite'
 import { compression } from 'vite-plugin-compression2'
 import eslint from 'vite-plugin-eslint2'
@@ -36,6 +37,7 @@ export default defineConfig(({ mode }) => {
         },
         minify: true
       }),
+      elementPlus(),
       eslint({
         lintInWorker: true
       }),
