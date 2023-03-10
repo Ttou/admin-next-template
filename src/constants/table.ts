@@ -40,7 +40,7 @@ export enum TABLE_EDIT_RENDER {
   Select = 'ElSelect',
   Cascader = 'ElCascader',
   DatePicker = 'ElDatePicker',
-  imeSelect = 'ElTimeSelect',
+  TimeSelect = 'ElTimeSelect',
   TimePicker = 'ElTimePicker',
   Switch = 'ElSwitch',
   Slider = 'ElSlider',
