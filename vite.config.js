@@ -37,7 +37,16 @@ export default defineConfig(({ mode }) => {
         },
         minify: true
       }),
-      elementPlus(),
+      elementPlus({
+        include: [
+          '**/*.vue',
+          '**/*.ts',
+          '**/*.js',
+          '**/*.tsx',
+          '**/*.jsx',
+          '**/*.vue?vue&type=script*'
+        ]
+      }),
       eslint({
         lintInWorker: true
       }),
