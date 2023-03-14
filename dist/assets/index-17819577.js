@@ -1,0 +1,1 @@
+import{d as r,a5 as n,a6 as c,h as p,j as u}from"./index-6c6ecfe0.js";import{_ as i}from"./_plugin-vue_export-helper-c27b6911.js";const m=r({name:"RedirectView",setup(){const t=n(),o=c(),{params:s,query:a}=t,e=s.path;o.replace({path:e.startsWith("/")?e:`/${e}`,query:a})}});function _(t,o,s,a,e,d){return p(),u("section")}const l=i(m,[["render",_]]);export{l as default};

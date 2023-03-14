@@ -5,12 +5,16 @@ import {
   ElCard,
   ElCascader,
   ElCheckbox,
+  ElCheckboxGroup,
   ElCol,
   ElDatePicker,
+  ElForm,
+  ElFormItem,
   ElInput,
   ElInputNumber,
   ElOption,
   ElRadio,
+  ElRadioGroup,
   ElRate,
   ElRow,
   ElSelect,
@@ -48,5 +52,15 @@ export function useElementPlus(app: App) {
     .use(ElOption)
 
   // 其他页面中用到的组件
-  app.use(ElRow).use(ElCol).use(ElCard).use(ElSkeleton).use(ElTag).use(ElAlert)
+  app
+    .use(ElRow)
+    .use(ElCol)
+    .use(ElCard)
+    .use(ElSkeleton)
+    .use(ElTag)
+    .use(ElAlert)
+    .use(ElForm)
+    .use(ElFormItem)
+    .use(ElCheckboxGroup)
+    .use(ElRadioGroup)
 }

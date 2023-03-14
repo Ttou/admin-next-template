@@ -1,0 +1,1 @@
+import{z as a}from"./index-6c6ecfe0.js";function c(n="getCtxFromInstance"){const t=a();if(!t)throw new Error(`${n}: 不要在组件外调用`);return"proxy"in t?t.proxy:t}function i(){const{$notify:n,$message:t,$msgbox:r,$loading:e,$alert:o,$confirm:m,$prompt:s}=c("getStoreFromInstance");return{$notify:n,$message:t,$msgbox:r,$loading:e,$alert:o,$confirm:m,$prompt:s}}export{i as g};

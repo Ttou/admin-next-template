@@ -1,1 +1,0 @@
-import{d as t,H as o,a as n,k as s,p as a}from"./runtime-core.esm-bundler-a4e74cc4.js";import{_}from"./_plugin-vue_export-helper-c27b6911.js";const c=t({name:"NestedMenu2"});const r={class:"page"};function p(d,l,i,m,f,u){const e=o("el-alert");return n(),s("div",r,[a(e,{title:"Menu 2",closable:!1})])}const $=_(c,[["render",p],["__scopeId","data-v-63552626"]]);export{$ as default};
