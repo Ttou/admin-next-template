@@ -1,24 +1,25 @@
 import axios from 'axios'
-import { ElMessageBox } from 'element-plus'
 import { onBeforeMount, onMounted, reactive } from 'vue'
+
+import { getElementFnFromInstance } from '@/utils'
 
 export function useUpdate() {
   const state = reactive({
     META_KEY: 'version-no',
     curVersion: null as Nullable<string>,
-    timer: null as Nullable<number>,
+    timer: null as Nullable<NodeJS.Timer>,
     show: false
   })
+
+  const { $msgbox } = getElementFnFromInstance()
 
   function showNotify() {
     state.show = true
 
-    ElMessageBox.confirm('发现新版本，请刷新后使用哦', '更新提示').finally(
-      () => {
-        state.show = false
-        window.location.reload()
-      }
-    )
+    $msgbox.confirm('发现新版本，请刷新后使用哦', '更新提示').finally(() => {
+      state.show = false
+      window.location.reload()
+    })
   }
 
   function getCurVersion() {
@@ -39,7 +40,7 @@ export function useUpdate() {
   async function getNewVersion() {
     const timestamp = new Date().getTime()
     const response = await axios.get(
-      `${window.location.origin}/admin-next-template`,
+      `${window.location.origin}/${import.meta.env.VITE_APP_NAME}`,
       {
         params: { timestamp }
       }

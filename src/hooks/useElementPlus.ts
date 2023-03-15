@@ -12,6 +12,10 @@ import {
   ElFormItem,
   ElInput,
   ElInputNumber,
+  ElLoading,
+  ElMessage,
+  ElMessageBox,
+  ElNotification,
   ElOption,
   ElRadio,
   ElRadioGroup,
@@ -63,4 +67,7 @@ export function useElementPlus(app: App) {
     .use(ElFormItem)
     .use(ElCheckboxGroup)
     .use(ElRadioGroup)
+
+  // 全局指令
+  app.use(ElMessage).use(ElMessageBox).use(ElNotification).use(ElLoading)
 }
