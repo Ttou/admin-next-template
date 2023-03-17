@@ -1,0 +1,1 @@
+import{d as t,g as s,h as o,j as n,e as c}from"./index-4147d4f8.js";import{_}from"./_plugin-vue_export-helper-c27b6911.js";const a=t({name:"NestedMenu11"});const r={class:"page"};function p(d,l,i,f,m,u){const e=s("el-alert");return o(),n("div",r,[c(e,{title:"Menu 1-1",type:"success",closable:!1})])}const $=_(a,[["render",p],["__scopeId","data-v-2cf707c0"]]);export{$ as default};

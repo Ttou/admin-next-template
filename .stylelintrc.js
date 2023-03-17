@@ -1,7 +1,7 @@
 const { defineStylelintConfig } = require('@ttou/define-config')
 
 module.exports = defineStylelintConfig({
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: ['stylelint-config-standard'],
   overrides: [
     {
       files: ['**/*.scss'],
