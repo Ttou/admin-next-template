@@ -3,7 +3,7 @@ import './assets/styles'
 
 import { createApp } from 'vue'
 
-import App from './App'
+import App from './App.vue'
 import {
   useElementPlus,
   useErrorHandler,

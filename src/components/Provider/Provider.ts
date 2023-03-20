@@ -1,5 +1,5 @@
 import { ElConfigProvider } from 'element-plus'
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 
 import { useElementPlusConfig } from '@/hooks'
 
@@ -13,10 +13,8 @@ export default defineComponent({
     }
   },
   render() {
-    return (
-      <ElConfigProvider {...this.config}>
-        {this.$slots.default?.()}
-      </ElConfigProvider>
+    return h(ElConfigProvider, { ...this.config }, () =>
+      this.$slots.default?.()
     )
   }
 })

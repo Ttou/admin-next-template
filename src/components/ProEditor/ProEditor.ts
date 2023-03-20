@@ -5,6 +5,7 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import {
   computed,
   defineComponent,
+  h,
   onBeforeUnmount,
   shallowRef,
   type StyleValue
@@ -53,33 +54,33 @@ export default defineComponent({
     }
   },
   render() {
-    return this.editorVisible ? (
-      <div style={this.computedWrapStyle}>
-        <Toolbar
-          editor={this.editor!}
-          defaultConfig={this.toolbarConfig}
-          style={this.computedToolbarStyle}
-        />
-        <Editor
-          defaultConfig={this.editorConfig}
-          defaultHtml={this.editorHtml}
-          style={this.computedEditorStyle}
-          onOnCreated={this.handleCreated}
-        />
-      </div>
-    ) : (
-      <div style={this.computedWrapStyle}>
-        <div
-          style={{
-            ...(this.computedEditorStyle as any),
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          编辑器正在初始化...
-        </div>
-      </div>
-    )
+    return this.editorVisible
+      ? h('div', { style: this.computedWrapStyle }, () => [
+          h(Toolbar, {
+            editor: this.editor,
+            defaultConfig: this.toolbarConfig,
+            style: this.computedToolbarStyle
+          }),
+          h(Editor, {
+            defaultConfig: this.editorConfig,
+            defaultHtml: this.editorHtml,
+            style: this.computedEditorStyle,
+            onOnCreated: this.handleCreated
+          })
+        ])
+      : h('div', { style: this.computedWrapStyle }, () =>
+          h(
+            'div',
+            {
+              style: {
+                ...(this.computedEditorStyle as any),
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }
+            },
+            '编辑器正在初始化...'
+          )
+        )
   }
 })

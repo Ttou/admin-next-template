@@ -1,5 +1,5 @@
 import { toCanvas } from 'qrcode'
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, h, onMounted, reactive, toRefs, watch } from 'vue'
 
 import { proQrProps } from './ProQr.constant'
 
@@ -7,18 +7,20 @@ export default defineComponent({
   name: 'ProQr',
   props: proQrProps(),
   setup(props) {
-    const qrEl = ref<Nullable<HTMLCanvasElement>>(null)
+    const state = reactive({
+      qrRef: undefined as Undefined<HTMLCanvasElement>
+    })
 
     function drawLogo() {
       const image = new Image()
 
       image.src = props.logo!
       image.onload = () => {
-        const ctx = qrEl.value!.getContext('2d')!
+        const ctx = state.qrRef!.getContext('2d')!
 
         ctx.imageSmoothingEnabled = false
 
-        const cw = qrEl.value!.clientWidth
+        const cw = state.qrRef!.clientWidth
         const iw = cw / 4
         const ih = cw / 4
         const dx = (cw - iw) / 2
@@ -29,7 +31,7 @@ export default defineComponent({
     }
 
     async function init() {
-      await toCanvas(qrEl.value, props.text, props.options)
+      await toCanvas(state.qrRef, props.text, props.options)
 
       props.logo && drawLogo()
     }
@@ -46,10 +48,10 @@ export default defineComponent({
     })
 
     return {
-      qrEl
+      ...toRefs(state)
     }
   },
   render() {
-    return <canvas ref="qrEl" />
+    return h('canvas', { ref: 'qrRef' })
   }
 })

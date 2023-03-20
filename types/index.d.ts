@@ -1,5 +1,7 @@
 declare type Nullable<T> = T | null
 
+declare type Undefined<T> = T | undefined
+
 declare type ElementRef = Nullable<HTMLElement>
 
 declare type ComponentRef = Nullable<Record<string, any>>

@@ -3,6 +3,7 @@ import { isNumber } from 'lodash-unified'
 import {
   computed,
   defineComponent,
+  h,
   onMounted,
   reactive,
   toRef,
@@ -94,6 +95,6 @@ export default defineComponent({
     }
   },
   render() {
-    return <span>{this.value}</span>
+    return h('span', this.value)
   }
 })
