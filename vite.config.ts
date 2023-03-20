@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
           '**/*.js',
           '**/*.tsx',
           '**/*.jsx',
-          '**/*.vue?vue&type=script*'
+          '**/*.vue?vue'
         ]
       }),
       eslint({
