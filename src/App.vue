@@ -1,16 +1,20 @@
 <template>
-  <div id="app">
+  <Provider>
     <router-view />
-  </div>
+  </Provider>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import { Provider } from './components'
 import { useUpdate } from './hooks'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    Provider
+  },
   setup() {
     useUpdate()
   }

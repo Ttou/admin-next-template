@@ -7,8 +7,9 @@ import {
   defineComponent,
   h,
   onBeforeUnmount,
-  shallowRef,
-  type StyleValue
+  reactive,
+  type StyleValue,
+  toRefs
 } from 'vue'
 
 import { proEditorProps } from './ProEditor.constant'
@@ -17,7 +18,9 @@ export default defineComponent({
   name: 'ProEditor',
   props: proEditorProps(),
   setup(props) {
-    const editor = shallowRef<Nullable<IDomEditor>>(null)
+    const state = reactive({
+      editor: undefined as Undefined<IDomEditor>
+    })
 
     const computedWrapStyle = computed<StyleValue>(() => ({
       border: '1px solid #ccc',
@@ -36,17 +39,17 @@ export default defineComponent({
     }))
 
     function handleCreated(_editor: IDomEditor) {
-      editor.value = _editor
+      state.editor = _editor
     }
 
     onBeforeUnmount(() => {
-      if (!editor.value) return
+      if (!state.editor) return
 
-      editor.value.destroy()
+      state.editor.destroy()
     })
 
     return {
-      editor,
+      ...toRefs(state),
       computedWrapStyle,
       computedToolbarStyle,
       computedEditorStyle,
@@ -55,7 +58,7 @@ export default defineComponent({
   },
   render() {
     return this.editorVisible
-      ? h('div', { style: this.computedWrapStyle }, () => [
+      ? h('div', { style: this.computedWrapStyle }, [
           h(Toolbar, {
             editor: this.editor,
             defaultConfig: this.toolbarConfig,
@@ -68,7 +71,9 @@ export default defineComponent({
             onOnCreated: this.handleCreated
           })
         ])
-      : h('div', { style: this.computedWrapStyle }, () =>
+      : h(
+          'div',
+          { style: this.computedWrapStyle },
           h(
             'div',
             {

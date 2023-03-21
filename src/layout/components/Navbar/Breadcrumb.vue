@@ -1,8 +1,19 @@
-import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
+<template>
+  <el-breadcrumb :class="$style.breadcrumb">
+    <template v-for="(v, i) in breadcrumbs">
+      <el-breadcrumb-item v-if="i === breadcrumbs.length - 1" :key="v.path">{{
+        v.title
+      }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-else :key="v.path" :to="{ path: v.path }">
+        {{ v.title }}
+      </el-breadcrumb-item>
+    </template>
+  </el-breadcrumb>
+</template>
+
+<script lang="ts">
 import { defineComponent, onBeforeMount, reactive, toRefs, watch } from 'vue'
 import { useRoute } from 'vue-router'
-
-import styles from './Navbar.module.css'
 
 export default defineComponent({
   name: 'Breadcrumb',
@@ -48,21 +59,12 @@ export default defineComponent({
     return {
       ...toRefs(state)
     }
-  },
-  render() {
-    const renderItem = (item: any, index: number) =>
-      index === this.breadcrumbs.length - 1 ? (
-        <ElBreadcrumbItem>{item.title}</ElBreadcrumbItem>
-      ) : (
-        <ElBreadcrumbItem to={{ path: item.path }}>
-          {item.title}
-        </ElBreadcrumbItem>
-      )
-
-    return (
-      <ElBreadcrumb class={styles.breadcrumb}>
-        {this.breadcrumbs.map(renderItem)}
-      </ElBreadcrumb>
-    )
   }
 })
+</script>
+
+<style module>
+.breadcrumb {
+  margin-left: 20px;
+}
+</style>

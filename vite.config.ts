@@ -1,5 +1,4 @@
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import elementPlus from 'unplugin-element-plus/vite'
 import { defineConfig, loadEnv } from 'vite'
@@ -28,7 +27,6 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
-      vueJsx(),
       compression(),
       createHtmlPlugin({
         inject: {
@@ -40,14 +38,7 @@ export default defineConfig(({ mode }) => {
         minify: true
       }),
       elementPlus({
-        include: [
-          '**/*.vue',
-          '**/*.ts',
-          '**/*.js',
-          '**/*.tsx',
-          '**/*.jsx',
-          '**/*.vue?vue'
-        ]
+        include: ['**/*.vue', '**/*.ts', '**/*.js', '**/*.vue?vue']
       }),
       eslint({
         lintInWorker: true

@@ -1,18 +1,29 @@
 import {
   ElAlert,
+  ElAside,
   ElAutocomplete,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
   ElButton,
   ElCard,
   ElCascader,
   ElCheckbox,
   ElCheckboxGroup,
   ElCol,
+  ElContainer,
   ElDatePicker,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
   ElForm,
   ElFormItem,
+  ElHeader,
   ElInput,
   ElInputNumber,
   ElLoading,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
   ElMessage,
   ElMessageBox,
   ElNotification,
@@ -21,10 +32,15 @@ import {
   ElRadioGroup,
   ElRate,
   ElRow,
+  ElScrollbar,
   ElSelect,
   ElSkeleton,
   ElSlider,
+  ElSpace,
+  ElSubMenu,
   ElSwitch,
+  ElTabPane,
+  ElTabs,
   ElTag,
   ElTimePicker,
   ElTimeSelect
@@ -34,7 +50,6 @@ import { type App } from 'vue'
 /**
  * - vxe-table-plugin-element 中用到的组件
  * - 其他页面中用到的组件
- * - Tsx 中引用的组件可以不用在这里注册
  */
 export function useElementPlus(app: App) {
   // vxe-table-plugin-element 中用到的组件
@@ -67,6 +82,22 @@ export function useElementPlus(app: App) {
     .use(ElFormItem)
     .use(ElCheckboxGroup)
     .use(ElRadioGroup)
+    .use(ElTabs)
+    .use(ElTabPane)
+    .use(ElDropdown)
+    .use(ElDropdownMenu)
+    .use(ElDropdownItem)
+    .use(ElBreadcrumb)
+    .use(ElBreadcrumbItem)
+    .use(ElSpace)
+    .use(ElMenu)
+    .use(ElMenuItem)
+    .use(ElSubMenu)
+    .use(ElAside)
+    .use(ElHeader)
+    .use(ElMain)
+    .use(ElContainer)
+    .use(ElScrollbar)
 
   // 全局指令
   app.use(ElMessage).use(ElMessageBox).use(ElNotification).use(ElLoading)

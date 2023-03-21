@@ -8,7 +8,7 @@
     "build": "vite build",
     "serve": "vite preview --mode=production",
     "lint": "concurrently \"npm:lint:*\"",
-    "lint:script": "eslint \"./src/**/*.{ts,tsx,vue}\" --fix",
+    "lint:script": "eslint \"./src/**/*.{ts,vue}\" --fix",
     "lint:style": "stylelint \"./src/**/*.{css,scss,vue}\" --fix",
     "commit": "git add . && git cz",
     "postinstall": "npx simple-git-hooks"
@@ -46,7 +46,6 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "commitizen": "^4.2.4",
     "concurrently": "^7.6.0",

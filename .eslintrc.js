@@ -25,6 +25,7 @@ module.exports = defineEslintConfig({
     'vue/attribute-hyphenation': 'off',
     'vue/multi-word-component-names': 'off',
     'vue/no-reserved-component-names': 'off',
+    'vue/v-on-event-hyphenation': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-var-requires': 'off',

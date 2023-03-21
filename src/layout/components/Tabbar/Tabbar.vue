@@ -1,11 +1,62 @@
+<template>
+  <div :class="$style.tabbar">
+    <el-tabs
+      v-model="activeKey"
+      @tabChange="handleSelectTab"
+      @tabRemove="handleCloseTab"
+    >
+      <el-tab-pane
+        v-for="v in visitedTabs"
+        :key="v.fullPath"
+        :name="v.fullPath"
+        :label="v.meta.title"
+        closable
+      ></el-tab-pane>
+    </el-tabs>
+    <el-dropdown placement="bottom-end" @command="handleCommand">
+      <template #default>
+        <div :class="$style.tabsMenu">
+          <Icon icon="ant-design:down-outlined" inline />
+        </div>
+      </template>
+      <template #dropdown>
+        <el-dropdown-menu :class="$style.tabsDropdownMenu">
+          <el-dropdown-item command="refresh">
+            <Icon icon="ant-design:reload-outlined" inline />
+            刷新页面
+          </el-dropdown-item>
+          <el-dropdown-item
+            command="closeLeft"
+            :disabled="closeLeftDisabled"
+            divided
+          >
+            <Icon icon="ant-design:vertical-right-outlined" inline />
+            关闭左侧
+          </el-dropdown-item>
+          <el-dropdown-item command="closeRight" :disabled="closeRightDisabled">
+            <Icon icon="ant-design:vertical-left-outlined" inline />
+            关闭右侧
+          </el-dropdown-item>
+          <el-dropdown-item
+            command="closeOther"
+            :disabled="closeOtherDisabled"
+            divided
+          >
+            <Icon icon="ant-design:close-outlined" inline />
+            关闭其它
+          </el-dropdown-item>
+          <el-dropdown-item command="closeAll">
+            <Icon icon="ant-design:close-circle-outlined" inline />
+            关闭所有
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
+</template>
+
+<script lang="ts">
 import { Icon } from '@iconify/vue'
-import {
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElTabPane,
-  ElTabs
-} from 'element-plus'
 import {
   computed,
   defineComponent,
@@ -20,10 +71,11 @@ import { useRoute, useRouter } from 'vue-router'
 import { CONST_ROUTES } from '@/constants'
 import { useSettingStore, useTabsStore } from '@/store'
 
-import styles from './Tabbar.module.css'
-
 export default defineComponent({
   name: 'Tabbar',
+  components: {
+    Icon
+  },
   setup() {
     const state = reactive({
       activeKey: '',
@@ -161,71 +213,59 @@ export default defineComponent({
       handleSelectTab,
       handleCommand
     }
-  },
-  render() {
-    return (
-      <div class={styles.tabbar}>
-        <ElTabs
-          v-model={this.activeKey}
-          onTabChange={this.handleSelectTab}
-          onTabRemove={this.handleCloseTab}
-        >
-          {this.visitedTabs.map(v => (
-            <ElTabPane
-              name={v.fullPath}
-              label={v.meta.title as string}
-              closable
-              key={v.fullPath}
-            />
-          ))}
-        </ElTabs>
-        <ElDropdown
-          onCommand={this.handleCommand}
-          v-slots={{
-            ['default']: () => (
-              <div class={styles.tabsMenu}>
-                <Icon icon={'ant-design:down-outlined'} inline />
-              </div>
-            ),
-            ['dropdown']: () => (
-              <ElDropdownMenu class={styles.tabsDropdownMenu}>
-                <ElDropdownItem command="refresh">
-                  <Icon icon={'ant-design:reload-outlined'} inline />
-                  刷新页面
-                </ElDropdownItem>
-                <ElDropdownItem
-                  command="closeLeft"
-                  disabled={this.closeLeftDisabled}
-                  divided
-                >
-                  <Icon icon={'ant-design:vertical-right-outlined'} inline />
-                  关闭左侧
-                </ElDropdownItem>
-                <ElDropdownItem
-                  command="closeRight"
-                  disabled={this.closeRightDisabled}
-                >
-                  <Icon icon={'ant-design:vertical-left-outlined'} inline />
-                  关闭右侧
-                </ElDropdownItem>
-                <ElDropdownItem
-                  command="closeOther"
-                  disabled={this.closeOtherDisabled}
-                  divided
-                >
-                  <Icon icon={'ant-design:close-outlined'} inline />
-                  关闭其它
-                </ElDropdownItem>
-                <ElDropdownItem command="closeAll">
-                  <Icon icon={'ant-design:close-circle-outlined'} inline />
-                  关闭所有
-                </ElDropdownItem>
-              </ElDropdownMenu>
-            )
-          }}
-          placement={'bottom-end'}
-        />
-      </div>
-    )
   }
 })
+</script>
+
+<style module>
+.tabbar {
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  padding: 6px 12px;
+  background-color: #f5f7f9;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.tabbar :global(.el-tabs__active-bar) {
+  display: none;
+}
+
+.tabbar :global(.el-tabs__nav-wrap::after) {
+  display: none;
+}
+
+.tabbar :global(.el-tabs__item) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  margin: 0 6px 0 0;
+  padding: 5px 16px !important;
+  background-color: #fff;
+  border-radius: 3px;
+  border: none;
+  user-select: none;
+}
+
+.tabsMenu {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+.tabsDropdownMenu {
+}
+
+.tabsDropdownMenu :global(svg) {
+  margin-right: 5px;
+}
+</style>

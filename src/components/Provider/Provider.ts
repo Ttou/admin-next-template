@@ -13,8 +13,6 @@ export default defineComponent({
     }
   },
   render() {
-    return h(ElConfigProvider, { ...this.config }, () =>
-      this.$slots.default?.()
-    )
+    return h(ElConfigProvider, this.config, () => this.$slots.default?.())
   }
 })

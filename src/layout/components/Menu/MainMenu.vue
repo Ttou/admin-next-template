@@ -1,10 +1,22 @@
+<template>
+  <el-menu-item v-if="show" :index="item.path" @click="handleJump">
+    <template #title>
+      <Icon v-if="item.meta.icon" :icon="item.meta.icon" />
+      <span>{{ item.meta.title }}</span>
+    </template>
+  </el-menu-item>
+</template>
+
+<script lang="ts">
 import { Icon } from '@iconify/vue'
-import { ElMenuItem } from 'element-plus'
 import { computed, defineComponent, type PropType } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'MainMenu',
+  components: {
+    Icon
+  },
   props: {
     item: {
       type: Object as PropType<Menu>,
@@ -40,23 +52,6 @@ export default defineComponent({
       show,
       handleJump
     }
-  },
-  render() {
-    return this.show ? (
-      <ElMenuItem
-        index={this.item.path}
-        v-slots={{
-          ['title']: () => (
-            <>
-              {this.item.meta.icon ? (
-                <Icon class="el-icon" icon={this.item.meta.icon} />
-              ) : null}
-              <span>{this.item.meta.title}</span>
-            </>
-          )
-        }}
-        onClick={this.handleJump}
-      />
-    ) : null
   }
 })
+</script>
