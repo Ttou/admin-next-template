@@ -6,9 +6,9 @@
       <span>{{ item.meta.title }}</span>
     </template>
     <template #default>
-      <template v-for="v in item.children">
-        <sub-menu v-if="v.children" :key="v.path" :item="v" />
-        <MainMenu v-else :key="v.path" :item="v" />
+      <template v-for="v in item.children" :key="v.path">
+        <sub-menu v-if="v.children" :item="v" />
+        <MainMenu v-else :item="v" />
       </template>
     </template>
   </el-sub-menu>

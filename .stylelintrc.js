@@ -17,7 +17,6 @@ module.exports = defineStylelintConfig({
     'property-no-unknown': [true, { ignoreProperties: ['/composes/'] }],
     'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': null,
-    'no-descending-specificity': null,
-    'declaration-colon-newline-after': null
+    'no-descending-specificity': null
   }
 })

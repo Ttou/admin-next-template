@@ -10,9 +10,9 @@
     :collapseTransition="false"
     uniqueOpened
   >
-    <template v-for="v in list">
-      <SubMenu v-if="v.children" :key="v.path" :item="v" />
-      <MainMenu v-else :key="v.path" :item="v" />
+    <template v-for="v in list" :key="v.path">
+      <SubMenu v-if="v.children" :item="v" />
+      <MainMenu v-else :item="v" />
     </template>
   </el-menu>
 </template>

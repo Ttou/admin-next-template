@@ -175,10 +175,7 @@ export default defineComponent({
 
   .backgroundIcon {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     background-color: #f0f2f5;

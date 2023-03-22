@@ -1,10 +1,10 @@
 <template>
   <el-breadcrumb :class="$style.breadcrumb">
-    <template v-for="(v, i) in breadcrumbs">
-      <el-breadcrumb-item v-if="i === breadcrumbs.length - 1" :key="v.path">{{
-        v.title
-      }}</el-breadcrumb-item>
-      <el-breadcrumb-item v-else :key="v.path" :to="{ path: v.path }">
+    <template v-for="(v, i) in breadcrumbs" :key="v.path">
+      <el-breadcrumb-item v-if="i === breadcrumbs.length - 1">
+        {{ v.title }}
+      </el-breadcrumb-item>
+      <el-breadcrumb-item v-else :to="{ path: v.path }">
         {{ v.title }}
       </el-breadcrumb-item>
     </template>
