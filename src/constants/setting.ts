@@ -1,7 +1,7 @@
 import vars from '@/assets/styles/var.module.css'
 
 export const SETTING = {
-  title: '后台管理系统',
+  title: import.meta.env.VITE_APP_TITLE,
   fixedHeader: true,
   sideOpened: true,
   sideOpenedWidth: vars.menuWidth,

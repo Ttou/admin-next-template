@@ -31,7 +31,6 @@ export default defineConfig(({ mode }) => {
       createHtmlPlugin({
         inject: {
           data: {
-            title: '后台管理系统',
             injectVer: `<meta name="version-no" content="${versionNo}"/>`
           }
         },
@@ -57,7 +56,7 @@ export default defineConfig(({ mode }) => {
       })
     ],
     optimizeDeps: {
-      include: ['lodash-unified', 'dayjs/locale/zh-cn'],
+      include: ['dayjs/locale/zh-cn'],
       exclude: ['vue-demi']
     },
     server: {
