@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
       vue(),
       compression(),
       elementPlus({
-        include: ['**/*.vue', '**/*.ts', '**/*.js', '**/*.vue?vue']
+        include: ['**/*.vue', '**/*.ts', '**/*.js', '**/*.vue?vue*']
       }),
       eslint({
         lintInWorker: true
