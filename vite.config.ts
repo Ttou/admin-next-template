@@ -47,15 +47,15 @@ export default defineConfig(({ mode }) => {
       elementPlus({
         include: ['**/*.vue', '**/*.ts', '**/*.js', '**/*.vue?vue']
       }),
-      processIndexHtml({
-        injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
-        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`
-      }),
       eslint({
         lintInWorker: true
       }),
       stylelint({
         lintInWorker: true
+      }),
+      processIndexHtml({
+        injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
+        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`
       }),
       viteMockServe({
         mockPath: 'mock',
