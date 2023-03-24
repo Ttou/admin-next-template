@@ -17,7 +17,7 @@
       <el-form-item prop="username">
         <el-input v-model="formModel.username" placeholder="账号：admin">
           <template #prefix>
-            <Icon icon="ep:user" />
+            <Icon icon="ep:user" :inline="true" />
           </template>
         </el-input>
       </el-form-item>
@@ -29,7 +29,7 @@
           @keydown.enter="handleSubmit"
         >
           <template #prefix>
-            <Icon icon="ep:lock" />
+            <Icon icon="ep:lock" :inline="true" />
           </template>
         </el-input>
       </el-form-item>
