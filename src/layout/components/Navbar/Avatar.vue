@@ -2,13 +2,13 @@
   <el-dropdown @command="handleCommand">
     <template #default>
       <div :class="$style.avatarWrapper">
-        <Icon :class="$style.avatar" icon="custom:avatar" inline />
+        <Icon :class="$style.avatar" icon="custom:avatar" :inline="true" />
       </div>
     </template>
     <template #dropdown>
       <el-dropdown-menu :class="$style.avatarDropdownMenu">
         <el-dropdown-item command="logout">
-          <Icon icon="ant-design:logout-outlined" inline />
+          <Icon icon="ant-design:logout-outlined" :inline="true" />
           <span>退出登录</span>
         </el-dropdown-item>
       </el-dropdown-menu>

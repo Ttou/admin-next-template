@@ -1,6 +1,6 @@
 <template>
-  <div title="全屏" :class="$style.screenFull" @click="handleClick">
-    <Icon :icon="icon" inline />
+  <div title="全屏" @click="handleClick">
+    <Icon :icon="icon" :inline="true" />
   </div>
 </template>
 
@@ -41,9 +41,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style module>
-.screenFull {
-  display: flex;
-}
-</style>
