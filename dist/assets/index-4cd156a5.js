@@ -1,1 +1,0 @@
-import{d as s,_ as t,a,b as n,c as o,e as _}from"./index-d2a92494.js";const c=s({name:"NestedMenu12"});const d={class:"page"};function l(p,r,i,u,f,m){const e=a("el-alert");return n(),o("div",d,[_(e,{title:"Menu 1-2",type:"success",closable:!1})])}const v=t(c,[["render",l],["__scopeId","data-v-811a057a"]]);export{v as default};

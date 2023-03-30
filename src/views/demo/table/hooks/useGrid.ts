@@ -19,6 +19,10 @@ export function useGrid() {
       border: true,
       loading: false,
       keepSource: true,
+      height: 'auto',
+      resizeConfig: {
+        refreshDelay: 10
+      },
       toolbarConfig: {
         perfect: true,
         custom: true,

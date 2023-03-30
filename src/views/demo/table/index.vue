@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <ProGrid ref="gridRef" v-bind="gridConfig" :height="pageHeight">
+  <div :style="{ height: pageHeightPx }">
+    <ProGrid ref="gridRef" v-bind="gridConfig">
       <template #toolbar_buttons>
         <el-button type="primary" link @click="handleCustomRefresh">
           自定义刷新
@@ -25,13 +25,13 @@ export default defineComponent({
   setup() {
     const { proGridHook, ...gridRestHook } = useGrid()
     const gridToolbarHook = useGridToolbar({ proGridHook })
-    const { pageHeight } = usePageHeight()
+    const { pageHeightPx } = usePageHeight()
 
     return {
       ...gridRestHook,
       ...gridToolbarHook,
       gridRef: proGridHook.gridRef,
-      pageHeight
+      pageHeightPx
     }
   }
 })
