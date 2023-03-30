@@ -144,11 +144,6 @@ export default defineComponent({
   overflow-x: hidden;
 }
 
-/* 去除页面动画效果以免 vxe-table 高度自适应时动画效果卡顿 */
-.layoutContent > div {
-  transition: none;
-}
-
 .layout :global(#page) {
   background-color: #fff;
 }

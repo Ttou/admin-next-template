@@ -19,7 +19,6 @@ export function useGrid() {
       border: true,
       loading: false,
       keepSource: true,
-      height: 'auto',
       toolbarConfig: {
         perfect: true,
         custom: true,
