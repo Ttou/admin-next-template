@@ -27,9 +27,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       compression(),
-      elementPlus({
-        include: ['**/*.vue', '**/*.ts', '**/*.js', '**/*.vue?vue*']
-      }),
+      elementPlus(),
       eslint({
         lintInWorker: true
       }),
