@@ -122,7 +122,7 @@ export default defineComponent({
     }
 
     function handleSubmit() {
-      state.formRef.validate()
+      state.formRef.validate(valid => {})
     }
 
     return {

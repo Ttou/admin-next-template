@@ -1,4 +1,14 @@
 <template>
+  <DefineHeader>
+    <el-header :class="$style.layoutHeader" :style="headerStyle">
+      <Navbar />
+    </el-header>
+  </DefineHeader>
+  <DefineContent>
+    <el-main :class="$style.layoutContent">
+      <Content />
+    </el-main>
+  </DefineContent>
   <el-container :class="$style.layout">
     <el-aside :class="$style.layoutSide" :width="asideWidth">
       <Logo />
@@ -10,38 +20,39 @@
       v-if="setting.fixedHeader"
       :class="$style.layoutMain"
       :style="mainStyle"
+      direction="vertical"
     >
-      <el-header :class="$style.layoutHeader" :style="headerStyle">
-        <Navbar />
-      </el-header>
+      <ReuseHeader />
       <Tabbar :style="tabbarStyle" />
       <el-scrollbar id="page">
-        <el-main :class="$style.layoutContent">
-          <Content />
-        </el-main>
+        <ReuseContent />
       </el-scrollbar>
     </el-container>
     <el-scrollbar v-else>
-      <el-container :class="$style.layoutMain" :style="mainStyle">
-        <el-header :class="$style.layoutHeader" :style="headerStyle">
-          <Navbar />
-        </el-header>
+      <el-container
+        :class="$style.layoutMain"
+        :style="mainStyle"
+        direction="vertical"
+      >
+        <ReuseHeader />
         <Tabbar :style="tabbarStyle" />
-        <el-main :class="$style.layoutContent">
-          <Content />
-        </el-main>
+        <ReuseContent />
       </el-container>
     </el-scrollbar>
   </el-container>
 </template>
 
 <script lang="ts">
+import { createReusableTemplate } from '@vueuse/core'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
 import vars from '@/assets/styles/var.module.css'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
+
+const [DefineHeader, ReuseHeader] = createReusableTemplate()
+const [DefineContent, ReuseContent] = createReusableTemplate()
 
 export default defineComponent({
   name: 'DefaultLayout',
@@ -50,7 +61,11 @@ export default defineComponent({
     Logo,
     Menu,
     Navbar,
-    Tabbar
+    Tabbar,
+    DefineHeader,
+    ReuseHeader,
+    DefineContent,
+    ReuseContent
   },
   setup() {
     const settingStore = useSettingStore()
