@@ -1,0 +1,1 @@
+import{d as o,_ as s,b as t,c as _,p as c,k as d,h as n}from"./index-e2504ed3.js";const a=o({name:"WorkbenchView"});const p=e=>(c("data-v-1fd34b9b"),e=e(),d(),e),i={class:"view"},r=p(()=>n("h2",null,"工作台",-1)),u=[r];function f(e,h,l,b,m,v){return t(),_("div",i,u)}const k=s(a,[["render",f],["__scopeId","data-v-1fd34b9b"]]);export{k as default};

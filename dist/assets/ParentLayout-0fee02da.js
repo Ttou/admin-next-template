@@ -1,1 +1,0 @@
-import{d as o,_ as t,a as n,b as r,g as a}from"./index-1b25d94e.js";const s=o({name:"ParentLayout"});function c(_,p,u,f,i,m){const e=n("router-view");return r(),a(e)}const l=t(s,[["render",c]]);export{l as default};
