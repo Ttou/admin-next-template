@@ -27,7 +27,9 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       compression(),
-      elementPlus(),
+      elementPlus({
+        useSource: false
+      }),
       eslint({
         lintInWorker: true
       }),
@@ -40,12 +42,7 @@ export default defineConfig(({ mode }) => {
       }),
       viteMockServe({
         mockPath: 'mock',
-        localEnabled: true,
-        prodEnabled: true,
-        injectCode: `
-          import { setupProdMockServer } from './mockProdServer'
-          setupProdMockServer()
-        `
+        enable: true
       })
     ],
     optimizeDeps: {
@@ -54,6 +51,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       host: true,
+      open: true,
       port: 8080
     },
     build: {

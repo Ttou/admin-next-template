@@ -1,5 +1,5 @@
 import ejs from 'ejs'
-import { PluginOption } from 'vite'
+import type { PluginOption } from 'vite'
 
 /**
  * index.html 处理插件
