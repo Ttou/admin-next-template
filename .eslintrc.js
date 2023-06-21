@@ -13,7 +13,8 @@ module.exports = defineEslintConfig({
     'plugin:prettier/recommended'
   ],
   parserOptions: {
-    ecmaVersion: 2020
+    ecmaVersion: 2020,
+    parser: '@typescript-eslint/parser'
   },
   plugins: ['@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
