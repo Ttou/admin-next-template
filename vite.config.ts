@@ -62,16 +62,27 @@ export default defineConfig(({ mode }) => {
       })
     ],
     optimizeDeps: {
-      include: ['dayjs/locale/zh-cn'],
+      include: ['lodash-unified', 'dayjs/locale/zh-cn'],
       exclude: ['vue-demi']
+    },
+    build: {
+      cssTarget: ['chrome61'],
+      chunkSizeWarningLimit: 2048,
+      reportCompressedSize: false,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (/[\\/]node_modules[\\/]/.test(id)) {
+              return 'chunk-libs'
+            }
+          }
+        }
+      }
     },
     server: {
       host: true,
       open: true,
       port: 8080
-    },
-    build: {
-      chunkSizeWarningLimit: 2048
     }
   }
 })

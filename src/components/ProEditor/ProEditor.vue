@@ -31,7 +31,7 @@ import type { IDomEditor } from '@wangeditor/editor'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { computed, defineComponent, onBeforeUnmount, shallowRef } from 'vue'
 
-import { props } from './ProEditor.constant'
+import { proEditorProps } from './ProEditor.constant'
 
 export default defineComponent({
   name: 'ProEditor',
@@ -39,7 +39,7 @@ export default defineComponent({
     Editor,
     Toolbar
   },
-  props: props(),
+  props: proEditorProps(),
   setup(props) {
     const editor = shallowRef<IDomEditor>()
 

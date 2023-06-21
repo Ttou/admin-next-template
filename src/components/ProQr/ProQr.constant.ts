@@ -1,7 +1,7 @@
 import type { QRCodeRenderersOptions } from 'qrcode'
 import { object, string } from 'vue-types'
 
-export const props = () => ({
+export const proQrProps = () => ({
   /**
    * 文本
    */
@@ -16,4 +16,4 @@ export const props = () => ({
   options: object<QRCodeRenderersOptions>().def({})
 })
 
-export type ProQrProps = ComponentProps<typeof props>
+export type ProQrProps = ComponentProps<typeof proQrProps>

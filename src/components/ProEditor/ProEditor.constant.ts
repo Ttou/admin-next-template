@@ -5,7 +5,7 @@ import type {
 } from '@wangeditor/editor'
 import { bool, object, string } from 'vue-types'
 
-export const props = () => ({
+export const proEditorProps = () => ({
   /**
    * 包裹样式
    */
@@ -36,7 +36,7 @@ export const props = () => ({
   editorVisible: bool().def(true)
 })
 
-export type ProEditorProps = ComponentProps<typeof props>
+export type ProEditorProps = ComponentProps<typeof proEditorProps>
 
 export type ProEditorRef = {
   editor: IDomEditor

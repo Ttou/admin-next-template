@@ -15,11 +15,11 @@ import {
   watchEffect
 } from 'vue'
 
-import { props } from './CountTo.constant'
+import { countToProps } from './CountTo.constant'
 
 export default defineComponent({
   name: 'CountTo',
-  props: props(),
+  props: countToProps(),
   emits: ['started', 'finished'],
   setup(props, { emit }) {
     const state = reactive({

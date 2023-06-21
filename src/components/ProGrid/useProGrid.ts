@@ -30,10 +30,10 @@ interface FormItemOption {
  * @param gridOptions 高级表格选项
  */
 export function useProGrid(gridOptions: Ref<ProGridOptions>) {
-  const gridRef = ref({} as VxeGridInstance)
+  const gridRef = ref<VxeGridInstance>()
 
   function updateFormItem(option: FormItemOption) {
-    const item = gridOptions.value!.formConfig!.items!.find(
+    const item = gridOptions.value.formConfig?.items?.find(
       v => v.field === option.field
     )
 
@@ -41,18 +41,18 @@ export function useProGrid(gridOptions: Ref<ProGridOptions>) {
   }
 
   function showLoading() {
-    gridOptions.value!.loading = true
+    gridOptions.value.loading = true
   }
 
   function hideLoading() {
-    gridOptions.value!.loading = false
+    gridOptions.value.loading = false
   }
 
   async function refresh(callback?: PromiseFunc) {
     try {
       showLoading()
       await callback?.()
-      await gridRef.value.commitProxy('query')
+      await gridRef.value?.commitProxy('query')
     } finally {
       hideLoading()
     }

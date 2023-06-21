@@ -2,7 +2,7 @@ import { ElButton, ElDatePicker, ElSpace } from 'element-plus'
 import { h } from 'vue'
 import type VXETable from 'vxe-table'
 
-import { TABLE_RENDERER } from '@/constants'
+import { TABLE_RENDERER } from './constants'
 
 /**
  * 渲染器注册

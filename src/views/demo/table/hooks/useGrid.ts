@@ -8,7 +8,7 @@ import {
   TABLE_FORMAT,
   TABLE_ITEM_RENDER,
   TABLE_RENDERER
-} from '@/constants'
+} from '@/hooks'
 import { genRandomID } from '@/utils'
 
 export function useGrid() {

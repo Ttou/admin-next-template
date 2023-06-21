@@ -1,6 +1,6 @@
 import { bool, number, string } from 'vue-types'
 
-export const props = () => ({
+export const countToProps = () => ({
   /**
    * 开始值
    */
@@ -49,4 +49,4 @@ export const props = () => ({
   transition: string().def('linear')
 })
 
-export type CountToProps = ComponentProps<typeof props>
+export type CountToProps = ComponentProps<typeof countToProps>

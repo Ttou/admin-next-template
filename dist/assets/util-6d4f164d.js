@@ -1,0 +1,1 @@
+import{b2 as r,a9 as s,b3 as t}from"./chunk-libs-acac76b8.js";async function c(a){const{copied:n,copy:e,isSupported:o}=r();return o?(await e(a),n.value):(s.warning("不支持复制到剪贴板"),!1)}function p(a){return t(a)}export{c,p as g};
