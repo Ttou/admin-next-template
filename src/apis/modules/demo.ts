@@ -1,6 +1,10 @@
 import { ajax } from '@/utils'
 
-export default {
+import type { GetListReq, GetListRes } from '../schema'
+
+export type { GetListReq, GetListRes }
+
+export const demoApi = {
   getList(data: GetListReq): Promise<GetListRes> {
     return ajax.get('/demo/list', { params: data })
   }

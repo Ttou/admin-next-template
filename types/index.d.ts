@@ -18,3 +18,7 @@ declare type OptionItem = {
   label: string
   value: any
 }
+
+declare type CSSProperties = import('vue').CSSProperties
+
+declare type StyleValue = import('vue').StyleValue

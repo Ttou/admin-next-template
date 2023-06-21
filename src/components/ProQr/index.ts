@@ -1,2 +1,2 @@
-export { default as ProQr } from './ProQr'
 export * from './ProQr.constant'
+export { default as ProQr } from './ProQr.vue'

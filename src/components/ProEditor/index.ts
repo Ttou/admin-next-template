@@ -1,2 +1,2 @@
-export { default as ProEditor } from './ProEditor'
 export * from './ProEditor.constant'
+export { default as ProEditor } from './ProEditor.vue'

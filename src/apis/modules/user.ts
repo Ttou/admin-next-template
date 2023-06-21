@@ -1,6 +1,10 @@
 import { ajax } from '@/utils'
 
-export default {
+import type { GetInfoRes, LoginRes } from '../schema'
+
+export type { GetInfoRes, LoginRes }
+
+export const userApi = {
   login(data: Record<string, any>): Promise<LoginRes> {
     return ajax.post('/user/login', data)
   },

@@ -1,9 +1,13 @@
+<template>
+  <span>{{ value }}</span>
+</template>
+
+<script lang="ts">
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { isNumber } from 'lodash-unified'
 import {
   computed,
   defineComponent,
-  h,
   onMounted,
   reactive,
   toRef,
@@ -11,11 +15,11 @@ import {
   watchEffect
 } from 'vue'
 
-import { countToProps } from './CountTo.constant'
+import { props } from './CountTo.constant'
 
 export default defineComponent({
   name: 'CountTo',
-  props: countToProps(),
+  props: props(),
   emits: ['started', 'finished'],
   setup(props, { emit }) {
     const state = reactive({
@@ -61,11 +65,11 @@ export default defineComponent({
       const x = num.split('.')
       let x1 = x[0]
       const x2 = x.length > 1 ? decimal + x[1] : ''
-      const rgx = /(\d+)(\d{3})/
+      const regExp = /(\d+)(\d{3})/
 
       if (separator && !isNumber(separator)) {
-        while (rgx.test(x1)) {
-          x1 = x1.replace(rgx, '$1' + separator + '$2')
+        while (regExp.test(x1)) {
+          x1 = x1.replace(regExp, '$1' + separator + '$2')
         }
       }
 
@@ -93,8 +97,6 @@ export default defineComponent({
       start,
       reset
     }
-  },
-  render() {
-    return h('span', this.value)
   }
 })
+</script>

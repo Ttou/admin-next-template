@@ -21,7 +21,10 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '@/': `${resolve(__dirname, 'src')}/`
+        '@/': `${resolve(__dirname, 'src')}/`,
+        ...(mode === 'production' && {
+          'vue-types': 'vue-types/shim'
+        })
       }
     },
     plugins: [
