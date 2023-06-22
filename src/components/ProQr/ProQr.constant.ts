@@ -5,11 +5,7 @@ export const proQrProps = () => ({
   /**
    * 文本
    */
-  text: {
-    type: String,
-    default: '',
-    required: true
-  },
+  text: { type: String, default: '', required: true },
   /**
    * 图标
    */
