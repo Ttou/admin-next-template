@@ -2,12 +2,13 @@ import { omit } from 'lodash-unified'
 import { reactive, toRef, toRefs } from 'vue'
 
 import { demoApi } from '@/apis'
-import { type ProGridOptions, useProGrid } from '@/components'
 import {
+  type GridExtOptions,
   TABLE_EDIT_RENDER,
   TABLE_FORMAT,
   TABLE_ITEM_RENDER,
-  TABLE_RENDERER
+  TABLE_RENDERER,
+  useGridExt
 } from '@/hooks'
 import { genRandomID } from '@/utils'
 
@@ -203,13 +204,13 @@ export function useGrid() {
           }
         }
       }
-    } as ProGridOptions
+    } as GridExtOptions
   })
 
-  const proGridHook = useProGrid(toRef(state, 'gridConfig'))
+  const gridExtHook = useGridExt(toRef(state, 'gridConfig'))
 
   return {
     ...toRefs(state),
-    proGridHook
+    gridExtHook
   }
 }

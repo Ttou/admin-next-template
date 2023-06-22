@@ -24,15 +24,7 @@ export default defineConfig(({ mode }) => {
         {
           find: '@/',
           replacement: `${resolve(__dirname, 'src')}/`
-        },
-        ...(mode === 'production'
-          ? [
-              {
-                find: 'vue-types',
-                replacement: 'vue-types/shim'
-              }
-            ]
-          : [])
+        }
       ]
     },
     plugins: [

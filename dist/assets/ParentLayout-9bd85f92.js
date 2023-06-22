@@ -1,1 +1,0 @@
-import{d as o,au as t,av as n,aw as r}from"./chunk-libs-acac76b8.js";import{_ as a}from"./index-d79228ea.js";const s=o({name:"ParentLayout"});function c(p,_,m,u,f,i){const e=t("router-view");return n(),r(e)}const v=a(s,[["render",c]]);export{v as default};

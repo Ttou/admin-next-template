@@ -1,5 +1,4 @@
 export * from './CountTo'
 export * from './ProEditor'
-export * from './ProGrid'
 export * from './ProQr'
 export * from './Provider'

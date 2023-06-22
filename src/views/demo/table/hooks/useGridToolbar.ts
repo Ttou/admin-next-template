@@ -1,12 +1,12 @@
-import { type ProGridHook } from '@/components'
+import { type GridExtHook } from '@/hooks'
 
 interface Params {
-  proGridHook: ProGridHook
+  gridExtHook: GridExtHook
 }
 
-export function useGridToolbar({ proGridHook }: Params) {
+export function useGridToolbar({ gridExtHook }: Params) {
   function handleCustomRefresh() {
-    proGridHook.refresh()
+    gridExtHook.refresh()
   }
 
   return {

@@ -1,36 +1,32 @@
 <template>
   <div :style="{ height: pageHeightPx }">
-    <ProGrid ref="gridRef" v-bind="gridConfig">
+    <vxe-grid ref="gridRef" v-bind="gridConfig">
       <template #toolbar_buttons>
         <el-button type="primary" link @click="handleCustomRefresh">
           自定义刷新
         </el-button>
       </template>
-    </ProGrid>
+    </vxe-grid>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import { ProGrid } from '@/components'
 import { usePageHeight } from '@/hooks'
 
 import { useGrid, useGridToolbar } from './hooks'
 
 export default defineComponent({
-  components: {
-    ProGrid
-  },
   setup() {
-    const { proGridHook, ...gridRestHook } = useGrid()
-    const gridToolbarHook = useGridToolbar({ proGridHook })
+    const { gridExtHook, ...gridRestHook } = useGrid()
+    const gridToolbarHook = useGridToolbar({ gridExtHook })
     const { pageHeightPx } = usePageHeight()
 
     return {
       ...gridRestHook,
       ...gridToolbarHook,
-      gridRef: proGridHook.gridRef,
+      gridRef: gridExtHook.gridRef,
       pageHeightPx
     }
   }

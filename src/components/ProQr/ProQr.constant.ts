@@ -1,19 +1,26 @@
 import type { QRCodeRenderersOptions } from 'qrcode'
-import { object, string } from 'vue-types'
+import type { PropType } from 'vue'
 
 export const proQrProps = () => ({
   /**
    * 文本
    */
-  text: string().def('').isRequired,
+  text: {
+    type: String,
+    default: '',
+    required: true
+  },
   /**
    * 图标
    */
-  logo: string().def(''),
+  logo: { type: String, default: '' },
   /**
    * 配置
    */
-  options: object<QRCodeRenderersOptions>().def({})
+  options: {
+    type: Object as PropType<QRCodeRenderersOptions>,
+    default: () => ({} as QRCodeRenderersOptions)
+  }
 })
 
 export type ProQrProps = ComponentProps<typeof proQrProps>

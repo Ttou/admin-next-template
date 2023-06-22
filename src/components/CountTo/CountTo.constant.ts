@@ -1,52 +1,82 @@
-import { bool, number, string } from 'vue-types'
-
 export const countToProps = () => ({
   /**
    * 开始值
    */
-  startVal: number().def(0),
+  startVal: {
+    type: Number,
+    default: 0
+  },
   /**
    * 结束值
    */
-  endVal: number().def(1000),
+  endVal: {
+    type: Number,
+    default: 1000
+  },
   /**
    * 持续时间
    */
-  duration: number().def(1500),
+  duration: {
+    type: Number,
+    default: 1500
+  },
   /**
    * 自动播放
    */
-  autoplay: bool().def(true),
+  autoplay: {
+    type: Boolean,
+    default: true
+  },
   /**
    * 保留小数点位数
    */
-  decimals: number()
-    .def(0)
-    .validate((val: number) => val >= 0),
+  decimals: {
+    type: Number,
+    default: 0,
+    validator: (val: number) => val >= 0
+  },
   /**
    * 前缀
    */
-  prefix: string().def(''),
+  prefix: {
+    type: String,
+    default: ''
+  },
   /**
    * 后缀
    */
-  suffix: string().def(''),
+  suffix: {
+    type: String,
+    default: ''
+  },
   /**
    * 分隔符号
    */
-  separator: string().def(','),
+  separator: {
+    type: String,
+    default: ','
+  },
   /**
    * 小数点符号
    */
-  decimal: string().def('.'),
+  decimal: {
+    type: String,
+    default: '.'
+  },
   /**
    * 使用动画
    */
-  useEasing: bool().def(true),
+  useEasing: {
+    type: Boolean,
+    default: true
+  },
   /**
    * 过渡动画
    */
-  transition: string().def('linear')
+  transition: {
+    type: String,
+    default: 'linear'
+  }
 })
 
 export type CountToProps = ComponentProps<typeof countToProps>
