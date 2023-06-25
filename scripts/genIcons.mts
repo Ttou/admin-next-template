@@ -1,13 +1,29 @@
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync
+} from 'node:fs'
 import { basename } from 'node:path'
 
 import { cleanupSVG, SVG } from '@iconify/tools'
-import fse from 'fs-extra'
 import { globbySync } from 'globby'
 
-const files = globbySync(['src/assets/icons/svg/*.svg'])
+const iconsSvgPath = 'src/assets/icons/svg'
+const iconsJsonPath = 'src/assets/icons/json'
+
+const files = globbySync([`${iconsSvgPath}/*.svg`])
+
+if (!existsSync(iconsJsonPath)) {
+  mkdirSync(iconsJsonPath)
+} else {
+  rmSync(iconsJsonPath, { recursive: true, force: true })
+  mkdirSync(iconsJsonPath)
+}
 
 files.forEach(file => {
-  const content = fse.readFileSync(file, { encoding: 'utf-8' })
+  const content = readFileSync(file, { encoding: 'utf-8' })
 
   const svg = new SVG(content)
   const fileName = basename(file, '.svg')
@@ -23,5 +39,5 @@ files.forEach(file => {
     }
   }
 
-  fse.outputJson(`src/assets/icons/json/${fileName}.json`, icon)
+  writeFileSync(`${iconsJsonPath}/${fileName}.json`, JSON.stringify(icon))
 })
