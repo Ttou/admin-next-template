@@ -15,17 +15,15 @@ import { defineComponent } from 'vue'
 
 import { usePageHeight } from '@/hooks'
 
-import { useGrid, useGridToolbar } from './hooks'
+import { useGrid } from './hooks'
 
 export default defineComponent({
   setup() {
     const { gridExtHook, ...gridRestHook } = useGrid()
-    const gridToolbarHook = useGridToolbar({ gridExtHook })
     const { pageHeightPx } = usePageHeight()
 
     return {
       ...gridRestHook,
-      ...gridToolbarHook,
       gridRef: gridExtHook.gridRef,
       pageHeightPx
     }

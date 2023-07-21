@@ -209,8 +209,13 @@ export function useGrid() {
 
   const gridExtHook = useGridExt(toRef(state, 'gridConfig'))
 
+  function handleCustomRefresh() {
+    gridExtHook.refresh()
+  }
+
   return {
     ...toRefs(state),
-    gridExtHook
+    gridExtHook,
+    handleCustomRefresh
   }
 }
