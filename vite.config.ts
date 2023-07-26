@@ -78,6 +78,11 @@ export default defineConfig(({ mode }) => {
       host: true,
       open: true,
       port: 8080
+    },
+    preview: {
+      host: true,
+      open: true,
+      port: 8080
     }
   }
 })

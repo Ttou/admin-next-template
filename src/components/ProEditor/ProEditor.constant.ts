@@ -11,35 +11,35 @@ export const proEditorProps = () => ({
    */
   wrapStyle: {
     type: Object as PropType<CSSProperties>,
-    default: () => ({} as CSSProperties)
+    default: () => ({}) as CSSProperties
   },
   /**
    * 工具栏配置
    */
   toolbarConfig: {
     type: Object as PropType<Partial<IToolbarConfig>>,
-    default: () => ({} as Partial<IToolbarConfig>)
+    default: () => ({}) as Partial<IToolbarConfig>
   },
   /**
    * 工具栏样式
    */
   toolbarStyle: {
     type: Object as PropType<CSSProperties>,
-    default: () => ({} as CSSProperties)
+    default: () => ({}) as CSSProperties
   },
   /**
    * 编辑器配置
    */
   editorConfig: {
     type: Object as PropType<Partial<IEditorConfig>>,
-    default: () => ({} as Partial<IEditorConfig>)
+    default: () => ({}) as Partial<IEditorConfig>
   },
   /**
    * 编辑器样式
    */
   editorStyle: {
     type: Object as PropType<CSSProperties>,
-    default: () => ({} as CSSProperties)
+    default: () => ({}) as CSSProperties
   },
   /**
    * 编辑器网页内容

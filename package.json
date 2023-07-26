@@ -1,5 +1,6 @@
 {
   "name": "admin-next-template",
+  "type": "module",
   "author": "WangRuiJin <1361572192@qq.com>",
   "repository": "git@gitee.com:jh_shot/admin-next-template.git",
   "license": "MulanPSL2",
@@ -7,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview --mode=production",
-    "gen:icons": "tsx scripts/genIcons.mts",
+    "gen:icons": "tsx scripts/genIcons.ts",
     "lint": "concurrently \"npm:lint:*\"",
     "lint:script": "eslint \"./src/**/*.{ts,vue}\" --fix",
     "lint:style": "stylelint \"./src/**/*.{css,scss,vue}\" --fix",
@@ -74,7 +75,7 @@
     "tsx": "^3.12.7",
     "typescript": "^5.0.4",
     "unplugin-element-plus": "^0.7.2",
-    "vite": "^4.3.9",
+    "vite": "^4.4.7",
     "vite-plugin-compression2": "^0.10.3",
     "vite-plugin-eslint2": "^3.3.0",
     "vite-plugin-mock": "^2.9.8",
@@ -88,6 +89,9 @@
   "config": {
     "commitizen": {
       "path": "cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
     }
   },
   "simple-git-hooks": {

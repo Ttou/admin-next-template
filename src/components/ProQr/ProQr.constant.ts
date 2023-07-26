@@ -15,7 +15,7 @@ export const proQrProps = () => ({
    */
   options: {
     type: Object as PropType<QRCodeRenderersOptions>,
-    default: () => ({} as QRCodeRenderersOptions)
+    default: () => ({}) as QRCodeRenderersOptions
   }
 })
 
