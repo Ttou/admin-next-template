@@ -23,22 +23,11 @@
     /* Custom */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "types": [
-      "element-plus/global",
-      "vite/client"
-    ],
+    "types": ["element-plus/global", "vite/client"]
   },
-  "include": [
-    "src",
-    "types"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ],
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
