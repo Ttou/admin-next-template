@@ -29,5 +29,8 @@
   },
   "include": ["src", "types"],
   "exclude": ["node_modules", "**/*.spec.ts"],
+  "vueCompilerOptions": {
+    "target": 3
+  },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
