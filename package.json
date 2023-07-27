@@ -43,7 +43,7 @@
     "@commitlint/config-conventional": "^17.6.5",
     "@iconify/tools": "^3.0.2",
     "@iconify/types": "^2.0.0",
-    "@ttou/define-config": "^3.0.0",
+    "@ttou/define-config": "^3.1.0",
     "@types/ejs": "^3.1.2",
     "@types/node": "^16.0.0",
     "@types/nprogress": "^0.2.0",
@@ -93,6 +93,16 @@
     "cz-customizable": {
       "config": ".cz-config.cjs"
     }
+  },
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss,vue}": [
+      "stylelint --fix --allow-empty-input",
+      "prettier --write"
+    ]
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
