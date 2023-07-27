@@ -6,8 +6,8 @@
     "useDefineForClassFields": true,
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
+    /* Node mode */
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -30,7 +30,7 @@
   "include": ["src", "types"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "vueCompilerOptions": {
-    "target": 3
+    "target": 3.3
   },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
