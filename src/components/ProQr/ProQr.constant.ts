@@ -13,5 +13,5 @@ export const proQrProps = () => ({
   /**
    * 配置
    */
-  options: object<QRCodeRenderersOptions>().def(() => ({}))
+  options: object<QRCodeRenderersOptions>().def({})
 })

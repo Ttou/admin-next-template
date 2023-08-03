@@ -5,23 +5,23 @@ export const proEditorProps = () => ({
   /**
    * 包裹样式
    */
-  wrapStyle: object<CSSProperties>().def(() => ({})),
+  wrapStyle: object<CSSProperties>().def({}),
   /**
    * 工具栏配置
    */
-  toolbarConfig: object<Partial<IToolbarConfig>>().def(() => ({})),
+  toolbarConfig: object<Partial<IToolbarConfig>>().def({}),
   /**
    * 工具栏样式
    */
-  toolbarStyle: object<CSSProperties>().def(() => ({})),
+  toolbarStyle: object<CSSProperties>().def({}),
   /**
    * 编辑器配置
    */
-  editorConfig: object<Partial<IEditorConfig>>().def(() => ({})),
+  editorConfig: object<Partial<IEditorConfig>>().def({}),
   /**
    * 编辑器样式
    */
-  editorStyle: object<CSSProperties>().def(() => ({})),
+  editorStyle: object<CSSProperties>().def({}),
   /**
    * 编辑器网页内容
    */
