@@ -16,7 +16,7 @@
               <CountTo
                 class="text"
                 :prefix="item.valPrefix"
-                :end-val="item.valNum"
+                :endVal="item.valNum"
               />
               <Icon class="icon" :icon="`custom:${item.icon}`" />
             </div>

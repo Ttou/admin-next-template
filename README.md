@@ -51,3 +51,7 @@ npm run build
 - 项目开发时请锁定依赖版本
 - 通用组件用 scss 编写样式，页面用 Scoped Style + Vue 编写
 - 不再支持 jsx 写法，推荐使用单文件或者渲染函数编写组件
+
+## 待处理
+
+- 使用 tiptap 替换 wangEditor
