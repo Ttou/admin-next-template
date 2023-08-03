@@ -54,4 +54,4 @@ npm run build
 
 ## 待处理
 
-- 使用 tiptap 替换 wangEditor
+- 替换 wangEditor

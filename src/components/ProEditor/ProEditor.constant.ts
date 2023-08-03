@@ -1,59 +1,33 @@
-import type {
-  IDomEditor,
-  IEditorConfig,
-  IToolbarConfig
-} from '@wangeditor/editor'
-import type { PropType } from 'vue'
+import type { IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
+import { bool, object, string } from 'vue-types'
 
 export const proEditorProps = () => ({
   /**
    * 包裹样式
    */
-  wrapStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}) as CSSProperties
-  },
+  wrapStyle: object<CSSProperties>().def(() => ({})),
   /**
    * 工具栏配置
    */
-  toolbarConfig: {
-    type: Object as PropType<Partial<IToolbarConfig>>,
-    default: () => ({}) as Partial<IToolbarConfig>
-  },
+  toolbarConfig: object<Partial<IToolbarConfig>>().def(() => ({})),
   /**
    * 工具栏样式
    */
-  toolbarStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}) as CSSProperties
-  },
+  toolbarStyle: object<CSSProperties>().def(() => ({})),
   /**
    * 编辑器配置
    */
-  editorConfig: {
-    type: Object as PropType<Partial<IEditorConfig>>,
-    default: () => ({}) as Partial<IEditorConfig>
-  },
+  editorConfig: object<Partial<IEditorConfig>>().def(() => ({})),
   /**
    * 编辑器样式
    */
-  editorStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}) as CSSProperties
-  },
+  editorStyle: object<CSSProperties>().def(() => ({})),
   /**
    * 编辑器网页内容
    */
-  editorHtml: { type: String, default: '' },
+  editorHtml: string().def(''),
   /**
    * 编辑器可见
    */
-  editorVisible: { type: Boolean, default: true }
+  editorVisible: bool().def(true)
 })
-
-export type ProEditorProps = ComponentProps<typeof proEditorProps>
-
-export type ProEditorRef = {
-  editor: IDomEditor
-  editorId: string
-}

@@ -25,23 +25,23 @@ export default defineComponent({
         editorHtml: '',
         editorVisible: false
       } as ProEditorProps,
-      editorRef: {} as ProEditorRef
+      editorRef: undefined as Undefined<ProEditorRef>
     })
 
     const { $message } = getElementFnFromInstance()
 
     function handleGetHTML() {
-      const value = state.editorRef.editor.getHtml()
+      const value = state.editorRef?.editor.getHtml()
       $message.info(value!)
     }
 
     function handleGetTXT() {
-      const value = state.editorRef.editor.getText()
+      const value = state.editorRef?.editor.getText()
       $message.info(value)
     }
 
     function handleClear() {
-      state.editorRef.editor.clear()
+      state.editorRef?.editor.clear()
     }
 
     onMounted(() => {
