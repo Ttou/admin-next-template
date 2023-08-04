@@ -2,7 +2,7 @@
   <MainMenu v-if="onlyOneChild" :item="item.children[0]" />
   <el-sub-menu v-else :index="item.path">
     <template #title>
-      <Icon v-if="item.meta.icon" class="el-icon" :icon="item.meta.icon" />
+      <Icon v-if="item.meta.icon" :icon="item.meta.icon" />
       <span>{{ item.meta.title }}</span>
     </template>
     <template #default>

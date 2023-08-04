@@ -96,6 +96,7 @@ export default defineComponent({
 
 .menu :global(.iconify) {
   margin-right: 12px;
+  font-size: 18px;
 }
 
 .menu:global(.el-menu--collapse) {
