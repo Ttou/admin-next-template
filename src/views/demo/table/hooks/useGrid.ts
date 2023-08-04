@@ -1,3 +1,4 @@
+import type { DatePickerProps, InputProps } from 'element-plus'
 import { omit } from 'lodash-unified'
 import { reactive, toRef, toRefs } from 'vue'
 
@@ -49,7 +50,7 @@ export function useGrid() {
               name: TABLE_ITEM_RENDER.Input,
               props: {
                 placeholder: '请输入'
-              }
+              } as InputProps
             }
           },
           {
@@ -59,7 +60,7 @@ export function useGrid() {
               name: TABLE_ITEM_RENDER.Input,
               props: {
                 placeholder: '请输入'
-              }
+              } as InputProps
             }
           },
           {
@@ -67,9 +68,7 @@ export function useGrid() {
             field: 'role',
             itemRender: {
               name: TABLE_ITEM_RENDER.Select,
-              props: {
-                placeholder: '请选择'
-              },
+
               options: [
                 {
                   label: 'admin',
@@ -79,7 +78,10 @@ export function useGrid() {
                   label: 'normal',
                   value: 'normal'
                 }
-              ]
+              ],
+              props: {
+                placeholder: '请选择'
+              } as SelectProps
             }
           },
           {
@@ -87,9 +89,6 @@ export function useGrid() {
             field: 'status',
             itemRender: {
               name: TABLE_ITEM_RENDER.Select,
-              props: {
-                placeholder: '请选择'
-              },
               options: [
                 {
                   label: '禁用',
@@ -99,20 +98,23 @@ export function useGrid() {
                   label: '启用',
                   value: '1'
                 }
-              ]
+              ],
+              props: {
+                placeholder: '请选择'
+              } as SelectProps
             }
           },
           {
             title: '时间',
             field: 'date',
             itemRender: {
-              name: TABLE_RENDERER.FormItemDate,
+              name: TABLE_ITEM_RENDER.DatePicker,
               props: {
                 type: 'datetimerange',
                 startPlaceholder: '开始时间',
                 endPlaceholder: '结束时间',
                 format: 'YYYY-MM-DD HH:mm:ss'
-              }
+              } as DatePickerProps
             }
           },
           {

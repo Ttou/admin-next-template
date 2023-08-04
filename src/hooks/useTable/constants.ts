@@ -2,8 +2,7 @@
  * 表格渲染器
  */
 export enum TABLE_RENDERER {
-  FormItemBtns = 'FormItemBtns',
-  FormItemDate = 'FormItemDate'
+  FormItemBtns = 'FormItemBtns'
 }
 
 /**
