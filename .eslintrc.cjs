@@ -8,7 +8,7 @@ module.exports = defineEslintConfig({
   },
   extends: [
     'eslint:recommended',
-    '@vue/typescript/recommended',
+    '@vue/eslint-config-typescript/recommended',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended'
   ],

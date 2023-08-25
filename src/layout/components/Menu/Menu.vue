@@ -3,9 +3,9 @@
     mode="vertical"
     :class="$style.menu"
     :defaultActive="activeMenu"
-    :backgroundColor="vars.menuBg"
-    :textColor="vars.menuText"
-    :activeTextColor="vars.menuActiveText"
+    :backgroundColor="CSS_VARS.menuBg"
+    :textColor="CSS_VARS.menuText"
+    :activeTextColor="CSS_VARS.menuActiveText"
     :collapse="!setting.sideOpened"
     :collapseTransition="false"
     uniqueOpened
@@ -23,7 +23,7 @@ import { computed, defineComponent, onBeforeMount, reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { useRoute } from 'vue-router'
 
-import vars from '@/assets/styles/var.module.css'
+import { CSS_VARS } from '@/constants'
 import { usePermissionStore, useSettingStore } from '@/store'
 
 import MainMenu from './MainMenu.vue'
@@ -80,7 +80,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      vars,
+      CSS_VARS,
       activeMenu,
       setting
     }

@@ -46,7 +46,7 @@
 import { createReusableTemplate } from '@vueuse/core'
 import { computed, CSSProperties, defineComponent } from 'vue'
 
-import vars from '@/assets/styles/var.module.css'
+import { CSS_VARS } from '@/constants'
 import { useSettingStore } from '@/store'
 
 import { Content, Logo, Menu, Navbar, Tabbar } from './components'
@@ -94,7 +94,7 @@ export default defineComponent({
 
     const headerStyle = computed(() => {
       const ret = {
-        height: vars.headerHeight
+        height: CSS_VARS.headerHeight
       } as CSSProperties
 
       if (setting.value.fixedHeader) {
@@ -110,7 +110,7 @@ export default defineComponent({
 
       if (setting.value.fixedHeader) {
         ret.position = 'sticky'
-        ret.top = vars.headerHeight
+        ret.top = CSS_VARS.headerHeight
       }
 
       return ret
