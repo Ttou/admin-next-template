@@ -13,6 +13,7 @@
     "lint:script": "eslint \"./src/**/*.{ts,vue}\" --fix",
     "lint:style": "stylelint \"./src/**/*.{css,scss,vue}\" --fix",
     "commit": "git add . && git cz",
+    "preinstall": "npx only-allow pnpm",
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
