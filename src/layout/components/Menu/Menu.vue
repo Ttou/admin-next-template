@@ -112,6 +112,7 @@ export default defineComponent({
   padding: 0;
 }
 
+.menu > :global(.el-menu-item:hover),
 .menu :global(.el-sub-menu__title:hover) {
   background-color: var(--menu-hover) !important;
 }
