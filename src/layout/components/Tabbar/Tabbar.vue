@@ -16,13 +16,13 @@
     <el-dropdown placement="bottom-end" @command="handleCommand">
       <template #default>
         <div :class="$style.tabsMenu">
-          <Icon icon="ant-design:down-outlined" :inline="true" />
+          <Icon icon="@local:icon-park-outline:down" :inline="true" />
         </div>
       </template>
       <template #dropdown>
         <el-dropdown-menu :class="$style.tabsDropdownMenu">
           <el-dropdown-item command="refresh">
-            <Icon icon="ant-design:reload-outlined" :inline="true" />
+            <Icon icon="@local:icon-park-outline:redo" :inline="true" />
             刷新页面
           </el-dropdown-item>
           <el-dropdown-item
@@ -30,11 +30,11 @@
             :disabled="closeLeftDisabled"
             divided
           >
-            <Icon icon="ant-design:vertical-right-outlined" :inline="true" />
+            <Icon icon="@local:icon-park-outline:to-left" :inline="true" />
             关闭左侧
           </el-dropdown-item>
           <el-dropdown-item command="closeRight" :disabled="closeRightDisabled">
-            <Icon icon="ant-design:vertical-left-outlined" :inline="true" />
+            <Icon icon="@local:icon-park-outline:to-right" :inline="true" />
             关闭右侧
           </el-dropdown-item>
           <el-dropdown-item
@@ -42,11 +42,11 @@
             :disabled="closeOtherDisabled"
             divided
           >
-            <Icon icon="ant-design:close-outlined" :inline="true" />
+            <Icon icon="@local:icon-park-outline:close" :inline="true" />
             关闭其它
           </el-dropdown-item>
           <el-dropdown-item command="closeAll">
-            <Icon icon="ant-design:close-circle-outlined" :inline="true" />
+            <Icon icon="@local:icon-park-outline:close-one" :inline="true" />
             关闭所有
           </el-dropdown-item>
         </el-dropdown-menu>

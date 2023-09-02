@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.logo">
-    <Icon :class="$style.logoIcon" icon="logos:element" />
+    <Icon :class="$style.logoIcon" icon="@local:custom:logo" />
   </div>
 </template>
 

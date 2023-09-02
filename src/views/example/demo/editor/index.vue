@@ -5,14 +5,14 @@
       <el-button @click="handleGetTXT">获取 TXT</el-button>
       <el-button @click="handleClear">清除内容</el-button>
     </div>
-    <ProEditor ref="editorRef" v-bind="editorConfig" />
+    <ProEditor ref="editorRef" style="height: 400px" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 
-import { ProEditor, type ProEditorProps, type ProEditorRef } from '@/components'
+import { ProEditor, type ProEditorRef } from '@/components'
 import { getElementFnFromInstance } from '@/utils'
 
 export default defineComponent({
@@ -21,35 +21,25 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      editorConfig: {
-        editorHtml: '',
-        editorVisible: false
-      } as ProEditorProps,
       editorRef: undefined as Undefined<ProEditorRef>
     })
 
     const { $message } = getElementFnFromInstance()
 
     function handleGetHTML() {
-      const value = state.editorRef?.editor.getHtml()
+      const value = state.editorRef?.ue.getContent()
       $message.info(value!)
     }
 
     function handleGetTXT() {
-      const value = state.editorRef?.editor.getText()
-      $message.info(value)
+      const value = state.editorRef?.ue.getContentTxt()
+      $message.info(value!)
     }
 
     function handleClear() {
-      state.editorRef?.editor.clear()
+      state.editorRef?.ue.setContent('')
+      state.editorRef?.ue.reset()
     }
-
-    onMounted(() => {
-      setTimeout(() => {
-        state.editorConfig.editorHtml = '<p><strong>哈哈</strong></p>'
-        state.editorConfig.editorVisible = true
-      }, 1500)
-    })
 
     return {
       ...toRefs(state),

@@ -1,5 +1,7 @@
 import type { IconifyIcons } from '@iconify/types'
 import { addCollection, loadIcons } from '@iconify/vue'
+import * as ep from '@iconify-json/ep'
+import * as iconParkOutline from '@iconify-json/icon-park-outline'
 
 const files = import.meta.glob('./json/*.json', { as: 'raw', eager: true })
 
@@ -11,13 +13,12 @@ async function setupIcon() {
     const icon = JSON.parse(files[key])
 
     icons[icon.key] = icon.value
-    iconNames.push(`custom:${icon.key}`)
+    iconNames.push(`@local:custom:${icon.key}`)
   })
 
-  addCollection({
-    prefix: 'custom',
-    icons
-  })
   loadIcons(iconNames)
+  addCollection({ prefix: 'custom', icons }, 'local')
+  addCollection(ep.icons, 'local')
+  addCollection(iconParkOutline.icons, 'local')
 }
 setupIcon()

@@ -1,80 +1,41 @@
 <template>
-  <div v-if="editorVisible" :style="computedWrapStyle">
-    <Toolbar
-      :editor="editor"
-      :defaultConfig="toolbarConfig"
-      :style="computedToolbarStyle"
-    />
-    <Editor
-      :defaultConfig="editorConfig"
-      :defaultHtml="editorHtml"
-      :style="computedEditorStyle"
-      @onCreated="handleCreated"
-    />
-  </div>
-  <div v-else :style="computedWrapStyle">
-    <div
-      :style="[
-        computedEditorStyle,
-        { display: 'flex', justifyContent: 'center', alignItems: 'center' }
-      ]"
-    >
-      编辑器正在初始化...
-    </div>
-  </div>
+  <div ref="editorRef"></div>
 </template>
 
 <script lang="ts">
-import '@wangeditor/editor/dist/css/style.css'
-
-import type { IDomEditor } from '@wangeditor/editor'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import { computed, defineComponent, onBeforeUnmount, shallowRef } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 import { proEditorProps } from './ProEditor.constant'
 
 export default defineComponent({
   name: 'ProEditor',
-  components: {
-    Editor,
-    Toolbar
-  },
   props: proEditorProps(),
-  setup(props) {
-    const editor = shallowRef<IDomEditor>()
+  setup() {
+    const state = reactive({
+      editorRef: {} as ElementRef,
+      ue: {} as UEditor
+    })
 
-    const computedWrapStyle = computed<StyleValue>(() => ({
-      border: '1px solid #ccc',
-      zIndex: 9999,
-      ...props.wrapStyle
-    }))
+    function init() {
+      state.ue = UE.getEditor(state.editorRef!, {
+        serverUrl: '/api/editor',
+        UEDITOR_CORS_URL: '/ueditor-plus/',
+        UEDITOR_HOME_URL: '/ueditor-plus/'
+      })
 
-    const computedToolbarStyle = computed<StyleValue>(() => ({
-      borderBottom: '1px solid #ccc',
-      ...props.toolbarStyle
-    }))
-
-    const computedEditorStyle = computed<StyleValue>(() => ({
-      height: '500px',
-      ...props.editorStyle
-    }))
-
-    function handleCreated(_editor: IDomEditor) {
-      editor.value = _editor
+      state.ue.addListener('langReady', type => {
+        if (type === 'langReady') {
+          console.log('语言文件加载完成')
+        }
+      })
     }
 
-    onBeforeUnmount(() => {
-      if (!editor.value) return
-
-      editor.value.destroy()
+    onMounted(() => {
+      init()
     })
 
     return {
-      editor,
-      computedWrapStyle,
-      computedToolbarStyle,
-      computedEditorStyle,
-      handleCreated
+      ...toRefs(state)
     }
   }
 })

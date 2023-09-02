@@ -2,7 +2,7 @@
   <div class="view">
     <div class="headerWrap">
       <div class="header">
-        <Icon class="logoIcon" icon="logos:element" />
+        <Icon class="logoIcon" icon="@local:custom:logo" />
         <span class="title">{{ title }}</span>
       </div>
       <div class="desc">基于 Element Plus 的后台管理系统</div>
@@ -17,7 +17,7 @@
       <el-form-item prop="username">
         <el-input v-model="formModel.username" placeholder="账号：admin">
           <template #prefix>
-            <Icon icon="ep:user" :inline="true" />
+            <Icon icon="@local:icon-park-outline:user" :inline="true" />
           </template>
         </el-input>
       </el-form-item>
@@ -29,7 +29,7 @@
           @keydown.enter="handleSubmit"
         >
           <template #prefix>
-            <Icon icon="ep:lock" :inline="true" />
+            <Icon icon="@local:icon-park-outline:lock" :inline="true" />
           </template>
         </el-input>
       </el-form-item>
@@ -44,7 +44,7 @@
         </el-button>
       </el-form-item>
     </el-form>
-    <Icon class="backgroundIcon" icon="custom:background" />
+    <Icon class="backgroundIcon" icon="@local:custom:background" />
   </div>
 </template>
 

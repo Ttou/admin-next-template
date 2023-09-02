@@ -20,8 +20,8 @@ export default defineComponent({
 
     const icon = computed(() =>
       collapsed.value
-        ? 'ant-design:menu-unfold-outlined'
-        : 'ant-design:menu-fold-outlined'
+        ? '@local:icon-park-outline:menu-unfold'
+        : '@local:icon-park-outline:menu-fold'
     )
 
     function handleClick() {

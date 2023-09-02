@@ -22,8 +22,8 @@ export default defineComponent({
 
     const icon = computed(() =>
       isFullscreen.value
-        ? 'ant-design:fullscreen-exit-outlined'
-        : 'ant-design:fullscreen-outlined'
+        ? '@local:icon-park-outline:off-screen'
+        : '@local:icon-park-outline:full-screen'
     )
 
     function handleClick() {

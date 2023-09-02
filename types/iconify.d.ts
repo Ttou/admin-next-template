@@ -5,5 +5,9 @@ declare module '@iconify/vue' {
     }
   }
 
-  export { addCollection, loadIcons } from '@iconify/vue/dist/iconify'
+  export {
+    addCollection,
+    listIcons,
+    loadIcons
+  } from '@iconify/vue/dist/iconify'
 }

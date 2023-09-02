@@ -25,43 +25,52 @@ export default [
           name: 'Demo',
           component: 'DefaultLayout',
           redirect: '/demo/copy-text',
-          meta: { title: '组件演示', icon: 'ant-design:database-outlined' },
+          meta: {
+            title: '组件演示',
+            icon: '@local:icon-park-outline:list-two'
+          },
           children: [
             {
               path: 'copy-text',
               name: 'DemoCopyText',
-              component: 'demo/copy-text',
+              component: 'example/demo/copy-text',
               meta: { title: '复制文本' }
             },
             {
               path: 'editor',
               name: 'DemoEditor',
-              component: 'demo/editor',
+              component: 'example/demo/editor',
               meta: { title: '富文本编辑' }
             },
             {
               path: 'form',
               name: 'DemoForm',
-              component: 'demo/form',
+              component: 'example/demo/form',
               meta: { title: '自定义表单' }
             },
             {
               path: 'chart',
               name: 'DemoChart',
-              component: 'demo/chart',
+              component: 'example/demo/chart',
               meta: { title: '可视化图表' }
             },
             {
               path: 'qrcode',
               name: 'DemoQRCode',
-              component: 'demo/qrcode',
+              component: 'example/demo/qrcode',
               meta: { title: '高级二维码' }
             },
             {
               path: 'table',
               name: 'DemoTable',
-              component: 'demo/table',
+              component: 'example/demo/table',
               meta: { title: '高级表格' }
+            },
+            {
+              path: 'icon',
+              name: 'DemoIcon',
+              component: 'example/demo/icon',
+              meta: { title: '图标选择' }
             }
           ]
         },
@@ -69,7 +78,10 @@ export default [
           path: '/nested',
           component: 'DefaultLayout',
           redirect: '/nested/menu1/menu1-1',
-          meta: { title: '嵌套路由', icon: 'ant-design:align-left-outlined' },
+          meta: {
+            title: '嵌套路由',
+            icon: '@local:icon-park-outline:list-two'
+          },
           children: [
             {
               path: 'menu1',
@@ -81,19 +93,19 @@ export default [
                 {
                   path: 'menu1-1',
                   name: 'Menu1-1',
-                  component: 'nested/menu1/menu1-1',
+                  component: 'example/nested/menu1/menu1-1',
                   meta: { title: 'Menu1-1' }
                 },
                 {
                   path: 'menu1-2',
                   name: 'Menu1-2',
-                  component: 'nested/menu1/menu1-2',
+                  component: 'example/nested/menu1/menu1-2',
                   meta: { title: 'Menu1-2' }
                 },
                 {
                   path: 'menu1-3',
                   name: 'Menu1-3',
-                  component: 'nested/menu1/menu1-3',
+                  component: 'example/nested/menu1/menu1-3',
                   meta: { title: 'Menu1-3' }
                 }
               ]
@@ -101,8 +113,25 @@ export default [
             {
               path: 'menu2',
               name: 'Menu2',
-              component: 'nested/menu2',
+              component: 'example/nested/menu2',
               meta: { title: 'Menu2' }
+            }
+          ]
+        },
+        {
+          path: '/single',
+          component: 'DefaultLayout',
+          redirect: '/single/index',
+          meta: { title: '单独路由' },
+          children: [
+            {
+              path: 'index',
+              name: 'SingleIndexView',
+              component: 'example/single',
+              meta: {
+                title: '单独路由',
+                icon: '@local:icon-park-outline:list-two'
+              }
             }
           ]
         }

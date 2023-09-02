@@ -1,9 +1,6 @@
-import type { IDomEditor } from '@wangeditor/editor'
-
 import { proEditorProps } from './ProEditor.constant'
+import type ProEditor from './ProEditor.vue'
 
 export type ProEditorProps = ComponentProps<typeof proEditorProps>
 
-export type ProEditorRef = {
-  editor: IDomEditor
-}
+export type ProEditorRef = InstanceType<typeof ProEditor>

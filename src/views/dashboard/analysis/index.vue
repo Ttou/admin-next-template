@@ -18,7 +18,7 @@
                 :prefix="item.valPrefix"
                 :endVal="item.valNum"
               />
-              <Icon class="icon" :icon="`custom:${item.icon}`" />
+              <Icon class="icon" :icon="`@local:custom:${item.icon}`" />
             </div>
           </el-skeleton>
         </el-card>

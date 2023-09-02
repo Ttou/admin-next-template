@@ -1,12 +1,15 @@
+import { resolve } from 'node:path'
+
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import elementPlus from 'unplugin-element-plus/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
 import { compression } from 'vite-plugin-compression2'
 import eslint from 'vite-plugin-eslint2'
 import { viteMockServe } from 'vite-plugin-mock'
 import stylelint from 'vite-plugin-stylelint'
 
+import { optimizeElement } from './vite-optimize-element'
 import { customHtml } from './vite-plugin-html'
 
 export default defineConfig(({ mode }) => {
@@ -38,8 +41,10 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       compression(),
-      elementPlus({
-        useSource: false
+      components({
+        dts: false,
+        dirs: [],
+        resolvers: [ElementPlusResolver()]
       }),
       eslint({
         lintInWorker: true
@@ -49,7 +54,11 @@ export default defineConfig(({ mode }) => {
       }),
       customHtml({
         injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
-        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`
+        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`,
+        injectScript: `
+          <script type="text/javascript" src="/ueditor-plus/ueditor.config.js"></script>
+          <script type="text/javascript" src="/ueditor-plus/ueditor.all.js"></script>
+        `
       }),
       viteMockServe({
         mockPath: 'mock',
@@ -62,7 +71,7 @@ export default defineConfig(({ mode }) => {
       })
     ],
     optimizeDeps: {
-      include: ['lodash-unified', 'dayjs/locale/zh-cn'],
+      include: ['dayjs/locale/zh-cn', ...optimizeElement],
       exclude: ['vue-demi']
     },
     build: {

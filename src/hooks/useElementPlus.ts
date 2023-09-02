@@ -1,47 +1,27 @@
+import 'element-plus/theme-chalk/el-loading.css'
+import 'element-plus/theme-chalk/el-message.css'
+import 'element-plus/theme-chalk/el-message-box.css'
+import 'element-plus/theme-chalk/el-notification.css'
+import 'element-plus/theme-chalk/el-overlay.css'
+
 import {
-  ElAlert,
-  ElAside,
   ElAutocomplete,
-  ElBreadcrumb,
-  ElBreadcrumbItem,
   ElButton,
-  ElCard,
   ElCascader,
   ElCheckbox,
-  ElCheckboxGroup,
-  ElCol,
-  ElContainer,
   ElDatePicker,
-  ElDropdown,
-  ElDropdownItem,
-  ElDropdownMenu,
-  ElForm,
-  ElFormItem,
-  ElHeader,
   ElInput,
   ElInputNumber,
   ElLoading,
-  ElMain,
-  ElMenu,
-  ElMenuItem,
   ElMessage,
   ElMessageBox,
   ElNotification,
   ElOption,
   ElRadio,
-  ElRadioGroup,
   ElRate,
-  ElRow,
-  ElScrollbar,
   ElSelect,
-  ElSkeleton,
   ElSlider,
-  ElSpace,
-  ElSubMenu,
   ElSwitch,
-  ElTabPane,
-  ElTabs,
-  ElTag,
   ElTimePicker,
   ElTimeSelect
 } from 'element-plus'
@@ -71,33 +51,6 @@ export function useElementPlus(app: App) {
     .use(ElOption)
 
   // 其他页面中用到的组件
-  app
-    .use(ElRow)
-    .use(ElCol)
-    .use(ElCard)
-    .use(ElSkeleton)
-    .use(ElTag)
-    .use(ElAlert)
-    .use(ElForm)
-    .use(ElFormItem)
-    .use(ElCheckboxGroup)
-    .use(ElRadioGroup)
-    .use(ElTabs)
-    .use(ElTabPane)
-    .use(ElDropdown)
-    .use(ElDropdownMenu)
-    .use(ElDropdownItem)
-    .use(ElBreadcrumb)
-    .use(ElBreadcrumbItem)
-    .use(ElSpace)
-    .use(ElMenu)
-    .use(ElMenuItem)
-    .use(ElSubMenu)
-    .use(ElAside)
-    .use(ElHeader)
-    .use(ElMain)
-    .use(ElContainer)
-    .use(ElScrollbar)
 
   // 全局指令
   app.use(ElMessage).use(ElMessageBox).use(ElNotification).use(ElLoading)
