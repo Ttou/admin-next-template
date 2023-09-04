@@ -26,7 +26,11 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["element-plus/global", "vite/client"]
+    "types": [
+      "@ttou/ueditor-typings/global",
+      "element-plus/global",
+      "vite/client"
+    ]
   },
   "include": ["src", "types"],
   "exclude": ["node_modules", "**/*.spec.ts"],
