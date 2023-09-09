@@ -1,3 +1,4 @@
+import { pascalCase } from 'case-anything'
 import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
@@ -31,8 +32,9 @@ async function filterMenuTree(menus: Menu[]) {
     } else {
       const component = loadComponent(menu.component)!
       const module: any = await component()
+      const name = pascalCase(menu.component)
 
-      temp.name = menu.name || module.default.name
+      temp.name = name || module.default.name
       temp.component = component
     }
 

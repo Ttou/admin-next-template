@@ -1,7 +1,8 @@
 import type { Router } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
-import { usePermissionStore, useUserStore } from '@/store'
+import { constRoutesLength } from '@/router'
+import { usePermissionStore, useSettingStore, useUserStore } from '@/store'
 
 export function usePermissionGuard(router: Router) {
   const whiteList = [CONST_ROUTES.LOGIN] as string[]
@@ -9,6 +10,7 @@ export function usePermissionGuard(router: Router) {
   router.beforeEach(async (to, from) => {
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
+    const settingStore = useSettingStore()
 
     const hasToken = userStore.token
 
@@ -25,11 +27,27 @@ export function usePermissionGuard(router: Router) {
             const menus = await userStore.getInfo()
             const routes = await permissionStore.generate(menus)
 
-            routes.forEach(route => {
-              router.addRoute(route)
-            })
+            // 说明还没添加过异步路由
+            if (router.getRoutes().length <= constRoutesLength) {
+              routes.forEach(route => {
+                router.addRoute(route)
+              })
+            }
 
-            return to.fullPath
+            // 异步路由为空时
+            if (routes.length <= 1) {
+              return `${CONST_ROUTES.ERROR}?status=404`
+            } else {
+              settingStore.change({
+                key: 'homeRoute',
+                value: {
+                  name: routes[0].name,
+                  path: routes[0].path
+                }
+              })
+
+              return to.fullPath
+            }
           } catch {}
         }
       }

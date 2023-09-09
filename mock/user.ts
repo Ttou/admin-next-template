@@ -21,8 +21,28 @@ export default [
       name: '管理员',
       menus: [
         {
+          path: '/dashboard',
+          component: 'DefaultLayout',
+          redirect: '/dashboard/analysis',
+          meta: {
+            title: 'Dashboard',
+            icon: '@local:icon-park-outline:dashboard-one'
+          },
+          children: [
+            {
+              path: 'analysis',
+              component: 'example/dashboard/analysis',
+              meta: { title: '分析页' }
+            },
+            {
+              path: 'workbench',
+              component: 'example/dashboard/workbench',
+              meta: { title: '工作台' }
+            }
+          ]
+        },
+        {
           path: '/demo',
-          name: 'Demo',
           component: 'DefaultLayout',
           redirect: '/demo/copy-text',
           meta: {
@@ -32,43 +52,36 @@ export default [
           children: [
             {
               path: 'copy-text',
-              name: 'DemoCopyText',
               component: 'example/demo/copy-text',
               meta: { title: '复制文本' }
             },
             {
               path: 'editor',
-              name: 'DemoEditor',
               component: 'example/demo/editor',
               meta: { title: '富文本编辑' }
             },
             {
               path: 'form',
-              name: 'DemoForm',
               component: 'example/demo/form',
               meta: { title: '自定义表单' }
             },
             {
               path: 'chart',
-              name: 'DemoChart',
               component: 'example/demo/chart',
               meta: { title: '可视化图表' }
             },
             {
               path: 'qrcode',
-              name: 'DemoQRCode',
               component: 'example/demo/qrcode',
               meta: { title: '高级二维码' }
             },
             {
               path: 'table',
-              name: 'DemoTable',
               component: 'example/demo/table',
               meta: { title: '高级表格' }
             },
             {
               path: 'icon',
-              name: 'DemoIcon',
               component: 'example/demo/icon',
               meta: { title: '图标选择' }
             }
@@ -85,26 +98,22 @@ export default [
           children: [
             {
               path: 'menu1',
-              name: 'Menu1',
               component: 'ParentLayout',
               meta: { title: 'Menu1' },
               redirect: '/nested/menu1/menu1-1',
               children: [
                 {
                   path: 'menu1-1',
-                  name: 'Menu1-1',
                   component: 'example/nested/menu1/menu1-1',
                   meta: { title: 'Menu1-1' }
                 },
                 {
                   path: 'menu1-2',
-                  name: 'Menu1-2',
                   component: 'example/nested/menu1/menu1-2',
                   meta: { title: 'Menu1-2' }
                 },
                 {
                   path: 'menu1-3',
-                  name: 'Menu1-3',
                   component: 'example/nested/menu1/menu1-3',
                   meta: { title: 'Menu1-3' }
                 }
@@ -112,7 +121,6 @@ export default [
             },
             {
               path: 'menu2',
-              name: 'Menu2',
               component: 'example/nested/menu2',
               meta: { title: 'Menu2' }
             }
@@ -126,7 +134,6 @@ export default [
           children: [
             {
               path: 'index',
-              name: 'SingleIndexView',
               component: 'example/single',
               meta: {
                 title: '单独路由',

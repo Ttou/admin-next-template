@@ -1,4 +1,5 @@
 export * from './ajax'
 export * from './date'
 export * from './instance'
+export * from './transform'
 export * from './util'

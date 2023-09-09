@@ -15,10 +15,6 @@ export enum CONST_ROUTES {
    */
   ERROR = '/error',
   /**
-   * 仪表盘
-   */
-  DASHBOARD = '/dashboard',
-  /**
    * 跳转页
    */
   REDIRECT = '/redirect'

@@ -1,32 +1,16 @@
+import { cloneDeep } from 'lodash-unified'
 import type { RouteRecordRaw } from 'vue-router'
 
-import { CONST_ROUTES, SETTING } from '@/constants'
+import { CONST_ROUTES } from '@/constants'
 import { DefaultLayout } from '@/layout'
+import { treeToList } from '@/utils'
 
-export default [
+export const constRoutes = [
   {
     path: CONST_ROUTES.INDEX,
-    redirect: SETTING.homeRoute.path
-  },
-  {
-    path: CONST_ROUTES.DASHBOARD,
-    redirect: `${CONST_ROUTES.DASHBOARD}/analysis`,
-    component: DefaultLayout,
-    meta: { title: 'Dashboard', icon: 'ant-design:dashboard-outlined' },
-    children: [
-      {
-        path: 'analysis',
-        name: 'Analysis',
-        component: () => import('@/views/dashboard/analysis/index.vue'),
-        meta: { title: '分析页' }
-      },
-      {
-        path: 'workbench',
-        name: 'Workbench',
-        component: () => import('@/views/dashboard/workbench/index.vue'),
-        meta: { title: '工作台' }
-      }
-    ]
+    name: 'IndexView',
+    component: () => import('@/views/sys/index/index.vue'),
+    meta: { title: '首页', hidden: true }
   },
   {
     path: CONST_ROUTES.LOGIN,
@@ -53,3 +37,5 @@ export default [
     ]
   }
 ] as RouteRecordRaw[]
+
+export const constRoutesLength = treeToList(cloneDeep(constRoutes)).length
