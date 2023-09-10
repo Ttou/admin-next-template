@@ -1,0 +1,8 @@
+/* stylelint-disable-next-line import-notation */
+@import 'vxe-table/lib/style.css';
+/* stylelint-disable-next-line import-notation */
+@import 'vxe-table-plugin-element/dist/style.css';
+
+/* 修改css变量 */
+html {
+}

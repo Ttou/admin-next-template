@@ -1,6 +1,4 @@
 import 'xe-utils'
-import 'vxe-table/lib/style.css'
-import 'vxe-table-plugin-element/dist/style.css'
 
 import type { App } from 'vue'
 import VXETable from 'vxe-table'

@@ -44,7 +44,11 @@ export default defineConfig(({ mode }) => {
       components({
         dts: false,
         dirs: [],
-        resolvers: [ElementPlusResolver()]
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: false
+          })
+        ]
       }),
       eslint({
         lintInWorker: true

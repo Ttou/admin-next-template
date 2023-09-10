@@ -1,0 +1,6 @@
+/* stylelint-disable-next-line import-notation */
+@import 'element-plus/dist/index.css';
+
+/* 修改css变量 */
+:root {
+}
