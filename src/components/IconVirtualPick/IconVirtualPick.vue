@@ -24,7 +24,9 @@
       <el-input
         :modelValue="modelValue"
         placeholder="请选择图标"
-        readonly
+        clearable
+        @clear="handleChange({ value: '', index: 0 })"
+        @input="handleInputChange"
       ></el-input>
     </template>
   </el-popover>
@@ -53,6 +55,10 @@ export default defineComponent({
       emit('update:modelValue', value)
       state.activeIconIndex = index
       state.show = false
+    }
+
+    function handleInputChange(value: any) {
+      emit('update:modelValue', value)
     }
 
     watch(
@@ -94,7 +100,8 @@ export default defineComponent({
     return {
       ...toRefs(state),
       iconList,
-      handleChange
+      handleChange,
+      handleInputChange
     }
   }
 })
