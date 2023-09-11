@@ -51,7 +51,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .view {
   .btnsWrap {
     margin-bottom: 10px;

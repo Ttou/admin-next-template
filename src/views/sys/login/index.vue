@@ -129,7 +129,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .view {
   padding: 110px 0 144px;
   height: 100%;

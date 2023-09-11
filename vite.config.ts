@@ -2,6 +2,8 @@ import { resolve } from 'node:path'
 
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
+import autoprefixer from 'autoprefixer'
+import postcssNested from 'postcss-nested'
 import imagemin from 'unplugin-imagemin/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import components from 'unplugin-vue-components/vite'
@@ -23,6 +25,9 @@ export default defineConfig(({ mode }) => {
     css: {
       modules: {
         generateScopedName: '[local]__[hash:base64:5]'
+      },
+      postcss: {
+        plugins: [autoprefixer(), postcssNested({ preserveEmpty: true })]
       }
     },
     resolve: {

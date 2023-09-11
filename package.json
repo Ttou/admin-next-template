@@ -11,7 +11,7 @@
     "gen:icons": "tsx scripts/genIcons.ts",
     "lint": "concurrently \"npm:lint:*\"",
     "lint:script": "eslint \"./src/**/*.{ts,vue}\" --fix",
-    "lint:style": "stylelint \"./src/**/*.{css,scss,vue}\" --fix",
+    "lint:style": "stylelint \"./src/**/*.{css,vue}\" --fix",
     "commit": "git add . && git cz",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "npx simple-git-hooks"
@@ -58,6 +58,7 @@
     "@vitejs/plugin-legacy": "^4.1.1",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/eslint-config-typescript": "^11.0.3",
+    "autoprefixer": "^10.4.15",
     "commitizen": "^4.3.0",
     "concurrently": "^8.2.0",
     "cz-customizable": "^7.0.0",
@@ -72,9 +73,8 @@
     "mockjs": "^1.1.0",
     "postcss": "^8.4.28",
     "postcss-html": "^1.5.0",
-    "postcss-scss": "^4.0.7",
+    "postcss-nested": "^6.0.1",
     "prettier": "^3.0.3",
-    "sass": "^1.66.1",
     "simple-git-hooks": "^2.9.0",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",
@@ -106,7 +106,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{css,scss,vue}": [
+    "*.{css,vue}": [
       "stylelint --fix --allow-empty-input",
       "prettier --write"
     ]
