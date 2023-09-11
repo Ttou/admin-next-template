@@ -1,6 +1,8 @@
 import { resolve } from 'node:path'
 
+import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
+import imagemin from 'unplugin-imagemin/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
@@ -9,6 +11,7 @@ import eslint from 'vite-plugin-eslint2'
 import { viteMockServe } from 'vite-plugin-mock'
 import stylelint from 'vite-plugin-stylelint'
 
+import { browserslist } from './package.json'
 import { optimizeElement } from './vite-optimize-element'
 import { customHtml } from './vite-plugin-html'
 
@@ -40,6 +43,9 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
+      legacy({
+        targets: browserslist
+      }),
       compression(),
       components({
         dts: false,
@@ -49,12 +55,6 @@ export default defineConfig(({ mode }) => {
             importStyle: false
           })
         ]
-      }),
-      eslint({
-        lintInWorker: true
-      }),
-      stylelint({
-        lintInWorker: true
       }),
       customHtml({
         injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
@@ -72,7 +72,20 @@ export default defineConfig(({ mode }) => {
           import { setupProdMockServer } from './mockProdServer'
           setupProdMockServer()
         `
-      })
+      }),
+      eslint({
+        lintInWorker: true
+      }),
+      stylelint({
+        lintInWorker: true
+      }),
+      ...(mode === 'production'
+        ? [
+            imagemin({
+              mode: 'sharp'
+            })
+          ]
+        : [])
     ],
     optimizeDeps: {
       include: ['dayjs/locale/zh-cn', ...optimizeElement],
