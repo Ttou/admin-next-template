@@ -22,9 +22,9 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   height: var(--side-logo-height);
-}
 
-.logoIcon {
-  transform: scale(2);
+  .logoIcon {
+    transform: scale(2);
+  }
 }
 </style>

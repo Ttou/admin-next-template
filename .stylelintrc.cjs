@@ -10,6 +10,7 @@ module.exports = defineStylelintConfig({
   ],
   rules: {
     'block-no-empty': null,
+    'at-rule-no-unknown': [true, { ignoreAtRules: ['/at-root/'] }],
     'property-no-unknown': [true, { ignoreProperties: ['/composes/'] }],
     'selector-class-pattern': null,
     'selector-pseudo-class-no-unknown': null,

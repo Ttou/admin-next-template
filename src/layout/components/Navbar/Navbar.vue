@@ -38,29 +38,29 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   height: 100%;
-}
 
-.left {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
+  .left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
 
-.right {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  margin-right: -15px;
-}
+  .right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: -15px;
 
-.right :global(.el-space__item) {
-  min-width: 24px;
-  cursor: pointer;
-  text-align: center;
-  line-height: 48px;
-}
+    :global(.el-space__item) {
+      min-width: 24px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 48px;
+    }
 
-.right :global(.el-space__item:hover) {
-  background-color: rgb(0 0 0 / 2.5%);
+    :global(.el-space__item:hover) {
+      background-color: rgb(0 0 0 / 2.5%);
+    }
+  }
 }
 </style>

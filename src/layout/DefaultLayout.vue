@@ -131,40 +131,40 @@ export default defineComponent({
 .layout {
   width: 100%;
   height: 100%;
-}
 
-.layoutSide {
-  position: fixed;
-  overflow: hidden;
-  height: 100vh;
-  left: 0;
-  background-color: var(--menu-bg);
-  z-index: 100;
-  transition: all 0.4s;
-}
+  .layoutSide {
+    position: fixed;
+    overflow: hidden;
+    height: 100vh;
+    left: 0;
+    background-color: var(--menu-bg);
+    z-index: 100;
+    transition: all 0.4s;
+  }
 
-.layoutMain {
-  background-color: #fff;
-  transition: all 0.4s;
-}
+  .layoutMain {
+    background-color: #fff;
+    transition: all 0.4s;
+  }
 
-.layoutHeader {
-  padding: 0 12px;
-  background-color: #fff;
-  z-index: 100;
-}
+  .layoutHeader {
+    padding: 0 12px;
+    background-color: #fff;
+    z-index: 100;
+  }
 
-.layoutContent {
-  padding: 12px 12px 0;
-  overflow-x: hidden;
-}
+  .layoutContent {
+    padding: 12px 12px 0;
+    overflow-x: hidden;
+  }
 
-.layout :global(#page) {
-  background-color: #fff;
-}
+  :global(#page) {
+    background-color: #fff;
+  }
 
-.layout :global(#page .el-scrollbar__view) {
-  display: flex;
-  min-height: 100%;
+  :global(#page .el-scrollbar__view) {
+    display: flex;
+    min-height: 100%;
+  }
 }
 </style>

@@ -42,6 +42,7 @@ export default defineComponent({
 
 <style module>
 .trigger {
+  margin-right: 20px;
   font-size: 18px;
   cursor: pointer;
   transition: color 0.3s;

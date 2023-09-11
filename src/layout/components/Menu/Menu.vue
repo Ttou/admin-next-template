@@ -92,43 +92,48 @@ export default defineComponent({
 .menu {
   border-right: none;
   min-height: calc(100vh - var(--side-logo-height));
-}
 
-.menu :global(.iconify) {
-  margin-right: 12px;
-  font-size: 18px;
-}
+  :global(.iconify) {
+    margin-right: 12px;
+    font-size: 18px;
+  }
 
-.menu:global(.el-menu--collapse) {
-  width: var(--menu-collapse-width);
-}
+  &:global(.el-menu--collapse) {
+    width: var(--menu-collapse-width);
+  }
 
-.menu:global(.el-menu--collapse .iconify) {
-  margin: 0;
-}
+  &:global(.el-menu--collapse .iconify) {
+    margin: 0;
+  }
 
-.menu:global(.el-menu--collapse .el-sub-menu__title) {
-  justify-content: center;
-  padding: 0;
-}
+  &:global(.el-menu--collapse .el-sub-menu__title) {
+    justify-content: center;
+    padding: 0;
+  }
 
-.menu > :global(.el-menu-item:hover),
-.menu :global(.el-sub-menu__title:hover) {
-  background-color: var(--menu-hover) !important;
-}
+  & > :global(.el-menu-item:hover),
+  & :global(.el-sub-menu__title:hover) {
+    background-color: var(--menu-hover) !important;
+  }
 
-.menu :global(.is-active > .el-sub-menu__title) {
-  color: var(--sub-menu-active-text) !important;
-}
+  & :global(.is-active > .el-sub-menu__title) {
+    color: var(--sub-menu-active-text) !important;
+  }
 
-.menu :global(.el-sub-menu .el-menu .el-sub-menu__title),
-.menu :global(.el-sub-menu .el-menu-item) {
-  background-color: var(--sub-menu-bg) !important;
-}
+  & :global(.el-sub-menu .el-menu .el-sub-menu__title),
+  & :global(.el-sub-menu .el-menu-item) {
+    background-color: var(--sub-menu-bg) !important;
+  }
 
-.menu :global(.nest-menu .el-sub-menu > .el-sub-menu__title:hover),
-.menu :global(.el-sub-menu .el-menu-item:hover),
-:global(.el-menu--popup .el-sub-menu > .el-sub-menu__title:hover) {
-  background-color: var(--sub-menu-hover) !important;
+  & :global(.nest-menu .el-sub-menu > .el-sub-menu__title:hover),
+  & :global(.el-sub-menu .el-menu-item:hover) {
+    background-color: var(--sub-menu-hover) !important;
+  }
+
+  @at-root {
+    :global(.el-menu--popup .el-sub-menu > .el-sub-menu__title:hover) {
+      background-color: var(--sub-menu-hover) !important;
+    }
+  }
 }
 </style>

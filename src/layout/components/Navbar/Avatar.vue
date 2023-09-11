@@ -70,17 +70,16 @@ export default defineComponent({
   display: flex;
   align-items: center;
   outline: none;
-}
 
-.avatar {
-  width: 24px;
-  height: 24px;
+  .avatar {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .avatarDropdownMenu {
-}
-
-.avatarDropdownMenu :global(svg) {
-  margin-right: 5px;
+  :global(svg) {
+    margin-right: 5px;
+  }
 }
 </style>

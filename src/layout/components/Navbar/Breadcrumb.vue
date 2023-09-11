@@ -65,6 +65,5 @@ export default defineComponent({
 
 <style module>
 .breadcrumb {
-  margin-left: 20px;
 }
 </style>
