@@ -11,7 +11,8 @@ export const useUserStore = defineStore('user', () => {
   const state = reactive({
     token: useStorage('token', ''),
     name: '',
-    menus: [] as Menu[]
+    menus: [] as Menu[],
+    infoRequested: false
   })
 
   async function login(payload: Record<string, any>) {
@@ -31,6 +32,7 @@ export const useUserStore = defineStore('user', () => {
 
     state.name = data.name
     state.menus = data.menus
+    state.infoRequested = true
 
     return data.menus
   }
@@ -41,6 +43,7 @@ export const useUserStore = defineStore('user', () => {
     state.token = ''
     state.name = ''
     state.menus = []
+    state.infoRequested = false
     tabsStore.delAllTabs()
   }
 

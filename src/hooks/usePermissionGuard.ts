@@ -18,9 +18,9 @@ export function usePermissionGuard(router: Router) {
       if (to.path === CONST_ROUTES.LOGIN) {
         return CONST_ROUTES.INDEX
       } else {
-        const hasUser = userStore.name
+        const { infoRequested } = userStore
 
-        if (hasUser) {
+        if (infoRequested) {
           return true
         } else {
           try {
