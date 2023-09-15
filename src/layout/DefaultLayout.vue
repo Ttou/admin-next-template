@@ -162,7 +162,7 @@ export default defineComponent({
     background-color: #fff;
   }
 
-  :global(#page .el-scrollbar__view) {
+  :global(#page > .el-scrollbar__wrap > .el-scrollbar__view) {
     display: flex;
     min-height: 100%;
   }

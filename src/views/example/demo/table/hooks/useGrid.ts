@@ -180,6 +180,17 @@ export function useGrid() {
         }
       ],
       pagerConfig: {
+        background: true,
+        layouts: [
+          'PrevJump',
+          'PrevPage',
+          'JumpNumber',
+          'NextPage',
+          'NextJump',
+          'Sizes',
+          'FullJump',
+          'Total'
+        ],
         pageSize: 15
       },
       proxyConfig: {
