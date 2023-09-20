@@ -1,3 +1,4 @@
+import { ElNotification } from 'element-plus'
 import type { Router } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
@@ -18,7 +19,7 @@ export function usePermissionGuard(router: Router) {
       if (to.path === CONST_ROUTES.LOGIN) {
         return CONST_ROUTES.INDEX
       } else {
-        const { infoRequested } = userStore
+        const { infoRequested, clear } = userStore
 
         if (infoRequested) {
           return true
@@ -36,7 +37,16 @@ export function usePermissionGuard(router: Router) {
 
             // 异步路由为空时
             if (routes.length <= 1) {
-              return `${CONST_ROUTES.ERROR}?status=404`
+              clear()
+              ElNotification.error({
+                title: '提示',
+                message:
+                  '当前用户没有分配任何菜单，请联系管理员分配后再重新登录！',
+                duration: 3000,
+                onClose() {
+                  location.reload()
+                }
+              })
             } else {
               settingStore.change({
                 key: 'homeRoute',
