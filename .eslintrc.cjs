@@ -20,6 +20,7 @@ module.exports = defineEslintConfig({
   rules: {
     'no-undef': 'off',
     'no-empty': 'off',
+    'no-useless-escape': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'prettier/prettier': 'error',

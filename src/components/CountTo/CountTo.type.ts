@@ -1,3 +1,3 @@
 import { countToProps } from './CountTo.constant'
 
-export type CountToProps = ComponentProps<typeof countToProps>
+export type CountToProps = ReturnType<typeof countToProps>
