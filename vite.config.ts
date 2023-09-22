@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
 
+import { customHtml } from '@ttou/vite-html'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import autoprefixer from 'autoprefixer'
@@ -15,7 +16,6 @@ import stylelint from 'vite-plugin-stylelint'
 
 import { browserslist } from './package.json'
 import { optimizeElement } from './vite-optimize-element'
-import { customHtml } from './vite-plugin-html'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.')
