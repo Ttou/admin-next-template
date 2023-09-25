@@ -36,6 +36,10 @@ async function filterMenuTree(menus: Menu[]) {
 
       temp.name = name || module.default.name
       temp.component = component
+      temp.meta.noCache = menu.meta.noCache || true
+
+      // 设置异步组件名称以支持缓存
+      module.default.name = temp.name
     }
 
     if (temp.children) {
