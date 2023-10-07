@@ -18,7 +18,7 @@ export function getCtxFromInstance(fnName = 'getCtxFromInstance') {
  */
 export function getElementFnFromInstance() {
   const { $notify, $message, $msgbox, $loading, $alert, $confirm, $prompt } =
-    getCtxFromInstance('getStoreFromInstance')!
+    getCtxFromInstance('getElementFnFromInstance')!
 
   return {
     $notify,
