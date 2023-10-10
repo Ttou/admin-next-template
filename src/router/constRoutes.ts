@@ -1,9 +1,7 @@
-import { cloneDeep } from 'lodash-unified'
 import type { RouteRecordRaw } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
 import { DefaultLayout } from '@/layout'
-import { treeToList } from '@/utils'
 
 export const constRoutes = [
   {
@@ -37,5 +35,3 @@ export const constRoutes = [
     ]
   }
 ] as RouteRecordRaw[]
-
-export const constRoutesLength = treeToList(cloneDeep(constRoutes)).length

@@ -2,7 +2,6 @@ import { ElNotification } from 'element-plus'
 import type { Router } from 'vue-router'
 
 import { CONST_ROUTES } from '@/constants'
-import { constRoutesLength } from '@/router'
 import { usePermissionStore, useSettingStore, useUserStore } from '@/store'
 
 export function usePermissionGuard(router: Router) {
@@ -13,27 +12,18 @@ export function usePermissionGuard(router: Router) {
     const permissionStore = usePermissionStore()
     const settingStore = useSettingStore()
 
-    const hasToken = userStore.token
+    const { token, infoRequested, clear } = userStore
 
-    if (hasToken) {
+    if (token) {
       if (to.path === CONST_ROUTES.LOGIN) {
         return CONST_ROUTES.INDEX
       } else {
-        const { infoRequested, clear } = userStore
-
         if (infoRequested) {
           return true
         } else {
           try {
             const menus = await userStore.getInfo()
             const routes = await permissionStore.generate(menus)
-
-            // 说明还没添加过异步路由
-            if (router.getRoutes().length <= constRoutesLength) {
-              routes.forEach(route => {
-                router.addRoute(route)
-              })
-            }
 
             // 异步路由为空时
             if (routes.length <= 1) {
@@ -48,6 +38,10 @@ export function usePermissionGuard(router: Router) {
                 }
               })
             } else {
+              routes.forEach(route => {
+                router.addRoute(route)
+              })
+
               settingStore.change({
                 key: 'homeRoute',
                 value: {
@@ -62,6 +56,8 @@ export function usePermissionGuard(router: Router) {
         }
       }
     } else {
+      clear()
+
       if (whiteList.includes(to.path)) {
         return true
       } else {

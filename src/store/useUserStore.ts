@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
 
 import { userApi } from '@/apis'
+import { resetRouter } from '@/router'
 
 import { useTabsStore } from '.'
 import store from '.'
@@ -45,6 +46,7 @@ export const useUserStore = defineStore('user', () => {
     state.menus = []
     state.infoRequested = false
     tabsStore.delAllTabs()
+    resetRouter()
   }
 
   return {
