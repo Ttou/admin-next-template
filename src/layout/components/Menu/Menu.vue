@@ -130,6 +130,10 @@ export default defineComponent({
     background-color: var(--sub-menu-hover) !important;
   }
 
+  &:global(.el-menu--collapse .el-menu-item > .el-menu-tooltip__trigger) {
+    justify-content: center;
+  }
+
   @at-root {
     :global(.el-menu--popup .el-sub-menu > .el-sub-menu__title:hover) {
       background-color: var(--sub-menu-hover) !important;

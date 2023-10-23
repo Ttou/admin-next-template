@@ -1,7 +1,7 @@
 <template>
   <el-menu-item v-if="show" :index="item.path" @click="handleJump">
+    <Icon v-if="item.meta.icon" :icon="item.meta.icon" />
     <template #title>
-      <Icon v-if="item.meta.icon" :icon="item.meta.icon" />
       <span>{{ item.meta.title }}</span>
     </template>
   </el-menu-item>

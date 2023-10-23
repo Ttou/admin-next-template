@@ -1,0 +1,1 @@
+import{d as r,aX as n,aY as c,p,q as u}from"./chunk-libs-70fdb20d.js";import{_ as i}from"./index-6d529ec3.js";const m=r({name:"RedirectView",setup(){const t=n(),o=c(),{params:s,query:a}=t,e=s.path;o.replace({path:e.startsWith("/")?e:"/".concat(e),query:a})}});function _(t,o,s,a,e,d){return p(),u("section")}const l=i(m,[["render",_]]);export{l as default};
