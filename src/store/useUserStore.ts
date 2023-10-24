@@ -39,6 +39,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function clear() {
+    if (!state.infoRequested) return
+
     const tabsStore = useTabsStore()
 
     state.token = ''
