@@ -260,11 +260,11 @@ export default defineComponent({
     cursor: pointer;
     outline: none;
   }
+}
 
-  .tabsDropdownMenu {
-    :global(svg) {
-      margin-right: 5px;
-    }
+.tabsDropdownMenu {
+  :global(svg) {
+    margin-right: 5px;
   }
 }
 </style>
