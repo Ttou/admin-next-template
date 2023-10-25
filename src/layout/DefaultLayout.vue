@@ -28,7 +28,7 @@
         <ReuseContent />
       </el-scrollbar>
     </el-container>
-    <el-scrollbar v-else>
+    <el-scrollbar v-else id="page">
       <el-container
         :class="$style.layoutMain"
         :style="mainStyle"
@@ -159,12 +159,15 @@ export default defineComponent({
   }
 
   :global(#page) {
-    background-color: #fff;
+    flex: 1;
   }
 
-  :global(#page > .el-scrollbar__wrap > .el-scrollbar__view) {
-    display: flex;
-    min-height: 100%;
+  :global(#page > .el-scrollbar__wrap) {
+    overflow-x: hidden;
+  }
+
+  :global(#page > .el-scrollbar__bar) {
+    z-index: 110;
   }
 }
 </style>
