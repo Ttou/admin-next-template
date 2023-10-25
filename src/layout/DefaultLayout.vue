@@ -28,17 +28,18 @@
         <ReuseContent />
       </el-scrollbar>
     </el-container>
-    <el-scrollbar v-else id="page">
-      <el-container
-        :class="$style.layoutMain"
-        :style="mainStyle"
-        direction="vertical"
-      >
+    <el-container
+      v-else
+      :class="$style.layoutMain"
+      :style="mainStyle"
+      direction="vertical"
+    >
+      <el-scrollbar id="page">
         <ReuseHeader />
         <Tabbar :style="tabbarStyle" />
         <ReuseContent />
-      </el-container>
-    </el-scrollbar>
+      </el-scrollbar>
+    </el-container>
   </el-container>
 </template>
 
@@ -158,16 +159,12 @@ export default defineComponent({
     overflow-x: hidden;
   }
 
-  :global(#page) {
-    flex: 1;
-  }
-
-  :global(#page > .el-scrollbar__wrap) {
-    overflow-x: hidden;
-  }
-
   :global(#page > .el-scrollbar__bar) {
     z-index: 110;
+  }
+
+  :global(#page > .el-scrollbar__bar.is-horizontal) {
+    display: none;
   }
 }
 </style>
