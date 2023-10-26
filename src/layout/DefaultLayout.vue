@@ -156,7 +156,7 @@ export default defineComponent({
   }
 
   .layoutContent {
-    padding: 12px 12px 0;
+    padding: 12px;
     overflow-x: hidden;
   }
 

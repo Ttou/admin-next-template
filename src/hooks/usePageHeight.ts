@@ -18,7 +18,7 @@ export function usePageHeight(params?: Params) {
 
     pageHeight.value =
       el!.scrollHeight -
-      (settingStore.fixedHeader ? 20 : 110) -
+      (settingStore.fixedHeader ? 24 : 114) -
       (params?.extraHeight || 0)
   }
 
