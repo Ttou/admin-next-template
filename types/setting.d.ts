@@ -4,6 +4,10 @@ declare interface Setting {
    */
   title: string
   /**
+   * 显示标签栏
+   */
+  tabbar: boolean
+  /**
    * 固定头部
    */
   fixedHeader: boolean

@@ -23,7 +23,7 @@
       direction="vertical"
     >
       <ReuseHeader />
-      <Tabbar :style="tabbarStyle" />
+      <Tabbar v-show="setting.tabbar" :style="tabbarStyle" />
       <el-scrollbar wrapClass="page">
         <ReuseContent />
       </el-scrollbar>
@@ -36,7 +36,7 @@
     >
       <el-scrollbar wrapClass="page">
         <ReuseHeader />
-        <Tabbar :style="tabbarStyle" />
+        <Tabbar v-show="setting.tabbar" :style="tabbarStyle" />
         <ReuseContent />
       </el-scrollbar>
     </el-container>

@@ -2,6 +2,7 @@ import { CSS_VARS } from './cssVars'
 
 export const SETTING = {
   title: import.meta.env.VITE_APP_TITLE,
+  tabbar: true,
   fixedHeader: true,
   sideOpened: true,
   sideOpenedWidth: CSS_VARS.menuWidth,
