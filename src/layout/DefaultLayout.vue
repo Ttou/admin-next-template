@@ -24,7 +24,7 @@
     >
       <ReuseHeader />
       <Tabbar :style="tabbarStyle" />
-      <el-scrollbar id="page">
+      <el-scrollbar wrapClass="page">
         <ReuseContent />
       </el-scrollbar>
     </el-container>
@@ -34,7 +34,7 @@
       :style="mainStyle"
       direction="vertical"
     >
-      <el-scrollbar id="page">
+      <el-scrollbar wrapClass="page">
         <ReuseHeader />
         <Tabbar :style="tabbarStyle" />
         <ReuseContent />
@@ -146,6 +146,7 @@ export default defineComponent({
   .layoutMain {
     background-color: #fff;
     transition: all 0.4s;
+    height: 100%;
   }
 
   .layoutHeader {
@@ -159,11 +160,7 @@ export default defineComponent({
     overflow-x: hidden;
   }
 
-  :global(#page > .el-scrollbar__bar) {
-    z-index: 110;
-  }
-
-  :global(#page > .el-scrollbar__bar.is-horizontal) {
+  :global(.page + .is-horizontal) {
     display: none;
   }
 }

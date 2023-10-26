@@ -14,7 +14,7 @@ export function usePageHeight(params?: Params) {
   const settingStore = useSettingStore()
 
   function calcPageHeight() {
-    const el = document.querySelector('#page')
+    const el = document.querySelector('.el-scrollbar__wrap.page')
 
     pageHeight.value =
       el!.scrollHeight -
