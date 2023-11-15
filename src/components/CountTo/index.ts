@@ -1,2 +1,2 @@
-export type * from './CountTo.type'
+export * from './CountTo.define'
 export { default as CountTo } from './CountTo.vue'

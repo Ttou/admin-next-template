@@ -49,3 +49,5 @@ export const countToProps = () => ({
    */
   transition: string<keyof typeof TransitionPresets>().def('linear')
 })
+
+export type CountToProps = ReturnType<typeof countToProps>

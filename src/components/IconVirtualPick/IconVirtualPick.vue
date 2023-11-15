@@ -36,7 +36,7 @@
 import { defineComponent, nextTick, reactive, toRefs, watch } from 'vue'
 
 import IconVirtualList from './IconVirtualList.vue'
-import { iconList, iconVirtualPickProps } from './IconVirtualPick.constant'
+import { iconList, iconVirtualPickProps } from './IconVirtualPick.define'
 
 export default defineComponent({
   name: 'IconVirtualPick',

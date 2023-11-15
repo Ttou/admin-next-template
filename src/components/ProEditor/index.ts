@@ -1,2 +1,2 @@
-export type * from './ProEditor.type'
+export * from './ProEditor.define'
 export { default as ProEditor } from './ProEditor.vue'

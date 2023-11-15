@@ -21,7 +21,7 @@ import { Icon } from '@iconify/vue'
 import { useVirtualList } from '@vueuse/core'
 import { computed, defineComponent } from 'vue'
 
-import { iconVirtualListProps } from './IconVirtualList.constant'
+import { iconVirtualListProps } from './IconVirtualList.define'
 
 export default defineComponent({
   name: 'IconVirtualList',

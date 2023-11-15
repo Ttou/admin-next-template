@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
-import { proEditorProps } from './ProEditor.constant'
+import { proEditorProps } from './ProEditor.define'
 
 export default defineComponent({
   name: 'ProEditor',
