@@ -1,1 +1,0 @@
-System.register(["./chunk-libs-legacy-eb958ec7.js","./index-legacy-114b7a96.js"],(function(e,t){"use strict";var n,s,u,r,c;return{setters:[e=>{n=e.d,s=e.p,u=e.q,r=e.s},e=>{c=e._}],execute:function(){const t=n({setup:()=>({})}),i=[r("h2",null,"单独路由",-1)];e("default",c(t,[["render",function(e,t,n,r,c,l){return s(),u("div",null,i)}]]))}}}));

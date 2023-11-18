@@ -1,1 +1,0 @@
-System.register(["./chunk-libs-legacy-eb958ec7.js","./index-legacy-114b7a96.js"],(function(e,t){"use strict";var n,r,s,u,c;return{setters:[e=>{n=e.d,r=e.n,s=e.p,u=e.ak},e=>{c=e._}],execute:function(){const t=n({name:"ParentLayout"});e("default",c(t,[["render",function(e,t,n,c,a,i){const o=r("router-view");return s(),u(o)}]]))}}}));

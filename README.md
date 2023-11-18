@@ -53,3 +53,5 @@ npm run build
 - 不再支持 jsx 写法，推荐使用单文件或者渲染函数编写组件
 
 ## 待处理
+
+- vite-plugin-compression2 不支持 vite >= 5.0.0

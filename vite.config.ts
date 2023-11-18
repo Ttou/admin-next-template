@@ -9,13 +9,10 @@ import imagemin from 'unplugin-imagemin/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
-import { compression } from 'vite-plugin-compression2'
 import eslint from 'vite-plugin-eslint2'
-import { viteMockServe } from 'vite-plugin-mock'
 import stylelint from 'vite-plugin-stylelint'
 
 import { browserslist } from './package.json'
-import { optimizeElement } from './vite-optimize-element'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.')
@@ -51,7 +48,6 @@ export default defineConfig(({ mode }) => {
       legacy({
         targets: browserslist
       }),
-      compression(),
       components({
         dts: false,
         dirs: [],
@@ -69,15 +65,6 @@ export default defineConfig(({ mode }) => {
           <script type="text/javascript" src="/ueditor-plus/ueditor.all.js"></script>
         `
       }),
-      viteMockServe({
-        mockPath: 'mock',
-        localEnabled: true,
-        prodEnabled: true,
-        injectCode: `
-          import { setupProdMockServer } from './mockProdServer'
-          setupProdMockServer()
-        `
-      }),
       eslint({
         lintInWorker: true
       }),
@@ -93,7 +80,7 @@ export default defineConfig(({ mode }) => {
         : [])
     ],
     optimizeDeps: {
-      include: ['dayjs/locale/zh-cn', ...optimizeElement],
+      include: ['dayjs/locale/zh-cn'],
       exclude: ['vue-demi']
     },
     build: {
@@ -102,9 +89,9 @@ export default defineConfig(({ mode }) => {
       reportCompressedSize: false,
       rollupOptions: {
         output: {
-          chunkFileNames: 'js/[name]-[hash].js',
-          entryFileNames: 'js/[name]-[hash].js',
-          assetFileNames: '[ext]/[name]-[hash].[ext]',
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
           manualChunks(id) {
             if (/[\\/]node_modules[\\/]/.test(id)) {
               return 'chunk-libs'
