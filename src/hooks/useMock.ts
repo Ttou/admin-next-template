@@ -1,8 +1,8 @@
 import MockAdapter from 'axios-mock-adapter'
 import Mock from 'mockjs'
 
-export function useMock(axios) {
-  const mock = new MockAdapter(axios, { delayResponse: 500 })
+export function useMock(instance) {
+  const mock = new MockAdapter(instance, { delayResponse: 500 })
 
   mock.onPost('/api/user/login').reply(200, {
     token: '9edd480fa96ba91f0cc3d313e98df3af'

@@ -7,12 +7,14 @@ import App from './App.vue'
 import {
   useElementPlus,
   useErrorHandler,
+  useMock,
   usePermissionGuard,
   useProgressGuard,
   useTable
 } from './hooks'
 import router from './router'
 import store from './store'
+import { ajax } from './utils'
 
 async function bootstrap() {
   const app = createApp(App)
@@ -26,6 +28,7 @@ async function bootstrap() {
   useElementPlus(app)
   useTable(app)
   useErrorHandler(app)
+  useMock(ajax)
 
   await router.isReady()
 
