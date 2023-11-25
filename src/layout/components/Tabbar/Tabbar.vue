@@ -227,6 +227,10 @@ export default defineComponent({
   transition: all 0.2s ease;
   z-index: 50;
 
+  :global(.el-tabs) {
+    width: calc(100% - 40px);
+  }
+
   :global(.el-tabs__active-bar) {
     display: none;
   }
@@ -246,6 +250,11 @@ export default defineComponent({
     border-radius: 3px;
     border: none;
     user-select: none;
+  }
+
+  :global(.el-tabs__nav-prev),
+  :global(.el-tabs__nav-next) {
+    line-height: 40px;
   }
 
   .tabsMenu {
