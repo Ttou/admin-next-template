@@ -49,7 +49,9 @@ npm run build
 - 装上 volar 插件后更好的支持模板开发
 - 缓存最多支持三级路由
 - 项目开发时请锁定依赖版本
+- 为了支持 typescript-plugin-css-modules 插件，需要使用项目的 TypeScript
 
 ## 待处理
 
 - vite-plugin-compression2 不支持 vite >= 5.0.0
+- tsx + css-modules 不支持媒体查询 [issue](https://github.com/vitejs/vite-plugin-vue/issues/200)

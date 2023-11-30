@@ -1,7 +1,5 @@
 {
   "recommendations": [
-    "clinyong.vscode-css-modules",
-    "vue.volar",
-    "vue.vscode-typescript-vue-plugin",
+    "vue.volar"
   ]
 }
