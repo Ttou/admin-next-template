@@ -7,7 +7,16 @@
   "scss.validate": false,
   "stylelint.enable": true,
   "cSpell.words": [
-    "qrcode"
+    "demi",
+    "echarts",
+    "iconify",
+    "mockjs",
+    "nprogress",
+    "pinia",
+    "preinstall",
+    "qrcode",
+    "unplugin",
+    "vueuse"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

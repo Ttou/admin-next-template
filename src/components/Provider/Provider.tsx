@@ -1,10 +1,3 @@
-<template>
-  <ElConfigProvider v-bind="config">
-    <slot />
-  </ElConfigProvider>
-</template>
-
-<script lang="ts">
 import { ElConfigProvider } from 'element-plus'
 import { defineComponent } from 'vue'
 
@@ -21,6 +14,12 @@ export default defineComponent({
     return {
       config
     }
+  },
+  render() {
+    return (
+      <ElConfigProvider {...this.config}>
+        {this.$slots.default?.()}
+      </ElConfigProvider>
+    )
   }
 })
-</script>

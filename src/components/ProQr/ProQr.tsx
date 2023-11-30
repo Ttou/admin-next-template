@@ -1,8 +1,3 @@
-<template>
-  <canvas ref="qrRef"></canvas>
-</template>
-
-<script lang="ts">
 import { toCanvas } from 'qrcode'
 import { defineComponent, onMounted, ref, watch } from 'vue'
 
@@ -53,6 +48,8 @@ export default defineComponent({
     return {
       qrRef
     }
+  },
+  render() {
+    return <canvas ref={(e: any) => (this.qrRef = e)}></canvas>
   }
 })
-</script>

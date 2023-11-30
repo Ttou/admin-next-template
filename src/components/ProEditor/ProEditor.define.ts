@@ -1,4 +1,4 @@
-import type ProEditor from './ProEditor.vue'
+import type ProEditor from './ProEditor'
 
 export const proEditorProps = () => ({})
 

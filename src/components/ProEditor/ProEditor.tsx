@@ -1,8 +1,3 @@
-<template>
-  <div ref="editorRef"></div>
-</template>
-
-<script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 import { proEditorProps } from './ProEditor.define'
@@ -37,6 +32,8 @@ export default defineComponent({
     return {
       ...toRefs(state)
     }
+  },
+  render() {
+    return <div ref={(e: any) => (this.editorRef = e)}></div>
   }
 })
-</script>

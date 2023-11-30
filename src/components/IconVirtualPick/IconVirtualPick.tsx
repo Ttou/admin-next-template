@@ -1,46 +1,11 @@
-<template>
-  <el-popover
-    v-model:visible="show"
-    placement="bottom"
-    width="400"
-    trigger="click"
-  >
-    <el-tabs v-model="activeIconSet">
-      <el-tab-pane
-        v-for="item in iconList"
-        :key="item.value"
-        :name="item.value"
-        :label="item.label"
-      >
-        <IconVirtualList
-          :ref="e => (listRefs[item.value] = e)"
-          :data="item.icons"
-          :activeIconName="modelValue"
-          @change="handleChange"
-        />
-      </el-tab-pane>
-    </el-tabs>
-    <template #reference>
-      <el-input
-        :modelValue="modelValue"
-        placeholder="请选择图标"
-        clearable
-        @clear="handleChange({ value: '', index: 0 })"
-        @input="handleInputChange"
-      ></el-input>
-    </template>
-  </el-popover>
-</template>
-
-<script lang="ts">
+import { ElInput, ElPopover, ElTabPane, ElTabs } from 'element-plus'
 import { defineComponent, nextTick, reactive, toRefs, watch } from 'vue'
 
-import IconVirtualList from './IconVirtualList.vue'
+import IconVirtualList from './IconVirtualList'
 import { iconList, iconVirtualPickProps } from './IconVirtualPick.define'
 
 export default defineComponent({
   name: 'IconVirtualPick',
-  components: { IconVirtualList },
   props: iconVirtualPickProps(),
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -51,14 +16,10 @@ export default defineComponent({
       listRefs: {} as Record<string, ComponentRef>
     })
 
-    function handleChange({ value, index }: any) {
+    function handleChange({ value, index }) {
       emit('update:modelValue', value)
       state.activeIconIndex = index
       state.show = false
-    }
-
-    function handleInputChange(value: any) {
-      emit('update:modelValue', value)
     }
 
     watch(
@@ -76,6 +37,7 @@ export default defineComponent({
       () => state.activeIconSet,
       () => {
         nextTick(() => {
+          console.log(state.listRefs, state.activeIconSet)
           state.listRefs[state.activeIconSet]?.scrollTo(0)
         })
       }
@@ -100,9 +62,46 @@ export default defineComponent({
     return {
       ...toRefs(state),
       iconList,
-      handleChange,
-      handleInputChange
+      handleChange
     }
+  },
+  render() {
+    return (
+      <ElPopover
+        v-model:visible={this.show}
+        placement="bottom"
+        width="400"
+        trigger="click"
+      >
+        {{
+          default: () => (
+            <ElTabs v-model={this.activeIconSet}>
+              {this.iconList.map(item => (
+                <ElTabPane
+                  key={item.value}
+                  name={item.value}
+                  label={item.label}
+                >
+                  <IconVirtualList
+                    ref={e => (this.listRefs[item.value] = e)}
+                    data={item.icons}
+                    activeIconName={this.modelValue}
+                    onChange={this.handleChange}
+                  />
+                </ElTabPane>
+              ))}
+            </ElTabs>
+          ),
+          reference: () => (
+            <ElInput
+              modelValue={this.modelValue}
+              placeholder="请选择图标"
+              clearable
+              onClear={() => this.handleChange({ value: '', index: 0 })}
+            />
+          )
+        }}
+      </ElPopover>
+    )
   }
 })
-</script>

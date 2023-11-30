@@ -1,8 +1,3 @@
-<template>
-  <span>{{ value }}</span>
-</template>
-
-<script lang="ts">
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { isNumber } from 'lodash-unified'
 import {
@@ -97,6 +92,8 @@ export default defineComponent({
       start,
       reset
     }
+  },
+  render() {
+    return <span>{this.value}</span>
   }
 })
-</script>

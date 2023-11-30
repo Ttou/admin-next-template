@@ -1,1 +1,1 @@
-export { default as IconVirtualPick } from './IconVirtualPick.vue'
+export { default as IconVirtualPick } from './IconVirtualPick'
