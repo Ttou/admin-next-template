@@ -8,5 +8,6 @@
   "stylelint.enable": true,
   "cSpell.words": [
     "qrcode"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

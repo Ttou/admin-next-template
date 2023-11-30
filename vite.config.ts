@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { customHtml } from '@ttou/vite-html'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import autoprefixer from 'autoprefixer'
 import postcssNested from 'postcss-nested'
 import imagemin from 'unplugin-imagemin/vite'
@@ -45,6 +46,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
+      vueJsx(),
       legacy({
         targets: browserslist
       }),
