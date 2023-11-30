@@ -37,7 +37,6 @@ export default defineComponent({
       () => state.activeIconSet,
       () => {
         nextTick(() => {
-          console.log(state.listRefs, state.activeIconSet)
           state.listRefs[state.activeIconSet]?.scrollTo(0)
         })
       }

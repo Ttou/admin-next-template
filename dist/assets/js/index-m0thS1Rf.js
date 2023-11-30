@@ -1,0 +1,1 @@
+import{d as o,ai as a,am as s,ax as t,ay as c,ap as n}from"./chunk-libs-KvkTKWDQ.js";import{_ as d}from"./index-4P4Bd9pT.js";const p=o({name:"WorkbenchView"}),_=e=>(t("data-v-7bf2a801"),e=e(),c(),e),r={class:"view"},i=_(()=>n("h2",null,"工作台",-1)),f=[i];function m(e,u,h,l,x,v){return a(),s("div",r,f)}const b=d(p,[["render",m],["__scopeId","data-v-7bf2a801"]]);export{b as default};

@@ -15,6 +15,7 @@
     "pinia",
     "preinstall",
     "qrcode",
+    "Tabbar",
     "unplugin",
     "vueuse"
   ],

@@ -1,3 +1,3 @@
-export const DefaultLayout = () => import('./DefaultLayout.vue')
+export const DefaultLayout = () => import('./DefaultLayout')
 
-export const ParentLayout = () => import('./ParentLayout.vue')
+export const ParentLayout = () => import('./ParentLayout')
