@@ -10,7 +10,7 @@
     "serve": "vite preview --mode=production",
     "gen:icons": "tsx scripts/genIcons.ts",
     "lint": "concurrently \"npm:lint:*\"",
-    "lint:script": "eslint \"./src/**/*.{ts,vue}\" --fix",
+    "lint:script": "eslint \"./src/**/*.{ts,tsx,vue}\" --fix",
     "lint:style": "stylelint \"./src/**/*.{css,vue}\" --fix",
     "check": "vue-tsc --noEmit",
     "commit": "git add . && git cz",
@@ -104,7 +104,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,vue}": [
+    "*.{ts,tsx,vue}": [
       "eslint --fix",
       "prettier --write"
     ],
