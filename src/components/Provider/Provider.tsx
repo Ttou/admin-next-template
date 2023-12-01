@@ -5,9 +5,6 @@ import { useElementPlusConfig } from '@/hooks'
 
 export default defineComponent({
   name: 'Provider',
-  components: {
-    ElConfigProvider
-  },
   setup() {
     const config = useElementPlusConfig()
 
