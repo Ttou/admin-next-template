@@ -1,6 +1,6 @@
 @import 'element-plus/dist/index.css';
 
 /* 修改css变量 */
-:root:root {
+:root {
   --el-color-primary: #235bda;
 }
