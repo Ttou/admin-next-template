@@ -30,8 +30,7 @@ export function usePermissionGuard(router: Router) {
               clear()
               ElNotification.error({
                 title: '提示',
-                message:
-                  '当前用户没有分配任何菜单，请联系管理员分配后再重新登录！',
+                message: '当前用户没有菜单，请配置后再登录！',
                 duration: 3000,
                 onClose() {
                   location.reload()
