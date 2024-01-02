@@ -17,6 +17,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
 
     /* Linting */
     "strict": true,
@@ -53,7 +54,7 @@
     "**/*.spec.ts"
   ],
   "vueCompilerOptions": {
-    "target": 3.3
+    "target": 3
   },
   "references": [
     {
