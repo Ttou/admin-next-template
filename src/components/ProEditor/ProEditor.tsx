@@ -1,10 +1,4 @@
-import {
-  defineComponent,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  toRefs
-} from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 import { genRandomID } from '@/utils'
 
@@ -32,10 +26,6 @@ export default defineComponent({
 
     onMounted(() => {
       init()
-    })
-
-    onBeforeUnmount(() => {
-      state.ue.destroy()
     })
 
     return {
