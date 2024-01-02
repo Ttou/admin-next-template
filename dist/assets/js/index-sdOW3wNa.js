@@ -1,0 +1,1 @@
+import{d as e,ai as t,am as o,ap as n}from"./chunk-libs-Om8XkbsW.js";import{_ as s}from"./index-bz1QvFfI.js";const a=e({setup(){return{}}}),r=n("h2",null,"单独路由",-1),c=[r];function _(p,u,d,i,f,l){return t(),o("div",null,c)}const x=s(a,[["render",_]]);export{x as default};

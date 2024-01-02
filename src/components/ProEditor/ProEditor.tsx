@@ -1,18 +1,24 @@
-import { defineComponent, onMounted, reactive, toRefs } from 'vue'
+import {
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  toRefs
+} from 'vue'
 
-import { proEditorProps } from './ProEditor.define'
+import { genRandomID } from '@/utils'
 
 export default defineComponent({
   name: 'ProEditor',
-  props: proEditorProps(),
   setup() {
     const state = reactive({
       editorRef: {} as ElementRef,
-      ue: {} as UEditor
+      ue: {} as UEditor,
+      editorId: `editor_${genRandomID(6)}`
     })
 
     function init() {
-      state.ue = UE.getEditor(state.editorRef!, {
+      state.ue = UE.getEditor(state.editorId, {
         serverUrl: '/api/editor',
         UEDITOR_CORS_URL: '/ueditor-plus/',
         UEDITOR_HOME_URL: '/ueditor-plus/'
@@ -29,11 +35,15 @@ export default defineComponent({
       init()
     })
 
+    onBeforeUnmount(() => {
+      state.ue.destroy()
+    })
+
     return {
       ...toRefs(state)
     }
   },
   render() {
-    return <div ref={(e: any) => (this.editorRef = e)}></div>
+    return <div id={this.editorId}></div>
   }
 })
