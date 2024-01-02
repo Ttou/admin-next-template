@@ -31,15 +31,20 @@ async function filterMenuTree(menus: Menu[]) {
       temp.component = ParentLayout
     } else {
       const component = loadComponent(menu.component)!
-      const module: any = await component()
-      const name = pascalCase(menu.component)
 
-      temp.name = name || module.default.name
-      temp.component = component
-      temp.meta.noCache = menu.meta.noCache || true
+      if (component) {
+        const module: any = await component()
+        const name = pascalCase(menu.component)
 
-      // 设置异步组件名称以支持缓存
-      module.default.name = temp.name
+        temp.name = name || module.default.name
+        temp.component = component
+        temp.meta.noCache = menu.meta.noCache || true
+
+        // 设置异步组件名称以支持缓存
+        module.default.name = temp.name
+      } else {
+        console.warn('配置的页面不存在：', menu.component)
+      }
     }
 
     if (temp.children) {
