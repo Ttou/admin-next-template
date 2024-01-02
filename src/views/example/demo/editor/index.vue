@@ -5,7 +5,7 @@
       <el-button @click="handleGetTXT">获取 TXT</el-button>
       <el-button @click="handleClear">清除内容</el-button>
     </div>
-    <ProEditor ref="editorRef" style="height: 400px" />
+    <ProEditor ref="editorRef" v-model="content" style="height: 400px" />
   </div>
 </template>
 
@@ -21,7 +21,8 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      editorRef: undefined as Undefined<ProEditorRef>
+      editorRef: undefined as Undefined<ProEditorRef>,
+      content: '演示内容'
     })
 
     const { $message } = getElementFnFromInstance()

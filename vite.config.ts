@@ -65,6 +65,7 @@ export default defineConfig(({ mode }) => {
         injectScript: `
           <script type="text/javascript" src="/ueditor-plus/ueditor.config.js"></script>
           <script type="text/javascript" src="/ueditor-plus/ueditor.all.js"></script>
+          <script type="text/javascript" src="/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
         `
       }),
       eslint({
