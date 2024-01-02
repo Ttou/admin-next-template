@@ -100,7 +100,11 @@ export default defineComponent({
           >
             <ReuseHeader />
             <Tabbar v-show={this.setting.tabbar} style={this.tabbarStyle} />
-            <ElScrollbar wrapClass="page">
+            <ElScrollbar
+              wrapClass="page"
+              wrapStyle="flex: 1"
+              viewStyle="display: flex; min-height: 100%;"
+            >
               <ReuseContent />
             </ElScrollbar>
           </ElContainer>
@@ -110,7 +114,11 @@ export default defineComponent({
             style={this.mainStyle}
             direction="vertical"
           >
-            <ElScrollbar wrapClass="page">
+            <ElScrollbar
+              wrapClass="page"
+              wrapStyle="flex: 1"
+              viewStyle="display: flex; flex-direction: column; min-height: 100%;"
+            >
               <ReuseHeader />
               <Tabbar v-show={this.setting.tabbar} style={this.tabbarStyle} />
               <ReuseContent />
