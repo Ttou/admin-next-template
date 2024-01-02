@@ -12,7 +12,6 @@ export default defineComponent({
   name: 'ProEditor',
   setup() {
     const state = reactive({
-      editorRef: {} as ElementRef,
       ue: {} as UEditor,
       editorId: `editor_${genRandomID(6)}`
     })
