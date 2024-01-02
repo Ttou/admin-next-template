@@ -7,9 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-export default defineComponent({
-  name: 'WorkbenchView'
-})
+export default defineComponent({})
 </script>
 
 <style scoped>

@@ -34,7 +34,6 @@ import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import { CountTo } from '@/components'
 
 export default defineComponent({
-  name: 'AnalysisView',
   components: {
     CountTo,
     Icon

@@ -1,4 +1,4 @@
-import { computed, defineComponent, KeepAlive, Transition } from 'vue'
+import { computed, defineComponent, KeepAlive, toRaw, Transition } from 'vue'
 import { RouterView } from 'vue-router'
 
 import { useTabsStore } from '@/store'
@@ -8,7 +8,7 @@ export default defineComponent({
   setup() {
     const tabsStore = useTabsStore()
 
-    const cachedTabs = computed(() => tabsStore.cachedTabs)
+    const cachedTabs = computed(() => toRaw(tabsStore.cachedTabs))
 
     return {
       cachedTabs
@@ -20,7 +20,7 @@ export default defineComponent({
         {{
           default: ({ Component, route }) => (
             <Transition name="fade-slide" mode="out-in" appear>
-              <KeepAlive max={20} include={this.cachedTabs}>
+              <KeepAlive>
                 <Component key={route.fullPath} />
               </KeepAlive>
             </Transition>
