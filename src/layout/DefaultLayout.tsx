@@ -78,7 +78,7 @@ export default defineComponent({
         <Navbar />
       </ElHeader>
     )
-    const ReuseContent = () => (
+    const ReuseContent = (
       <ElMain class={styles.layoutContent}>
         <Content />
       </ElMain>
@@ -105,7 +105,7 @@ export default defineComponent({
               wrapStyle="flex: 1"
               viewStyle="display: flex; min-height: 100%;"
             >
-              <ReuseContent />
+              {ReuseContent}
             </ElScrollbar>
           </ElContainer>
         ) : (
@@ -121,7 +121,7 @@ export default defineComponent({
             >
               <ReuseHeader />
               <Tabbar v-show={this.setting.tabbar} style={this.tabbarStyle} />
-              <ReuseContent />
+              {ReuseContent}
             </ElScrollbar>
           </ElContainer>
         )}
