@@ -14,7 +14,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    margin-right: -15px;
 
     :global(.el-space__item) {
       min-width: 24px;
