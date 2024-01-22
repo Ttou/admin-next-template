@@ -1,1 +1,0 @@
-import{d as o,aZ as n,am as s,aq as a}from"./chunk-libs-83SyHyTn.js";import{u as r,_ as c}from"./index-LbZ_vfmI.js";const p=o({name:"IndexView",setup(){const e=n(),t=r();e.replace({path:t.homeRoute.path})}});function i(e,t,u,m,_,d){return s(),a("section")}const x=c(p,[["render",i]]);export{x as default};

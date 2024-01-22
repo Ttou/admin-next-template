@@ -16,3 +16,16 @@ export function treeToList(tree: any, childrenKey = 'children') {
   }
   return out
 }
+
+/**
+ * 选项转对象
+ */
+export function optionsToObj(
+  options: any[],
+  fieldNames = { labelKey: 'label', valueKey: 'value' }
+) {
+  return options.reduce((prev, cur) => {
+    prev[cur[fieldNames.valueKey]] = cur[fieldNames.labelKey]
+    return prev
+  }, {})
+}

@@ -11,7 +11,19 @@ import {
   TABLE_RENDERER,
   useGridExt
 } from '@/hooks'
-import { genRandomID } from '@/utils'
+import { genRandomID, optionsToObj } from '@/utils'
+
+const roleOptions = [
+  { label: '管理员', value: 'admin' },
+  { label: '普通用户', value: 'normal' }
+]
+
+const statusOptions = [
+  { label: '禁用', value: '0' },
+  { label: '启用', value: '1' }
+]
+
+const roleObj = optionsToObj(roleOptions)
 
 export function useGrid() {
   const state = reactive({
@@ -68,20 +80,13 @@ export function useGrid() {
             field: 'role',
             itemRender: {
               name: TABLE_ITEM_RENDER.Select,
-
-              options: [
-                {
-                  label: 'admin',
-                  value: 'admin'
-                },
-                {
-                  label: 'normal',
-                  value: 'normal'
-                }
-              ],
+              options: roleOptions,
               props: {
                 placeholder: '请选择'
-              } as SelectProps
+              } as SelectProps,
+              attrs: {
+                style: 'width: 167px'
+              }
             }
           },
           {
@@ -89,19 +94,13 @@ export function useGrid() {
             field: 'status',
             itemRender: {
               name: TABLE_ITEM_RENDER.Select,
-              options: [
-                {
-                  label: '禁用',
-                  value: '0'
-                },
-                {
-                  label: '启用',
-                  value: '1'
-                }
-              ],
+              options: statusOptions,
               props: {
                 placeholder: '请选择'
-              } as SelectProps
+              } as SelectProps,
+              attrs: {
+                style: 'width: 167px'
+              }
             }
           },
           {
@@ -147,23 +146,17 @@ export function useGrid() {
         },
         {
           title: '角色',
-          field: 'role'
+          field: 'role',
+          formatter({ cellValue }) {
+            return roleObj[cellValue]
+          }
         },
         {
           title: '状态',
           field: 'status',
           editRender: {
             name: TABLE_EDIT_RENDER.Select,
-            options: [
-              {
-                label: '禁用',
-                value: '0'
-              },
-              {
-                label: '启用',
-                value: '1'
-              }
-            ]
+            options: statusOptions
           }
         },
         {
