@@ -3,6 +3,7 @@ import { ElSubMenu } from 'element-plus'
 import { computed, defineComponent } from 'vue'
 
 import { MainMenu } from '../MainMenu'
+import styles from './SubMenu.module.css'
 
 export default defineComponent({
   name: 'SubMenu',
@@ -37,7 +38,7 @@ export default defineComponent({
     return this.onlyOneChild ? (
       <MainMenu item={this.item.children[0]} />
     ) : (
-      <ElSubMenu index={this.item.path}>
+      <ElSubMenu index={this.item.path} popperClass={styles.subMenuPopper}>
         {{
           title: () => (
             <>

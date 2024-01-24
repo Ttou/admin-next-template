@@ -10,10 +10,10 @@
   font-size: 24px;
   cursor: pointer;
   box-sizing: border-box;
+}
 
-  &:global(.selected) {
-    border-color: #409eff;
-    color: #409eff;
-    border-width: 2px;
-  }
+.iconItem:global(.selected) {
+  border-color: #409eff;
+  color: #409eff;
+  border-width: 2px;
 }
