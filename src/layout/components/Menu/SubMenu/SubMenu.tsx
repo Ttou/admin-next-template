@@ -38,7 +38,7 @@ export default defineComponent({
     return this.onlyOneChild ? (
       <MainMenu item={this.item.children[0]} />
     ) : (
-      <ElSubMenu index={this.item.path} popperClass={styles.subMenuPopper}>
+      <ElSubMenu index={this.item.path} popperClass={styles.popper}>
         {{
           title: () => (
             <>

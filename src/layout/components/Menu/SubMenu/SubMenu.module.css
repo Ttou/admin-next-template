@@ -1,7 +1,6 @@
-.subMenuPopper {
+.popper {
 }
 
-.subMenuPopper
-  :global(.el-menu--popup .el-sub-menu > .el-sub-menu__title:hover) {
+.popper :global(.el-menu--popup .el-sub-menu > .el-sub-menu__title:hover) {
   background-color: var(--sub-menu-hover) !important;
 }
