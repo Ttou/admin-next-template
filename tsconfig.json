@@ -38,11 +38,6 @@
       "@ttou/ueditor-typings/global",
       "element-plus/global",
       "vite/client"
-    ],
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules"
-      }
     ]
   },
   "include": [
