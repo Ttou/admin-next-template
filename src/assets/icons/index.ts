@@ -3,7 +3,11 @@ import { addCollection, loadIcons } from '@iconify/vue'
 import * as ep from '@iconify-json/ep'
 import * as iconParkOutline from '@iconify-json/icon-park-outline'
 
-const files = import.meta.glob('./json/*.json', { as: 'raw', eager: true })
+const files = import.meta.glob('./json/*.json', {
+  query: '?raw',
+  import: 'default',
+  eager: true
+})
 
 async function setupIcon() {
   const icons = {} as IconifyIcons
