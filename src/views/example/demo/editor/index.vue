@@ -38,8 +38,7 @@ export default defineComponent({
     }
 
     function handleClear() {
-      state.editorRef?.ue.setContent('')
-      state.editorRef?.ue.reset()
+      state.editorRef?.ue.clear()
     }
 
     return {
