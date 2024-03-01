@@ -1,1 +1,4 @@
 /* 重置组件样式 */
+.el-select {
+  min-width: 167px;
+}

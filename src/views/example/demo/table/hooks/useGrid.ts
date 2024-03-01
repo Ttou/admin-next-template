@@ -83,10 +83,7 @@ export function useGrid() {
               options: roleOptions,
               props: {
                 placeholder: '请选择'
-              } as SelectProps,
-              attrs: {
-                style: 'width: 167px'
-              }
+              } as SelectProps
             }
           },
           {
@@ -97,10 +94,7 @@ export function useGrid() {
               options: statusOptions,
               props: {
                 placeholder: '请选择'
-              } as SelectProps,
-              attrs: {
-                style: 'width: 167px'
-              }
+              } as SelectProps
             }
           },
           {
