@@ -11,7 +11,7 @@ import {
   TABLE_RENDERER,
   useGridExt
 } from '@/hooks'
-import { genRandomID, optionsToObj } from '@/utils'
+import { beforeDays, genRandomID, optionsToObj } from '@/utils'
 
 const roleOptions = [
   { label: '管理员', value: 'admin' },
@@ -107,7 +107,8 @@ export function useGrid() {
                 startPlaceholder: '开始时间',
                 endPlaceholder: '结束时间',
                 format: 'YYYY-MM-DD HH:mm:ss'
-              } as DatePickerProps
+              } as DatePickerProps,
+              defaultValue: [beforeDays(6), new Date()]
             }
           },
           {

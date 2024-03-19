@@ -30,3 +30,19 @@ export function startOfDay(value: IDate) {
 export function endOfDay(value: IDate) {
   return dayjs(value).endOf('day').toDate()
 }
+
+/**
+ * 多少天之前
+ * @param {number} value 天数
+ */
+export function beforeDays(value: number) {
+  return dayjs().subtract(value, 'day').toDate()
+}
+
+/**
+ * 多少天之后
+ * @param {number} value 天数
+ */
+export function afterDays(value: number) {
+  return dayjs().add(value, 'day').toDate()
+}
