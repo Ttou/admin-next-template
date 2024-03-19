@@ -2,5 +2,6 @@
 @import 'vxe-table-plugin-element/dist/style.css';
 
 /* 修改css变量 */
-html {
+:root {
+  --vxe-primary-color: #235bda;
 }

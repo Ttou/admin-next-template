@@ -10,8 +10,6 @@ import imagemin from 'unplugin-imagemin/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
-import eslint from 'vite-plugin-eslint2'
-import stylelint from 'vite-plugin-stylelint'
 
 import { browserslist } from './package.json'
 
@@ -67,12 +65,6 @@ export default defineConfig(({ mode }) => {
           <script type="text/javascript" src="/ueditor-plus/ueditor.all.js"></script>
           <script type="text/javascript" src="/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
         `
-      }),
-      eslint({
-        lintInWorker: true
-      }),
-      stylelint({
-        lintInWorker: true
       }),
       ...(mode === 'production'
         ? [
