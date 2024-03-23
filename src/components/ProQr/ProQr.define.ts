@@ -16,4 +16,6 @@ export const proQrProps = () => ({
   options: object<QRCodeRenderersOptions>().def({})
 })
 
-export type ProQrProps = ReturnType<typeof proQrProps>
+export type ProQrProps = Partial<
+  ExtractPropTypes<ReturnType<typeof proQrProps>>
+>
