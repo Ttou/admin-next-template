@@ -18,3 +18,5 @@ declare type OptionItem = {
 declare type CSSProperties = import('vue').CSSProperties
 
 declare type StyleValue = import('vue').StyleValue
+
+declare type ExtractPropTypes<T> = import('vue').ExtractPropTypes<T>
