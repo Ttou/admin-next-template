@@ -12,7 +12,7 @@ import { useTableRenderer } from './useTableRenderer'
 export function useTable(app: App) {
   VXETable.use(VXETablePluginElement)
 
-  VXETable.setup({
+  VXETable.config({
     size: 'small'
   })
 
