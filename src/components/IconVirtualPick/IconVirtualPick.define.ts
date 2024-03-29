@@ -2,7 +2,13 @@ import { listIcons } from '@iconify/vue'
 import { chunk } from 'lodash-unified'
 import { string } from 'vue-types'
 
-export const iconList = [
+type IIconItem = {
+  label: string
+  value: string
+  icons: string[][]
+}
+
+export const iconList: IIconItem[] = [
   {
     label: 'IconPark线性',
     value: 'icon-park-outline',

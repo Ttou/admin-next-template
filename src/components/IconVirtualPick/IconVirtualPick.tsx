@@ -16,7 +16,7 @@ export default defineComponent({
       listRefs: {} as Record<string, ComponentRef>
     })
 
-    function handleChange({ value, index }) {
+    function handleChange({ value, index }: any) {
       emit('update:modelValue', value)
       state.activeIconIndex = index
       state.show = false

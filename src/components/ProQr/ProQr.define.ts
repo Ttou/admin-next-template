@@ -1,4 +1,5 @@
 import type { QRCodeRenderersOptions } from 'qrcode'
+import type { SetOptional } from 'type-fest'
 import { object, string } from 'vue-types'
 
 export const proQrProps = () => ({
@@ -16,6 +17,7 @@ export const proQrProps = () => ({
   options: object<QRCodeRenderersOptions>().def({})
 })
 
-export type ProQrProps = Partial<
-  ExtractPropTypes<ReturnType<typeof proQrProps>>
+export type ProQrProps = SetOptional<
+  ExtractPropTypes<ReturnType<typeof proQrProps>>,
+  'logo' | 'options'
 >

@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/vue'
 import { ElSubMenu } from 'element-plus'
 import { computed, defineComponent } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
 
 import { MainMenu } from '../MainMenu'
 import styles from './SubMenu.module.css'
@@ -47,7 +48,7 @@ export default defineComponent({
             </>
           ),
           default: () =>
-            this.item.children.map(v =>
+            this.item.children.map((v: RouteRecordRaw) =>
               v.children ? (
                 <sub-menu item={v} key={v.path} />
               ) : (

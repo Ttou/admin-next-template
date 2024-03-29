@@ -8,13 +8,16 @@ import { getElementFnFromInstance } from '@/utils'
 
 import styles from './Avatar.module.css'
 
+type ICommand = 'logout'
+type ICommandMap = Record<ICommand, () => void>
+
 export default defineComponent({
   name: 'Avatar',
   setup() {
     const state = reactive({
       commandMap: {
         logout: () => handleLogout()
-      }
+      } as ICommandMap
     })
 
     const router = useRouter()
@@ -31,7 +34,7 @@ export default defineComponent({
         .catch(() => {})
     }
 
-    function handleCommand(command: any) {
+    function handleCommand(command: ICommand) {
       state.commandMap[command]()
     }
 

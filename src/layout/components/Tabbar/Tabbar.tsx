@@ -4,7 +4,8 @@ import {
   ElDropdownItem,
   ElDropdownMenu,
   ElTabPane,
-  ElTabs
+  ElTabs,
+  type TabPaneName
 } from 'element-plus'
 import {
   computed,
@@ -22,6 +23,14 @@ import { useSettingStore, useTabsStore } from '@/store'
 
 import styles from './Tabbar.module.css'
 
+type ICommand =
+  | 'refresh'
+  | 'closeLeft'
+  | 'closeRight'
+  | 'closeOther'
+  | 'closeAll'
+type ICommandMap = Record<ICommand, () => void>
+
 export default defineComponent({
   name: 'Tabbar',
   setup() {
@@ -33,7 +42,7 @@ export default defineComponent({
         closeRight: () => handleCloseRightTabs(),
         closeOther: () => handleCloseOtherTabs(),
         closeAll: () => handleCloseAllTabs()
-      }
+      } as ICommandMap
     })
 
     const route = useRoute()
@@ -89,7 +98,7 @@ export default defineComponent({
       })
     }
 
-    function handleCloseTab(tabName) {
+    function handleCloseTab(tabName: TabPaneName) {
       const tab = visitedTabs.value.find(v => v.fullPath === tabName) as any
 
       tabsStore.delTab(tab).then(({ visitedTabs }) => {
@@ -136,7 +145,7 @@ export default defineComponent({
       }
     }
 
-    function handleCommand(command: any) {
+    function handleCommand(command: ICommand) {
       state.commandMap[command]()
     }
 
@@ -174,7 +183,7 @@ export default defineComponent({
             <ElTabPane
               key={v.fullPath}
               name={v.fullPath}
-              label={v.meta.title}
+              label={v.meta.title as string}
               closable
             ></ElTabPane>
           ))}

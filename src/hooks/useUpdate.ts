@@ -7,7 +7,7 @@ export function useUpdate() {
   const state = reactive({
     META_KEY: 'version-no',
     curVersion: null as Nullable<string>,
-    timer: null as Nullable<NodeJS.Timer>,
+    timer: null as Nullable<any>,
     show: false
   })
 

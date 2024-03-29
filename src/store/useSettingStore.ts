@@ -10,8 +10,8 @@ export const useSettingStore = defineStore('setting', () => {
     ...SETTING
   })
 
-  function change({ key, value }) {
-    state[key] = value
+  function change({ key, value }: any) {
+    Object.assign(state, { [key]: value })
   }
 
   return {

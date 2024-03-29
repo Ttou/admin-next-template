@@ -10,9 +10,16 @@
 import { computed, defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-type Status = '403' | '404' | '500'
+type IStatus = '403' | '404' | '500'
+type IStatusMap = Record<
+  IStatus,
+  {
+    title: string
+    icon: 'error' | 'success' | 'warning' | 'info'
+  }
+>
 
-const STATUS_MAP = {
+const STATUS_MAP: IStatusMap = {
   403: {
     title: '权限不够',
     icon: 'error'
@@ -34,7 +41,7 @@ export default defineComponent({
     const router = useRouter()
 
     const status = computed(() => {
-      return route.query.status as Status
+      return route.query.status as IStatus
     })
 
     const subTitle = computed(() => STATUS_MAP[status.value].title)

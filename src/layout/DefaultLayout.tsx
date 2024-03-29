@@ -5,7 +5,7 @@ import {
   ElMain,
   ElScrollbar
 } from 'element-plus'
-import { computed, CSSProperties, defineComponent } from 'vue'
+import { computed, type CSSProperties, defineComponent } from 'vue'
 
 import { CSS_VARS } from '@/constants'
 import { useSettingStore } from '@/store'
