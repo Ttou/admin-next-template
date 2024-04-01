@@ -10,6 +10,7 @@ import imagemin from 'unplugin-imagemin/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import components from 'unplugin-vue-components/vite'
 import { defineConfig, loadEnv } from 'vite'
+import { compression as compression2 } from 'vite-plugin-compression2'
 
 import { browserslist } from './package.json'
 
@@ -66,13 +67,13 @@ export default defineConfig(({ mode }) => {
           <script type="text/javascript" src="/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
         `
       }),
-      ...(mode === 'production'
-        ? [
-            imagemin({
-              mode: 'sharp'
-            })
-          ]
-        : [])
+      compression2({
+        exclude: [/\.(svg)$/, /.DS_Store$/, /ueditor-plus/]
+      }),
+      imagemin({
+        mode: 'sharp',
+        beforeBundle: true
+      })
     ],
     optimizeDeps: {
       include: ['dayjs/locale/zh-cn'],
