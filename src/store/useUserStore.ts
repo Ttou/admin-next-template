@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
   async function logout() {
     await userApi.logout()
 
-    clear()
+    await clear()
   }
 
   async function getInfo() {
@@ -38,7 +38,7 @@ export const useUserStore = defineStore('user', () => {
     return data.menus
   }
 
-  function clear() {
+  async function clear() {
     if (!state.token) return
 
     const tabsStore = useTabsStore()
@@ -47,7 +47,7 @@ export const useUserStore = defineStore('user', () => {
     state.name = ''
     state.menus = []
     state.infoRequested = false
-    tabsStore.delAllTabs()
+    await tabsStore.delAllTabs()
     resetRouter()
   }
 

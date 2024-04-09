@@ -27,13 +27,14 @@ export function usePermissionGuard(router: Router) {
 
             // 异步路由为空时
             if (routes.length <= 1) {
-              clear()
+              await clear()
+
               ElNotification.error({
                 title: '提示',
                 message: '当前用户没有菜单，请配置后再登录！',
                 duration: 3000,
                 onClose() {
-                  location.reload()
+                  router.replace(CONST_ROUTES.LOGIN)
                 }
               })
             } else {
