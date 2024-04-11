@@ -10,34 +10,38 @@ import { basename } from 'node:path'
 import { cleanupSVG, SVG } from '@iconify/tools'
 import { globbySync } from 'globby'
 
-const iconsSvgPath = 'src/assets/icons/svg'
-const iconsJsonPath = 'src/assets/icons/json'
+import { resolve } from './util.js'
 
-const files = globbySync([`${iconsSvgPath}/*.svg`])
+export async function genIcons() {
+  const iconsSvgPath = resolve('/src/assets/icons/svg')
+  const iconsJsonPath = resolve('/src/assets/icons/json')
 
-if (!existsSync(iconsJsonPath)) {
-  mkdirSync(iconsJsonPath)
-} else {
-  rmSync(iconsJsonPath, { recursive: true, force: true })
-  mkdirSync(iconsJsonPath)
-}
+  const files = globbySync([`${iconsSvgPath}/*.svg`])
 
-files.forEach(file => {
-  const content = readFileSync(file, { encoding: 'utf-8' })
-
-  const svg = new SVG(content)
-  const fileName = basename(file, '.svg')
-
-  cleanupSVG(svg)
-
-  const icon = {
-    key: fileName,
-    value: {
-      body: svg.getBody(),
-      width: svg.viewBox.width || 48,
-      height: svg.viewBox.height || 48
-    }
+  if (!existsSync(iconsJsonPath)) {
+    mkdirSync(iconsJsonPath)
+  } else {
+    rmSync(iconsJsonPath, { recursive: true, force: true })
+    mkdirSync(iconsJsonPath)
   }
 
-  writeFileSync(`${iconsJsonPath}/${fileName}.json`, JSON.stringify(icon))
-})
+  files.forEach(file => {
+    const content = readFileSync(file, { encoding: 'utf-8' })
+
+    const svg = new SVG(content)
+    const fileName = basename(file, '.svg')
+
+    cleanupSVG(svg)
+
+    const icon = {
+      key: fileName,
+      value: {
+        body: svg.getBody(),
+        width: svg.viewBox.width || 48,
+        height: svg.viewBox.height || 48
+      }
+    }
+
+    writeFileSync(`${iconsJsonPath}/${fileName}.json`, JSON.stringify(icon))
+  })
+}
