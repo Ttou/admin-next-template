@@ -1,6 +1,7 @@
-const { defineCommitlintConfig } = require('@ttou/define-config')
-
-module.exports = defineCommitlintConfig({
+/**
+ * @type {import('@commitlint/types').UserConfig}
+ */
+module.exports = {
   ignores: [commit => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],
   parserPreset: {
@@ -53,4 +54,4 @@ module.exports = defineCommitlintConfig({
       ]
     ]
   }
-})
+}

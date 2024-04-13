@@ -1,6 +1,7 @@
-const { defineEslintConfig } = require('@ttou/define-config')
-
-module.exports = defineEslintConfig({
+/**
+ * @type {import('eslint').Linter.Config}
+ */
+module.exports = {
   root: true,
   env: {
     browser: true,
@@ -38,4 +39,4 @@ module.exports = defineEslintConfig({
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/ban-types': 'off'
   }
-})
+}

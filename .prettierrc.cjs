@@ -1,9 +1,10 @@
-import { definePrettierConfig } from '@ttou/define-config'
-
-export default definePrettierConfig({
+/**
+ * @type {import('prettier').Config}
+ */
+module.exports = {
   semi: false,
   singleQuote: true,
   endOfLine: 'auto',
   trailingComma: 'none',
   arrowParens: 'avoid'
-})
+}

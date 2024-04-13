@@ -8,6 +8,7 @@
   "stylelint.enable": true,
   "vue.server.hybridMode": false,
   "cSpell.words": [
+    "commitlint",
     "demi",
     "echarts",
     "iconify",
@@ -16,6 +17,7 @@
     "pinia",
     "preinstall",
     "qrcode",
+    "stylelint",
     "Tabbar",
     "unplugin",
     "vueuse"
