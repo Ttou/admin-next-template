@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "analyzer": "vite build --mode=analyzer",
     "serve": "vite preview --mode=production",
     "scripts": "tsx scripts",
     "check": "vue-tsc -p tsconfig.app.json --noEmit",
@@ -61,6 +62,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/tsconfig": "^0.5.1",
+    "@vxecli/import-unplugin-vue-components": "^1.0.1",
     "autoprefixer": "^10.4.19",
     "chalk": "^5.3.0",
     "commitizen": "^4.3.0",
@@ -88,6 +90,7 @@
     "unplugin-imagemin": "^0.5.18",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.2.7",
+    "vite-bundle-analyzer": "^0.9.4",
     "vite-plugin-compression2": "^1.0.0",
     "vue-demi": "^0.14.7",
     "vue-tsc": "^2.0.7"

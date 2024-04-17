@@ -1,0 +1,1 @@
+System.register(["./index-legacy-C5zsTIzo.js"],(function(e,t){"use strict";var n,r,c,s,a,u;return{setters:[e=>{n=e.d,r=e.aN,c=e.aq,s=e.x,a=e.a,u=e.c}],execute:function(){const t=n({name:"IndexView",setup(){const e=r(),t=c();e.replace({path:t.homeRoute.path})}});e("default",s(t,[["render",function(e,t,n,r,c,s){return a(),u("section")}]]))}}}));

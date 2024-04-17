@@ -1,0 +1,1 @@
+import{d as e,x as t,a as n,c as o,A as s}from"./index-VnQc-Xww.js";const c=e({setup(){return{}}}),a=s("h2",null,"单独路由",-1),r=[a];function u(_,d,p,i,l,f){return n(),o("div",null,r)}const x=t(c,[["render",u]]);export{x as default};

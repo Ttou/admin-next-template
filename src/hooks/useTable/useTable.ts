@@ -31,13 +31,13 @@ export function useTable(app: App) {
   useTableFormat(VXETable)
 
   app
-    .use(VxeGrid)
-    .use(VxeToolbar)
-    .use(VxeButton)
-    .use(VxeForm)
-    .use(VxePager)
-    .use(VxeTable)
-    .use(VxeSelect)
     .use(Filter)
     .use(Edit)
+    .use(VxeGrid)
+    .use(VxeToolbar)
+    .use(VxeForm)
+    .use(VxeTable)
+    .use(VxePager)
+    .use(VxeButton)
+    .use(VxeSelect)
 }

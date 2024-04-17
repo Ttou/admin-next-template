@@ -1,0 +1,1 @@
+import{d as t,x as o,a as s,c as a,j as n}from"./index-VnQc-Xww.js";import{E as c}from"./index-EaoAZ8p7.js";const r=t({name:"NestedMenu2"}),_={class:"page"};function d(l,p,i,f,m,u){const e=c;return s(),a("div",_,[n(e,{title:"Menu 2",closable:!1})])}const E=o(r,[["render",d],["__scopeId","data-v-be744192"]]);export{E as default};

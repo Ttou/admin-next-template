@@ -1,0 +1,1 @@
+import{d as o,aN as n,aq as s,x as a,a as r,c}from"./index-VnQc-Xww.js";const p=o({name:"IndexView",setup(){const e=n(),t=s();e.replace({path:t.homeRoute.path})}});function i(e,t,u,d,_,f){return r(),c("section")}const x=a(p,[["render",i]]);export{x as default};

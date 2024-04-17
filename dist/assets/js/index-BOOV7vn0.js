@@ -1,0 +1,1 @@
+import{d as n,aM as r,aN as c,x as p,a as u,c as i}from"./index-VnQc-Xww.js";const d=n({name:"RedirectView",setup(){const t=r(),s=c(),{params:a,query:o}=t,e=a.path;s.replace({path:e.startsWith("/")?e:"/".concat(e),query:o})}});function _(t,s,a,o,e,f){return u(),i("section")}const h=p(d,[["render",_]]);export{h as default};

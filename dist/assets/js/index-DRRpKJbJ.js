@@ -1,0 +1,1 @@
+import{d as o,x as s,a as t,c,G as d,H as a,A as n}from"./index-VnQc-Xww.js";const _=o({}),p=e=>(d("data-v-cbfd63dd"),e=e(),a(),e),r={class:"view"},i=p(()=>n("h2",null,"工作台",-1)),f=[i];function u(e,h,l,m,x,v){return t(),c("div",r,f)}const $=s(_,[["render",u],["__scopeId","data-v-cbfd63dd"]]);export{$ as default};
