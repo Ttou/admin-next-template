@@ -1,13 +1,13 @@
 import { ElButton, ElSpace } from 'element-plus'
 import { h } from 'vue'
-import type VXETable from 'vxe-table'
+import type { VXETableCore } from 'vxe-table'
 
 import { TABLE_RENDERER } from './constants'
 
 /**
  * 渲染器注册
  */
-export function useTableRenderer(vxe: typeof VXETable) {
+export function useTableRenderer(vxe: VXETableCore) {
   vxe.renderer.add(TABLE_RENDERER.FormItemBtns, {
     renderItemContent(renderOpts, params) {
       return [

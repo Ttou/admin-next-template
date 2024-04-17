@@ -1,7 +1,16 @@
-import 'xe-utils'
-
 import type { App } from 'vue'
-import VXETable from 'vxe-table'
+import {
+  Edit,
+  Filter,
+  VxeButton,
+  VxeForm,
+  VxeGrid,
+  VxePager,
+  VxeSelect,
+  VXETable,
+  VxeTable,
+  VxeToolbar
+} from 'vxe-table'
 import VXETablePluginElement from 'vxe-table-plugin-element'
 
 import { useTableCommand } from './useTableCommand'
@@ -21,5 +30,14 @@ export function useTable(app: App) {
   useTableInterceptor(VXETable)
   useTableFormat(VXETable)
 
-  app.use(VXETable)
+  app
+    .use(VxeGrid)
+    .use(VxeToolbar)
+    .use(VxeButton)
+    .use(VxeForm)
+    .use(VxePager)
+    .use(VxeTable)
+    .use(VxeSelect)
+    .use(Filter)
+    .use(Edit)
 }

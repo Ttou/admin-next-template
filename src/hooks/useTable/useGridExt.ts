@@ -1,4 +1,4 @@
-import { set } from 'lodash-unified'
+import { cloneDeep, omit, set } from 'lodash-unified'
 import { type Ref, ref } from 'vue'
 import type {
   VxeGridEventProps,
@@ -58,11 +58,37 @@ export function useGridExt(options: Ref<GridExtOptions>) {
     }
   }
 
+  /**
+   * 处理表单时间范围
+   */
+  function processFormDateRanges(
+    form: Record<string, any>,
+    dateRanges: Record<string, string[]>
+  ) {
+    const dateRangeKeys = Object.keys(dateRanges)
+    let formClone = cloneDeep(form)
+
+    for (const key of dateRangeKeys) {
+      const range = dateRanges[key]
+
+      if (formClone[key]) {
+        formClone[range[0]] = formClone[key][0]
+        formClone[range[1]] = formClone[key][1]
+        formClone = omit(formClone, [key])
+      } else {
+        formClone = omit(formClone, range.concat(key))
+      }
+    }
+
+    return formClone
+  }
+
   return {
     gridRef,
     updateFormItem,
     showLoading,
     hideLoading,
-    refresh
+    refresh,
+    processFormDateRanges
   }
 }

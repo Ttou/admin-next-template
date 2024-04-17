@@ -1,5 +1,4 @@
 import type { DatePickerProps, InputProps } from 'element-plus'
-import { omit } from 'lodash-unified'
 import { reactive, toRef, toRefs } from 'vue'
 
 import { demoApi } from '@/apis'
@@ -190,11 +189,7 @@ export function useGrid() {
         },
         ajax: {
           query: async ({ page, form }) => {
-            if (form.date) {
-              form.start = form.date[0]
-              form.end = form.date[1]
-              form = omit(form, ['date'])
-            }
+            form = processFormData(form)
 
             const data = await demoApi.getList({
               pageSize: page.pageSize,
@@ -209,6 +204,12 @@ export function useGrid() {
   })
 
   const gridExtHook = useGridExt(toRef(state, 'gridConfig'))
+
+  function processFormData(form: Record<string, any>) {
+    return gridExtHook.processFormDateRanges(form, {
+      date: ['start', 'end']
+    })
+  }
 
   function handleCustomRefresh() {
     gridExtHook.refresh()

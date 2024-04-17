@@ -1,8 +1,8 @@
-import type VXETable from 'vxe-table'
+import type { VXETableCore } from 'vxe-table'
 
 /**
  * 拦截器注册
  */
-export function useTableInterceptor(vxe: typeof VXETable) {
+export function useTableInterceptor(vxe: VXETableCore) {
   // TODO
 }
