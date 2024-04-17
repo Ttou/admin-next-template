@@ -89,12 +89,12 @@ export default defineConfig(({ mode }) => {
         output: {
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
-          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
-          // manualChunks(id) {
-          //   if (/[\\/]node_modules[\\/]/.test(id)) {
-          //     return 'chunk-libs'
-          //   }
-          // }
+          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
+          manualChunks(id) {
+            if (/[\\/]node_modules[\\/]/.test(id)) {
+              return 'chunk-libs'
+            }
+          }
         }
       }
     },
