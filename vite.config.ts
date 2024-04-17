@@ -4,7 +4,6 @@ import { customHtml } from '@ttou/vite-html'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import VxeTableResolver from '@vxecli/import-unplugin-vue-components'
 import autoprefixer from 'autoprefixer'
 import postcssNested from 'postcss-nested'
 import imagemin from 'unplugin-imagemin/vite'
@@ -55,9 +54,6 @@ export default defineConfig(({ mode }) => {
         dirs: [],
         resolvers: [
           ElementPlusResolver({
-            importStyle: false
-          }),
-          VxeTableResolver({
             importStyle: false
           })
         ]
