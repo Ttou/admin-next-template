@@ -1,1 +1,0 @@
-System.register(["./index-legacy-C5zsTIzo.js"],(function(e,t){"use strict";var n,r,u,s,c;return{setters:[e=>{n=e.d,r=e.x,u=e.a,s=e.c,c=e.A}],execute:function(){const t=n({setup:()=>({})}),i=[c("h2",null,"单独路由",-1)];e("default",r(t,[["render",function(e,t,n,r,c,l){return u(),s("div",null,i)}]]))}}}));

@@ -1,0 +1,1 @@
+import{d as o,ax as s,aB as t,aM as a,aN as c,aE as d}from"./chunk-libs-C9BIETP2.js";import{_ as n}from"./index-C2Oyyxrl.js";const _=o({}),p=e=>(a("data-v-cbfd63dd"),e=e(),c(),e),r={class:"view"},i=p(()=>d("h2",null,"工作台",-1)),f=[i];function u(e,h,l,m,x,v){return s(),t("div",r,f)}const $=n(_,[["render",u],["__scopeId","data-v-cbfd63dd"]]);export{$ as default};
