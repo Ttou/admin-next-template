@@ -13,7 +13,6 @@
       ]
     },
     "types": [
-      "@ttou/ueditor-typings/global",
       "element-plus/global",
       "vite/client"
     ]

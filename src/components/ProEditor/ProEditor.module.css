@@ -1,0 +1,15 @@
+.proEditor {
+  border: 1px solid #eee;
+}
+
+.proEditor:global(.w-e-full-screen-container) {
+  z-index: 9999;
+}
+
+.toolbar {
+  border-bottom: 1px solid #eee;
+}
+
+.editor {
+  overflow-y: hidden;
+}

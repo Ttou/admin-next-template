@@ -1,66 +1,75 @@
+import '@wangeditor/editor/dist/css/style.css'
+
+import type { IDomEditor } from '@wangeditor/editor'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import {
   defineComponent,
   onActivated,
+  onBeforeUnmount,
   onDeactivated,
   onMounted,
-  reactive,
-  toRefs
+  ref,
+  shallowRef
 } from 'vue'
 
-import { genRandomID } from '@/utils'
-
 import { proEditorProps } from './ProEditor.define'
+import styles from './ProEditor.module.css'
 
 export default defineComponent({
   name: 'ProEditor',
   props: proEditorProps(),
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const state = reactive({
-      ue: {} as UEditor,
-      editorId: `editor_${genRandomID(6)}`
-    })
+    const editorRef = shallowRef<IDomEditor>()
+    const valueHtml = ref(props.modelValue)
 
-    function init() {
-      state.ue = UE.getEditor(state.editorId, {
-        serverUrl: '/api/editor',
-        UEDITOR_CORS_URL: '/ueditor-plus/',
-        UEDITOR_HOME_URL: '/ueditor-plus/'
-      })
-
-      state.ue.addListener('contentChange', handleContentChange)
-
-      state.ue.addListener('ready', () => {
-        handleContentEcho()
-      })
+    function handleCreated(editor: IDomEditor) {
+      editorRef.value = editor
     }
 
-    function handleContentChange() {
-      const content = state.ue.getContent()
-      emit('update:modelValue', content)
+    function handleChange(editor: IDomEditor) {
+      emit('update:modelValue', editor.getHtml())
     }
 
-    function handleContentEcho() {
-      state.ue.setContent(props.modelValue, false)
-    }
+    onMounted(() => {})
 
-    onMounted(() => {
-      init()
+    onBeforeUnmount(() => {
+      if (editorRef.value === null) return
+      editorRef.value?.destroy()
     })
 
-    onActivated(() => {
-      state.ue.addListener('ready', handleContentEcho)
-    })
+    onActivated(() => {})
 
-    onDeactivated(() => {
-      state.ue.removeListener('ready', handleContentEcho)
-    })
+    onDeactivated(() => {})
 
     return {
-      ...toRefs(state)
+      editor: editorRef,
+      valueHtml,
+      handleCreated,
+      handleChange
     }
   },
   render() {
-    return <script id={this.editorId} type="text/plain"></script>
+    return (
+      <div class={styles.proEditor}>
+        <Toolbar
+          class={styles.toolbar}
+          defaultConfig={this.toolbarConfig}
+          mode={this.mode}
+          editor={this.editor!}
+        />
+        <Editor
+          class={styles.editor}
+          v-model={this.valueHtml}
+          defaultConfig={this.editorConfig}
+          mode={this.mode}
+          onOnCreated={this.handleCreated}
+          onOnChange={this.handleChange}
+          style={{
+            height: this.height
+          }}
+        />
+      </div>
+    )
   }
 })

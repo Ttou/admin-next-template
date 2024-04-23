@@ -61,15 +61,10 @@ export default defineConfig(({ mode }) => {
       }),
       customHtml({
         injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
-        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`,
-        injectScript: `
-          <script type="text/javascript" src="/ueditor-plus/ueditor.config.js"></script>
-          <script type="text/javascript" src="/ueditor-plus/ueditor.all.js"></script>
-          <script type="text/javascript" src="/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
-        `
+        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`
       }),
       compression2({
-        exclude: [/\.(svg)$/, /.DS_Store$/, /ueditor-plus/]
+        exclude: [/\.(svg)$/, /.DS_Store$/]
       }),
       imagemin({
         mode: 'sharp',

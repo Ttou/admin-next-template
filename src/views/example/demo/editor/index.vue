@@ -5,12 +5,12 @@
       <el-button @click="handleGetTXT">获取 TXT</el-button>
       <el-button @click="handleClear">清除内容</el-button>
     </div>
-    <ProEditor ref="editorRef" v-model="content" style="height: 400px" />
+    <ProEditor ref="editorRef" v-model="content" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs, watch } from 'vue'
 
 import { ProEditor, type ProEditorRef } from '@/components'
 import { getElementFnFromInstance } from '@/utils'
@@ -22,24 +22,31 @@ export default defineComponent({
   setup() {
     const state = reactive({
       editorRef: undefined as Undefined<ProEditorRef>,
-      content: '演示内容'
+      content: '<p><strong>演示内容</strong></p>'
     })
 
     const { $message } = getElementFnFromInstance()
 
     function handleGetHTML() {
-      const value = state.editorRef?.ue.getContent()
+      const value = state.editorRef?.editor?.getHtml()
       $message.info(value!)
     }
 
     function handleGetTXT() {
-      const value = state.editorRef?.ue.getContentTxt()
+      const value = state.editorRef?.editor?.getText()
       $message.info(value!)
     }
 
     function handleClear() {
-      state.editorRef?.ue.clear()
+      state.editorRef?.editor?.clear()
     }
+
+    watch(
+      () => state.content,
+      val => {
+        console.log('编辑器内容:', val)
+      }
+    )
 
     return {
       ...toRefs(state),
