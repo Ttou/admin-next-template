@@ -52,7 +52,9 @@ export function usePermissionGuard(router: Router) {
 
               return to.fullPath
             }
-          } catch {}
+          } catch (err) {
+            console.log(err)
+          }
         }
       }
     } else {

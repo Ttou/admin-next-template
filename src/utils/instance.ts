@@ -1,3 +1,10 @@
+import type {
+  ElLoadingService,
+  ElMessageBoxShortcutMethod,
+  IElMessageBox,
+  Message,
+  Notify
+} from 'element-plus'
 import { getCurrentInstance } from 'vue'
 
 /**
@@ -17,10 +24,21 @@ export function getCtxFromInstance(fnName = 'getCtxFromInstance') {
  * 从实例获取Element全局方法
  */
 export function getElementFnFromInstance() {
+  // @ts-ignore
   const { $notify, $message, $msgbox, $loading, $alert, $confirm, $prompt } =
     getCtxFromInstance('getElementFnFromInstance')!
 
-  return {
+  return <
+    {
+      $notify: Notify
+      $message: Message
+      $msgbox: IElMessageBox
+      $loading: typeof ElLoadingService
+      $alert: ElMessageBoxShortcutMethod
+      $confirm: ElMessageBoxShortcutMethod
+      $prompt: ElMessageBoxShortcutMethod
+    }
+  >{
     $notify,
     $message,
     $msgbox,
