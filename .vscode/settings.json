@@ -6,6 +6,7 @@
   "less.validate": false,
   "scss.validate": false,
   "stylelint.enable": true,
+  "vue.server.hybridMode": "typeScriptPluginOnly",
   "cSpell.words": [
     "commitlint",
     "demi",
