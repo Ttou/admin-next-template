@@ -1,1 +1,0 @@
-System.register(["./chunk-libs-legacy-Cpe3fc-c.js","./index-legacy-BAfMP8gN.js"],(function(e,t){"use strict";var n,u,r,s,c;return{setters:[e=>{n=e.d,u=e.ax,r=e.aB,s=e.aE},e=>{c=e._}],execute:function(){const t=n({setup:()=>({})}),i=[s("h2",null,"单独路由",-1)];e("default",c(t,[["render",function(e,t,n,s,c,l){return u(),r("div",null,i)}]]))}}}));

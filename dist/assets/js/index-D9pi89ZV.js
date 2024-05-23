@@ -1,1 +1,0 @@
-import{d as t,ax as s,aB as o,j as a,b9 as n}from"./chunk-libs-C9BIETP2.js";import{_ as c}from"./index-C2Oyyxrl.js";const r=t({name:"NestedMenu12"}),_={class:"page"};function p(d,l,i,f,m,u){const e=n;return s(),o("div",_,[a(e,{title:"Menu 1-2",type:"success",closable:!1})])}const b=c(r,[["render",p],["__scopeId","data-v-b55e1793"]]);export{b as default};
