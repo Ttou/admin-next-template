@@ -6,7 +6,7 @@
   "less.validate": false,
   "scss.validate": false,
   "stylelint.enable": true,
-  "vue.server.hybridMode": "typeScriptPluginOnly",
+  "vue.server.hybridMode": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "commitlint",
