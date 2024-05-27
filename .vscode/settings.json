@@ -7,6 +7,7 @@
   "scss.validate": false,
   "stylelint.enable": true,
   "vue.server.hybridMode": "typeScriptPluginOnly",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "commitlint",
     "demi",
