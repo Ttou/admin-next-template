@@ -1,75 +1,49 @@
-import '@wangeditor/editor/dist/css/style.css'
+import 'aieditor/dist/style.css'
 
-import type { IDomEditor } from '@wangeditor/editor'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import { AiEditor } from 'aieditor'
 import {
+  computed,
   defineComponent,
-  onActivated,
-  onBeforeUnmount,
-  onDeactivated,
   onMounted,
+  onUnmounted,
   ref,
   shallowRef
 } from 'vue'
 
-import { proEditorProps } from './ProEditor.define'
-import styles from './ProEditor.module.css'
+import { defaultOptions, proEditorProps } from './ProEditor.define'
 
 export default defineComponent({
   name: 'ProEditor',
   props: proEditorProps(),
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const editorRef = shallowRef<IDomEditor>()
-    const valueHtml = ref(props.modelValue)
+  setup(props) {
+    const editorRef = ref<Element>()
+    const editor = shallowRef<AiEditor>()
 
-    function handleCreated(editor: IDomEditor) {
-      editorRef.value = editor
-    }
-
-    function handleChange(editor: IDomEditor) {
-      emit('update:modelValue', editor.getHtml())
-    }
-
-    onMounted(() => {})
-
-    onBeforeUnmount(() => {
-      if (editorRef.value === null) return
-      editorRef.value?.destroy()
+    const editorStyle = computed<CSSProperties>(() => {
+      return {
+        height: props.height
+      }
     })
 
-    onActivated(() => {})
+    onMounted(() => {
+      editor.value = new AiEditor({
+        element: editorRef.value!,
+        content: props.content,
+        ...Object.assign({}, defaultOptions, props.options)
+      })
+    })
 
-    onDeactivated(() => {})
+    onUnmounted(() => {
+      editor.value?.destroy()
+    })
 
     return {
-      editor: editorRef,
-      valueHtml,
-      handleCreated,
-      handleChange
+      editor,
+      editorRef,
+      editorStyle
     }
   },
   render() {
-    return (
-      <div class={styles.proEditor}>
-        <Toolbar
-          class={styles.toolbar}
-          defaultConfig={this.toolbarConfig}
-          mode={this.mode}
-          editor={this.editor!}
-        />
-        <Editor
-          class={styles.editor}
-          v-model={this.valueHtml}
-          defaultConfig={this.editorConfig}
-          mode={this.mode}
-          onOnCreated={this.handleCreated}
-          onOnChange={this.handleChange}
-          style={{
-            height: this.height
-          }}
-        />
-      </div>
-    )
+    return <div ref="editorRef" style={this.editorStyle}></div>
   }
 })

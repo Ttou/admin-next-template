@@ -5,12 +5,12 @@
       <el-button @click="handleGetTXT">获取 TXT</el-button>
       <el-button @click="handleClear">清除内容</el-button>
     </div>
-    <ProEditor ref="editorRef" v-model="content" />
+    <ProEditor ref="editorRef" :content="content" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, watch } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 
 import { ProEditor, type ProEditorRef } from '@/components'
 import { getElementFnFromInstance } from '@/utils'
@@ -40,13 +40,6 @@ export default defineComponent({
     function handleClear() {
       state.editorRef?.editor?.clear()
     }
-
-    watch(
-      () => state.content,
-      val => {
-        console.log('编辑器内容:', val)
-      }
-    )
 
     return {
       ...toRefs(state),

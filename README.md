@@ -53,5 +53,6 @@ npm run build
 
 ## 待处理
 
-- tsx + css-modules 不支持媒体查询 [issue](https://github.com/vitejs/vite-plugin-vue/issues/200)
-- 打包时 lightningcss 不会处理字体文件，目前仍然使用 postcss 处理样式
+- [ ] tsx + css-modules 不支持媒体查询 [issue](https://github.com/vitejs/vite-plugin-vue/issues/200)
+- [ ] 打包时 lightningcss 不会处理字体文件，目前仍然使用 postcss 处理样式
+- [ ] AiEditor 在切换页面回来后顶部都会增加一条细线
