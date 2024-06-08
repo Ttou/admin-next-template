@@ -28,9 +28,12 @@
       </el-form-item>
       <el-form-item label="Activity type" prop="type">
         <el-checkbox-group v-model="formModel.type">
-          <el-checkbox v-for="v in typeOptions" :key="v.value" :label="v.value">
-            {{ v.label }}
-          </el-checkbox>
+          <el-checkbox
+            v-for="v in typeOptions"
+            :key="v.value"
+            :label="v.label"
+            :value="v.value"
+          />
         </el-checkbox-group>
       </el-form-item>
       <el-form-item label="Resource">
@@ -38,10 +41,9 @@
           <el-radio
             v-for="v in resourceOptions"
             :key="v.value"
-            :label="v.value"
-          >
-            {{ v.label }}
-          </el-radio>
+            :label="v.label"
+            :value="v.value"
+          />
         </el-radio-group>
       </el-form-item>
       <el-form-item label="Activity form">
