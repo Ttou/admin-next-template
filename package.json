@@ -23,7 +23,7 @@
     "@iconify/vue": "4.1.2",
     "@vueuse/core": "10.10.0",
     "@vueuse/integrations": "10.10.0",
-    "aieditor": "^1.0.6",
+    "aieditor": "1.0.12",
     "axios": "1.7.2",
     "axios-mock-adapter": "1.22.0",
     "case-anything": "3.1.0",
