@@ -51,6 +51,10 @@ npm run build
 - 项目开发时请锁定依赖版本
 - 如果在 vue 文件中全局组件没有类型提示，可尝试删除依赖后重装
 
+## 待开发
+
+- [ ] vxe-table 4.6 版本在 2024-12 停止维护，到时迁移至 >= 4.7
+
 ## 待处理
 
 - [ ] tsx + css-modules 不支持媒体查询 [issue](https://github.com/vitejs/vite-plugin-vue/issues/200)
