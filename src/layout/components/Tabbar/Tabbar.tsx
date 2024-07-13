@@ -188,7 +188,7 @@ export default defineComponent({
             ></ElTabPane>
           ))}
         </ElTabs>
-        <ElDropdown>
+        <ElDropdown onCommand={this.handleCommand}>
           {{
             default: () => (
               <div class={styles.tabsMenu}>
