@@ -12,6 +12,7 @@ import {
   useProgressGuard,
   useTable
 } from './hooks'
+import i18n from './i18n'
 import router from './router'
 import store from './store'
 import { ajax } from './utils'
@@ -21,6 +22,7 @@ async function bootstrap() {
 
   app.use(router)
   app.use(store)
+  app.use(i18n)
 
   usePermissionGuard(router)
   useProgressGuard(router)
