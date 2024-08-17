@@ -1,6 +1,8 @@
 import { ElSpace } from 'element-plus'
 import { defineComponent } from 'vue'
 
+import { LocaleSwitch } from '@/components'
+
 import { Avatar } from './Avatar'
 import { Breadcrumb } from './Breadcrumb'
 import styles from './Navbar.module.css'
@@ -19,6 +21,7 @@ export default defineComponent({
         <div class={styles.right}>
           <ElSpace size={15}>
             <ScreenFull />
+            <LocaleSwitch />
             <Avatar />
           </ElSpace>
         </div>

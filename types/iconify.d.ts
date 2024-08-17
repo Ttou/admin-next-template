@@ -1,7 +1,9 @@
 declare module '@iconify/vue' {
   export const Icon: {
     new (): {
-      $props: import('@iconify/vue/dist/iconify').IconProps & { class?: any }
+      $props: import('@iconify/vue/dist/iconify.d.ts').IconProps & {
+        class?: any
+      }
     }
   }
 
