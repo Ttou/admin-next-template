@@ -1,3 +1,31 @@
 {
-  "app": {}
+  "app": {
+    "buttons": {
+      "reset": "重置",
+      "submit": "提交",
+      "cancel": "取消"
+    },
+    "views": {
+      "example": {
+        "demo": {
+          "form": {
+            "activityName": "活动名称",
+            "activityZone": "活动区域",
+            "activityTime": "活动时间",
+            "instantDelivery": "及时到达",
+            "activityType": "活动类型",
+            "resource": "资源",
+            "activityForm": "活动表单",
+            "online": "线上",
+            "offline": "线下",
+            "promotion": "提倡",
+            "sponsor": "赞助商",
+            "venue": "场地租赁",
+            "shanghai": "上海",
+            "beijing": "北京"
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,3 +1,31 @@
 {
-  "app": {}
+  "app": {
+    "buttons": {
+      "reset": "Reset",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "views": {
+      "example": {
+        "demo": {
+          "form": {
+            "activityName": "Activity name",
+            "activityZone": "Activity zone",
+            "activityTime": "Activity time",
+            "instantDelivery": "Instant delivery",
+            "activityType": "Activity type",
+            "resource": "Resource",
+            "activityForm": "Activity form",
+            "online": "Online",
+            "offline": "Offline",
+            "promotion": "Promotion",
+            "sponsor": "Sponsor",
+            "venue": "Venue",
+            "shanghai": "Shanghai",
+            "beijing": "Beijing"
+          }
+        }
+      }
+    }
+  }
 }

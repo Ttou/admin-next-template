@@ -1,15 +1,22 @@
 import { createI18n } from 'vue-i18n'
-import enUS from 'vxe-table/lib/locale/lang/en-US'
-import zhCN from 'vxe-table/lib/locale/lang/zh-CN'
+import vxeEnUS from 'vxe-table/lib/locale/lang/en-US'
+import vxeZhCN from 'vxe-table/lib/locale/lang/zh-CN'
+
+import appEnUS from './langs/en_US.json'
+import appZhCN from './langs/zh_CN.json'
 
 const messages = {
   zh_CN: {
-    ...zhCN
+    ...vxeZhCN,
+    ...appZhCN
   },
   en_US: {
-    ...enUS
+    ...vxeEnUS,
+    ...appEnUS
   }
 }
+
+console.log(messages)
 
 export type ILocale = keyof typeof messages
 

@@ -20,6 +20,10 @@
   display: none;
 }
 
+.tabbar :global(.el-tabs__header) {
+  margin: 0;
+}
+
 .tabbar :global(.el-tabs__item) {
   display: inline-flex;
   justify-content: center;
