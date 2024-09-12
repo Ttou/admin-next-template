@@ -81,7 +81,7 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from 'element-plus'
-import { defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, toRefs } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
@@ -125,22 +125,37 @@ export default defineComponent({
       } as FormRules,
       zoneOptions: [
         {
-          label: t('app.views.example.demo.form.shanghai'),
+          label: computed(() => t('app.views.example.demo.form.shanghai')),
           value: '1'
         },
         {
-          label: t('app.views.example.demo.form.beijing'),
+          label: computed(() => t('app.views.example.demo.form.beijing')),
           value: '2'
         }
       ],
       typeOptions: [
-        { label: t('app.views.example.demo.form.online'), value: '1' },
-        { label: t('app.views.example.demo.form.promotion'), value: '2' },
-        { label: t('app.views.example.demo.form.offline'), value: '3' }
+        {
+          label: computed(() => t('app.views.example.demo.form.online')),
+          value: '1'
+        },
+        {
+          label: computed(() => t('app.views.example.demo.form.promotion')),
+          value: '2'
+        },
+        {
+          label: computed(() => t('app.views.example.demo.form.offline')),
+          value: '3'
+        }
       ],
       resourceOptions: [
-        { label: t('app.views.example.demo.form.sponsor'), value: '1' },
-        { label: t('app.views.example.demo.form.venue'), value: '2' }
+        {
+          label: computed(() => t('app.views.example.demo.form.sponsor')),
+          value: '1'
+        },
+        {
+          label: computed(() => t('app.views.example.demo.form.venue')),
+          value: '2'
+        }
       ]
     })
 

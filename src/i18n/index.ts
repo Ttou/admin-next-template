@@ -16,8 +16,6 @@ const messages = {
   }
 }
 
-console.log(messages)
-
 export type ILocale = keyof typeof messages
 
 const i18n = createI18n({
