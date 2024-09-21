@@ -12,6 +12,7 @@ import components from 'unplugin-vue-components/vite'
 import { CommonServerOptions, defineConfig, loadEnv } from 'vite'
 import { analyzer } from 'vite-bundle-analyzer'
 import { compression as compression2 } from 'vite-plugin-compression2'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 import { browserslist } from './package.json'
 
@@ -52,6 +53,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       vueJsx(),
+      vueDevTools(),
       legacy({
         targets: browserslist
       }),
