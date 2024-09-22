@@ -1,5 +1,5 @@
 import { cloneDeep, omit, set } from 'lodash-unified'
-import { type Ref, ref } from 'vue'
+import { type Ref, shallowRef } from 'vue'
 import type {
   VxeGridEventProps,
   VxeGridInstance,
@@ -30,7 +30,7 @@ interface FormItemOption {
  * @param options 高级表格选项
  */
 export function useGridExt(options: Ref<GridExtOptions>) {
-  const gridRef = ref<VxeGridInstance>()
+  const gridRef = shallowRef<VxeGridInstance>()
 
   function updateFormItem(option: FormItemOption) {
     const item = options.value.formConfig?.items?.find(

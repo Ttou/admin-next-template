@@ -6,8 +6,9 @@ import {
   defineComponent,
   onMounted,
   onUnmounted,
-  ref,
-  shallowRef
+  reactive,
+  shallowRef,
+  toRefs
 } from 'vue'
 
 import { defaultOptions, proEditorProps } from './ProEditor.define'
@@ -16,8 +17,10 @@ export default defineComponent({
   name: 'ProEditor',
   props: proEditorProps(),
   setup(props) {
-    const editorRef = ref<Element>()
-    const editor = shallowRef<AiEditor>()
+    const state = reactive({
+      editorRef: shallowRef<HTMLDivElement>(),
+      editor: shallowRef<AiEditor>()
+    })
 
     const editorStyle = computed<CSSProperties>(() => {
       return {
@@ -26,20 +29,19 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      editor.value = new AiEditor({
-        element: editorRef.value!,
+      state.editor = new AiEditor({
+        element: state.editorRef!,
         content: props.content,
         ...Object.assign({}, defaultOptions, props.options)
       })
     })
 
     onUnmounted(() => {
-      editor.value?.destroy()
+      state.editor?.destroy()
     })
 
     return {
-      editor,
-      editorRef,
+      ...toRefs(state),
       editorStyle
     }
   },

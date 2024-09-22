@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, reactive, shallowRef, toRefs } from 'vue'
 
 import { ProEditor, type ProEditorRef } from '@/components'
 import { getElementFnFromInstance } from '@/utils'
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      editorRef: undefined as Undefined<ProEditorRef>,
+      editorRef: shallowRef<ProEditorRef>(),
       content: '<p><strong>演示内容</strong></p>'
     })
 

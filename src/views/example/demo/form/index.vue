@@ -81,23 +81,17 @@
 
 <script lang="ts">
 import { type FormInstance, type FormRules } from 'element-plus'
-import { computed, defineComponent, reactive, toRefs } from 'vue'
+import { computed, defineComponent, reactive, shallowRef, toRefs } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import { formData, type IFromData } from './define.ts'
 
 export default defineComponent({
   setup() {
     const { t } = useI18n()
     const state = reactive({
-      formRef: {} as FormInstance,
-      formModel: {
-        name: '',
-        zone: '',
-        date: '',
-        delivery: '',
-        type: [],
-        resource: '',
-        desc: ''
-      },
+      formRef: shallowRef<FormInstance>(),
+      formModel: formData(),
       formRules: {
         name: [
           { required: true, message: '请输入', trigger: 'blur' },
@@ -122,7 +116,7 @@ export default defineComponent({
         ],
         resource: [{ required: true, message: '请选择', trigger: 'change' }],
         desc: [{ required: true, message: '请输入', trigger: 'blur' }]
-      } as FormRules,
+      } as FormRules<IFromData>,
       zoneOptions: [
         {
           label: computed(() => t('app.views.example.demo.form.shanghai')),
@@ -160,15 +154,15 @@ export default defineComponent({
     })
 
     function handleReset() {
-      state.formRef.resetFields()
+      state.formRef?.resetFields()
     }
 
     function handleCancel() {
-      state.formRef.clearValidate()
+      state.formRef?.clearValidate()
     }
 
     function handleSubmit() {
-      state.formRef.validate(valid => {})
+      state.formRef?.validate(valid => {})
     }
 
     return {

@@ -52,7 +52,14 @@
 import { Icon } from '@iconify/vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import qs from 'query-string'
-import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  reactive,
+  shallowRef,
+  toRefs
+} from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import { useSettingStore, useUserStore } from '@/store'
@@ -67,7 +74,7 @@ export default defineComponent({
       loading: false,
       redirect: null as Nullable<string>,
       otherQuery: {},
-      formRef: {} as FormInstance,
+      formRef: shallowRef<FormInstance>(),
       formModel: {
         username: '',
         password: ''
@@ -86,7 +93,7 @@ export default defineComponent({
     const title = computed(() => settingStore.title)
 
     function handleSubmit() {
-      state.formRef.validate(valid => {
+      state.formRef?.validate(valid => {
         if (valid) {
           state.loading = true
 

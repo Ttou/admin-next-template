@@ -1,5 +1,12 @@
 import { ElInput, ElPopover, ElTabPane, ElTabs } from 'element-plus'
-import { defineComponent, nextTick, reactive, toRefs, watch } from 'vue'
+import {
+  defineComponent,
+  nextTick,
+  reactive,
+  shallowRef,
+  toRefs,
+  watch
+} from 'vue'
 
 import IconVirtualList from './IconVirtualList'
 import { iconList, iconVirtualPickProps } from './IconVirtualPick.define'
@@ -13,7 +20,7 @@ export default defineComponent({
       show: false,
       activeIconSet: iconList[0].value,
       activeIconIndex: 0,
-      listRefs: {} as Record<string, ComponentRef>
+      listRefs: shallowRef<Record<string, ComponentRef>>({})
     })
 
     function handleChange({ value, index }: any) {

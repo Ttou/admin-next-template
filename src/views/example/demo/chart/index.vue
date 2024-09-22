@@ -39,7 +39,7 @@ import {
 } from 'echarts/components'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
-import { defineComponent, reactive, toRefs } from 'vue'
+import { defineComponent, markRaw, reactive, toRefs } from 'vue'
 import VChart from 'vue-echarts'
 
 use([
@@ -60,7 +60,7 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      lineConfig: {
+      lineConfig: markRaw<ChartProps>({
         option: {
           xAxis: {
             type: 'category',
@@ -76,8 +76,8 @@ export default defineComponent({
             }
           ]
         }
-      } as ChartProps,
-      barConfig: {
+      }),
+      barConfig: markRaw<ChartProps>({
         option: {
           xAxis: {
             type: 'category',
@@ -97,8 +97,8 @@ export default defineComponent({
             }
           ]
         }
-      } as ChartProps,
-      scatterConfig: {
+      }),
+      scatterConfig: markRaw<ChartProps>({
         option: {
           xAxis: {},
           yAxis: {},
@@ -133,8 +133,8 @@ export default defineComponent({
             }
           ]
         }
-      } as ChartProps,
-      pieConfig: {
+      }),
+      pieConfig: markRaw<ChartProps>({
         option: {
           title: {
             text: 'Referer of a Website',
@@ -170,7 +170,7 @@ export default defineComponent({
             }
           ]
         }
-      } as ChartProps
+      })
     })
 
     return {
