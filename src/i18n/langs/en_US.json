@@ -20,6 +20,12 @@
       }
     },
     "views": {
+      "sys": {
+        "login": {
+          "desc": "Background management system based on Element Plus",
+          "login": "Login"
+        }
+      },
       "example": {
         "demo": {
           "form": {

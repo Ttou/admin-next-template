@@ -20,6 +20,12 @@
       }
     },
     "views": {
+      "sys": {
+        "login": {
+          "desc": "基于 Element Plus 的后台管理系统",
+          "login": "登录"
+        }
+      },
       "example": {
         "demo": {
           "form": {

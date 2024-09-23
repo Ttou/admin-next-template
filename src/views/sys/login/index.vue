@@ -5,7 +5,7 @@
         <Icon class="logoIcon" icon="@local:custom:logo" />
         <span class="title">{{ title }}</span>
       </div>
-      <div class="desc">基于 Element Plus 的后台管理系统</div>
+      <div class="desc">{{ $t('app.views.sys.login.desc') }}</div>
     </div>
     <el-form
       ref="formRef"
@@ -15,7 +15,10 @@
       size="large"
     >
       <el-form-item prop="username">
-        <el-input v-model="formModel.username" placeholder="账号：admin">
+        <el-input
+          v-model="formModel.username"
+          :placeholder="$t('app.form.pleaseEnter')"
+        >
           <template #prefix>
             <Icon icon="@local:icon-park-outline:user" :inline="true" />
           </template>
@@ -24,8 +27,8 @@
       <el-form-item prop="password">
         <el-input
           v-model="formModel.password"
-          placeholder="密码：任意"
           type="password"
+          :placeholder="$t('app.form.pleaseEnter')"
           @keydown.enter="handleSubmit"
         >
           <template #prefix>
@@ -40,7 +43,7 @@
           style="width: 100%"
           @click="handleSubmit"
         >
-          登录
+          {{ $t('app.views.sys.login.login') }}
         </el-button>
       </el-form-item>
     </el-form>
@@ -60,6 +63,7 @@ import {
   shallowRef,
   toRefs
 } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
 import { useSettingStore, useUserStore } from '@/store'
@@ -70,6 +74,8 @@ export default defineComponent({
     Icon
   },
   setup() {
+    const { t } = useI18n()
+
     const state = reactive({
       loading: false,
       redirect: null as Nullable<string>,
@@ -80,8 +86,20 @@ export default defineComponent({
         password: ''
       },
       formRules: {
-        username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        username: [
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseEnter')),
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseEnter')),
+            trigger: 'blur'
+          }
+        ]
       } as FormRules
     })
 
