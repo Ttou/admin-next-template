@@ -94,14 +94,31 @@ export default defineComponent({
       formModel: formData(),
       formRules: {
         name: [
-          { required: true, message: '请输入', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度 3 到 5', trigger: 'blur' }
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseEnter')),
+            trigger: 'blur'
+          },
+          {
+            min: 3,
+            max: 5,
+            message: computed(() =>
+              t('app.form.lengthLimit', { min: 3, max: 5 })
+            ),
+            trigger: 'blur'
+          }
         ],
-        zone: [{ required: true, message: '请选择', trigger: 'change' }],
+        zone: [
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseSelect')),
+            trigger: 'change'
+          }
+        ],
         date: [
           {
             required: true,
-            message: '请选择',
+            message: computed(() => t('app.form.pleaseSelect')),
             trigger: 'change',
             type: 'object'
           }
@@ -110,12 +127,24 @@ export default defineComponent({
           {
             type: 'array',
             required: true,
-            message: '请选择',
+            message: computed(() => t('app.form.pleaseSelect')),
             trigger: 'change'
           }
         ],
-        resource: [{ required: true, message: '请选择', trigger: 'change' }],
-        desc: [{ required: true, message: '请输入', trigger: 'blur' }]
+        resource: [
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseSelect')),
+            trigger: 'change'
+          }
+        ],
+        desc: [
+          {
+            required: true,
+            message: computed(() => t('app.form.pleaseEnter')),
+            trigger: 'blur'
+          }
+        ]
       } as FormRules<IFromData>,
       zoneOptions: [
         {
