@@ -10,6 +10,15 @@
       "pleaseSelect": "Please select",
       "lengthLimit": "Length limit {min} to {max}"
     },
+    "layout": {
+      "tabbar": {
+        "refresh": "Refresh page",
+        "closeLeft": "Close left",
+        "closeRight": "Close right",
+        "closeOther": "Close other",
+        "closeAll": "Close all"
+      }
+    },
     "views": {
       "example": {
         "demo": {

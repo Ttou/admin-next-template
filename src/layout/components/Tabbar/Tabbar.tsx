@@ -199,7 +199,7 @@ export default defineComponent({
               <ElDropdownMenu class={styles.tabsDropdownMenu}>
                 <ElDropdownItem command="refresh">
                   <Icon icon="@local:icon-park-outline:redo" inline={true} />
-                  <span>刷新页面</span>
+                  <span>{this.$t('app.layout.tabbar.refresh')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeLeft"
@@ -207,7 +207,7 @@ export default defineComponent({
                   divided
                 >
                   <Icon icon="@local:icon-park-outline:to-left" inline={true} />
-                  <span>关闭左侧</span>
+                  <span>{this.$t('app.layout.tabbar.closeLeft')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeRight"
@@ -217,7 +217,7 @@ export default defineComponent({
                     icon="@local:icon-park-outline:to-right"
                     inline={true}
                   />
-                  <span>关闭右侧</span>
+                  <span>{this.$t('app.layout.tabbar.closeRight')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeOther"
@@ -225,14 +225,14 @@ export default defineComponent({
                   divided
                 >
                   <Icon icon="@local:icon-park-outline:close" inline={true} />
-                  <span>关闭其它</span>
+                  <span>{this.$t('app.layout.tabbar.closeOther')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem command="closeAll">
                   <Icon
                     icon="@local:icon-park-outline:close-one"
                     inline={true}
                   />
-                  <span>关闭所有</span>
+                  <span>{this.$t('app.layout.tabbar.closeAll')}</span>
                 </ElDropdownItem>
               </ElDropdownMenu>
             )

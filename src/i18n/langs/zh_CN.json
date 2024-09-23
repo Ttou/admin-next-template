@@ -10,6 +10,15 @@
       "pleaseSelect": "请选择",
       "lengthLimit": "长度限制 {min} 到 {max}"
     },
+    "layout": {
+      "tabbar": {
+        "refresh": "刷新页面",
+        "closeLeft": "关闭左侧",
+        "closeRight": "关闭右侧",
+        "closeOther": "关闭其他",
+        "closeAll": "关闭所有"
+      }
+    },
     "views": {
       "example": {
         "demo": {
