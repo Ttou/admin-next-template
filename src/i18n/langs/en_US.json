@@ -1,28 +1,26 @@
 {
   "app": {
-    "buttons": {
-      "reset": "Reset",
-      "submit": "Submit",
-      "cancel": "Cancel"
-    },
-    "form": {
+    "title": "Background management system",
+    "messages": {
+      "confirmTitle": "Hint",
+      "confirmLogout": "Confirm logout?",
+      "logout": "Logout",
       "pleaseEnter": "Please enter",
       "pleaseSelect": "Please select",
-      "lengthLimit": "Length limit {min} to {max}"
-    },
-    "layout": {
-      "tabbar": {
-        "refresh": "Refresh page",
-        "closeLeft": "Close left",
-        "closeRight": "Close right",
-        "closeOther": "Close other",
-        "closeAll": "Close all"
-      }
+      "lengthLimit": "Length limit {min} to {max}",
+      "reset": "Reset",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "refreshPage": "Refresh",
+      "closeLeftPage": "Close left",
+      "closeRightPage": "Close right",
+      "closeOtherPage": "Close other",
+      "closeAllPage": "Close all"
     },
     "views": {
       "sys": {
         "login": {
-          "desc": "Background management system based on Element Plus",
+          "desc": "This system based on Element Plus",
           "login": "Login"
         }
       },

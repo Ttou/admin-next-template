@@ -1,5 +1,8 @@
 <template>
   <div class="view">
+    <div class="localeWrap">
+      <LocaleSwitch />
+    </div>
     <div class="headerWrap">
       <div class="header">
         <Icon class="logoIcon" icon="@local:custom:logo" />
@@ -17,7 +20,7 @@
       <el-form-item prop="username">
         <el-input
           v-model="formModel.username"
-          :placeholder="$t('app.form.pleaseEnter')"
+          :placeholder="$t('app.messages.pleaseEnter')"
         >
           <template #prefix>
             <Icon icon="@local:icon-park-outline:user" :inline="true" />
@@ -28,7 +31,7 @@
         <el-input
           v-model="formModel.password"
           type="password"
-          :placeholder="$t('app.form.pleaseEnter')"
+          :placeholder="$t('app.messages.pleaseEnter')"
           @keydown.enter="handleSubmit"
         >
           <template #prefix>
@@ -66,12 +69,14 @@ import {
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
-import { useSettingStore, useUserStore } from '@/store'
+import { LocaleSwitch } from '@/components'
+import { useLocaleStore, useUserStore } from '@/store'
 
 export default defineComponent({
   name: 'LoginView',
   components: {
-    Icon
+    Icon,
+    LocaleSwitch
   },
   setup() {
     const { t } = useI18n()
@@ -89,14 +94,14 @@ export default defineComponent({
         username: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseEnter')),
+            message: computed(() => t('app.messages.pleaseEnter')),
             trigger: 'blur'
           }
         ],
         password: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseEnter')),
+            message: computed(() => t('app.messages.pleaseEnter')),
             trigger: 'blur'
           }
         ]
@@ -105,10 +110,10 @@ export default defineComponent({
 
     const route = useRoute()
     const router = useRouter()
-    const settingStore = useSettingStore()
+    const localeStore = useLocaleStore()
     const userStore = useUserStore()
 
-    const title = computed(() => settingStore.title)
+    const title = computed(() => localeStore.title)
 
     function handleSubmit() {
       state.formRef?.validate(valid => {
@@ -159,6 +164,21 @@ export default defineComponent({
   padding: 110px 0 144px;
   height: 100%;
   box-sizing: border-box;
+
+  .localeWrap {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    background-color: rgb(255 255 255 / 60%);
+    border-radius: 4px;
+    font-size: 22px;
+  }
 
   .headerWrap {
     text-align: center;

@@ -1,9 +1,5 @@
 declare interface Setting {
   /**
-   * 标题
-   */
-  title: string
-  /**
    * 显示标签栏
    */
   tabbar: boolean

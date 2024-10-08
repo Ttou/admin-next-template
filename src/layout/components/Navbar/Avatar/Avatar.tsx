@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/vue'
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 import { useUserStore } from '@/store'
@@ -14,6 +15,8 @@ type ICommandMap = Record<ICommand, () => void>
 export default defineComponent({
   name: 'Avatar',
   setup() {
+    const { t } = useI18n()
+
     const state = reactive({
       commandMap: {
         logout: () => handleLogout()
@@ -26,7 +29,13 @@ export default defineComponent({
 
     function handleLogout() {
       $msgbox
-        .confirm('确认退出登录？', '提示', { type: 'warning' })
+        .confirm(
+          t('app.messages.confirmLogout'),
+          t('app.messages.confirmTitle'),
+          {
+            type: 'warning'
+          }
+        )
         .then(async () => {
           await userStore.logout()
           router.replace({ path: '/login' })
@@ -59,7 +68,7 @@ export default defineComponent({
             <ElDropdownMenu class={styles.avatarDropdownMenu}>
               <ElDropdownItem command="logout">
                 <Icon icon="@local:icon-park-outline:logout" inline={true} />
-                <span>退出登录</span>
+                <span>{this.$t('app.messages.logout')}</span>
               </ElDropdownItem>
             </ElDropdownMenu>
           )

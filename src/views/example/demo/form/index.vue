@@ -66,13 +66,13 @@
       </el-form-item>
       <el-form-item>
         <el-button type="danger" @click="handleReset">
-          {{ $t('app.buttons.reset') }}
+          {{ $t('app.messages.reset') }}
         </el-button>
         <el-button @click="handleCancel">
-          {{ $t('app.buttons.cancel') }}
+          {{ $t('app.messages.cancel') }}
         </el-button>
         <el-button type="primary" @click="handleSubmit">
-          {{ $t('app.buttons.submit') }}
+          {{ $t('app.messages.submit') }}
         </el-button>
       </el-form-item>
     </el-form>
@@ -96,14 +96,14 @@ export default defineComponent({
         name: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseEnter')),
+            message: computed(() => t('app.messages.pleaseEnter')),
             trigger: 'blur'
           },
           {
             min: 3,
             max: 5,
             message: computed(() =>
-              t('app.form.lengthLimit', { min: 3, max: 5 })
+              t('app.messages.lengthLimit', { min: 3, max: 5 })
             ),
             trigger: 'blur'
           }
@@ -111,14 +111,14 @@ export default defineComponent({
         zone: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseSelect')),
+            message: computed(() => t('app.messages.pleaseSelect')),
             trigger: 'change'
           }
         ],
         date: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseSelect')),
+            message: computed(() => t('app.messages.pleaseSelect')),
             trigger: 'change',
             type: 'object'
           }
@@ -127,21 +127,21 @@ export default defineComponent({
           {
             type: 'array',
             required: true,
-            message: computed(() => t('app.form.pleaseSelect')),
+            message: computed(() => t('app.messages.pleaseSelect')),
             trigger: 'change'
           }
         ],
         resource: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseSelect')),
+            message: computed(() => t('app.messages.pleaseSelect')),
             trigger: 'change'
           }
         ],
         desc: [
           {
             required: true,
-            message: computed(() => t('app.form.pleaseEnter')),
+            message: computed(() => t('app.messages.pleaseEnter')),
             trigger: 'blur'
           }
         ]

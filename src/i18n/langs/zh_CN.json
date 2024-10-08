@@ -1,28 +1,26 @@
 {
   "app": {
-    "buttons": {
-      "reset": "重置",
-      "submit": "提交",
-      "cancel": "取消"
-    },
-    "form": {
+    "title": "后台管理系统",
+    "messages": {
+      "confirmTitle": "提示",
+      "confirmLogout": "确认退出登录？",
+      "logout": "登出",
       "pleaseEnter": "请输入",
       "pleaseSelect": "请选择",
-      "lengthLimit": "长度限制 {min} 到 {max}"
-    },
-    "layout": {
-      "tabbar": {
-        "refresh": "刷新页面",
-        "closeLeft": "关闭左侧",
-        "closeRight": "关闭右侧",
-        "closeOther": "关闭其他",
-        "closeAll": "关闭所有"
-      }
+      "lengthLimit": "长度限制 {min} 到 {max}",
+      "reset": "重置",
+      "submit": "提交",
+      "cancel": "取消",
+      "refreshPage": "刷新页面",
+      "closeLeftPage": "关闭左侧",
+      "closeRightPage": "关闭右侧",
+      "closeOtherPage": "关闭其他",
+      "closeAllPage": "关闭所有"
     },
     "views": {
       "sys": {
         "login": {
-          "desc": "基于 Element Plus 的后台管理系统",
+          "desc": "系统基于 Element Plus",
           "login": "登录"
         }
       },

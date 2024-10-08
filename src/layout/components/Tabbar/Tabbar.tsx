@@ -199,7 +199,7 @@ export default defineComponent({
               <ElDropdownMenu class={styles.tabsDropdownMenu}>
                 <ElDropdownItem command="refresh">
                   <Icon icon="@local:icon-park-outline:redo" inline={true} />
-                  <span>{this.$t('app.layout.tabbar.refresh')}</span>
+                  <span>{this.$t('app.messages.refreshPage')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeLeft"
@@ -207,7 +207,7 @@ export default defineComponent({
                   divided
                 >
                   <Icon icon="@local:icon-park-outline:to-left" inline={true} />
-                  <span>{this.$t('app.layout.tabbar.closeLeft')}</span>
+                  <span>{this.$t('app.messages.closeLeftPage')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeRight"
@@ -217,7 +217,7 @@ export default defineComponent({
                     icon="@local:icon-park-outline:to-right"
                     inline={true}
                   />
-                  <span>{this.$t('app.layout.tabbar.closeRight')}</span>
+                  <span>{this.$t('app.messages.closeRightPage')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem
                   command="closeOther"
@@ -225,14 +225,14 @@ export default defineComponent({
                   divided
                 >
                   <Icon icon="@local:icon-park-outline:close" inline={true} />
-                  <span>{this.$t('app.layout.tabbar.closeOther')}</span>
+                  <span>{this.$t('app.messages.closeOtherPage')}</span>
                 </ElDropdownItem>
                 <ElDropdownItem command="closeAll">
                   <Icon
                     icon="@local:icon-park-outline:close-one"
                     inline={true}
                   />
-                  <span>{this.$t('app.layout.tabbar.closeAll')}</span>
+                  <span>{this.$t('app.messages.closeAllPage')}</span>
                 </ElDropdownItem>
               </ElDropdownMenu>
             )

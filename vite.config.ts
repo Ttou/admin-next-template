@@ -67,8 +67,7 @@ export default defineConfig(({ mode }) => {
         ]
       }),
       customHtml({
-        injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`,
-        injectTitle: `<title>${env.VITE_APP_TITLE}</title>`
+        injectVer: `<meta name="version-no" content="${new Date().getTime()}"/>`
       }),
       compression2({
         exclude: [/\.(svg)$/, /.DS_Store$/]
@@ -106,7 +105,6 @@ export default defineConfig(({ mode }) => {
               '@iconify-json/icon-park-outline',
               '@iconify/vue'
             ],
-            wangeditor: ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
             echarts: ['echarts', 'vue-echarts'],
             element: ['element-plus'],
             'vxe-table': ['vxe-table', 'vxe-table-plugin-element', 'xe-utils']
